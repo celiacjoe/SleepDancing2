@@ -29,6 +29,7 @@ public class InputMidiControl : MonoBehaviour
     public render SRend;
     public Camera Cam;
     public GameObject GO;
+    public Vector3 mousePosition;
 
     private int L;
     private float P1value;
@@ -43,7 +44,7 @@ public class InputMidiControl : MonoBehaviour
     }
     void Update()
     {
-        Vector2 mousePosition = Mouse.current.position.ReadValue();
+        mousePosition = Mouse.current.position.ReadValue();
         GO.transform.position = mousePosition;
     }
 
