@@ -28,8 +28,10 @@ public class InputMidiControl : MonoBehaviour
     public Renderer rend;
     public render SRend;
     public Camera Cam;
+    public Camera CamMask;
     public GameObject GO;
-    public Vector3 mousePosition;
+    public Vector2 mousePosition;
+   // public Vector2 T;
 
     private int L;
     private float P1value;
@@ -44,8 +46,13 @@ public class InputMidiControl : MonoBehaviour
     }
     void Update()
     {
-        mousePosition = Mouse.current.position.ReadValue();
-        GO.transform.position = mousePosition;
+       // mousePosition.x = Input.mousePosition.x / Display.main.systemWidth;
+       // mousePosition.y = Input.mousePosition.y / Display.main.systemHeight;
+          mousePosition = Cam.ScreenToWorldPoint(Input.mousePosition);
+      //  GO.transform.position = Vector2.MoveTowards(transform.position, mousePosition, 5 * Time.deltaTime);
+     //   mousePosition = Input.mousePosition;
+        // mousePosition = Mouse.current.position.ReadValue();
+          GO.transform.position = new Vector3 (mousePosition.x-20, mousePosition.y, 0);
     }
 
     void OnEnable()
