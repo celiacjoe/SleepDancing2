@@ -122,7 +122,6 @@ public class InputMidiControl : MonoBehaviour
           */
         _ResetLevel.performed += ResetLevel;
         _ResetLevel.Enable();
-
     }
 
     void OnDisable()
@@ -141,9 +140,8 @@ public class InputMidiControl : MonoBehaviour
 
         _Zoom.performed -= Zoom;
         _Zoom.Disable();
-
-        /*
-                _Subdivision2.performed -= Subdivision2;
+       
+        /*         _Subdivision2.performed -= Subdivision2;
                 _Subdivision2.Disable();
 
                 _AssignCurrentUnivers.performed += AssignCurrentUnivers;
@@ -233,7 +231,7 @@ public class InputMidiControl : MonoBehaviour
     {
         ZoomValue = ctx.ReadValue<float>();
         Debug.Log(ZoomValue);
-        Cam.orthographicSize = map(ZoomValue,0, 1, 0.5f, 4.5f);
+        Cam.orthographicSize = map(ZoomValue,0, 1, 0.25f, 4.5f);
     }
     /*  void Subdivision1(InputAction.CallbackContext ctx)
       {

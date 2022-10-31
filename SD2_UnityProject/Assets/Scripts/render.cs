@@ -18,14 +18,14 @@ public class render : MonoBehaviour
     public float Disparition;
 
     public int _resx;
-
+    public RenderTextureFormat rtFormat = RenderTextureFormat.ARGBHalf;
     public int _resy;
     void Start()
     {
-        A = new RenderTexture(_resx, _resy, 0);
+        A = new RenderTexture(_resx, _resy, 0,rtFormat);
         A.enableRandomWrite = true;
         A.Create();
-        B = new RenderTexture(_resx, _resy, 0);
+        B = new RenderTexture(_resx, _resy, 0, rtFormat);
         B.enableRandomWrite = true;
         B.Create();
         /* C = new RenderTexture(1920, 1080, 0);
@@ -33,7 +33,7 @@ public class render : MonoBehaviour
          C.Create();    */
        /* D = new RenderTexture(_resx, _resy, 0);
         D.enableRandomWrite = true;
-        D.Create(); */
+        D.Create();  */
         handle_main = compute_shader.FindKernel("CSMain");
 
     }

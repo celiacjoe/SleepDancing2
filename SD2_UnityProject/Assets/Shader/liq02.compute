@@ -1,0 +1,55 @@
+﻿#pragma kernel CSMain
+
+Texture2D<float4> reader; 
+Texture2D<float4> reader2;
+RWTexture2D<float4> writer;
+SamplerState _LinearClamp;
+float _time;
+float _taille;
+float _forme;
+float _disparition;
+float _resx;
+float _resy;
+
+
+float4 tex( float2 g, float2 p, float2 s) {
+	float2 gp = g + p;
+	if (gp.x >= s.x) gp.x = gp.x - s.x;
+	if (gp.y >= s.y) gp.y = gp.y - s.y;
+	if (gp.x < 0.0) gp.x = s.x + gp.x;
+	if (gp.y < 0.0) gp.y = s.y + gp.y;
+	//return texture(sam, gp / s);
+	return reader.SampleLevel(_LinearClamp, gp / s + 0.5 /s, 0);
+}
+float4 getState( float2 g, float2 s, float n) {
+	float4 p = float4(0.,0.,0.,0.);
+	for (float i = 0.; i < n; i++) { p = tex( g, -p.xy, s); }
+	return p;
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint2 id : SV_DispatchThreadID) 
+{
+	
+	float2 g = float2(id.x,id.y);
+	float2 res=float2(_resx, _resy);
+	float tt = 1.+_taille*3.;
+	float4 r = tex( g, float2(tt, 0), res);
+	float4 t = tex( g, float2(0, tt), res);
+	float4 l = tex( g, float2(-tt, 0), res);
+	float4 b = tex( g, float2(0, -tt), res);
+	float2 uv = g / res;
+	float2 c = sin(uv * 6.28318)*.5 + .5;
+	float cc = c.x + c.y;
+	writer[id] = getState( g, res, cc * 2. + 1.);
+	writer[id] += float4(r.z - l.z, t.z - b.z,0.,0.);
+	float4 dp = (r + t + l + b) / 4.;
+	float div = ((l - r).x + (b - t).y) / 20.;
+	writer[id] = float4(writer[id].xy,dp.z - div, writer[id].a);
+	//float zo = step(distance(g, res*0.5 + 250.*float2(cos(_time), sin(_time))), 10.);
+	writer[id] = lerp(writer[id]*(1.- _disparition*0.02), float4(0.5,0.5,0.5,0.5), reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).x);
+	//writer[id] = abs(writer[id]);
+	//writer[id] = float4(uv, 0., 0.);
+
+
+}
