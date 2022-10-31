@@ -1568,7 +1568,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "e95856d351524d868a815fe3f16e96ab",
     "m_Id": 0,
-    "m_DisplayName": "liquid",
+    "m_DisplayName": "Liquid",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
