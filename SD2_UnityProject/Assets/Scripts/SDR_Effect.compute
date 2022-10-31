@@ -1,0 +1,76 @@
+﻿#pragma kernel CSMain
+
+
+Texture2D<float4> reader; 
+Texture2D<float4> reader2;
+RWTexture2D<float4> writer;
+//RWTexture2D<float4> writer2;
+SamplerState _LinearClamp;
+float _time;
+float _taille;
+float _forme;
+float _disparition;
+float _resx;
+float _resy;
+
+
+float2x2 m(float ang) {  float s = sin(ang); float c = cos(ang); return float2x2(c, s, -s, c); }
+
+
+
+float getRot(float2 pos, float2 b, float ang,float2 res)
+{
+	float2 p = b;
+	float rot = 0.0;
+	for (int i = 0; i < 5; i++)
+	{
+		//reader.SampleLevel(_LinearClamp, uv + 0.5 / res - diff.zy, 0).x;
+		rot += dot(reader.SampleLevel(_LinearClamp, frac((pos + p) /res)+ 0.5 / res,0).xy - float2(0.5,0.5), p.yx*float2(1, -1));
+		p = mul(p,m(ang));
+	}
+	return rot / 5. / dot(b, b);
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint2 id : SV_DispatchThreadID) 
+{
+	
+	float2 f = float2(id.x,id.y);
+	float2 res=float2(_resx, _resy);
+
+	float2 uv = f / res;
+	float2 pos =f;
+	float ang = 2.0*3.14 / 5.;
+	float2 b = float2(cos(ang), sin(ang))*10.*_taille;
+	float2 v = float2(0.,0.);
+	float bbMax = 0.7*res.y; bbMax *= bbMax;
+	for (int l = 0; l < 4; l++)
+	{
+		if (dot(b, b) > bbMax) break;
+		float2 p = b;
+		for (int i = 0; i <5; i++)
+		{
+
+			v += p.yx*getRot(pos + p, b,ang, res);
+
+			p = mul(p,m(ang));
+		}
+		b *=3.*_forme;
+	}
+	
+	writer[id] = reader.SampleLevel(_LinearClamp, frac((pos + v * float2(-1, 1)*2.0) /res) + 0.5 / res, 0)*(1.-0.05*_disparition);
+
+	float2 d2 = reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xx*(uv - 0.5);
+
+	writer[id] += float4(d2 * 0.025,0.,1.);
+	//writer2[id] = lerp(abs(reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0)), reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0),step(0.5,frac(_time)));
+	/*
+	float2 e = float2(0.001,0.);
+	float d2 = reader2.SampleLevel(_LinearClamp, uv + e.xy + 0.5 / res, 0).x;
+	float d3 = reader2.SampleLevel(_LinearClamp, uv - e.xy + 0.5 / res, 0).x;
+	float d4 = reader2.SampleLevel(_LinearClamp, uv + e.yx + 0.5 / res, 0).x;
+	float d5 = reader2.SampleLevel(_LinearClamp, uv - e.yx + 0.5 / res, 0).x;
+	
+	writer[id] += float4(float2(d2-d3,d4-d5) * 0.25,0.,0.);*/
+
+}
