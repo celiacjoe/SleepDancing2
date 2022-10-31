@@ -1,0 +1,64 @@
+{
+    "name": "Test",
+    "maps": [
+        {
+            "name": "Paramater",
+            "id": "6c5410b4-92cb-4ac7-a141-693cf1ced7cf",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "bc65dbcb-c2db-4f5f-bbb3-48d93df16717",
+                    "expectedControlType": "MidiValue",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Move2",
+                    "type": "Value",
+                    "id": "aaa171db-e5c3-41c2-8ad9-3d1f639a6030",
+                    "expectedControlType": "MidiValue",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "330b06af-6940-42f1-a0a0-f2cc6277e858",
+                    "path": "<MidiDevice>/note035",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1dcd122b-b3dd-4ed7-b25f-1e3a35b66813",
+                    "path": "<MidiDevice>/note036",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "New control scheme",
+                    "action": "Move2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "New control scheme",
+            "bindingGroup": "New control scheme",
+            "devices": [
+                {
+                    "devicePath": "<MidiDevice>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
