@@ -180,6 +180,13 @@
       },
       "url": "https://registry.npmjs.com"
     },
+    "jp.keijiro.midi-jack": {
+      "version": "0.0.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://registry.npmjs.com"
+    },
     "jp.keijiro.minis": {
       "version": "1.0.10",
       "depth": 0,

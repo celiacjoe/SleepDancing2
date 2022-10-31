@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028377, g: 0.22571409, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -308,6 +308,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1300448207}
+  - component: {fileID: 1300448210}
   m_Layer: 0
   m_Name: Script_Holder
   m_TagString: Untagged
@@ -329,3 +330,65 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1300448210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300448206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 151f3a36152145b4695a59be25c04838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _P1:
+    m_Name: P1
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 8dcfadd9-3a31-447e-b684-006ad4b64758
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 4065cf17-6c03-4cec-a26f-a8abf3b0b978
+      m_Path: <MidiDevice>/control000
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: P1
+      m_Flags: 0
+  _P2:
+    m_Name: P2
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 9cca80c4-2a2a-438b-9782-c6a3f835f84b
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _LayerChange:
+    m_Name: Layer Change
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: ce6fe6c5-ea7e-48cd-9d10-c92c8034aa21
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: bc730ab7-dd86-4fa1-ab26-d9a92dd5043f
+      m_Path: <MidiDevice>/control059
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Layer Change
+      m_Flags: 0
+  _ResetLevel:
+    m_Name: Reset Level
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: a227c833-46d0-4a44-b0d2-28392046f49b
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  MAT: {fileID: 0}
+  L: 0
