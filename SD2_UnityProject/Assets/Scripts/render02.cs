@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 
-public class render : MonoBehaviour
+public class render02 : MonoBehaviour
 {
     public ComputeShader compute_shader;
     RenderTexture A;
     RenderTexture B;
-    //RenderTexture D;
+    RenderTexture D;
     //RenderTexture C;
     public Material material;
-    public RenderTexture C;
+    public Texture C;
     int handle_main;
     [Range(0, 1)]
     public float Taille;
@@ -31,9 +31,9 @@ public class render : MonoBehaviour
         /* C = new RenderTexture(1920, 1080, 0);
          C.enableRandomWrite = true;
          C.Create();    */
-       /* D = new RenderTexture(_resx, _resy, 0);
+        D = new RenderTexture(_resx, _resy, 0);
         D.enableRandomWrite = true;
-        D.Create();  */
+        D.Create();  
         handle_main = compute_shader.FindKernel("CSMain");
 
     }
@@ -56,7 +56,7 @@ public class render : MonoBehaviour
         compute_shader.SetTexture(handle_main, "reader", B);
         compute_shader.SetTexture(handle_main, "writer", A);
         compute_shader.Dispatch(handle_main, B.width / 8, B.height / 8, 1);
-        //compute_shader.SetTexture(handle_main, "writer2", D);
-        material.SetTexture("_MainTex", B);
+        compute_shader.SetTexture(handle_main, "writer2", D);
+        material.SetTexture("_MainTex", D);
     }
 }
