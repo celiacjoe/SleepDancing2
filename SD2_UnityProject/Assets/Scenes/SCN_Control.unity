@@ -365,7 +365,15 @@ MonoBehaviour:
     m_Id: 9cca80c4-2a2a-438b-9782-c6a3f835f84b
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: e8621fb4-5103-484e-9578-cc4c5573d847
+      m_Path: <MidiDevice>/control001
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: P2
+      m_Flags: 0
   _LayerChange:
     m_Name: Layer Change
     m_Type: 0
