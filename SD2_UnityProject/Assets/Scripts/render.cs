@@ -11,21 +11,21 @@ public class render : MonoBehaviour
     public RenderTexture C;
     int handle_main;
     [Range(0, 1)]
-    public float Taille;
+    public float _taille;
     [Range(0, 1)]
-    public float Forme;
+    public float _forme;
     [Range(0, 1)]
-    public float Disparition;
+    public float _disparition;
 
     public int _resx;
-
+    public RenderTextureFormat rtFormat = RenderTextureFormat.ARGBHalf;
     public int _resy;
     void Start()
     {
-        A = new RenderTexture(_resx, _resy, 0);
+        A = new RenderTexture(_resx, _resy, 0,rtFormat);
         A.enableRandomWrite = true;
         A.Create();
-        B = new RenderTexture(_resx, _resy, 0);
+        B = new RenderTexture(_resx, _resy, 0, rtFormat);
         B.enableRandomWrite = true;
         B.Create();
         /* C = new RenderTexture(1920, 1080, 0);
@@ -33,7 +33,7 @@ public class render : MonoBehaviour
          C.Create();    */
        /* D = new RenderTexture(_resx, _resy, 0);
         D.enableRandomWrite = true;
-        D.Create(); */
+        D.Create();  */
         handle_main = compute_shader.FindKernel("CSMain");
 
     }
@@ -44,9 +44,9 @@ public class render : MonoBehaviour
         compute_shader.SetTexture(handle_main, "reader", A);
         compute_shader.SetTexture(handle_main, "reader2", C);
         compute_shader.SetFloat("_time", Time.time);
-        compute_shader.SetFloat("_taille", Taille);
-        compute_shader.SetFloat("_forme", Forme);
-        compute_shader.SetFloat("_disparition", Disparition);
+        compute_shader.SetFloat("_taille", _taille);
+        compute_shader.SetFloat("_forme", _forme);
+        compute_shader.SetFloat("_disparition", _disparition);
         compute_shader.SetFloat("_resx", _resx);
         compute_shader.SetFloat("_resy", _resy);
         //compute_shader.SetFloat("_delta", Time.deltaTime);
