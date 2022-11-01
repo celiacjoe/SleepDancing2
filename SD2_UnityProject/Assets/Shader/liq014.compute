@@ -11,7 +11,7 @@ float _forme;
 float _disparition;
 float _resx;
 float _resy;
-
+float _spectrum;
 
 float2x2 m(float ang) {  float s = sin(ang); float c = cos(ang); return float2x2(c, s, -s, c); }
 
@@ -111,7 +111,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 
 	float2 uf = (uv-0.5)*2.;
 	uf.x *= res.x / res.y;
-	uf += reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xy*0.5;
+	uf += reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xy*spectrum;
 	float3 flare = lensflares(uf*1.5, float2(no1(_time*1.5+596.),no1(_time*1.5+475.))*1.5);
 	float3 col = smoothstep(-0.08, 0.9, pow(flare, float3(0.5,0.5,0.5)));
 	writer2[id] = float4(col, 0.);

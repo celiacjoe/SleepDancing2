@@ -11,7 +11,7 @@ float _forme;
 float _disparition;
 float _resx;
 float _resy;
-
+float _spectrum;
 
 float4 tex( float2 g, float2 p, float2 s) {
 	float2 gp = g + p;
