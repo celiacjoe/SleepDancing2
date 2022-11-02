@@ -31,7 +31,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4c867f6b72b714dbb5fd1780afe208, type: 3}
-  m_Name: ColoredShape
+  m_Name: ColoredShapePosition
   m_EditorClassIdentifier: 
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 0}
@@ -205,7 +205,7 @@ VisualEffectResource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ColoredShape
+  m_Name: ColoredShapePosition
   m_Graph: {fileID: 114350483966674976}
   m_Infos:
     m_RendererSettings:
@@ -6058,7 +6058,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 1971.5569, y: -171.81403}
+  m_UIPosition: {x: 1966, y: -183}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -9537,7 +9537,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"colorKeys":[{"color":{"r":1.0039206743240357,"g":3.209582805633545,"b":47.937255859375,"a":1.0},"time":0.0},{"color":{"r":2.534649610519409,"g":12.32436466217041,"b":21.048612594604493,"a":1.0},"time":0.46471351385116579},{"color":{"r":23.9686279296875,"g":1.8823529481887818,"b":0.501960813999176,"a":1.0},"time":0.5499961972236633},{"color":{"r":11.98431396484375,"g":1.371764063835144,"b":0.2509801685810089,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}],"gradientMode":0}'
+      m_SerializableObject: '{"colorKeys":[{"color":{"r":0.250980406999588,"g":0.8156862854957581,"b":11.98431396484375,"a":1.0},"time":0.0},{"color":{"r":1.443137288093567,"g":7.027451038360596,"b":11.98431396484375,"a":1.0},"time":0.46471351385116579},{"color":{"r":23.9686279296875,"g":1.8823529481887818,"b":0.501960813999176,"a":1.0},"time":0.5499961972236633},{"color":{"r":11.98431396484375,"g":1.371764063835144,"b":0.2509801685810089,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}],"gradientMode":0}'
     m_Space: 2147483647
   m_Property:
     name: Color
