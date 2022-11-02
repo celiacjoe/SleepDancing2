@@ -1,0 +1,97 @@
+#pragma kernel Tick
+#pragma kernel MouseInteraction
+#pragma kernel Fill
+
+
+
+#include "Packages/jp.keijiro.noiseshader/Shader/ClassicNoise2D.hlsl"
+
+
+
+RWTexture2D<float2> interactionMap;
+
+
+
+float noiseFreqA;
+float noiseAmpA;
+float noiseFreqB;
+float noiseAmpB;
+
+
+
+float decay;
+[numthreads(8, 8, 1)]
+void Tick(uint3 id : SV_DispatchThreadID)
+{
+    interactionMap[id.xy] -= decay;
+    interactionMap[id.xy] = clamp(interactionMap[id.xy], 0, 1);
+}
+
+
+
+
+
+int texPosX;
+int texPosY;
+int interactionRadius;
+float interactionStrength;
+[numthreads(8, 8, 1)]
+void MouseInteraction(uint3 id : SV_DispatchThreadID)
+{
+    uint w, h;
+    interactionMap.GetDimensions(w, h);
+    float2 cooNorm = id.xy / float(h);
+    cooNorm = cooNorm * 2. - 1.; // 0..1 -> -1..1
+
+
+
+    float2 centerNorm = float2(texPosX, texPosY) / float(h);
+    centerNorm = centerNorm * 2. - 1;;
+
+
+
+    cooNorm += float2(ClassicNoise(cooNorm * noiseFreqA), ClassicNoise(cooNorm * noiseFreqA + 564.)) * noiseAmpA;
+    cooNorm += float2(ClassicNoise(cooNorm * noiseFreqB), ClassicNoise(cooNorm * noiseFreqB + 357.)) * noiseAmpB;
+
+
+
+    float dist = distance(centerNorm, cooNorm);
+
+
+
+    float maxDist = interactionRadius / float(h);
+    float midDist = interactionRadius / (2 * float(h));
+
+
+
+    interactionMap[id.xy].r += dist < midDist ? interactionStrength : 0;
+    interactionMap[id.xy].g += (dist > midDist && dist < maxDist) ? interactionStrength : 0;
+    interactionMap[id.xy] = clamp(interactionMap[id.xy], 0, 1);
+}
+
+
+
+
+
+float fill;
+[numthreads(8, 8, 1)]
+void Fill(uint3 id : SV_DispatchThreadID)
+{
+    uint w, h;
+    interactionMap.GetDimensions(w, h);
+
+
+
+    float2 cooNorm = id.xy / float(h);
+    float2 centerNorm = float2(w, h) / (2 * float(h));
+    cooNorm = cooNorm * 2. - 1.; // 0..1 -> -1..1
+    centerNorm = centerNorm * 2. - 1.;
+    cooNorm += float2(ClassicNoise(cooNorm * noiseFreqA), ClassicNoise(cooNorm * noiseFreqA + 6357.)) * noiseAmpA;
+    cooNorm += float2(ClassicNoise(cooNorm * noiseFreqB), ClassicNoise(cooNorm * noiseFreqB + 6357.)) * noiseAmpB;
+    float dist = distance(centerNorm, cooNorm);
+
+
+
+    interactionMap[id.xy] += dist < fill ? 1. : 0.;
+    interactionMap[id.xy] = clamp(interactionMap[id.xy], 0, 1);
+}
