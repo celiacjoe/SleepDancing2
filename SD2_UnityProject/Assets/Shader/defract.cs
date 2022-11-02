@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 
-public class cameradeform : MonoBehaviour
+public class defract : MonoBehaviour
 {
     public ComputeShader compute_shader;
     RenderTexture A;
    // RenderTexture B;
    // RenderTexture D;
     public Material material;
-    public WebCamTexture C;
+    public RenderTexture B;
+    public RenderTexture C;
     int handle_main;
     [Range(0, 1)]
     public float Taille;
@@ -21,7 +22,7 @@ public class cameradeform : MonoBehaviour
     public int _resy;
     void Start()
     {
-        C = new WebCamTexture();
+       
         A = new RenderTexture(_resx, _resy, 0,rtFormat);
         A.enableRandomWrite = true;
         A.Create();
@@ -35,17 +36,17 @@ public class cameradeform : MonoBehaviour
         D.enableRandomWrite = true;
         D.Create();   */ 
         handle_main = compute_shader.FindKernel("CSMain");
-        C.Play();
+        
     }
 
     void Update()
     {
 
 
-        //compute_shader.SetTexture(handle_main, "reader", A);
+       // compute_shader.SetTexture(handle_main, "reader", A);
         compute_shader.SetTexture(handle_main, "reader2", C);
-       /* compute_shader.SetTexture(handle_main, "reader3", B);
-        compute_shader.SetTexture(handle_main, "writer", A);
+        compute_shader.SetTexture(handle_main, "reader3", B);
+        /*compute_shader.SetTexture(handle_main, "writer", A);
         compute_shader.SetTexture(handle_main, "writer2", B); */
        // compute_shader.SetTexture(handle_main, "writer3", D);
         compute_shader.SetFloat("_time", Time.time);
@@ -71,12 +72,10 @@ public class cameradeform : MonoBehaviour
         compute_shader.Dispatch(handle_main, A.width / 8, A.height / 8, 1);
         //compute_shader.SetTexture(handle_main, "reader", A);
         compute_shader.SetTexture(handle_main, "writer", A);
-        /* compute_shader.Dispatch(handle_main, B.width / 8, B.height / 8, 1);
-         compute_shader.SetTexture(handle_main, "reader", A);
-         compute_shader.SetTexture(handle_main, "reader3", B);
-         compute_shader.SetTexture(handle_main, "writer2", B);   */
-        // material.SetTexture("_MainTex1", A);
-        gameObject.GetComponent<blur>().C = A;
-        gameObject.GetComponent<defract>().B = A;
+       /* compute_shader.Dispatch(handle_main, B.width / 8, B.height / 8, 1);
+        compute_shader.SetTexture(handle_main, "reader", A);
+        compute_shader.SetTexture(handle_main, "reader3", B);
+        compute_shader.SetTexture(handle_main, "writer2", B);   */
+        material.SetTexture("_MainTex", A);
     }
 }

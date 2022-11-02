@@ -1,0 +1,66 @@
+﻿#pragma kernel CSMain
+
+Texture2D<float4> reader; 
+Texture2D<float4> reader2;
+RWTexture2D<float4> writer;
+SamplerState _LinearClamp;
+SamplerState _NearestClamp;
+float _time;
+float _taille;
+float _forme;
+float _disparition;
+float _resx;
+float _resy;
+float _spectrum;
+
+
+[numthreads(8,8,1)]
+
+
+void CSMain (uint2 id : SV_DispatchThreadID) 
+{
+	
+	float2 f = float2(id.x,id.y);
+	float2 res=float2(_resx, _resy);
+	float2 uv = f / res;
+
+	float bs = 1. / 17.;
+	float bs2 = 1. / 10.;
+	float2 bs3 = float2(bs, bs2);
+	float vm = 1000.;
+	float2 g = float2(0., 0.); float vtot = 0.;
+	float2 pm = float2(0.5, 0.5);
+	for (int i = 0; i <= 16; i++)
+		for (int j = 0; j <= 9; j++) {
+			float2 p = (float2(0.5, 0.5) + float2(i, j))*bs3;
+			float v = reader2.SampleLevel(_LinearClamp, p + 0.5 / res, 0).y;
+			float v2 = 1. - v;
+
+			g += p * v;
+			vtot += v;
+			if (v2 < vm) {
+				vm = v2;
+				pm = p;
+			}
+
+		}
+
+	float2 m2 = g / vtot;
+	float4 v1 = float4(pm.x, pm.y, m2.x, m2.y);
+	float4 v2 = lerp(reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0),v1, 0.01);
+	/*float z1 = lerp(pm.x, pm.y, step(0.25, uv.x));
+	float z2 = lerp(m2.x, m2.y, step(0.75, uv.x));
+	float z3 = lerp(z1, z2, step(0.5, uv.x));
+	//float va =clamp( 1.-_taille,0.05,1.);
+
+	float z1f = lerp(reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).z, z3, 0.05);
+	//float z2f = lerp(reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).a, z1, 0.05);*/
+
+	writer[id] = clamp(v2,0.,1.);
+
+
+
+	
+
+
+}

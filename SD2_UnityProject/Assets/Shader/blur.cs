@@ -6,7 +6,7 @@ public class blur : MonoBehaviour
     RenderTexture A;
    // RenderTexture B;
    // RenderTexture D;
-    public Material material;
+   // public Material material;
     public RenderTexture C;
     int handle_main;
     [Range(0, 1)]
@@ -42,7 +42,7 @@ public class blur : MonoBehaviour
     {
 
 
-        compute_shader.SetTexture(handle_main, "reader", A);
+       // compute_shader.SetTexture(handle_main, "reader", A);
         compute_shader.SetTexture(handle_main, "reader2", C);
        /* compute_shader.SetTexture(handle_main, "reader3", B);
         compute_shader.SetTexture(handle_main, "writer", A);
@@ -71,10 +71,11 @@ public class blur : MonoBehaviour
         compute_shader.Dispatch(handle_main, A.width / 8, A.height / 8, 1);
         //compute_shader.SetTexture(handle_main, "reader", A);
         compute_shader.SetTexture(handle_main, "writer", A);
-       /* compute_shader.Dispatch(handle_main, B.width / 8, B.height / 8, 1);
-        compute_shader.SetTexture(handle_main, "reader", A);
-        compute_shader.SetTexture(handle_main, "reader3", B);
-        compute_shader.SetTexture(handle_main, "writer2", B);   */
-        material.SetTexture("_MainTex2", A);
+        /* compute_shader.Dispatch(handle_main, B.width / 8, B.height / 8, 1);
+         compute_shader.SetTexture(handle_main, "reader", A);
+         compute_shader.SetTexture(handle_main, "reader3", B);
+         compute_shader.SetTexture(handle_main, "writer2", B);   */
+        //material.SetTexture("_MainTex2", A);
+        gameObject.GetComponent<defract>().C = A;
     }
 }
