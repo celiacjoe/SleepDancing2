@@ -1,0 +1,153 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3129268294782036908
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3129268294782036897}
+  - component: {fileID: 3129268294782036899}
+  m_Layer: 0
+  m_Name: OSC 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3129268294782036897
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3129268294782036908}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5613437018161754692}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3129268294782036899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3129268294782036908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b64988e220a2942f9856e0017b596ba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _openOnAwake: 1
+  _udpBufferSize: 512
+  _port: 4000
+  _mode: 0
+  _multicastAddress: 
+  _filterDuplicates: 0
+  _addTimeTagsToBundledMessages: 0
+  _mappings: []
+  _settingsFoldout: 1
+  _mappingsFoldout: 1
+  _messagesFoldout: 1
+--- !u!1 &5613437018161754690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5613437018161754692}
+  - component: {fileID: 5613437018161754693}
+  m_Layer: 0
+  m_Name: AssignControll
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5613437018161754692
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5613437018161754690}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3129268294782036897}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5613437018161754693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5613437018161754690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 393b9d4449a1145d0b25de38444f2360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _oscIn: {fileID: 3129268294782036899}
+  SetupTop: 0
+  Map_Setup: /2/b4
+  CameraPers: {fileID: 0}
+  CameraPersTop2: {fileID: 0}
+  CameraPersBot3: {fileID: 0}
+  CameraPersTop: {fileID: 0}
+  SwitchSetupReference: {fileID: 0}
+  target: {fileID: 0}
+  AC: {fileID: 0}
+  Velocity: 0
+  SmoothTime: 0.3
+  SmoothRot: 0.5
+  SmoothRotFX: 1
+  Map_CamPositionXY: /posXY
+  PosXY: {x: 0, y: -6}
+  Map_HauteurZ: /hauteur
+  PosZ: 0
+  Map_EncodRotateCam: /camRotation
+  CamRotationValue: 0
+  Map_SlideFOV: /fov
+  FOV_Pers: 60
+  Map_B1: /b1
+  Map_B2: /b2
+  Map_B3: /b3
+  Map_Radio: /anim
+  CenterRotation: {fileID: 0}
+  FX: {fileID: 0}
+  Map_EncodRotateFX: /fxRotation
+  FXRotationValue: 0
+  Map_FxAngle: 
+  FXAngleValue: 0
+  Map_Encoder: /encoder1.
+  Map_SmoothRotationFX: /Smooth
+  Map_Particles: /1/fader6
+  Particles: 0
+  Map_Change1: /1/Change1
+  Map_Change2: /1/Change2
+  Map_Change3: /1/Change3
+  Map_Change4: /1/change4
+  Map_Change5: /1/change5
+  Map_KBPosX: /2/posX
+  Map_KBPosY: /2/posY
+  Map_KBradius: /2/radius
+  Map_PointcloudPosXY: /2/posPointcloud
+  PointCloudPosXY: {x: 0, y: 0}
+  Map_PointCloudPosZ: /2/PCHauteur
+  PointCloudPosZ: 0
+  PC: {fileID: 0}
+  Map_MaxParticles: /2/change1
+  Map_Color: /2/change2
+  Map_KBGround: /2/change3
+  Map_FXrotation2: /2/encoderFx
