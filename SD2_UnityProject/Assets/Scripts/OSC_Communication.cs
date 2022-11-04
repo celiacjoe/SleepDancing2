@@ -12,6 +12,7 @@ namespace OscSimpl.Examples
         public string Name;
         public string Map_PosXY;
         public Vector2 V2;
+        //public VisualEffect FX;
 
         float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
         {
@@ -60,6 +61,7 @@ namespace OscSimpl.Examples
             }
             OscPool.Recycle(message);
         }
+
 
 
     }

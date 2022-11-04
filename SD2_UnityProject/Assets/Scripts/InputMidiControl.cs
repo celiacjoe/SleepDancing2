@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 
 public class InputMidiControl : MonoBehaviour
@@ -16,6 +17,9 @@ public class InputMidiControl : MonoBehaviour
     [SerializeField] InputAction _ResetLevel = null;
     [SerializeField] InputAction _PositionX = null;
     [SerializeField] InputAction _PositionY = null;
+    [SerializeField] InputAction _FXParam1 = null;
+    [SerializeField] InputAction _FXParam2 = null;
+    [SerializeField] InputAction _FXParam3 = null;
 
     ///////////// FUNCTION
     float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
@@ -30,6 +34,7 @@ public class InputMidiControl : MonoBehaviour
     public Camera CamMask;
     public GameObject GO;
     public Vector2 mousePosition;
+    public VisualEffect FX;
 
     private int L;
     private float P1value;
@@ -37,10 +42,8 @@ public class InputMidiControl : MonoBehaviour
     private float IntensityControlValue;
     private float ZoomValue;
     public float SmoothT = 0.3f;
-    private Vector3 velocity = Vector3.zero;
-    private Vector3 velocityCam = Vector3.zero;
+    private Vector3 velocity ;
     public GameObject MovableObject;
-  //  public Vector3 PosXY;
     public float PosX;
     public float PosY;
 
@@ -57,7 +60,7 @@ public class InputMidiControl : MonoBehaviour
       //  Vector3 NewTargetPosX = PositionX;
       //  MovableObject.transform.position = Vector3.SmoothDamp(MovableObject.transform.position, NewTargetPosX, ref velocity, SmoothT);
 
-        Vector3 NewTargetPosition = new Vector3(PosX, PosY);
+        Vector3 NewTargetPosition = new Vector3(PosX+40, PosY);
         MovableObject.transform.position = Vector3.SmoothDamp(MovableObject.transform.position, NewTargetPosition, ref velocity, SmoothT);
     }
 
@@ -84,16 +87,15 @@ public class InputMidiControl : MonoBehaviour
         _PositionY.performed += PositionY;
         _PositionY.Enable();
 
-        /*
+        _FXParam1.performed += FXParam1;
+        _FXParam1.Enable();
 
-                        ///// DEBUG STUFF
-                        _DebugClean.performed += DebugClean;
-                        _DebugClean.Enable();
-                        _DebugFunction.performed += DebugFunction;
-                        _DebugFunction.Enable();
+        _FXParam2.performed += FXParam2;
+        _FXParam2.Enable();
 
-                _ResetLevel.performed += ResetLevel;
-                _ResetLevel.Enable();      */
+        _FXParam3.performed += FXParam3;
+        _FXParam3.Enable();
+
     }
 
     void OnDisable()
@@ -119,6 +121,14 @@ public class InputMidiControl : MonoBehaviour
         _PositionY.performed -= PositionY;
         _PositionY.Disable();
 
+        _FXParam1.performed -= FXParam1;
+        _FXParam1.Disable();
+
+        _FXParam2.performed -= FXParam2;
+        _FXParam2.Disable();
+
+        _FXParam3.performed -= FXParam3;
+        _FXParam3.Disable();
         /*
           ////// DEBUG STUFF
           _DebugClean.performed -= DebugClean;
@@ -173,14 +183,37 @@ public class InputMidiControl : MonoBehaviour
     {
         PosX = ctx.ReadValue<float>();
         Debug.Log(PosX);
-        Cam.orthographicSize = map(ZoomValue, 0, 1, -10f, 10f);
+        PosX = map(PosX, 0, 1, -10f, 10f);
     }
 
     void PositionY(InputAction.CallbackContext ctx)
     {
         PosY = ctx.ReadValue<float>();
         Debug.Log(PosY);
-        Cam.orthographicSize = map(PosY, 0, 1, -5f, 5f);
+        PosY = map(PosY, 0, 1, -5f, 5f);
+    }
+
+    void FXParam1(InputAction.CallbackContext ctx)
+    {
+        float FxP1= ctx.ReadValue<float>() ;
+
+        VisualEffect VFX = FX.GetComponent<VisualEffect>();
+        VFX.SetFloat("PositionStartX", FxP1);
+    }
+
+    void FXParam2(InputAction.CallbackContext ctx)
+    {
+        float FxP2 = ctx.ReadValue<float>();
+
+        VisualEffect VFX = FX.GetComponent<VisualEffect>();
+        VFX.SetFloat("Largeur", FxP2);
+    }
+    void FXParam3(InputAction.CallbackContext ctx)
+    {
+        float FxP3 = ctx.ReadValue<float>();
+
+        VisualEffect VFX = FX.GetComponent<VisualEffect>();
+        VFX.SetFloat("AngleVit", FxP3);
     }
     /*  void Subdivision1(InputAction.CallbackContext ctx)
       {
