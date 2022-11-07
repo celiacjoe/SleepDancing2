@@ -496,5 +496,6 @@ MonoBehaviour:
   SHigh: 0
   facMerge: 0.01
   fac: {x: 1, y: 1, z: 1}
+  mat: {fileID: 2100000, guid: 40366955627a5724f851de3f25b4df25, type: 2}
   GObj: {fileID: 1388154866}
   script: ree

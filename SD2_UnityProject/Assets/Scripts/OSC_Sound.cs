@@ -23,7 +23,7 @@ namespace OscSimpl.Examples
         public float SHigh;
         public float facMerge;
         public Vector3 fac;
-        //public Material mat;
+        public Material mat;
         //public string Map_PosXY;
         //public Vector2 V2;
         //public VisualEffect FX;
@@ -62,6 +62,7 @@ namespace OscSimpl.Examples
             mat.SetFloat("_High", High);
             mat.SetFloat("_THigh", THigh);
             mat.SetFloat("_SHigh", SHigh);    */
+            mat.SetFloat("_SMid", SMid);
             GObj.GetComponent<SoundRender>().Low = Low;
             GObj.GetComponent<SoundRender>().TLow = TLow;
             GObj.GetComponent<SoundRender>().SLow = SLow;
