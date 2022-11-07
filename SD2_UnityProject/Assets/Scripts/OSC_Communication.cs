@@ -36,17 +36,16 @@ namespace OscSimpl.Examples
 
         void OnEnable()
         {
-            _oscIn.MapFloat(Name, EventTest);           // Cam hauteur
+            _oscIn.MapFloat(Name, EventTest);           // Float 
             
-            _oscIn.Map(Map_PosXY, EventPosXY);              // Cam position
-          // Cam hauteur
+            _oscIn.Map(Map_PosXY, EventPosXY);          // MultiFloat
+
         }
 
 
-        void EventTest(float value)
+        public void EventTest(float value)
         {
-            float f = map(value, 0, 1, -5f, 8);
-            Debug.Log("ok");
+            f = value;
         }
 
         void EventPosXY(OscMessage message)

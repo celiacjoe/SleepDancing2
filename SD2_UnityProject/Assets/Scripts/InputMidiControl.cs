@@ -18,8 +18,15 @@ public class InputMidiControl : MonoBehaviour
     [SerializeField] InputAction _PositionX = null;
     [SerializeField] InputAction _PositionY = null;
     [SerializeField] InputAction _FXParam1 = null;
+    public string Name_P1;
     [SerializeField] InputAction _FXParam2 = null;
+    public string Name_P2;
     [SerializeField] InputAction _FXParam3 = null;
+    public string Name_P3;
+    [SerializeField] InputAction _FXParam4 = null;
+    public string Name_P4;
+    [SerializeField] InputAction _FXParam5 = null;
+    public string Name_P5;
 
     ///////////// FUNCTION
     float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
@@ -96,6 +103,12 @@ public class InputMidiControl : MonoBehaviour
         _FXParam3.performed += FXParam3;
         _FXParam3.Enable();
 
+        _FXParam4.performed += FXParam4;
+        _FXParam4.Enable();
+
+        _FXParam5.performed += FXParam5;
+        _FXParam5.Enable();
+
     }
 
     void OnDisable()
@@ -129,6 +142,12 @@ public class InputMidiControl : MonoBehaviour
 
         _FXParam3.performed -= FXParam3;
         _FXParam3.Disable();
+
+        _FXParam4.performed -= FXParam4;
+        _FXParam4.Disable();
+
+        _FXParam5.performed -= FXParam5;
+        _FXParam5.Disable();
         /*
           ////// DEBUG STUFF
           _DebugClean.performed -= DebugClean;
@@ -198,7 +217,7 @@ public class InputMidiControl : MonoBehaviour
         float FxP1= ctx.ReadValue<float>() ;
 
         VisualEffect VFX = FX.GetComponent<VisualEffect>();
-        VFX.SetFloat("PositionStartX", FxP1);
+        VFX.SetFloat(Name_P1, FxP1);
     }
 
     void FXParam2(InputAction.CallbackContext ctx)
@@ -206,14 +225,29 @@ public class InputMidiControl : MonoBehaviour
         float FxP2 = ctx.ReadValue<float>();
 
         VisualEffect VFX = FX.GetComponent<VisualEffect>();
-        VFX.SetFloat("Largeur", FxP2);
+        VFX.SetFloat(Name_P2, FxP2);
     }
     void FXParam3(InputAction.CallbackContext ctx)
     {
         float FxP3 = ctx.ReadValue<float>();
 
         VisualEffect VFX = FX.GetComponent<VisualEffect>();
-        VFX.SetFloat("AngleVit", FxP3);
+        VFX.SetFloat(Name_P3, FxP3);
+    }
+
+    void FXParam4(InputAction.CallbackContext ctx)
+    {
+        float FxP4 = ctx.ReadValue<float>();
+
+        VisualEffect VFX = FX.GetComponent<VisualEffect>();
+        VFX.SetFloat(Name_P4, FxP4);
+    }
+    void FXParam5(InputAction.CallbackContext ctx)
+    {
+        float FxP5 = ctx.ReadValue<float>();
+
+        VisualEffect VFX = FX.GetComponent<VisualEffect>();
+        VFX.SetFloat(Name_P5, FxP5);
     }
     /*  void Subdivision1(InputAction.CallbackContext ctx)
       {
