@@ -8,8 +8,11 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: d1c3109bdb54ad54c8a2b2838528e640
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/detection.unity
     guid: 89073e5ee29e382448d75f6d25651e9a
+  - enabled: 1
+    path: Assets/Scenes/DeformationCamera.unity
+    guid: 9b22051cc309c2c44abb6f42f57554c3
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 985a5a2410128e54cb7c2030aa449fc7, type: 2}

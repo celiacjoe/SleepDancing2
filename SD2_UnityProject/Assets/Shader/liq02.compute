@@ -33,12 +33,15 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	
 	float2 g = float2(id.x,id.y);
 	float2 res=float2(_resx, _resy);
-	float tt = 1.+_taille*3.;
+
+	g += (g / res - 0.5)*float2(res.x / res.y, 1.)*-_forme*5.;
+	float2 uv = g / res;
+	float tt = 0.1+_taille*3.;
 	float4 r = tex( g, float2(tt, 0), res);
 	float4 t = tex( g, float2(0, tt), res);
 	float4 l = tex( g, float2(-tt, 0), res);
 	float4 b = tex( g, float2(0, -tt), res);
-	float2 uv = g / res;
+	
 	float2 c = sin(uv * 6.28318)*.5 + .5;
 	float cc = c.x + c.y;
 	writer[id] = getState( g, res, cc * 2. + 1.);

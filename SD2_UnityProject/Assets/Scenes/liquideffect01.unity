@@ -380,13 +380,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e748add772d9941ae69d53600b21c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  compute_shader: {fileID: 7200000, guid: cfb9eb163f4836144a69435df9556d84, type: 3}
+  compute_shader: {fileID: 7200000, guid: 986d368d4c8263e4a841b72357fe3873, type: 3}
   material: {fileID: 2100000, guid: 0bb49d74555d6a541b9d523b6bc333f7, type: 2}
   C: {fileID: 8400000, guid: 0d88d3f4e6b06f1488d790e43e1f1968, type: 2}
-  _taille: 0.452
-  _forme: 0.339
-  _disparition: 0
+  Taille: 0
+  Forme: 0
+  Disparition: 0
   _resx: 1920
+  rtFormat: 2
   _resy: 1080
 --- !u!64 &1593286582
 MeshCollider:
