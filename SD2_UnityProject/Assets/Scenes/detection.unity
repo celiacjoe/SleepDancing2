@@ -289,7 +289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   compute_shader: {fileID: 7200000, guid: f62d5c5bb9f079f4193d7d05f18f3ca9, type: 3}
   C: {fileID: 0}
-  material: {fileID: 2100000, guid: 9ddc193019e6db545b17832577e8bc0f, type: 2}
+  material: {fileID: 2100000, guid: 40faf280c03da1342aa88ff5a97a054c, type: 2}
   Taille: 1
   Forme: 0
   Disparition: 0
@@ -336,7 +336,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9ddc193019e6db545b17832577e8bc0f, type: 2}
+  - {fileID: 2100000, guid: 40faf280c03da1342aa88ff5a97a054c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
