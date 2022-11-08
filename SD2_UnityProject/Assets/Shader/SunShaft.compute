@@ -80,7 +80,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	uv.x *= _resx / _resy;
 	float3 flare = lensflares(uv*(2.-no1(_THigh*0.1+46.)), (float2(no1(_TLow*0.01 + 596.), no1(_TLow*0.01 + 475.))-0.5)*2.,clamp(_SLow*120.,0.,120.),_TMid);
 
-	float3 col = smoothstep(-0.08, 0.9, pow(flare, float3(0.5, 0.5, 0.5)));
+	float3 col = smoothstep(-0.0, 0.9, pow(flare, float3(0.5, 0.5, 0.5)));
 	writer[id] = float4(col, 0.);
 	
 

@@ -41,12 +41,6 @@ public class render02 : MonoBehaviour
     void Update()
     {
 
-        float[] spectrum = AudioListener.GetSpectrumData(1024, 0, FFTWindow.Hamming);
-
-        for (int i = 0; i < 1; i++)
-        {
-            compute_shader.SetFloat("_spectrum", spectrum[i] * 1000);
-        }
             compute_shader.SetTexture(handle_main, "reader", A);
         compute_shader.SetTexture(handle_main, "reader2", C);
         compute_shader.SetFloat("_time", Time.time);
