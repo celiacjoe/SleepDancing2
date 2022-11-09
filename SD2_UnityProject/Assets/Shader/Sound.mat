@@ -89,7 +89,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_67077039d7e2490bab947b44bb056941: 50000
+    - Vector1_67077039d7e2490bab947b44bb056941: 10000
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -114,7 +114,7 @@ Material:
     - _ReceiveShadows: 1
     - _SHigh: 0
     - _SLow: 0
-    - _SMid: 0.0053401277
+    - _SMid: 0.0036063404
     - _Smid: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0

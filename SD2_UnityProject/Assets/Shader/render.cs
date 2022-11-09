@@ -9,6 +9,7 @@ public class render : MonoBehaviour
     //RenderTexture C;
     public Material material;
     public RenderTexture C;
+    //public WebCamTexture C;
     int handle_main;
     [Range(0, 1)]
     public float Taille;
@@ -35,6 +36,9 @@ public class render : MonoBehaviour
         D.enableRandomWrite = true;
         D.Create();  */
         handle_main = compute_shader.FindKernel("CSMain");
+       /* C = new WebCamTexture();
+        handle_main = compute_shader.FindKernel("CSMain");
+        C.Play();  */
 
     }
 
