@@ -194,21 +194,21 @@ public class InputMidiControl : MonoBehaviour
      void Zoom(InputAction.CallbackContext ctx)
      {
          ZoomValue = ctx.ReadValue<float>();
-         Debug.Log(ZoomValue);
+        // Debug.Log(ZoomValue);
          Cam.orthographicSize = map(ZoomValue,0, 1, 0.25f, 4.5f);
      }
 
     void PositionX(InputAction.CallbackContext ctx)
     {
         PosX = ctx.ReadValue<float>();
-        Debug.Log(PosX);
+      //  Debug.Log(PosX);
         PosX = map(PosX, 0, 1, -10f, 10f);
     }
 
     void PositionY(InputAction.CallbackContext ctx)
     {
         PosY = ctx.ReadValue<float>();
-        Debug.Log(PosY);
+      //  Debug.Log(PosY);
         PosY = map(PosY, 0, 1, -5f, 5f);
     }
 
