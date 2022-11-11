@@ -1,0 +1,51 @@
+﻿#pragma kernel CSMain
+
+Texture2D<float4> reader; 
+Texture2D<float4> reader2;
+RWTexture2D<float4> writer;
+SamplerState _LinearClamp;
+float _time;
+float _taille;
+float _forme;
+float _disparition;
+float _resx;
+float _resy;
+
+
+[numthreads(8,8,1)]
+
+
+void CSMain (uint2 id : SV_DispatchThreadID) 
+{
+	
+	float2 f = float2(id.x,id.y);
+	float2 res=float2(_resx, _resy);
+	float2 uv = f / res;
+
+	float2 uv1 = (uv - 0.5)*5.;
+	float2 uv2 = uv1;
+	float z1 = pow(length(uv1), 0.5) - _time * 0.1;
+	float f1 = (sin(z1)*0.5 + 0.5);
+	uv1 = normalize(float3(uv1, f1)).xy;
+	uv1 *= f1;
+	uv1 = uv1 * 0.5 + 0.5;
+
+	float f2 = (sin(z1 + 3.14)*0.5 + 0.5);
+	uv2 = normalize(float3(uv2, f2)).xy;
+	uv2 *= f2;
+	uv2 = uv2 * 0.5 + 0.5;
+
+	float3 t0 = reader2.SampleLevel(_LinearClamp, uv1 + 0.5 / res, 0).xyz;
+	float3 t1 = reader2.SampleLevel(_LinearClamp, uv2 + 0.5 / res, 0).xyz;
+
+	float zo = 0.;
+	float3 t2 = lerp(t0, t1, smoothstep(0.5 - zo, 0.5 + zo, 1. - f1));
+
+	writer[id] = float4(t2, 1.);
+
+
+
+	
+
+
+}

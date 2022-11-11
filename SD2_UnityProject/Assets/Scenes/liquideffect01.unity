@@ -174,7 +174,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: edc92c17213526c47a29b9bb4ed4aac5, type: 2}
+  - {fileID: 2100000, guid: aa6a19b9470383b4b8388b15481f8319, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -212,8 +212,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 512076675}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.3, y: 1.8650624, z: 2.4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -27.3, y: 1.8651, z: 2.4}
+  m_LocalScale: {x: 2.2389, y: 2.2389, z: 2.2389}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -360,6 +360,7 @@ GameObject:
   - component: {fileID: 1593286584}
   - component: {fileID: 1593286583}
   - component: {fileID: 1593286582}
+  - component: {fileID: 1593286586}
   - component: {fileID: 1593286581}
   m_Layer: 0
   m_Name: Quad
@@ -375,7 +376,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593286580}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8e748add772d9941ae69d53600b21c0, type: 3}
   m_Name: 
@@ -422,7 +423,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0bb49d74555d6a541b9d523b6bc333f7, type: 2}
+  - {fileID: 2100000, guid: a30fde5651f76c74cac6704cc28a1524, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -466,6 +467,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1593286586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593286580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30332505f1be6864db0c7b62b8203141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  compute_shader: {fileID: 7200000, guid: 1e458f6f9f5db1d4c8e17212f2cf573e, type: 3}
+  material: {fileID: 2100000, guid: a30fde5651f76c74cac6704cc28a1524, type: 2}
+  C: {fileID: 8400000, guid: 0d88d3f4e6b06f1488d790e43e1f1968, type: 2}
+  Taille: 0.42
+  Forme: 0.866
+  Forme1: 0.728
+  Forme2: 0.934
+  Forme3: 0.426
+  Forme4: 0.416
+  Forme5: 0.323
+  Forme6: 0.324
+  Disparition: 0
+  _resx: 1920
+  rtFormat: 2
+  _resy: 1080
 --- !u!1 &1972104946
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,7 +506,6 @@ GameObject:
   - component: {fileID: 1972104950}
   - component: {fileID: 1972104949}
   - component: {fileID: 1972104948}
-  - component: {fileID: 1972104947}
   m_Layer: 0
   m_Name: CameraMask
   m_TagString: Untagged
@@ -486,18 +513,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1972104947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1972104946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32ec04980f4ca1e4092c6ef2242d079e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1972104948
 MonoBehaviour:
   m_ObjectHideFlags: 0
