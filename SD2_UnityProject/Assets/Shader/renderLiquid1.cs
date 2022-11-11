@@ -26,6 +26,8 @@ public class renderLiquid1 : MonoBehaviour
     [Range(0, 1)]
     public float Forme5;
     [Range(0, 1)]
+    public float Forme6;
+    [Range(0, 1)]
     public float Disparition;
 
     public int _resx;
@@ -65,6 +67,7 @@ public class renderLiquid1 : MonoBehaviour
         compute_shader.SetFloat("_forme3", Forme3);
         compute_shader.SetFloat("_forme4", Forme4);
         compute_shader.SetFloat("_forme5", Forme5);
+        compute_shader.SetFloat("_forme6", Forme6);
         compute_shader.SetFloat("_disparition", Disparition);
         compute_shader.SetFloat("_resx", _resx);
         compute_shader.SetFloat("_resy", _resy);

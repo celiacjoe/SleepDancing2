@@ -12,6 +12,7 @@ float _forme2;
 float _forme3;
 float _forme4;
 float _forme5;
+float _forme6;
 float _disparition;
 float _resx;
 float _resy;
@@ -44,9 +45,9 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float2 uv = f / res;
 	float2 pos =f;
 
-	pos += (uv - 0.5)*-0.5;
+	pos += (uv - 0.5)*-2.*_taille;
 
-	float2 ds = reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xy;
+	float2 ds = mul(float2(1.,1.),m(_forme6*6.28))*0.1;
 	float ang = _forme*6.28;
 	//float2 b = float2(cos(ang), sin(ang))*10.*_taille;
 	float2 b =ds*100.*_forme4;
@@ -65,20 +66,13 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 		}
 		//b *=3.*_forme;
 	}
-	
-	writer[id] = (reader.SampleLevel(_LinearClamp, frac((pos + v * float2(-1, 1)*2.0) /res) + 0.5 / res, 0))*(1.-0.05*_disparition);
+	float2 dss = mul(float2(1., 1.), m(_forme1*6.28));
+	writer[id] = (reader.SampleLevel(_LinearClamp, frac((pos + v * dss*2.0) /res) + 0.5 / res, 0))*(1.-0.05*_disparition);
 
 	//float2 d2 = reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xx;
-	writer[id] += float4(reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xy*(uv - 0.5)*0.025,0.,0.);
-	//writer[id].xyz = lerp(reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xyz, writer[id].xyz, 1. -ds.x);
-	//writer[id] += float4(0.,0.,d2 );
-	/*
-	float2 e = float2(0.001,0.);
-	float d2 = reader2.SampleLevel(_LinearClamp, uv + e.xy + 0.5 / res, 0).x;
-	float d3 = reader2.SampleLevel(_LinearClamp, uv - e.xy + 0.5 / res, 0).x;
-	float d4 = reader2.SampleLevel(_LinearClamp, uv + e.yx + 0.5 / res, 0).x;
-	float d5 = reader2.SampleLevel(_LinearClamp, uv - e.yx + 0.5 / res, 0).x;
-	
-	writer[id] += float4(float2(d2-d3,d4-d5) * 0.25,0.,0.);*/
+	//writer[id] += float4(reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xyz,0.)*0.1;
+	writer[id] = lerp(writer[id], float4(reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xyz,1.),   reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).a);
+	//writer[id] += float4((uv - 0.5)*-0.001,0.,0.);
+
 
 }
