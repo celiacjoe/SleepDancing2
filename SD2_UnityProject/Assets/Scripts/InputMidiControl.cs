@@ -10,7 +10,8 @@ public class InputMidiControl : MonoBehaviour
 
     ///////////// VAR
     public Renderer rend;
-    public render SRend;
+    public renderLiquid1 SRend;
+   // public render SRend;
     public Camera Cam;
     public GameObject GO;
     public SceneManager Manager;
@@ -212,7 +213,7 @@ public class InputMidiControl : MonoBehaviour
     void P5_Deform(InputAction.CallbackContext ctx)
     {
         P5value = ctx.ReadValue<float>();
-        SRend.ApparitionForme = P5value;
+       // SRend.ApparitionForme = P5value;
         rend.sharedMaterial.SetFloat("ApparitionForme", P5value);
 
     }
