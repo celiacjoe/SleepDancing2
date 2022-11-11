@@ -5,16 +5,38 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
 
-
 public class InputMidiControl : MonoBehaviour
 {
+
+    ///////////// VAR
+    public Renderer rend;
+    public render SRend;
+    public Camera Cam;
+    public GameObject GO;
+    public SceneManager Manager;
+
+    private Vector2 mousePosition;
+    public VisualEffect FX;
+    private float P1value;
+    private float P2value;
+    private float P3value;
+    private float P4value;
+    private float IntensityControlValue;
+    private float ZoomValue;
+    public float SmoothT = 0.3f;
+    private Vector3 velocity;
+    public GameObject MovableObject;
+    private float PosX;
+    private float PosY;
+
     /////////////SET INPUT
-    [SerializeField] InputAction _P1 = null;
-    [SerializeField] InputAction _P2 = null;
-    [SerializeField] InputAction _LayerChange = null;
     [SerializeField] InputAction _IntensityControl = null;
+    [SerializeField] InputAction _P1_Deform = null;
+    [SerializeField] InputAction _P2_Deform = null;
+    [SerializeField] InputAction _P3_Deform = null;
+    [SerializeField] InputAction _P4_Deform = null;
     [SerializeField] InputAction _Zoom = null;
-    [SerializeField] InputAction _ResetLevel = null;
+   // [SerializeField] InputAction _ResetLevel = null;
     [SerializeField] InputAction _PositionX = null;
     [SerializeField] InputAction _PositionY = null;
     [SerializeField] InputAction _FXParam1 = null;
@@ -27,6 +49,7 @@ public class InputMidiControl : MonoBehaviour
     public string Name_P4;
     [SerializeField] InputAction _FXParam5 = null;
     public string Name_P5;
+    [SerializeField] InputAction _LayerChange = null;
 
     ///////////// FUNCTION
     float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
@@ -34,38 +57,20 @@ public class InputMidiControl : MonoBehaviour
         return MinFinal + (Val - minInit) * (MaxFinal - MinFinal) / (MaxInit - minInit);
     }
 
-    ///////////// VAR
-    public Renderer rend;
-    public render SRend;
-    public Camera Cam;
-    public Camera CamMask;
-    public GameObject GO;
-    public Vector2 mousePosition;
-    public VisualEffect FX;
-
-    private int L;
-    private float P1value;
-    private float P2value;
-    private float IntensityControlValue;
-    private float ZoomValue;
-    public float SmoothT = 0.3f;
-    private Vector3 velocity ;
-    public GameObject MovableObject;
-    public float PosX;
-    public float PosY;
-
     void Start()
     {
-        L = 1;
+
+        
     }
     void Update()
     {
         ////////////////// MOUSE POSITION
         mousePosition = Cam.ScreenToWorldPoint(Input.mousePosition);
         GO.transform.position = new Vector3(mousePosition.x - 20, mousePosition.y, 0);
+       // T.position = new Vector3(mousePosition.x - 20, mousePosition.y, 0);
         ////////////////// SMOOTH POSITION CHANGE
-      //  Vector3 NewTargetPosX = PositionX;
-      //  MovableObject.transform.position = Vector3.SmoothDamp(MovableObject.transform.position, NewTargetPosX, ref velocity, SmoothT);
+        //  Vector3 NewTargetPosX = PositionX;
+        //  MovableObject.transform.position = Vector3.SmoothDamp(MovableObject.transform.position, NewTargetPosX, ref velocity, SmoothT);
 
         Vector3 NewTargetPosition = new Vector3(PosX+40, PosY);
         MovableObject.transform.position = Vector3.SmoothDamp(MovableObject.transform.position, NewTargetPosition, ref velocity, SmoothT);
@@ -73,11 +78,17 @@ public class InputMidiControl : MonoBehaviour
 
     void OnEnable()
     {
-        _P1.performed += P1;
-        _P1.Enable();
+        _P1_Deform.performed += P1_Deform;
+        _P1_Deform.Enable();
 
-        _P2.performed += P2;
-        _P2.Enable();
+        _P2_Deform.performed += P2_Deform;
+        _P2_Deform.Enable();
+
+        _P3_Deform.performed += P3_Deform;
+        _P3_Deform.Enable();
+
+        _P4_Deform.performed += P4_Deform;
+        _P4_Deform.Enable();
 
         _LayerChange.performed += LayerChange;
         _LayerChange.Enable();
@@ -113,11 +124,17 @@ public class InputMidiControl : MonoBehaviour
 
     void OnDisable()
     {
-        _P1.performed -= P1;
-        _P1.Disable();
+        _P1_Deform.performed -= P1_Deform;
+        _P1_Deform.Disable();
 
-        _P2.performed -= P2;
-        _P2.Disable();
+        _P2_Deform.performed -= P2_Deform;
+        _P2_Deform.Disable();
+
+        _P3_Deform.performed -= P3_Deform;
+        _P3_Deform.Disable();
+
+        _P4_Deform.performed -= P4_Deform;
+        _P4_Deform.Disable();
 
         _LayerChange.performed -= LayerChange;
         _LayerChange.Disable();
@@ -148,44 +165,34 @@ public class InputMidiControl : MonoBehaviour
 
         _FXParam5.performed -= FXParam5;
         _FXParam5.Disable();
-        /*
-          ////// DEBUG STUFF
-          _DebugClean.performed -= DebugClean;
-          _DebugClean.Disable();
-          _DebugFunction.performed -= DebugFunction;
-          _DebugFunction.Disable(); 
-           _ResetLevel.performed -= ResetLevel;
-          _ResetLevel.Disable();
-          */
+
     }
     void LayerChange(InputAction.CallbackContext ctx)
     {
-        if (L == 1)
-        {
-            L++;
-        } else if (L == 2) {
-            L++;
-        } else if (L == 3) {
-            L++;
-        } else if (L == 4) {
-            L++;
-        } else if (L > 4)
-        {
-            L = 1;
-        }
+        Manager.ChangeTexture();
     }
 
-     void P1(InputAction.CallbackContext ctx)
+     void P1_Deform(InputAction.CallbackContext ctx)
      {
-         P1value = ctx.ReadValue<float>();
-         SRend.Taille = P1value;
+        P1value = ctx.ReadValue<float>();
+        rend.sharedMaterial.SetFloat("BlurIntensity", map(P1value,0,1,0,100));
      }
-     void P2(InputAction.CallbackContext ctx)
+     void P2_Deform(InputAction.CallbackContext ctx)
      {
          P2value = ctx.ReadValue<float>();
-         SRend.Forme= P2value;
+        SRend.Taille = P2value;
      }
-     void IntensityControl(InputAction.CallbackContext ctx)
+    void P3_Deform(InputAction.CallbackContext ctx)
+    {
+        P3value = ctx.ReadValue<float>();
+        SRend.Forme = P3value;
+    }
+    void P4_Deform(InputAction.CallbackContext ctx)
+    {
+        P4value = ctx.ReadValue<float>();
+        SRend.Disparition = P4value;
+    }
+    void IntensityControl(InputAction.CallbackContext ctx)
      {
          IntensityControlValue = ctx.ReadValue<float>();
          rend.sharedMaterial.SetFloat("Intensity", IntensityControlValue);
@@ -194,28 +201,24 @@ public class InputMidiControl : MonoBehaviour
      void Zoom(InputAction.CallbackContext ctx)
      {
          ZoomValue = ctx.ReadValue<float>();
-         Debug.Log(ZoomValue);
          Cam.orthographicSize = map(ZoomValue,0, 1, 0.25f, 4.5f);
      }
 
     void PositionX(InputAction.CallbackContext ctx)
     {
         PosX = ctx.ReadValue<float>();
-        Debug.Log(PosX);
-        PosX = map(PosX, 0, 1, -10f, 10f);
+        PosX = map(PosX, 0, 1, -9f, 9f);
     }
 
     void PositionY(InputAction.CallbackContext ctx)
     {
         PosY = ctx.ReadValue<float>();
-        Debug.Log(PosY);
-        PosY = map(PosY, 0, 1, -5f, 5f);
+        PosY = map(PosY, 0, 1, -7f, 6f);
     }
 
     void FXParam1(InputAction.CallbackContext ctx)
     {
         float FxP1= ctx.ReadValue<float>() ;
-
         VisualEffect VFX = FX.GetComponent<VisualEffect>();
         VFX.SetFloat(Name_P1, FxP1);
     }
@@ -223,14 +226,12 @@ public class InputMidiControl : MonoBehaviour
     void FXParam2(InputAction.CallbackContext ctx)
     {
         float FxP2 = ctx.ReadValue<float>();
-
         VisualEffect VFX = FX.GetComponent<VisualEffect>();
         VFX.SetFloat(Name_P2, FxP2);
     }
     void FXParam3(InputAction.CallbackContext ctx)
     {
         float FxP3 = ctx.ReadValue<float>();
-
         VisualEffect VFX = FX.GetComponent<VisualEffect>();
         VFX.SetFloat(Name_P3, FxP3);
     }
@@ -238,17 +239,16 @@ public class InputMidiControl : MonoBehaviour
     void FXParam4(InputAction.CallbackContext ctx)
     {
         float FxP4 = ctx.ReadValue<float>();
-
         VisualEffect VFX = FX.GetComponent<VisualEffect>();
         VFX.SetFloat(Name_P4, FxP4);
     }
     void FXParam5(InputAction.CallbackContext ctx)
     {
         float FxP5 = ctx.ReadValue<float>();
-
         VisualEffect VFX = FX.GetComponent<VisualEffect>();
         VFX.SetFloat(Name_P5, FxP5);
     }
+
     /*  void Subdivision1(InputAction.CallbackContext ctx)
       {
           if (!Sequence.Subdivision1){
@@ -259,9 +259,7 @@ public class InputMidiControl : MonoBehaviour
               Sequence.Subdivision1 = false;
           }       
       }
-
     */
-
     void ResetLevel(InputAction.CallbackContext ctx)
         {
             Application.LoadLevel(Application.loadedLevel);
