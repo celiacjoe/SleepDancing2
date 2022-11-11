@@ -1,0 +1,84 @@
+﻿#pragma kernel CSMain
+
+Texture2D<float4> reader; 
+Texture2D<float4> reader2;
+RWTexture2D<float4> writer;
+SamplerState _LinearClamp;
+float _time;
+float _taille;
+float _forme;
+float _forme1;
+float _forme2;
+float _forme3;
+float _forme4;
+float _forme5;
+float _disparition;
+float _resx;
+float _resy;
+
+
+float2x2 m(float ang) {  float s = sin(ang); float c = cos(ang); return float2x2(c, s, -s, c); }
+
+
+
+float getRot(float2 pos, float2 b,float3 n , float m2, float m3, float m5,float2 res)
+{
+	float2 p = b * m3;
+	float rot = 0.0;
+	for (int i = 0; i < int(m5*15.); i++)
+	{
+		//reader.SampleLevel(_LinearClamp, uv + 0.5 / res - diff.zy, 0).x;
+		rot += dot(reader.SampleLevel(_LinearClamp, ((pos + p) /res)+ 0.5 / res,0).xy - float2(0.5,0.5), p.yx*n.xy);
+		p = mul(p,m(n.z)*m2);
+	}
+	return rot / 5. / dot(b, b);
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint2 id : SV_DispatchThreadID) 
+{
+	
+	float2 f = float2(id.x,id.y);
+	float2 res=float2(_resx, _resy);
+
+	float2 uv = f / res;
+	float2 pos =f;
+
+	pos += (uv - 0.5)*-0.5;
+
+	float2 ds = reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xy;
+	float ang = _forme*6.28;
+	//float2 b = float2(cos(ang), sin(ang))*10.*_taille;
+	float2 b =ds*100.*_forme4;
+	float2 v = float2(0.,0.);
+	float bbMax = 0.7*res.y; bbMax *= bbMax;
+	for (int l = 0; l < 4; l++)
+	{
+		if (dot(b, b) > bbMax) break;
+		float2 p = b *_forme3*5.;
+		for (int i = 0; i <5; i++)
+		{
+
+			v += p.yx*getRot(pos + p, b,float3(ds,ang),_forme2, _forme3*5., _forme5,res);
+
+			p = mul(p,m(ang)*_forme2);
+		}
+		//b *=3.*_forme;
+	}
+	
+	writer[id] = (reader.SampleLevel(_LinearClamp, frac((pos + v * float2(-1, 1)*2.0) /res) + 0.5 / res, 0))*(1.-0.05*_disparition);
+
+	//float2 d2 = reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xx;
+	writer[id] += float4(reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xy*(uv - 0.5)*0.025,0.,0.);
+	//writer[id].xyz = lerp(reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xyz, writer[id].xyz, 1. -ds.x);
+	//writer[id] += float4(0.,0.,d2 );
+	/*
+	float2 e = float2(0.001,0.);
+	float d2 = reader2.SampleLevel(_LinearClamp, uv + e.xy + 0.5 / res, 0).x;
+	float d3 = reader2.SampleLevel(_LinearClamp, uv - e.xy + 0.5 / res, 0).x;
+	float d4 = reader2.SampleLevel(_LinearClamp, uv + e.yx + 0.5 / res, 0).x;
+	float d5 = reader2.SampleLevel(_LinearClamp, uv - e.yx + 0.5 / res, 0).x;
+	
+	writer[id] += float4(float2(d2-d3,d4-d5) * 0.25,0.,0.);*/
+
+}
