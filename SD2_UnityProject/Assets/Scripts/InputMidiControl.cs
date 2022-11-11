@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
 
-
 public class InputMidiControl : MonoBehaviour
 {
 
@@ -177,8 +176,6 @@ public class InputMidiControl : MonoBehaviour
      {
         P1value = ctx.ReadValue<float>();
         rend.sharedMaterial.SetFloat("BlurIntensity", map(P1value,0,1,0,100));
-        Debug.Log("hi");
-
      }
      void P2_Deform(InputAction.CallbackContext ctx)
      {
@@ -210,13 +207,13 @@ public class InputMidiControl : MonoBehaviour
     void PositionX(InputAction.CallbackContext ctx)
     {
         PosX = ctx.ReadValue<float>();
-        PosX = map(PosX, 0, 1, -10f, 10f);
+        PosX = map(PosX, 0, 1, -9f, 9f);
     }
 
     void PositionY(InputAction.CallbackContext ctx)
     {
         PosY = ctx.ReadValue<float>();
-        PosY = map(PosY, 0, 1, -5f, 5f);
+        PosY = map(PosY, 0, 1, -7f, 6f);
     }
 
     void FXParam1(InputAction.CallbackContext ctx)
@@ -263,7 +260,6 @@ public class InputMidiControl : MonoBehaviour
           }       
       }
     */
-
     void ResetLevel(InputAction.CallbackContext ctx)
         {
             Application.LoadLevel(Application.loadedLevel);

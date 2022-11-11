@@ -84,8 +84,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - BlurIntensity: 54.33071
-    - Intensity: 0.48031497
+    - BlurIntensity: 65.35433
+    - Intensity: 0.33070868
     - Vector1_fae9ea70a9434fa782aad93fbc210351: 91.2
     - _AlphaClip: 0
     - _Blend: 0
