@@ -10,7 +10,8 @@ public class InputMidiControl : MonoBehaviour
 
     ///////////// VAR
     public Renderer rend;
-    public render SRend;
+    public renderLiquid1 SRend;
+   // public render SRend;
     public Camera Cam;
     public GameObject GO;
     public SceneManager Manager;
@@ -21,6 +22,8 @@ public class InputMidiControl : MonoBehaviour
     private float P2value;
     private float P3value;
     private float P4value;
+    private float P5value;
+    private float P6value;
     private float IntensityControlValue;
     private float ZoomValue;
     public float SmoothT = 0.3f;
@@ -32,9 +35,12 @@ public class InputMidiControl : MonoBehaviour
     /////////////SET INPUT
     [SerializeField] InputAction _IntensityControl = null;
     [SerializeField] InputAction _P1_Deform = null;
+    [SerializeField] InputAction _P5_Deform = null;
     [SerializeField] InputAction _P2_Deform = null;
     [SerializeField] InputAction _P3_Deform = null;
     [SerializeField] InputAction _P4_Deform = null;
+
+    [SerializeField] InputAction _P6_Deform = null;
     [SerializeField] InputAction _Zoom = null;
    // [SerializeField] InputAction _ResetLevel = null;
     [SerializeField] InputAction _PositionX = null;
@@ -90,6 +96,12 @@ public class InputMidiControl : MonoBehaviour
         _P4_Deform.performed += P4_Deform;
         _P4_Deform.Enable();
 
+        _P5_Deform.performed += P5_Deform;
+        _P5_Deform.Enable();
+
+        _P6_Deform.performed += P6_Deform;
+        _P6_Deform.Enable();
+
         _LayerChange.performed += LayerChange;
         _LayerChange.Enable();
 
@@ -135,6 +147,12 @@ public class InputMidiControl : MonoBehaviour
 
         _P4_Deform.performed -= P4_Deform;
         _P4_Deform.Disable();
+
+        _P5_Deform.performed -= P5_Deform;
+        _P5_Deform.Disable();
+
+        _P6_Deform.performed -= P6_Deform;
+        _P6_Deform.Disable();
 
         _LayerChange.performed -= LayerChange;
         _LayerChange.Disable();
@@ -191,6 +209,19 @@ public class InputMidiControl : MonoBehaviour
     {
         P4value = ctx.ReadValue<float>();
         SRend.Disparition = P4value;
+    }
+    void P5_Deform(InputAction.CallbackContext ctx)
+    {
+        P5value = ctx.ReadValue<float>();
+       // SRend.ApparitionForme = P5value;
+        rend.sharedMaterial.SetFloat("ApparitionForme", P5value);
+
+    }
+
+    void P6_Deform(InputAction.CallbackContext ctx)
+    {
+        P6value = ctx.ReadValue<float>();
+        SRend.Disparition = P6value;
     }
     void IntensityControl(InputAction.CallbackContext ctx)
      {

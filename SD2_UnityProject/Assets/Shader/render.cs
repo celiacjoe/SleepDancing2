@@ -16,6 +16,8 @@ public class render : MonoBehaviour
     [Range(0, 1)]
     public float Forme;
     [Range(0, 1)]
+    public float ApparitionForme;
+    [Range(0, 1)]
     public float Disparition;
 
     public int _resx;
@@ -50,6 +52,7 @@ public class render : MonoBehaviour
         compute_shader.SetFloat("_time", Time.time);
         compute_shader.SetFloat("_taille", Taille);
         compute_shader.SetFloat("_forme", Forme);
+        compute_shader.SetFloat("_ApparitionForme", ApparitionForme);
         compute_shader.SetFloat("_disparition", Disparition);
         compute_shader.SetFloat("_resx", _resx);
         compute_shader.SetFloat("_resy", _resy);
