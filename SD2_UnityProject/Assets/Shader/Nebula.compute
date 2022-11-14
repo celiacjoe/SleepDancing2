@@ -1,0 +1,150 @@
+﻿#pragma kernel CSMain
+#pragma kernel CSMain2
+Texture2D<float4> reader2;
+Texture2D<float4> reader; 
+RWTexture2D<float4> writer;
+SamplerState _LinearRepeat;
+float _Low;
+float _SLow;
+float _TLow;
+float _Mid;
+float _SMid;
+float _TMid;
+float _High;
+float _SHigh;
+float _THigh;
+float _resx;
+float _resy;
+float _resx2;
+float _resy2;
+
+float4 _VolumeColor;
+float _reg1;
+float _reg2;
+float _reg3;
+float _reg4;
+float _co1;
+float _co2;
+float _co3;
+float _chro1;
+float _time;
+float _mousex;
+float _mousey;
+float _blur;
+#define Pi 3.14159265359
+#define ViewStart 1.6
+#define ViewEnd 4.4
+
+float3 smin(float3 d1, float3 d2, float k) {
+	float3 h = clamp(0.5 + 0.5*(d2 - d1) / k, 0.0, 1.0);
+	return lerp(d2, d1, h) - k * h*(1.0 - h);}
+float2x2 rot(float t) { float c = cos(t); float s = sin(t); return float2x2(c, -s, s, c); }
+float3 powV(float3 v, float p) {  return float3(pow(v.x, p), pow(v.y, p), pow(v.z, p)); }
+float maxV(float3 v) {return max(max(v.x, v.y), v.z);}
+bool insideShape(float3 p, float ti) {
+	float3 b = p - float3(0., 0.0, +0.25);
+	for (int i = 0; i < 4; i++) {
+		b -= 0.5;
+		b.xz = mul(b.xz,rot(ti*0.05));
+		b.yz = mul(b.yz,rot(ti*0.1));
+		b = smin(b, -b, -0.2);
+	}
+	float d1 = length(b);
+	float r = d1;
+	return r < 1. && r > .5;
+}
+float henyeyGreenstein(float3 pos, float3 dir, float3 LightPos) {
+	float cosTheta = dot(dir, normalize(LightPos - pos));
+	return Pi / 4.0 * (1.0 - _reg2 * _reg2) / pow(1.0 + _reg2 * _reg2 - 2.0*_reg2*cosTheta, 3.0 / 2.0);}
+float3 lightReceived(float3 pos, float headStart, float ti, float3 LightPos) {
+	float LightDist = length(LightPos - pos);
+	float3 LightDir = normalize(LightPos - pos);
+	float stepSize = LightDist / 8.;
+	float rr = 2.*_reg3;
+	float3 absorption = float3(rr,rr,rr);
+	pos += headStart * LightDir * stepSize;
+	for (int i = 0; i < 8; i++) {
+		if (insideShape(pos, ti)) {
+			absorption *= powV(float3(1.,1.,1.) - _VolumeColor.xyz, stepSize*_reg1);
+		}
+		pos += LightDir * stepSize;
+	}
+	return absorption * float3(_co1,_co2,_co3) / (LightDist*LightDist);
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint2 id : SV_DispatchThreadID) 
+{
+	float3 DirCam = normalize(float3(1, 0, 0));
+	float3 PosCam = float3(-3.0, 0, .0);
+	float FocalLength = 1.2;
+	float2 g = float2(id.x,id.y);
+	float2 res=float2(_resx, _resy);
+	float2 uv = g / res;
+	uv = (uv - .5)*2.;
+	uv.x *= _resx / _resy;
+	float2 ms = float2(_mousex-.5, _mousey - .5)*2.;
+	float3 LightPos = float3(0.,-ms.x,ms.y) * 2.*float3(1., res.x / res.y, 1.);
+	float da =step(1., distance(ms, uv));
+	float3 color;
+	if (da < 0.5) {
+		float3 camX = float3(-DirCam.y, DirCam.x, 0);
+		float3 camY = cross(camX, DirCam);
+		float3 sensorX = camX * (uv.x / length(camX));
+		float3 sensorY = camY * (uv.y / length(camY));
+		float3 centerSensor = PosCam - DirCam * FocalLength;
+		float3 posOnSensor = centerSensor + sensorX + sensorY;
+		float3 dir = normalize(PosCam - posOnSensor);
+		float ti = _TMid*0.2;
+		float3 pos = PosCam + dir * ViewStart;
+		float hg = henyeyGreenstein(pos, dir, LightPos);
+		float stepSize = (ViewEnd - ViewStart) / 200.;
+		float rr = 2.*_reg3;
+		float3 absorption = float3(rr, rr, rr);
+		float headStart = reader.SampleLevel(_LinearRepeat, g / float2(1024., 1024.) + 0.5 / res, 0).x;
+		pos += headStart * dir * stepSize;
+		for (int i = 0; i < 200; i++) {
+			if (length(LightPos - pos) < .0) {
+				color += 10.0*absorption*float3(_co1, _co2, _co3);
+				break;
+			}
+			if (insideShape(pos, ti)) {
+				color += _VolumeColor.xyz*absorption*lightReceived(pos, headStart, ti, LightPos)*hg*stepSize*_reg1;
+				absorption *= powV(float3(1., 1., 1.) - _VolumeColor.xyz, stepSize*_reg1);
+			}
+			pos += dir * stepSize;
+			if (maxV(absorption) < _reg4) break;
+		}
+	}
+	else { color = float3(0.,0.,0.); }
+	writer[id] = float4(log(color + float3(1.,1.,1.)), 1.);
+}
+[numthreads(8, 8, 1)]
+void CSMain2(uint2 id : SV_DispatchThreadID)
+{
+
+	float2 g = float2(id.x, id.y);
+	float2 res = float2(_resx2, _resy2);
+	float2 uv = g / res;
+	float2 uc = uv;// / (1920. / res.x);
+
+	float Directions = 16.0; 
+	float Quality = 4.0; 
+	float Size = length(uv.y - 0.5)*2. + reader.SampleLevel(_LinearRepeat, g / float2(1024., 1024.) + 0.5 / res, 0).y*1.5; 
+
+	float2 Radius = Size*_blur / res;
+	float d1 = 1. + (length(uv - 0.5)*2.)*_chro1*10.;
+
+	float4 Color = float4(0.,0.,0.,0.);
+	for (float d = 0.0; d < Pi; d += Pi / Directions)
+	{
+		for (float i = 1.0 / Quality; i <= 1.0; i += 1.0 / Quality)
+		{
+			Color.x += reader2.SampleLevel(_LinearRepeat, uc + float2(cos(d), sin(d))*Radius*i*d1 + 0.5 / res, 0).x;
+			Color.yz += reader2.SampleLevel(_LinearRepeat, uc + float2(cos(d), sin(d))*Radius*i + 0.5 / res, 0).yz;
+		
+		}
+	}
+	Color /= Quality * Directions - 15.;
+	writer[id] = Color;
+}
