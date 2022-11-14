@@ -38,7 +38,7 @@ void Shape_float(float2 uv,float di, float fo,float mp,float mvx,float mvy,float
 	r.xy = mul(r.xy, rot(mvz));
 	float dd = 0.;
 	int co2 = int(clamp(co*10., 1., 10.));
-	for (int i = 0; i < 64; i++) {
+	for (int i = 0; i < 40; i++) {
 		float d = map(p,sm,co2, ta,f1,f2);
 		if (dd > 30.) { dd = di; break; }
 		if (d < -1.) { break; }
