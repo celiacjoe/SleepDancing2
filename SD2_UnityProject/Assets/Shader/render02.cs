@@ -49,6 +49,7 @@ public class render02 : MonoBehaviour
         compute_shader.SetFloat("_disparition", Disparition);
         compute_shader.SetFloat("_resx", _resx);
         compute_shader.SetFloat("_resy", _resy);
+       
         //compute_shader.SetFloat("_delta", Time.deltaTime);
         compute_shader.SetTexture(handle_main, "writer", B);
         //compute_shader.SetTexture(handle_main, "writer2", C);
