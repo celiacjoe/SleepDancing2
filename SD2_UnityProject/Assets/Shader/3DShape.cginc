@@ -6,13 +6,13 @@ float3 smin(float3 d1, float3 d2, float k) {
 	return lerp(d2, d1, h) - k * h*(1.0 - h);
 }
 float2x2 rot(float t) { float c = cos(t); float s = sin(t); return float2x2(c, -s, s, c); }
-float map(float3 p,float sm,int co,float ta) {
+float map(float3 p,float sm,int co,float ta, float3 f1, float3 f2) {
 	float3 b = p;
 	for (int i = 0; i < co; i++) {
 		float3 bbb = b / dot(b, b);
 		float3 bb = smin(bbb, -bbb, -0.2*sm);
-		b = float3(1.5, 1.8, 1.3)*bb;
-		b -= float3(0.7, 0.6, 0.4);
+		b = f1*bb;
+		b -= f2;
 	}
 
 
@@ -20,9 +20,10 @@ float map(float3 p,float sm,int co,float ta) {
 
 	return v2;
 }
-float3 nor(float3 p, float sm, int co,float ta) { float2 e = float2(0.01, 0.); return normalize(map(p, sm, co,ta) - float3(map(p - e.xyy, sm, co, ta), map(p - e.yxy, sm, co, ta), map(p - e.yyx, sm, co, ta))); }
+float3 nor(float3 p, float sm, int co,float ta,float3 f1,float3 f2) 
+{ float2 e = float2(0.01, 0.); return normalize(map(p, sm, co,ta, f1, f2) - float3(map(p - e.xyy, sm, co, ta, f1, f2), map(p - e.yxy, sm, co, ta, f1, f2), map(p - e.yyx, sm, co, ta, f1, f2))); }
 
-void Shape_float(float2 uv,float time,float di, float fo,float mp,float mvx,float mvy,float mvz ,float sm, float co,float ta,out float4 Out)
+void Shape_float(float2 uv,float di, float fo,float mp,float mvx,float mvy,float mvz ,float sm, float co,float ta,float3 f1 , float3 f2, out float4 Out)
 {
 	
 	uv = (uv - 0.5)*2.;
@@ -38,14 +39,14 @@ void Shape_float(float2 uv,float time,float di, float fo,float mp,float mvx,floa
 	float dd = 0.;
 	int co2 = int(clamp(co*10., 1., 10.));
 	for (int i = 0; i < 64; i++) {
-		float d = map(p,sm,co2, ta);
+		float d = map(p,sm,co2, ta,f1,f2);
 		if (dd > 30.) { dd = di; break; }
 		if (d < -1.) { break; }
 		p += r * d;
 		dd += d;
 	}
 	float d = smoothstep(di, 0., dd);
-	float3 n = nor(p, sm, co2, ta);
+	float3 n = clamp(nor(p, sm, co2, ta, f1, f2),-1.,1.);
 
 
 	Out = float4(n,d);

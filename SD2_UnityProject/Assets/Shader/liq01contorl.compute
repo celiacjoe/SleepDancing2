@@ -47,7 +47,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 
 	pos += (uv - 0.5)*-2.*_taille;
 
-	float2 ds = mul(float2(1.,1.),m(_forme6*6.28))*0.1;
+	float2 ds = reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xy;
 	float ang = _forme*6.28;
 	//float2 b = float2(cos(ang), sin(ang))*10.*_taille;
 	float2 b =ds*100.*_forme4;
