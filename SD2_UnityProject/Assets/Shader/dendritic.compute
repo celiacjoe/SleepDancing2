@@ -6,7 +6,9 @@ RWTexture2D<float4> writer;
 SamplerState _LinearClamp;
 float _time;
 float _taille;
-float _forme;
+//float _forme;
+float ApparitionForme;
+
 float _disparition;
 float _resx;
 float _resy;
@@ -98,7 +100,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float n2 = smoothstep(0.4, 0.6, reader2.SampleLevel(_LinearClamp, uc - e.xy + 0.5 / res, 0).x);
 	float n3 = smoothstep(0.4, 0.6, reader2.SampleLevel(_LinearClamp, uc + e.yx + 0.5 / res, 0).x);
 	float n4 = smoothstep(0.4, 0.6, reader2.SampleLevel(_LinearClamp, uc - e.yx + 0.5 / res, 0).x);
-	float3 n = normalize(float3(n1 - n2, n3 - n4, 0.1))*-0.05*_forme;
+	float3 n = normalize(float3(n1 - n2, n3 - n4, 0.1))*-0.05*ApparitionForme;
 	abd.xy += n.xy;
 	uv.xy += n.xy;
 
