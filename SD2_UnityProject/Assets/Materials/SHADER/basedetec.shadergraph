@@ -1157,7 +1157,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "5b7e4fce91c040a3945b2175a154602a",
     "m_Id": 0,
-    "m_DisplayName": "ApparitionForme",
+    "m_DisplayName": "_ApparitionForme",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2544,9 +2544,9 @@
     "m_Guid": {
         "m_GuidSerialized": "cf558948-4015-4add-9be4-6b53a0307a9c"
     },
-    "m_Name": "ApparitionForme",
+    "m_Name": "_ApparitionForme",
     "m_DefaultReferenceName": "Vector1_e9dea2c590d046899eecae12226fe814",
-    "m_OverrideReferenceName": "ApparitionForme",
+    "m_OverrideReferenceName": "_ApparitionForme",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
