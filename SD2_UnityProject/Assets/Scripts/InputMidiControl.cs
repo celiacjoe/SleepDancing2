@@ -214,7 +214,7 @@ public class InputMidiControl : MonoBehaviour
     {
         P5value = ctx.ReadValue<float>();
         SRend.ApparitionForme = P5value;
-        rend.sharedMaterial.SetFloat("ApparitionForme", P5value);
+        rend.sharedMaterial.SetFloat("_ApparitionForme", P5value);
 
     }
 
