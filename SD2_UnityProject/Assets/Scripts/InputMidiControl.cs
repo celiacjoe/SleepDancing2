@@ -55,7 +55,11 @@ public class InputMidiControl : MonoBehaviour
     public string Name_P4;
     [SerializeField] InputAction _FXParam5 = null;
     public string Name_P5;
-    [SerializeField] InputAction _LayerChange = null;
+    [SerializeField] InputAction _FXParam6 = null;
+    public string Name_P6;
+    [SerializeField] InputAction _LayerDisplace = null;
+    [SerializeField] InputAction _LayerBack = null;
+
 
     ///////////// FUNCTION
     float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
@@ -65,8 +69,7 @@ public class InputMidiControl : MonoBehaviour
 
     void Start()
     {
-
-        
+     
     }
     void Update()
     {
@@ -102,8 +105,11 @@ public class InputMidiControl : MonoBehaviour
         _P6_Deform.performed += P6_Deform;
         _P6_Deform.Enable();
 
-        _LayerChange.performed += LayerChange;
-        _LayerChange.Enable();
+        _LayerDisplace.performed += DisplaceLayerChange;
+        _LayerDisplace.Enable();
+
+        _LayerBack.performed += BackLayerChange;
+        _LayerBack.Enable();
 
         _IntensityControl.performed += IntensityControl;
         _IntensityControl.Enable();
@@ -132,6 +138,9 @@ public class InputMidiControl : MonoBehaviour
         _FXParam5.performed += FXParam5;
         _FXParam5.Enable();
 
+        _FXParam6.performed += FXParam6;
+        _FXParam6.Enable();
+
     }
 
     void OnDisable()
@@ -154,8 +163,11 @@ public class InputMidiControl : MonoBehaviour
         _P6_Deform.performed -= P6_Deform;
         _P6_Deform.Disable();
 
-        _LayerChange.performed -= LayerChange;
-        _LayerChange.Disable();
+        _LayerDisplace.performed -= DisplaceLayerChange;
+        _LayerDisplace.Disable();
+
+        _LayerBack.performed -= BackLayerChange;
+        _LayerBack.Disable();
 
         _IntensityControl.performed -= IntensityControl;
         _IntensityControl.Disable();
@@ -184,13 +196,20 @@ public class InputMidiControl : MonoBehaviour
         _FXParam5.performed -= FXParam5;
         _FXParam5.Disable();
 
+        _FXParam6.performed -= FXParam6;
+        _FXParam6.Disable();
+
     }
-    void LayerChange(InputAction.CallbackContext ctx)
+    void DisplaceLayerChange(InputAction.CallbackContext ctx)
     {
-        Manager.ChangeTexture();
+        Manager.ChangeDisplace();
+    }
+    void BackLayerChange(InputAction.CallbackContext ctx)
+    {
+        Manager.ChangeBack();
     }
 
-     void P1_Deform(InputAction.CallbackContext ctx)
+    void P1_Deform(InputAction.CallbackContext ctx)
      {
         P1value = ctx.ReadValue<float>();
         rend.sharedMaterial.SetFloat("BlurIntensity", map(P1value,0,1,0,100));
@@ -278,6 +297,13 @@ public class InputMidiControl : MonoBehaviour
         float FxP5 = ctx.ReadValue<float>();
         VisualEffect VFX = FX.GetComponent<VisualEffect>();
         VFX.SetFloat(Name_P5, FxP5);
+    }
+
+    void FXParam6(InputAction.CallbackContext ctx)
+    {
+        float FxP6 = ctx.ReadValue<float>();
+        VisualEffect VFX = FX.GetComponent<VisualEffect>();
+        VFX.SetFloat(Name_P6, FxP6);
     }
 
     /*  void Subdivision1(InputAction.CallbackContext ctx)
