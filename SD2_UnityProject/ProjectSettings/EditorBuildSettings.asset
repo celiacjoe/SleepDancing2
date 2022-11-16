@@ -17,8 +17,11 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SCN_Louis_SoundControl.unity
     guid: a9c8481714ec35940b95a761f56bae66
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SNC_Louis_Nebula.unity
     guid: b89114e5c69463a45a0f39b34886be61
+  - enabled: 1
+    path: Assets/Scenes/SCN_Louis_3dShape.unity
+    guid: bc5f6f75d9f7f9045a4524a30d597a7c
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 985a5a2410128e54cb7c2030aa449fc7, type: 2}

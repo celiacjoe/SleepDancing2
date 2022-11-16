@@ -34,7 +34,9 @@ public class MvtPixelsDendritic : MonoBehaviour
         B = new RenderTexture(_resx, _resy, 0, rtFormat);
         B.enableRandomWrite = true;
         B.Create();
+       // WebCamDevice[] devices = WebCamTexture.devices;
         C = new WebCamTexture();
+       // C.deviceName = devices[0].name;
         C.Play();
         E = new RenderTexture(_resx, _resy, 0, rtFormat);
         E.enableRandomWrite = true;

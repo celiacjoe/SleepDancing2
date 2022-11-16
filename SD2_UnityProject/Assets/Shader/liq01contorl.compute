@@ -16,7 +16,29 @@ float _forme6;
 float _disparition;
 float _resx;
 float _resy;
+float3 smin(float3 d1, float3 d2, float k) {
+	float3 h = clamp(0.5 + 0.5*(d2 - d1) / k, 0.0, 1.0);
+	return lerp(d2, d1, h) - k * h*(1.0 - h);
+}
+float2x2 rot(float t) { float c = cos(t); float s = sin(t); return float2x2(c, -s, s, c); }
+float map(float3 p) {
+	float3 b = p;
+	for (int i = 0; i < 7; i++) {
+		float3 bbb = b / dot(b, b);
+		float3 bb = smin(bbb, -bbb, -0.2);
+		b = float3(1.5, 1.8, 1.3) * bb;
+		b -= float3(0.7, 0.6, 0.4);
+	}
 
+
+	float v2 = length(b) - 0.46;
+
+	return v2;
+}
+float3 nor(float3 p)
+{
+	float2 e = float2(0.01, 0.); return normalize(map(p) - float3(map(p - e.xyy), map(p - e.yxy),map(p-e.yyx)));
+}
 
 float2x2 m(float ang) {  float s = sin(ang); float c = cos(ang); return float2x2(c, s, -s, c); }
 
@@ -26,15 +48,15 @@ float getRot(float2 pos, float2 b,float3 n , float m2, float m3, float m5,float2
 {
 	float2 p = b * m3;
 	float rot = 0.0;
-	for (int i = 0; i < int(m5*15.); i++)
+	for (int i = 0; i < int(7.); i++)
 	{
-		//reader.SampleLevel(_LinearClamp, uv + 0.5 / res - diff.zy, 0).x;
 		rot += dot(reader.SampleLevel(_LinearClamp, ((pos + p) /res)+ 0.5 / res,0).xy - float2(0.5,0.5), p.yx*n.xy);
-		p = mul(p,m(n.z)*m2);
+		p = mul(p,m(n.z)*m2*2.);
 	}
 	return rot / 5. / dot(b, b);
 }
-
+float rd(float t) { return frac(sin(dot(floor(t), 45.26))*7845.236); }
+float no(float t) { return lerp(rd(t), rd(t + 1.), smoothstep(.0, 1., frac(t))); }
 [numthreads(8,8,1)]
 void CSMain (uint2 id : SV_DispatchThreadID) 
 {
@@ -43,13 +65,35 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float2 res=float2(_resx, _resy);
 
 	float2 uv = f / res;
+	float2 uf = (uv - 0.5)*2.;
+	uf.x *= 16. / 9.;
+	float3 r = normalize(float3(uf, 1.4));
+	float3 po = float3(0., 0., -15.);
+	po.yz = mul(po.yz, rot(_time*0.1));
+	r.yz = mul(r.yz, rot(_time*0.1));
+	po.xz = mul(po.xz, rot(_time*0.04));
+	r.xz = mul(r.xz, rot(_time*0.04));
+	po.xy = mul(po.xy, rot(_time*0.05));
+	r.xy = mul(r.xy, rot(_time*0.05));
+	float dd = 0.;
+	for (int i = 0; i <40; i++) {
+		float d = map(po);
+		//if (dd > 9.) { dd = 9.; break; }
+		if (d < -1.) { break; }
+		po += r * d;
+		dd += d;
+	}
+	float d = smoothstep(15., 10., dd);
+	float3 n = clamp(nor(po), -1., 1.);
+
 	float2 pos =f;
 
 	pos += (uv - 0.5)*-2.*_taille;
 
-	float2 ds = reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xy;
-	float ang = _forme*6.28;
-	//float2 b = float2(cos(ang), sin(ang))*10.*_taille;
+	//float2 ds = reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xy;
+	//float2 ds = mul(float2(-1.,1.),rot(_forme6*6.28));
+	float2 ds = normalize(po).xy;
+	float ang =no(_time*0.05)*6.28;
 	float2 b =ds*100.*_forme4;
 	float2 v = float2(0.,0.);
 	float bbMax = 0.7*res.y; bbMax *= bbMax;
@@ -62,17 +106,15 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 
 			v += p.yx*getRot(pos + p, b,float3(ds,ang),_forme2, _forme3*5., _forme5,res);
 
-			p = mul(p,m(ang)*_forme2);
+			p = mul(p,m(ang)*_forme2*2.);
 		}
-		//b *=3.*_forme;
 	}
-	float2 dss = mul(float2(1., 1.), m(_forme1*6.28));
+	float2 dss = mul(normalize(po).xy, m(no(_time*0.05+456.)*6.28));
 	writer[id] = (reader.SampleLevel(_LinearClamp, frac((pos + v * dss*2.0) /res) + 0.5 / res, 0))*(1.-0.05*_disparition);
 
-	//float2 d2 = reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xx;
-	//writer[id] += float4(reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xyz,0.)*0.1;
-	writer[id] = lerp(writer[id], float4(reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xyz,1.),   reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).a);
-	//writer[id] += float4((uv - 0.5)*-0.001,0.,0.);
+	//writer[id] = max(writer[id],float4(reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xyz, 1.));
+	writer[id] = lerp(writer[id], float4(n,1.),   d);
+
 
 
 }

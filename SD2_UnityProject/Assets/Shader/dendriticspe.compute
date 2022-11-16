@@ -1,0 +1,152 @@
+﻿#pragma kernel CSMain
+
+Texture2D<float4> reader; 
+Texture2D<float4> reader2;
+RWTexture2D<float4> writer;
+SamplerState _LinearClamp;
+float _time;
+float _taille;
+//float _forme;
+float _ApparitionForme;
+
+float _disparition;
+float _resx;
+float _resy;
+
+#define STEPS 30 // adfloattion steps
+
+#define ts 0.5    // adfloattion curl
+#define cs -1.0   // curl scale
+#define ls 0.05  // laplacian scale
+#define ps -4.0*_taille    // laplacian of divergence scale
+#define ds -0.3   // divergence scale
+#define dp -0.03  // divergence update scale
+#define pl 0.3    // divergence smoothing
+#define amp 1.0   // self-amplification
+#define upd 0.4   // update smoothing
+
+#define _D 0.6    // diagonal weight
+
+#define _K0 -20.0/6.0 // laplacian center weight
+#define _K1 4.0/6.0   // laplacian edge-neighbors
+#define _K2 1.0/6.0   // laplacian vertex-neighbors
+
+#define _G0 0.25      // gaussian center weight
+#define _G1 0.125     // gaussian edge-neighbors
+#define _G2 0.0625    // gaussian vertex-neighbors
+
+#define T(d) reader.SampleLevel(_LinearClamp,(aUv+d)+0.5/res,0).xyz
+float3 smin(float3 d1, float3 d2, float k) {
+	float3 h = clamp(0.5 + 0.5*(d2 - d1) / k, 0.0, 1.0);
+	return lerp(d2, d1, h) - k * h*(1.0 - h);
+}
+float2x2 rot(float t) { float c = cos(t); float s = sin(t); return float2x2(c, -s, s, c); }
+float map(float3 p) {
+	float3 b = p;
+	for (int i = 0; i < 7; i++) {
+		float3 bbb = b / dot(b, b);
+		float3 bb = smin(bbb, -bbb, -0.2);
+		b = float3(1.5,1.8,1.3) * bb;
+		b -= float3(0.7,0.6,0.4);
+	}
+
+
+	float v2 = length(b) - 0.46;
+
+	return v2;
+}
+float3 nor(float3 p)
+{
+	float2 e = float2(0.01, 0.); return normalize(map(p) - float3(map(p - e.xyy), map(p - e.yxy), 1.));
+}
+
+float3 adfloatt(float2 ab, float2 vUv, float2 texel, out float curl, out float div, out float3 lapl, out float3 blur, float res) {
+
+	float2 aUv = vUv - ab * texel;
+	float4 t = float4(texel, -texel.y, 0.0);
+
+	float3 uv = T(t.ww); float3 uv_n = T(t.wy); float3 uv_e = T(t.xw);
+	float3 uv_s = T(t.wz); float3 uv_w = T(-t.xw); float3 uv_nw = T(-t.xz);
+	float3 uv_sw = T(-t.xy); float3 uv_ne = T(t.xy); float3 uv_se = T(t.xz);
+
+	curl = uv_n.x - uv_s.x - uv_e.y + uv_w.y + _D * (uv_nw.x + uv_nw.y + uv_ne.x - uv_ne.y + uv_sw.y - uv_sw.x - uv_se.y - uv_se.x);
+	div = uv_s.y - uv_n.y - uv_e.x + uv_w.x + _D * (uv_nw.x - uv_nw.y - uv_ne.x - uv_ne.y + uv_sw.x + uv_sw.y + uv_se.y - uv_se.x);
+	lapl = _K0 * uv + _K1 * (uv_n + uv_e + uv_w + uv_s) + _K2 * (uv_nw + uv_sw + uv_ne + uv_se);
+	blur = _G0 * uv + _G1 * (uv_n + uv_e + uv_w + uv_s) + _G2 * (uv_nw + uv_sw + uv_ne + uv_se);
+
+	return uv;
+}
+
+float2 rot(float2 v, float th) {
+	return float2(dot(v, float2(cos(th), -sin(th))), dot(v, float2(sin(th), cos(th))));
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint2 id : SV_DispatchThreadID) 
+{
+	
+	float2 g = float2(id.x,id.y);
+	float2 res=float2(_resx, _resy);
+	float2 vUv = g / res;
+	float2 uc = vUv;
+	float2 texel = 1. / res;
+
+	float3 lapl, blur;
+	float curl, div;
+
+	float3 uv = adfloatt(float2(0.,0.), vUv, texel, curl, div, lapl, blur,res);
+
+	float sp = ps * lapl.z;
+	float sc = cs * curl;
+	float sd = uv.z + dp * div + pl * lapl.z;
+	float2 norm = normalize(uv.xy);
+
+	float2 off = uv.xy;
+	float2 offd = off;
+	float3 ab = float3(0.,0.,0.);
+
+	for (int i = 0; i < STEPS; i++) {
+		adfloatt(off, vUv, texel, curl, div, lapl, blur,res);
+		offd = rot(offd, ts*curl);
+		off += offd;
+		ab += blur / float(STEPS);
+	}
+
+	float2 tab = amp * ab.xy + ls * lapl.xy + norm * sp + uv.xy * ds * sd;
+	float2 rab = rot(tab, sc);
+
+	float3 abd = lerp(float3(rab, sd), uv, upd);
+
+	float2 e = float2(0.001, 0.);
+	float tt = smoothstep(0., 0.001, uc.x)*smoothstep(1., 0.999, uc.x);
+	float2 uf = (vUv - 0.5)*2.;
+		uf.x *= 16. / 9.;
+	float3 r = normalize(float3(uf, 1.4));
+	float3 p = float3(0., 0., -10.);
+	p.yz = mul(p.yz, rot(_time*0.1));
+	r.yz = mul(r.yz, rot(_time*0.1));
+	p.xz = mul(p.xz, rot(_time*0.1));
+	r.xz = mul(r.xz, rot(_time*0.1));
+	p.xy = mul(p.xy, rot(_time*0.1));
+	r.xy = mul(r.xy, rot(_time*0.1));
+	float dd = 0.;
+	
+	for (int i = 0; i < 20; i++) {
+		float d = map(p);
+		if (dd > 9.) { dd = 9.; break; }
+		if (d < -1.) { break; }
+		p += r * d;
+		dd += d;
+	}
+	//float d = smoothstep(di, 0., dd);
+	float3 n = clamp(nor(p), -1., 1.);
+	abd.xy += n.xy;
+	uv.xy += n.xy;
+
+	abd.xy = clamp(length(abd.xy) > 1.0 ? normalize(abd.xy) : abd.xy, -1.0, 1.0);
+
+	writer[id] = float4(clamp(abd, -1., 1.), 1.)*(1.- _disparition*0.01)*tt;
+	
+
+
+}
