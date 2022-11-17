@@ -212,7 +212,7 @@ public class InputMidiControl : MonoBehaviour
     void P1_Deform(InputAction.CallbackContext ctx)
      {
         P1value = ctx.ReadValue<float>();
-        rend.sharedMaterial.SetFloat("BlurIntensity", map(P1value,0,1,0,100));
+        rend.sharedMaterial.SetFloat("BlurIntensity", P1value);
      }
      void P2_Deform(InputAction.CallbackContext ctx)
      {
