@@ -3,26 +3,34 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.VFX;
-
+using System;
 
 public class SceneManager : MonoBehaviour
 {
-    //public Texture m_Default, m_01, m_02;
+
+    [Header("Dependency")]
     public InputMidiControl S_Midi;
-    public Renderer R;
-    public render QuadRender;
-    public ComputeShader CS_Default, CS02, CS03, CS04;
-    private int Nbr_SceneD;
-    private int Nbr_SceneB;
+    public Timer S_Timer;
+
+    [Header("Final Render")]
     public GameObject[] GO_Back;
-    // public TextMesh Text;
+    public Renderer R;
+
+    [Header("Displace Element")]
+    public Renderer Render3Dshape;
+    public ComputeShader CS_Default, Fluid01, Dentritic, Fluid02;
+
+    [Header("Back Element")]
+    public render RenderFinal;
+    //public Texture m_Default, m_01, m_02;
+    [Header("Managment Stuff")]
+    public Animator AC;
     public Text TextDisplace;
     public Text TextBack;
-    //public GameObject GO01;
-    //public Material MatScreen01;
-    public Shader Mouche;
-    public Renderer Render3Dshape;
-    //public RenderTexture RT_Flux01;
+    private int Nbr_SceneD;
+    private int Nbr_SceneB;
+
+    //[Space(10)]
     void Start()
     {
         Clean();
@@ -42,19 +50,25 @@ public class SceneManager : MonoBehaviour
         if (Nbr_SceneD == 1)
         {
             Nbr_SceneD++;
-            QuadRender.compute_shader = CS02;
+            RenderFinal.compute_shader = Fluid01;
             TextDisplace.text = "SCENE_DISPLACE_02";
+            TransitionScene();
         }else if (Nbr_SceneD == 2){
             Nbr_SceneD++;
-            QuadRender.compute_shader = CS03;
+            RenderFinal.compute_shader = Dentritic;
             TextDisplace.text = "SCENE_DISPLACE_03";
-        }else if (Nbr_SceneD == 3){
+            TransitionScene();
+        }
+        else if (Nbr_SceneD == 3){
             Nbr_SceneD++;
-            QuadRender.compute_shader = CS04;
+            RenderFinal.compute_shader = Fluid02;
             TextDisplace.text = "SCENE_DISPLACE_04";
-        }else if(Nbr_SceneD == 4){
+            TransitionScene();
+        }
+        else if(Nbr_SceneD == 4){
             Nbr_SceneD = 1;
             TextDisplace.text = "SCENE_DISPLACE_01";
+            TransitionScene();
         }
     }
 
@@ -108,7 +122,7 @@ public class SceneManager : MonoBehaviour
         TextBack.text = "SCN_BACK 01";
         Nbr_SceneB = 1;
         Nbr_SceneD = 1;
-        QuadRender.compute_shader = CS_Default;
+        RenderFinal.compute_shader = CS_Default;
         //R.material.EnableKeyword("_Default");
         //R.material.SetTexture("_MainTex", m_Default);
        // R.material.EnableKeyword("_01");
@@ -131,6 +145,13 @@ public class SceneManager : MonoBehaviour
         Render3Dshape.sharedMaterial.SetFloat("_taille", 0.46f);
       //  Render3Dshape.sharedMaterial.SetVector4("_modifforme01", 1.5,1.8,1.3,0);
       //  Render3Dshape.sharedMaterial.SetFloat("_modifforme02", 0.7,0.6,0.4,0);
+    }
+
+    public void TransitionScene()
+    {
+        AC.SetTrigger("Transition");
+        //RenderFinal.sharedMaterial.SetFloat("_smoothform", ValueT);
+
     }
 
 
