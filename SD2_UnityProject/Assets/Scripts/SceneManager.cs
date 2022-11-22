@@ -13,8 +13,9 @@ public class SceneManager : MonoBehaviour
     public Timer S_Timer;
 
     [Header("Final Render")]
-  //  public Renderer R;
-    public render RenderFinal;
+    public Renderer RenderFinal;
+    public render ScriptRender;
+    public GameObject[] GO_FinalQuad;
 
     [Header("Displace Element")]
     public Renderer Render3Dshape;
@@ -24,6 +25,7 @@ public class SceneManager : MonoBehaviour
     public GameObject[] GO_Back;
 
     [Header("Managment Stuff")]
+    public string SceneName;
     public Animator AC;
     public Text TextDisplace;
     public Text TextBack;
@@ -34,6 +36,8 @@ public class SceneManager : MonoBehaviour
     //[Space(10)]
     void Start()
     {
+
+        SceneName = "Intro";
         Clean();
         //SetupParam3Dshape();
     }
@@ -42,27 +46,40 @@ public class SceneManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-           // R.material.SetTexture("_MainTex", m_01);
+            TransitionScene();
+            // R.material.SetTexture("_MainTex", m_01);
         }
+        if (S_Timer.TimerDown == true && SceneName=="Intro")
+        {
+           // AC.SetTrigger("Nebula");
+            TransitionScene();
+        }
+       // else if(SceneName == "Intro")
     }
 
-    public void ChangeDisplace()
+    public void Scene01()
     {
+        GO_Back[0].SetActive(true);
+        S_Timer.StartTimer();
+    }
+
+        public void ChangeDisplace()
+        {
         if (Nbr_SceneD == 1)
         {
             TextDisplace.text = "SCENE_DISPLACE_02";
             Nbr_SceneD++;
-            RenderFinal.compute_shader = Deform01;
+            ScriptRender.compute_shader = Deform01;
             TransitionScene();
         }else if (Nbr_SceneD == 2){
             TextDisplace.text = "SCENE_DISPLACE_03";
             Nbr_SceneD++;
-            RenderFinal.compute_shader = Deform02;
+            ScriptRender.compute_shader = Deform02;
             TransitionScene();
         }
         else if (Nbr_SceneD == 3){
             Nbr_SceneD++;
-            RenderFinal.compute_shader = Deform03;
+            ScriptRender.compute_shader = Deform03;
             TextDisplace.text = "SCENE_DISPLACE_04";
             TransitionScene();
         }
@@ -116,6 +133,7 @@ public class SceneManager : MonoBehaviour
 
     void Clean()
     {
+        SceneName = "intro";
         VisualEffect VisualFX0 = GO_Back[0].GetComponent(typeof(VisualEffect)) as VisualEffect;
         S_Midi.FX = VisualFX0;
         S_Midi.MovableObject = GO_Back[0];
@@ -123,7 +141,7 @@ public class SceneManager : MonoBehaviour
         TextBack.text = "SCN_BACK 01";
         Nbr_SceneB = 1;
         Nbr_SceneD = 1;
-        RenderFinal.compute_shader = CS_Default;
+        ScriptRender.compute_shader = CS_Default;
         //R.material.EnableKeyword("_Default");
         //R.material.SetTexture("_MainTex", m_Default);
        // R.material.EnableKeyword("_01");
@@ -132,6 +150,7 @@ public class SceneManager : MonoBehaviour
         GO_Back[2].SetActive(false);
         GO_Back[3].SetActive(false);
         T = false;
+
     }
 
     void SetupParam3Dshape()
@@ -151,16 +170,16 @@ public class SceneManager : MonoBehaviour
 
     public void TransitionScene()
     {
-        if (T == false)
+        if (RenderFinal.sharedMaterial.GetInt("_SunShaft_Nebula") == 1)
         {
             AC.SetTrigger("Transition");
-            T = true;
+            RenderFinal.sharedMaterial.SetInt("_SunShaft_Nebula", 0);
         }
-        else{
-            T = false;
-            AC.SetTrigger("TransitionBack");
+        else if (RenderFinal.sharedMaterial.GetInt("_Nebula_SunShaft") == 1)
+        {
+            AC.SetTrigger("Transition");
+            RenderFinal.sharedMaterial.SetInt("_Nebula_SunShaft", 0);
         }
-        //RenderFinal.sharedMaterial.SetFloat("_smoothform", ValueT);
 
     }
 
