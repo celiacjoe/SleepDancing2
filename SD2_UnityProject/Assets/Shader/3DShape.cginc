@@ -1,6 +1,17 @@
 //UNITY_SHADER_NO_UPGRADE
 #ifndef MYHLSLINCLUDE_INCLUDED
 #define MYHLSLINCLUDE_INCLUDED
+
+float isphe(float3 ro, float3 rd, float3 cen, float rad)
+{
+	ro -= cen;
+	float b = dot(rd, ro);
+	float c = dot(ro, ro) - rad * rad;
+	float h = b * b - c;
+	if (h < 0.)return -1.;
+	return 1.;
+}
+
 float3 smin(float3 d1, float3 d2, float k) {
 	float3 h = clamp(0.5 + 0.5*(d2 - d1) / k, 0.0, 1.0);
 	return lerp(d2, d1, h) - k * h*(1.0 - h);
@@ -74,19 +85,28 @@ void Shape_float(float2 uv,float di, float fo,float mp,float mvx,float mvy,float
 	p.xy = mul(p.xy, rot(mvz));
 	r.xy = mul(r.xy, rot(mvz));
 	float dd = 0.;
-	int co2 = int(clamp(co*10., 1., 10.));
-	for (int i = 0; i < int(detail); i++) {
-		float d = map(p,sm,co2, ta,f1,f2);
-		if (dd > di) { dd = di; break; }
-		if (d < -1.) { break; }
-		p += r * d;
-		dd += d;
-	}
-	float d = smoothstep(di, 0., dd);
-	float3 n = clamp(nor(p, sm, co2, ta, f1, f2),-1.,1.);
-
-
-	Out = float4(n,d);
+	float3 n = float3( 0., 0., 0.);
+	float m = 0.;
+	float de = isphe(p, r, float3(0., 0., 0.), di-2.);
+		if (de > 0.)
+		{
+			int co2 = int(clamp(co*10., 1., 10.));
+			for (int i = 0; i < int(detail); i++) {
+				float d = map(p, sm, co2, ta, f1, f2);
+				if (dd > di) { dd = di; break; }
+				if (d < -1.) { break; }
+				p += r * d;
+				dd += d;
+			}
+			m = smoothstep(di, 0., dd);
+			n = clamp(nor(p, sm, co2, ta, f1, f2), -1., 1.);
+		}
+		else {
+			n = float3(0., 0., 0.);
+			m = 0.;
+			
+		}
+	Out = float4(n,m );
 
 }
 /*void Shape2_float(float2 uv, float di, float fo, float mp, float mvx, float mvy, float mvz, float sm, float co, float ta, float3 f1, float3 f2, float detail, out float4 Out)

@@ -1,6 +1,6 @@
 ﻿#pragma kernel CSMain
-
-//Texture2D<float4> reader; 
+#pragma kernel CSMain2
+Texture2D<float4> reader; 
 //Texture2D<float4> reader2;
 RWTexture2D<float4> writer;
 //RWTexture2D<float4> writer2;
@@ -83,6 +83,41 @@ void CSMain(uint2 id : SV_DispatchThreadID)
 
 	float3 col = smoothstep(-0.0, 0.9, pow(flare, float3(0.5, 0.5, 0.5)));
 	writer[id] = float4(col, 0.);
+}
+
+float3 ov(float3 base, float3 blend) {
+	return base < 0.5 ? (2.0*base*blend) : (1.0 - 2.0*(1.0 - base)*(1.0 - blend));
+}
+
+[numthreads(8, 8, 1)]
+void CSMain2(uint2 id : SV_DispatchThreadID)
+{
+
+	float2 g = float2(id.x, id.y);
+	float2 res = float2(_resx, _resy);
+	float2 uv = g / res;
+
+	float Pi = 6.28318530718;
+
+	float Directions = 16.0;
+	float Quality = 4.0;
+	float pd = pow(length(uv.y - 0.5)*2., 2.);
+	float pdd = smoothstep(0.75, 1., pd);
+	float bd = pd*5000.*_SMid+pdd*100.;
+
+	float2 Radius = bd / float2(1920., 1080.);
+	float4 Color = reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0);
+	for (float d = 0.0; d < Pi; d += Pi / Directions)
+	{
+		for (float i = 1.0 / Quality; i <= 1.0; i += 1.0 / Quality)
+		{
+			Color += reader.SampleLevel(_LinearClamp, uv + float2(cos(d), sin(d))*Radius*i + 0.5 / res, 0);
+		}
+	}
+	Color /= Quality * Directions - 15.;
+	float3 Color2 = ov(Color.xyz, lerp(0.5, 0.4, pdd));
+
+	writer[id] = float4(Color2,1.);
 
 
 
