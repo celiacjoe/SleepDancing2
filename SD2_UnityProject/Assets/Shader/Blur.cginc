@@ -35,8 +35,8 @@ void blur2_float(float2 uv, float  Size, UnityTexture2D A, out float3 Out)
 
 	float Pi = 6.28318530718;
 
-	float Directions = 16.0*4;
-	float Quality = 4.0*4;
+	float Directions = 16.0;
+	float Quality = 4.0;
 
 
 
