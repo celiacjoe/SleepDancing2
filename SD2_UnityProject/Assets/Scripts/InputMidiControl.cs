@@ -75,8 +75,8 @@ public class InputMidiControl : MonoBehaviour
     {
         ////////////////// MOUSE POSITION
         mousePosition = Cam.ScreenToWorldPoint(Input.mousePosition);
-        GO.transform.position = new Vector3(mousePosition.x - 20, mousePosition.y, 0);
-       // T.position = new Vector3(mousePosition.x - 20, mousePosition.y, 0);
+       // GO.transform.position = new Vector3(mousePosition.x - 20, mousePosition.y, 0);
+
         ////////////////// SMOOTH POSITION CHANGE
         //  Vector3 NewTargetPosX = PositionX;
         //  MovableObject.transform.position = Vector3.SmoothDamp(MovableObject.transform.position, NewTargetPosX, ref velocity, SmoothT);
