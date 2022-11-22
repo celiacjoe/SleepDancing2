@@ -93,13 +93,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - ApparitionForme: 0.08
-    - BlurIntensity: 1
+    - BlurIntensity: 0.48818898
     - Intensity: 1
+    - Mask_Intensity: 0.007874017
     - Vector1_3a130d5a71ef4c1fbf1646ba501fa62d: 0
     - Vector1_e9dea2c590d046899eecae12226fe814: 0
     - Vector1_fae9ea70a9434fa782aad93fbc210351: 91.2
     - _AlphaClip: 0
-    - _ApparitionForme: 0.4488189
+    - _ApparitionForme: 0.44094488
     - _Blend: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
