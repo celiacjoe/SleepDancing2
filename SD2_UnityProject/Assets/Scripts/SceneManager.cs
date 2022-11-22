@@ -13,22 +13,23 @@ public class SceneManager : MonoBehaviour
     public Timer S_Timer;
 
     [Header("Final Render")]
-    public GameObject[] GO_Back;
-    public Renderer R;
+  //  public Renderer R;
+    public render RenderFinal;
 
     [Header("Displace Element")]
     public Renderer Render3Dshape;
-    public ComputeShader CS_Default, Fluid01, Dentritic, Fluid02;
+    public ComputeShader CS_Default, Deform01, Deform02, Deform03;
 
     [Header("Back Element")]
-    public render RenderFinal;
-    //public Texture m_Default, m_01, m_02;
+    public GameObject[] GO_Back;
+
     [Header("Managment Stuff")]
     public Animator AC;
     public Text TextDisplace;
     public Text TextBack;
     private int Nbr_SceneD;
     private int Nbr_SceneB;
+    private bool T =false;
 
     //[Space(10)]
     void Start()
@@ -49,19 +50,19 @@ public class SceneManager : MonoBehaviour
     {
         if (Nbr_SceneD == 1)
         {
-            Nbr_SceneD++;
-            RenderFinal.compute_shader = Fluid01;
             TextDisplace.text = "SCENE_DISPLACE_02";
+            Nbr_SceneD++;
+            RenderFinal.compute_shader = Deform01;
             TransitionScene();
         }else if (Nbr_SceneD == 2){
-            Nbr_SceneD++;
-            RenderFinal.compute_shader = Dentritic;
             TextDisplace.text = "SCENE_DISPLACE_03";
+            Nbr_SceneD++;
+            RenderFinal.compute_shader = Deform02;
             TransitionScene();
         }
         else if (Nbr_SceneD == 3){
             Nbr_SceneD++;
-            RenderFinal.compute_shader = Fluid02;
+            RenderFinal.compute_shader = Deform03;
             TextDisplace.text = "SCENE_DISPLACE_04";
             TransitionScene();
         }
@@ -130,6 +131,7 @@ public class SceneManager : MonoBehaviour
         GO_Back[1].SetActive(false);
         GO_Back[2].SetActive(false);
         GO_Back[3].SetActive(false);
+        T = false;
     }
 
     void SetupParam3Dshape()
@@ -149,7 +151,15 @@ public class SceneManager : MonoBehaviour
 
     public void TransitionScene()
     {
-        AC.SetTrigger("Transition");
+        if (T == false)
+        {
+            AC.SetTrigger("Transition");
+            T = true;
+        }
+        else{
+            T = false;
+            AC.SetTrigger("TransitionBack");
+        }
         //RenderFinal.sharedMaterial.SetFloat("_smoothform", ValueT);
 
     }

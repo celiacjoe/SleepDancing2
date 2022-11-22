@@ -19,8 +19,16 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_4340929552e446ebbf57e207c6ac1077:
+        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_67992d944cde41dc8f8e7c8fe46a8395:
         m_Texture: {fileID: 8400000, guid: 7b2a9ac4a7f9189439c8a2d9a2de812d, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_779e46ff1c094ddeae0a1a53ec726ec8:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_b0f60650ba424b538381fd6685728e23:
@@ -85,8 +93,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - ApparitionForme: 0.08
-    - BlurIntensity: 0.33070868
+    - BlurIntensity: 1
     - Intensity: 0.38582677
+    - Vector1_3a130d5a71ef4c1fbf1646ba501fa62d: 1
     - Vector1_e9dea2c590d046899eecae12226fe814: 0
     - Vector1_fae9ea70a9434fa782aad93fbc210351: 91.2
     - _AlphaClip: 0
