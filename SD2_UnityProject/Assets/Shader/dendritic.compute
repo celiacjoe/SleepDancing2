@@ -6,6 +6,7 @@ RWTexture2D<float4> writer;
 SamplerState _LinearClamp;
 float _time;
 float _taille;
+float _taille2;
 float _forme;
 float _ApparitionForme;
 
@@ -39,7 +40,7 @@ float _resy;
 
 float3 adfloatt(float2 ab, float2 vUv, float2 texel, out float curl, out float div, out float3 lapl, out float3 blur, float res) {
 
-	float2 aUv = vUv - ab * texel;
+	float2 aUv = vUv - ab * texel*_taille2*8.;
 	float4 t = float4(texel, -texel.y, 0.0);
 
 	float3 uv = T(t.ww); float3 uv_n = T(t.wy); float3 uv_e = T(t.xw);

@@ -14,6 +14,8 @@ public class render : MonoBehaviour
     [Range(0, 1)]
     public float Taille;
     [Range(0, 1)]
+    public float Taille2;
+    [Range(0, 1)]
     public float Forme;
     [Range(0, 1)]
     public float ApparitionForme;
@@ -51,6 +53,7 @@ public class render : MonoBehaviour
         compute_shader.SetTexture(handle_main, "reader2", C);
         compute_shader.SetFloat("_time", Time.time);
         compute_shader.SetFloat("_taille", Taille);
+        compute_shader.SetFloat("_taille2", Taille2);
         compute_shader.SetFloat("_forme", Forme);
         compute_shader.SetFloat("_ApparitionForme", ApparitionForme);
         compute_shader.SetFloat("_disparition", Disparition);

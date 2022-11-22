@@ -55,8 +55,8 @@ public class NebulaRender : MonoBehaviour
     public int _resx;
     public int _resy;
     public int _resx2;
-    public int _resy2;   
-    
+    public int _resy2;
+    public render script;
 
     void Start()
     {
@@ -114,7 +114,7 @@ public class NebulaRender : MonoBehaviour
         compute_shader.Dispatch(handle_main, A.width / 8, A.height / 8, 1);
         compute_shader.SetTexture(handle_main2, "writer", B);
         compute_shader.Dispatch(handle_main2, B.width / 8, B.height / 8, 1);
-        material.SetTexture("_MainTex",B);
-      
+        material.SetTexture("_Nebula",B);
+        script.C = B;
     }
 }
