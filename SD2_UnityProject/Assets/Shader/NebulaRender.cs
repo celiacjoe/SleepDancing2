@@ -5,10 +5,21 @@ public class NebulaRender : MonoBehaviour
     public ComputeShader compute_shader;
     RenderTexture A;
     RenderTexture B;
+   // public RenderTexture C;
     public Texture noise;
     public Material material;
     int handle_main;
     int handle_main2;
+    [Space(20)]
+    [Header("PositionSetting")]
+    public Vector3 Pos;
+    public float Focal;
+    public float t1;
+    public float t2;
+    public float t3;
+    public float t4;
+    [Space(20)]
+    [Header("ColorSetting")]
     [Range(0, 50)]
     public float reg1;
     [Range(0, 1)]
@@ -27,7 +38,9 @@ public class NebulaRender : MonoBehaviour
     public float Blur;
     [Range(0, 1)]
     public float Chro1;
-
+    public Color VolumeColor;
+    [Space(20)]
+    [Header("SoundSetting")]
     public float Low;
     public float TLow;
     public float SLow;
@@ -37,12 +50,14 @@ public class NebulaRender : MonoBehaviour
     public float High;
     public float THigh;
     public float SHigh;
-    public Color VolumeColor;
+    [Space(20)]
     public RenderTextureFormat rtFormat = RenderTextureFormat.ARGBHalf;
     public int _resx;
     public int _resy;
     public int _resx2;
-    public int _resy2;
+    public int _resy2;   
+    
+
     void Start()
     {
         A = new RenderTexture(_resx, _resy, 0,rtFormat);
@@ -57,6 +72,7 @@ public class NebulaRender : MonoBehaviour
         compute_shader.SetFloat("_resy", _resy);
         compute_shader.SetFloat("_resx2", _resx2);
         compute_shader.SetFloat("_resy2", _resy2);
+      //  compute_shader.SetTexture(handle_main, "reader3", C);
     }
 
     void Update()
@@ -72,6 +88,12 @@ public class NebulaRender : MonoBehaviour
         compute_shader.SetFloat("_co1", Co1);
         compute_shader.SetFloat("_co2", Co2);
         compute_shader.SetFloat("_co3", Co3);
+        compute_shader.SetFloat("_t1", t1);
+        compute_shader.SetFloat("_t2", t2);
+        compute_shader.SetFloat("_t3", t3);
+        compute_shader.SetFloat("_t4", t4);
+        compute_shader.SetVector("_position", Pos);
+        compute_shader.SetFloat("_focal", Focal);
         compute_shader.SetFloat("_chro1", Chro1);
         compute_shader.SetFloat("_reg4", reg4);
         compute_shader.SetFloat("_blur", Blur);
@@ -93,5 +115,6 @@ public class NebulaRender : MonoBehaviour
         compute_shader.SetTexture(handle_main2, "writer", B);
         compute_shader.Dispatch(handle_main2, B.width / 8, B.height / 8, 1);
         material.SetTexture("_MainTex",B);
+      
     }
 }

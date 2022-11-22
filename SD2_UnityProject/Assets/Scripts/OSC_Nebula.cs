@@ -27,8 +27,8 @@ namespace OscSimpl.Examples
         //public string Map_PosXY;
         //public Vector2 V2;
         //public VisualEffect FX;
-        public GameObject GObj;
-        public string script;
+       // public GameObject GObj;
+        public NebulaRender scrpit1;
 
         float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
         {
@@ -48,7 +48,7 @@ namespace OscSimpl.Examples
         void Update()
         {
             TLow += Low;
-            TMid += SMid;
+            TMid += Mid;
             THigh += High;
             SLow = Mathf.Lerp(SLow, Low, facMerge);
             SMid = Mathf.Lerp(SMid, Mid, facMerge);
@@ -63,16 +63,24 @@ namespace OscSimpl.Examples
             mat.SetFloat("_THigh", THigh);
             mat.SetFloat("_SHigh", SHigh);    */
             mat.SetFloat("_SMid", SMid);
-            GObj.GetComponent<NebulaRender>().Low = Low;
-            GObj.GetComponent<NebulaRender>().TLow = TLow;
-            GObj.GetComponent<NebulaRender>().SLow = SLow;
-            GObj.GetComponent<NebulaRender>().Mid = Mid;
-            GObj.GetComponent<NebulaRender>().TMid = TMid;
-            GObj.GetComponent<NebulaRender>().SMid = SMid;
-            GObj.GetComponent<NebulaRender>().High = High;
-            GObj.GetComponent<NebulaRender>().THigh = THigh;
-            GObj.GetComponent<NebulaRender>().SHigh = SHigh;
-
+            /* GObj.GetComponent<NebulaRender>().Low = Low;
+             GObj.GetComponent<NebulaRender>().TLow = TLow;
+             GObj.GetComponent<NebulaRender>().SLow = SLow;
+             GObj.GetComponent<NebulaRender>().Mid = Mid;
+             GObj.GetComponent<NebulaRender>().TMid = TMid;
+             GObj.GetComponent<NebulaRender>().SMid = SMid;
+             GObj.GetComponent<NebulaRender>().High = High;
+             GObj.GetComponent<NebulaRender>().THigh = THigh;
+             GObj.GetComponent<NebulaRender>().SHigh = SHigh;  */
+             scrpit1.Low = Low;
+            scrpit1.TLow = TLow;
+            scrpit1.SLow = SLow;
+            scrpit1.Mid = Mid;
+            scrpit1.TMid = TMid;
+            scrpit1.SMid = SMid;
+            scrpit1.High = High;
+            scrpit1.THigh = THigh;
+            scrpit1.SHigh = SHigh;
         }
 
         void OnEnable()

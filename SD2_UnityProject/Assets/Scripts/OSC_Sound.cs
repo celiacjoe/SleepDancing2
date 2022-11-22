@@ -27,8 +27,7 @@ namespace OscSimpl.Examples
         //public string Map_PosXY;
         //public Vector2 V2;
         //public VisualEffect FX;
-        public GameObject GObj;
-        public string script;
+        public SoundRender scrpit1;
 
         float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
         {
@@ -63,15 +62,15 @@ namespace OscSimpl.Examples
             mat.SetFloat("_THigh", THigh);
             mat.SetFloat("_SHigh", SHigh);    */
             mat.SetFloat("_SMid", SMid);
-            GObj.GetComponent<SoundRender>().Low = Low;
-            GObj.GetComponent<SoundRender>().TLow = TLow;
-            GObj.GetComponent<SoundRender>().SLow = SLow;
-            GObj.GetComponent<SoundRender>().Mid = Mid;
-            GObj.GetComponent<SoundRender>().TMid = TMid;
-            GObj.GetComponent<SoundRender>().SMid = SMid;
-            GObj.GetComponent<SoundRender>().High = High;
-            GObj.GetComponent<SoundRender>().THigh = THigh;
-            GObj.GetComponent<SoundRender>().SHigh = SHigh;
+            scrpit1.Low = Low;
+            scrpit1.TLow = TLow;
+            scrpit1.SLow = SLow;
+            scrpit1.Mid = Mid;
+            scrpit1.TMid = TMid;
+            scrpit1.SMid = SMid;
+            scrpit1.High = High;
+            scrpit1.THigh = THigh;
+            scrpit1.SHigh = SHigh;
 
         }
 

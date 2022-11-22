@@ -28,6 +28,8 @@ public class SoundRender : MonoBehaviour
     public int _resx;
     public RenderTextureFormat rtFormat = RenderTextureFormat.ARGBHalf;
     public int _resy;
+    //public NebulaRender scrpit1;
+    public Material Nebula;
     void Start()
     {
         A = new RenderTexture(_resx, _resy, 0,rtFormat);
@@ -77,5 +79,7 @@ public class SoundRender : MonoBehaviour
        // compute_shader.Dispatch(handle_main, A.width / 8, A.height / 8, 1);
        // compute_shader.SetTexture(handle_main, "writer2", D);
         material.SetTexture("_MainTex",A);
+        Nebula.SetTexture("_Fond", A);
+       // scrpit1.C = A;
     }
 }

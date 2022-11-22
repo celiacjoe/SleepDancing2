@@ -17,7 +17,8 @@ float _resx;
 float _resy;
 float _resx2;
 float _resy2;
-
+float3 _position;
+float _focal;
 float4 _VolumeColor;
 float _reg1;
 float _reg2;
@@ -31,9 +32,23 @@ float _time;
 float _mousex;
 float _mousey;
 float _blur;
+float _t1;
+float _t2;
+float _t3;
+float _t4;
 #define Pi 3.14159265359
 #define ViewStart 1.6
 #define ViewEnd 4.4
+
+float isphe(float3 ro, float3 rd, float3 cen, float rad)
+{
+	ro -= cen;
+	float b = dot(rd, ro);
+	float c = dot(ro, ro) - rad * rad;
+	float h = b * b - c;
+	if (h < 0.)return -1.;
+	return 1.;
+}
 
 float3 smin(float3 d1, float3 d2, float k) {
 	float3 h = clamp(0.5 + 0.5*(d2 - d1) / k, 0.0, 1.0);
@@ -41,22 +56,22 @@ float3 smin(float3 d1, float3 d2, float k) {
 float2x2 rot(float t) { float c = cos(t); float s = sin(t); return float2x2(c, -s, s, c); }
 float3 powV(float3 v, float p) {  return float3(pow(v.x, p), pow(v.y, p), pow(v.z, p)); }
 float maxV(float3 v) {return max(max(v.x, v.y), v.z);}
-bool insideShape(float3 p, float ti) {
-	float3 b = p - float3(0., 0.0, +0.25);
-	for (int i = 0; i < 4; i++) {
-		b -= 0.5;
+bool insideShape(float3 p, float ti,float tn) {
+	float3 b = p + float3(0., 0.25, 0.25);
+	for (int i = 0; i < int(_t4); i++) {
+		b -= tn;
 		b.xz = mul(b.xz,rot(ti*0.05));
 		b.yz = mul(b.yz,rot(ti*0.1));
 		b = smin(b, -b, -0.2);
 	}
 	float d1 = length(b);
 	float r = d1;
-	return r < 1. && r > .5;
+	return r < _t1 && r > _t2;
 }
 float henyeyGreenstein(float3 pos, float3 dir, float3 LightPos) {
 	float cosTheta = dot(dir, normalize(LightPos - pos));
 	return Pi / 4.0 * (1.0 - _reg2 * _reg2) / pow(1.0 + _reg2 * _reg2 - 2.0*_reg2*cosTheta, 3.0 / 2.0);}
-float3 lightReceived(float3 pos, float headStart, float ti, float3 LightPos) {
+float3 lightReceived(float3 pos, float headStart, float ti, float3 LightPos,float tn) {
 	float LightDist = length(LightPos - pos);
 	float3 LightDir = normalize(LightPos - pos);
 	float stepSize = LightDist / 8.;
@@ -64,28 +79,31 @@ float3 lightReceived(float3 pos, float headStart, float ti, float3 LightPos) {
 	float3 absorption = float3(rr,rr,rr);
 	pos += headStart * LightDir * stepSize;
 	for (int i = 0; i < 8; i++) {
-		if (insideShape(pos, ti)) {
+		if (insideShape(pos, ti,tn)) {
 			absorption *= powV(float3(1.,1.,1.) - _VolumeColor.xyz, stepSize*_reg1);
 		}
 		pos += LightDir * stepSize;
 	}
 	return absorption * float3(_co1,_co2,_co3) / (LightDist*LightDist);
 }
-
+float rd(float t) { return frac(sin(dot(floor(t), 45.))*7845.236); }
+float no(float t) { return lerp(rd(t), rd(t + 1.), smoothstep(0., 1., frac(t))); }
 [numthreads(8,8,1)]
 void CSMain (uint2 id : SV_DispatchThreadID) 
 {
 	float3 DirCam = normalize(float3(1, 0, 0));
-	float3 PosCam = float3(-3.0, 0, .0);
-	float FocalLength = 1.2;
+	float3 PosCam = _position.zxy+float3(0.,0.,clamp(-6.+_time*0.1,-10.,0.))*0.;
+	float FocalLength = _focal;
 	float2 g = float2(id.x,id.y);
 	float2 res=float2(_resx, _resy);
 	float2 uv = g / res;
 	uv = (uv - .5)*2.;
 	uv.x *= _resx / _resy;
-	float2 ms = float2(_mousex-.5, _mousey - .5)*2.;
-	float3 LightPos = float3(0.,-ms.x,ms.y) * 2.*float3(1., res.x / res.y, 1.);
-	float da =step(1., distance(ms, uv));
+	//loat2 ms = float2(_mousex-.5, _mousey - .5)*2.;
+	float2 ms = float2(no(_TLow*0.1) - .5,no(_THigh*.1) - .5)*2.;
+	float tn = _t3;
+	float3 LightPos = float3(0.,-ms.x,ms.y) * 2.*float3(1., res.x / res.y, 1.)+float3(0., +PosCam.yz);
+	float da =step(1.1+clamp(length(_position.xy)-1.,0.,3.)*0.3, distance(ms, uv));
 	float3 color;
 	if (da < 0.5) {
 		float3 camX = float3(-DirCam.y, DirCam.x, 0);
@@ -95,7 +113,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 		float3 centerSensor = PosCam - DirCam * FocalLength;
 		float3 posOnSensor = centerSensor + sensorX + sensorY;
 		float3 dir = normalize(PosCam - posOnSensor);
-		float ti = _TMid*0.2;
+		float ti = _TMid * 0.2;
 		float3 pos = PosCam + dir * ViewStart;
 		float hg = henyeyGreenstein(pos, dir, LightPos);
 		float stepSize = (ViewEnd - ViewStart) / 200.;
@@ -103,22 +121,28 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 		float3 absorption = float3(rr, rr, rr);
 		float headStart = reader.SampleLevel(_LinearRepeat, g / float2(1024., 1024.) + 0.5 / res, 0).x;
 		pos += headStart * dir * stepSize;
-		for (int i = 0; i < 200; i++) {
-			if (length(LightPos - pos) < .0) {
-				color += 10.0*absorption*float3(_co1, _co2, _co3);
-				break;
+		float2 dd = isphe(pos, dir, float3(0., 0., 0.), 3.25);
+		if (dd.y > 0.)
+		{
+			for (int i = 0; i < 200; i++) {
+				if (length(LightPos - pos) < .0) {
+					color += 10.0*absorption*float3(_co1, _co2, _co3);
+					break;
+				}
+				if (insideShape(pos, ti,tn)) {
+					color += _VolumeColor.xyz*absorption*lightReceived(pos, headStart, ti, LightPos,tn)*hg*stepSize*_reg1;
+					absorption *= powV(float3(1., 1., 1.) - _VolumeColor.xyz, stepSize*_reg1);
+				}
+				pos += dir * stepSize;
+				if (maxV(absorption) < _reg4) break;
 			}
-			if (insideShape(pos, ti)) {
-				color += _VolumeColor.xyz*absorption*lightReceived(pos, headStart, ti, LightPos)*hg*stepSize*_reg1;
-				absorption *= powV(float3(1., 1., 1.) - _VolumeColor.xyz, stepSize*_reg1);
-			}
-			pos += dir * stepSize;
-			if (maxV(absorption) < _reg4) break;
 		}
+		else { color = float3(0., 0., 0.); }
 	}
 	else { color = float3(0.,0.,0.); }
 	writer[id] = float4(log(color + float3(1.,1.,1.)), 1.);
 }
+
 [numthreads(8, 8, 1)]
 void CSMain2(uint2 id : SV_DispatchThreadID)
 {
@@ -145,6 +169,7 @@ void CSMain2(uint2 id : SV_DispatchThreadID)
 		
 		}
 	}
+
 	Color /= Quality * Directions - 15.;
 	writer[id] = Color;
 }
