@@ -94,12 +94,12 @@ Material:
     m_Floats:
     - ApparitionForme: 0.08
     - BlurIntensity: 1
-    - Intensity: 0.38582677
-    - Vector1_3a130d5a71ef4c1fbf1646ba501fa62d: 1
+    - Intensity: 1
+    - Vector1_3a130d5a71ef4c1fbf1646ba501fa62d: 0
     - Vector1_e9dea2c590d046899eecae12226fe814: 0
     - Vector1_fae9ea70a9434fa782aad93fbc210351: 91.2
     - _AlphaClip: 0
-    - _ApparitionForme: 1
+    - _ApparitionForme: 0.4488189
     - _Blend: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
