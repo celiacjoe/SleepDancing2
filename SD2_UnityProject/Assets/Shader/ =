@@ -30,7 +30,7 @@ float rd1(float p) {
 	return frac(sin(dot(p, 45.45))*7845.236);
 }
 float no1(float p) { return lerp(rd1(p), rd1(p + 1.), frac(p)); }
-float3 lensflares(float2 uv, float2 pos, float tt, float ti)
+float3 lensflares(float2 uv, float2 pos,float tt, float ti)
 {
 	float2 main = uv - pos;
 	float2 uvd = uv * (length(uv));
@@ -69,21 +69,20 @@ float3 lensflares(float2 uv, float2 pos, float tt, float ti)
 }
 
 
-[numthreads(8, 8, 1)]
-void CSMain(uint2 id : SV_DispatchThreadID)
+[numthreads(8,8,1)]
+void CSMain (uint2 id : SV_DispatchThreadID) 
 {
-
-	float2 g = float2(id.x, id.y);
-	float2 res = float2(_resx, _resy);
+	
+	float2 g = float2(id.x,id.y);
+	float2 res=float2(_resx, _resy);
 	float2 uv = g / res;
 	uv = (uv - .5)*2.;
 	uv.x *= _resx / _resy;
-	float2 pp = lerp(float2(no1(_TLow*0.01 + 596.), no1(_TLow*0.01 + 475.)),float2(0.5,0.5),pow(no1(_TMid*0.1),0.5));
-	float3 flare = lensflares(uv*(2. - no1(_THigh*0.1 + 46.)), (pp - 0.5)*2., clamp(_SLow*120., 0., 120.), _TMid);
+	float3 flare = lensflares(uv*(2.-no1(_THigh*0.1+46.)), (float2(no1(_TLow*0.01 + 596.)*0.25 + 0.25, no1(_TLow*0.01 + 475.)*0.2+0.25)-0.5)*2.,clamp(_SLow*120.,0.,120.),_TMid);
 
 	float3 col = smoothstep(-0.0, 0.9, pow(flare, float3(0.5, 0.5, 0.5)));
 	writer[id] = float4(col, 0.);
-
+	
 
 
 }

@@ -75,7 +75,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float2 g = float2(id.x,id.y);
 	float2 res=float2(_resx, _resy);
 	float2 vUv = g / res;
-	vUv += (vUv - 0.5)*-0.005;
+	vUv += (vUv - 0.5)*-0.001;
 	float2 uc = vUv;
 	float2 texel = 1. / res;
 
@@ -107,6 +107,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 
 	float2 e = float2(0.001, 0.);
 	float tt = smoothstep(0., 0.001, uc.x)*smoothstep(1., 0.999, uc.x);
+	tt *= smoothstep(0., 0.001, uc.y)*smoothstep(1., 0.999, uc.y);
 	float n1 =  reader.SampleLevel(_LinearClamp, uc + e.xy + 0.5 / res, 0).a;
 	float n2 =  reader.SampleLevel(_LinearClamp, uc - e.xy + 0.5 / res, 0).a;
 	float n3 =  reader.SampleLevel(_LinearClamp, uc + e.yx + 0.5 / res, 0).a;
@@ -117,14 +118,14 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 
 	abd.xy = clamp(length(abd.xy) > 1.0 ? normalize(abd.xy) : abd.xy, -1.0, 1.0);
 
-	float noise = (smoothstep(_m1, _m2, desaturate(reader2.SampleLevel(_LinearClamp, uc + 0.5 / res, 0).xyz)) - 0.5)*2.;
+	float noise = (step(_m1, desaturate(reader2.SampleLevel(_LinearClamp, uc + 0.5 / res, 0).xyz)) - 0.5)*2.;
 	float2 pixelSize = 1. / res;
 	
-	float2 d = pixelSize * 4.;
+	float2 d = pixelSize * 8.;
 	float dx = (reader.SampleLevel(_LinearClamp, (uc + float2(1, 0)*d) + 0.5 / res, 0).a - reader.SampleLevel(_LinearClamp, (uc - float2(1, 0)*d) + 0.5 / res, 0).a) * 0.5;
 	float dy = (reader.SampleLevel(_LinearClamp, (uc + float2(0, 1)*d) + 0.5 / res, 0).a - reader.SampleLevel(_LinearClamp, (uc - float2(0, 1)*d) + 0.5 / res, 0).a) * 0.5;
 
-	float2 uv_red = uc + float2(dx, dy)*pixelSize*8.;
+	float2 uv_red = uc + float2(dx, dy)*pixelSize*4.;
 
 	float new_red = reader.SampleLevel(_LinearClamp, (uv_red)+0.5 / res, 0).a + (noise - 0.5) * 0.0025 - 0.002;
 
@@ -146,14 +147,14 @@ void CSMain2(uint2 id : SV_DispatchThreadID)
 
 	float3 t = ov(reader3.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xyz, lerp(float3(0.5,0.5,0.5), float3(hs(uv), hs(uv + 56.), hs(uv + 451.)), 0.5));
 	float d = pow(1. - length(t.xy), 10.);
-	float desa = desaturate(reader2.SampleLevel(_LinearClamp, uv + t.xy*0.0 + 0.5 / res, 0).xyz);
-	float4 t1 = reader2.SampleLevel(_LinearClamp, uv + t.xy*0.0 + 0.5 / res, 0);
-	float4 t2 = float4(smoothstep(0.5,1.,lerp(float3(desa,desa,desa),t1.xyz,0.5)), 1.);
-	float4 t3 = float4(reader.SampleLevel(_LinearClamp, uv + t.xy*0.000 + 0.5 / res, 0).xyz, 1.);
-	float4 t5 = float4(reader.SampleLevel(_LinearClamp, uv + t.xy*0.0005*_dir + 0.5 / res, 0).xyz, 1.);
-	float tmd = (1. - d)*(1.-_disparition);
-	float td = 1.0;
-	float4 t4 = max(lerp(t2, t3, float4(tmd,tmd,tmd,tmd)), min(pow(t5, float4(td,td,td,td)), clamp(1. -d,0.,1.))*(1.-_disparition));
+	//float desa = desaturate(reader2.SampleLevel(_LinearClamp, uv + t.xy*0.0 + 0.5 / res, 0).xyz);
+	float4 t1 = max(reader2.SampleLevel(_LinearClamp, uv + t.xy*0.05 + 0.5 / res, 0), reader2.SampleLevel(_LinearClamp, uv + t.xy*-0.05 + 0.5 / res, 0));
+	//float4 t2 = float4(smoothstep(0.5,1.,lerp(float3(desa,desa,desa),t1.xyz,0.5)), 1.);
+	float4 t3 = max(reader.SampleLevel(_LinearClamp, uv + t.xy*0.0005 + 0.5 / res, 0), reader.SampleLevel(_LinearClamp, uv + t.xy*-0.0005 + 0.5 / res, 0));
+	float4 t5 = float4(reader.SampleLevel(_LinearClamp, uv + t.xy*0.005*_dir + 0.5 / res, 0).xyz, 1.);
+	//float tmd = (1. - d)*(1.-_disparition);
+	float td = 1.001;
+	float4 t4 = max(lerp(t1, t3, 1.-d), min(pow(t5, float4(td,td,td,td)),1.-t.z)*(1.-_disparition));
 	//float tp = max(smoothstep(0.1,0.,length(uv - 0.5+0.2*float2(cos(_time),sin(_time)))), reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).x);
 	writer[id] = float4(t4);
 }
