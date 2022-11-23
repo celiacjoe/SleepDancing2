@@ -154,19 +154,36 @@ public class SceneManager : MonoBehaviour
 
     }
 
-    void SetupParam3Dshape()
+    public void SetupParam3DshapeSoft()
     {
-        Render3Dshape.sharedMaterial.SetFloat("_masque", 17.23f);
-        Render3Dshape.sharedMaterial.SetFloat("_focal", 1f);
-        Render3Dshape.sharedMaterial.SetFloat("_distance", 21.68f);
-        Render3Dshape.sharedMaterial.SetFloat("_rotateX", 0.1f);
-        Render3Dshape.sharedMaterial.SetFloat("_rotateY",0.02f);
-        Render3Dshape.sharedMaterial.SetFloat("_rotateY", 0.04f);
-        Render3Dshape.sharedMaterial.SetFloat("_smoothform", 1f);
-        Render3Dshape.sharedMaterial.SetFloat("_complexity", 1f);
-        Render3Dshape.sharedMaterial.SetFloat("_taille", 0.46f);
-      //  Render3Dshape.sharedMaterial.SetVector4("_modifforme01", 1.5,1.8,1.3,0);
-      //  Render3Dshape.sharedMaterial.SetFloat("_modifforme02", 0.7,0.6,0.4,0);
+        Render3Dshape.sharedMaterial.SetFloat("masque", 17.23f);
+        Render3Dshape.sharedMaterial.SetFloat("focal", 1f);
+        Render3Dshape.sharedMaterial.SetFloat("distance", 21.68f);
+        Render3Dshape.sharedMaterial.SetFloat("rotateX", 0.1f);
+        Render3Dshape.sharedMaterial.SetFloat("rotateY",0.02f);
+        Render3Dshape.sharedMaterial.SetFloat("rotateY", 0.04f);
+        Render3Dshape.sharedMaterial.SetFloat("smoothform", 1f);
+        Render3Dshape.sharedMaterial.SetFloat("complexity", 1f);
+        Render3Dshape.sharedMaterial.SetFloat("taille", 0.46f);
+        Debug.Log("ok paarameter");
+        //Render3Dshape.sharedMaterial.SetVector("_modifforme01", 1.5, 1.8, 1.3);
+        // Render3Dshape.sharedMaterial("_modifforme01", 1.5, 1.8, 1.3, 0);
+        //  Render3Dshape.sharedMaterial.SetVector4("_modifforme01", 1.5,1.8,1.3,0);
+        //  Render3Dshape.sharedMaterial.SetFloat("_modifforme02", 0.7,0.6,0.4,0);
+    }
+    public void SetupParam3DshapeComplex()
+    {
+        Render3Dshape.sharedMaterial.SetFloat("masque", 14f);
+        Render3Dshape.sharedMaterial.SetFloat("focal", 1f);
+        Render3Dshape.sharedMaterial.SetFloat("distance", 13f);
+        Render3Dshape.sharedMaterial.SetFloat("rotateX", 0f);
+        Render3Dshape.sharedMaterial.SetFloat("rotateY", -0.1f);
+        Render3Dshape.sharedMaterial.SetFloat("rotateY", 0.05f);
+        Render3Dshape.sharedMaterial.SetFloat("smoothform", 1f);
+        Render3Dshape.sharedMaterial.SetFloat("complexity", 0.7f);
+        Render3Dshape.sharedMaterial.SetFloat("taille", 0.85f);
+        //  Render3Dshape.sharedMaterial.SetVector4("_modifforme01", 1.5,1.8,1.3,0);
+        //  Render3Dshape.sharedMaterial.SetFloat("_modifforme02", 0.7,0.6,0.4,0);
     }
 
     public void TransitionScene()

@@ -62,11 +62,15 @@ public class InputMidiControl : MonoBehaviour
     [Header("SCENE CONTROLL")]
     [SerializeField] InputAction _LayerDisplace = null;
     [SerializeField] InputAction _LayerBack = null;
-
     [SerializeField] InputAction _ScnNebula = null;
     [SerializeField] InputAction _ScnSunshaft = null;
     [SerializeField] InputAction _ScnCam = null;
     [SerializeField] InputAction _ScnFX = null;
+
+    [Header("PRESET ASSIGNMENT")]
+    [SerializeField] InputAction _Set3DshapeSoft = null;
+    [SerializeField] InputAction _Set3DshapeComplex = null;
+    [SerializeField] InputAction __Set3DshapeNew = null;
 
     ///////////// FUNCTION
     float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
@@ -82,12 +86,6 @@ public class InputMidiControl : MonoBehaviour
     {
         ////////////////// MOUSE POSITION
         mousePosition = Cam.ScreenToWorldPoint(Input.mousePosition);
-       // GO.transform.position = new Vector3(mousePosition.x - 20, mousePosition.y, 0);
-
-        ////////////////// SMOOTH POSITION CHANGE
-        //  Vector3 NewTargetPosX = PositionX;
-        //  MovableObject.transform.position = Vector3.SmoothDamp(MovableObject.transform.position, NewTargetPosX, ref velocity, SmoothT);
-
         Vector3 NewTargetPosition = new Vector3(PosX+40, PosY);
         MovableObject.transform.position = Vector3.SmoothDamp(MovableObject.transform.position, NewTargetPosition, ref velocity, SmoothT);
     }
@@ -160,9 +158,11 @@ public class InputMidiControl : MonoBehaviour
         _ScnFX.performed += ScnFX;
         _ScnFX.Enable();
 
+        _Set3DshapeSoft.performed += Set3DShapeSoft;
+        _Set3DshapeSoft.Enable();
 
-
-
+        _Set3DshapeComplex.performed += Set3DShapeComplex;
+        _Set3DshapeComplex.Enable();
     }
 
     void OnDisable()
@@ -233,6 +233,11 @@ public class InputMidiControl : MonoBehaviour
         _ScnFX.performed -= ScnFX;
         _ScnFX.Disable();
 
+        _Set3DshapeSoft.performed -= Set3DShapeSoft;
+        _Set3DshapeSoft.Disable();
+
+        _Set3DshapeComplex.performed -= Set3DShapeComplex;
+        _Set3DshapeComplex.Disable();
     }
 
     void P1_Deform(InputAction.CallbackContext ctx)
@@ -363,6 +368,15 @@ public class InputMidiControl : MonoBehaviour
         Manager.Next = "FX";
         //RenderFinal.sharedMaterial.SetInt("_SunShaft_Nebula", 1);
         Manager.TransitionScene();
+    }
+    void Set3DShapeSoft(InputAction.CallbackContext ctx)
+    {
+        Debug.Log("ok");
+        Manager.SetupParam3DshapeSoft();
+    }
+    void Set3DShapeComplex(InputAction.CallbackContext ctx)
+    {
+        Manager.SetupParam3DshapeComplex();
     }
 
     /*  void Subdivision1(InputAction.CallbackContext ctx)
