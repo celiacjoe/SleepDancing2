@@ -25,7 +25,8 @@ public class SceneManager : MonoBehaviour
     public GameObject[] GO_Back;
 
     [Header("Managment Stuff")]
-    public string SceneName;
+    public string Current;
+    public string Next;
     public Animator AC;
     public Text TextDisplace;
     public Text TextBack;
@@ -36,8 +37,8 @@ public class SceneManager : MonoBehaviour
     //[Space(10)]
     void Start()
     {
+        Current = "NEBULA";
 
-        SceneName = "Intro";
         Clean();
         //SetupParam3Dshape();
     }
@@ -49,11 +50,7 @@ public class SceneManager : MonoBehaviour
             TransitionScene();
             // R.material.SetTexture("_MainTex", m_01);
         }
-        if (S_Timer.TimerDown == true && SceneName=="Intro")
-        {
-           // AC.SetTrigger("Nebula");
-            TransitionScene();
-        }
+     
        // else if(SceneName == "Intro")
     }
 
@@ -133,7 +130,6 @@ public class SceneManager : MonoBehaviour
 
     void Clean()
     {
-        SceneName = "intro";
         VisualEffect VisualFX0 = GO_Back[0].GetComponent(typeof(VisualEffect)) as VisualEffect;
         S_Midi.FX = VisualFX0;
         S_Midi.MovableObject = GO_Back[0];
@@ -170,16 +166,65 @@ public class SceneManager : MonoBehaviour
 
     public void TransitionScene()
     {
-        if (RenderFinal.sharedMaterial.GetInt("_SunShaft_Nebula") == 1)
-        {
-            AC.SetTrigger("Transition");
-            RenderFinal.sharedMaterial.SetInt("_SunShaft_Nebula", 0);
-        }
-        else if (RenderFinal.sharedMaterial.GetInt("_Nebula_SunShaft") == 1)
+       /* if (RenderFinal.sharedMaterial.GetInt("_Nebula_SunShaft") == 1)
         {
             AC.SetTrigger("Transition");
             RenderFinal.sharedMaterial.SetInt("_Nebula_SunShaft", 0);
+        }else if (RenderFinal.sharedMaterial.GetInt("_SunShaft_Nebula") == 1)
+        {
+            AC.SetTrigger("Transition");
+            RenderFinal.sharedMaterial.SetInt("_SunShaft_Nebula", 0);
+        }*/
+       if(Current == "NEBULA")
+        {
+            if(Next == "SUNSHAFT")
+            {
+                RenderFinal.sharedMaterial.SetInt("_Nebula_SunShaft", 1);
+                AC.SetTrigger("Transition");
+                Current = "SUNSHAFT";
+                Debug.Log("Change nebula vers sunshaft");
+            }
+            else if(Next == "CAM")
+            {
+                RenderFinal.sharedMaterial.SetInt("_Nebula_Cam", 1);
+                AC.SetTrigger("Transition");
+                Current = "CAM";
+                Debug.Log("Change nebula vers Cam");
+            }
+            else if (Next == "FX")
+            {
+                RenderFinal.sharedMaterial.SetInt("_Nebula_FX", 1);
+                AC.SetTrigger("Transition");
+                Current = "FX";
+                Debug.Log("Change nebula vers FX");
+            }
         }
+        else if( Current == "SUNSHAFT")
+        {
+            if (Next == "NEBULA")
+            {
+                RenderFinal.sharedMaterial.SetInt("_SunShaft_Nebula", 1);
+                AC.SetTrigger("Transition");
+                Current = "NEBULA";
+                Debug.Log("Change nebula vers sunshaft");
+            }
+            else if (Next == "CAM")
+            {
+                RenderFinal.sharedMaterial.SetInt("_SunShaft_Cam", 1);
+                AC.SetTrigger("Transition");
+                Current = "CAM";
+                Debug.Log("Change Sunshaft vers cam");
+            }else if (Next == "FX")
+            {
+                RenderFinal.sharedMaterial.SetInt("_SunShaft_Cam", 1);
+                AC.SetTrigger("Transition");
+                Current = "FX";
+                Debug.Log("Change Sunshaft vers FX");
+            }
+        }
+
+
+
 
     }
 
