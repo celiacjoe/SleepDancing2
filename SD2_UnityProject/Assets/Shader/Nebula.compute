@@ -17,7 +17,9 @@ float _resx;
 float _resy;
 float _resx2;
 float _resy2;
+float _transition1;
 float3 _position;
+float3 _positionL;
 float _focal;
 float4 _VolumeColor;
 float _reg1;
@@ -56,22 +58,23 @@ float3 smin(float3 d1, float3 d2, float k) {
 float2x2 rot(float t) { float c = cos(t); float s = sin(t); return float2x2(c, -s, s, c); }
 float3 powV(float3 v, float p) {  return float3(pow(v.x, p), pow(v.y, p), pow(v.z, p)); }
 float maxV(float3 v) {return max(max(v.x, v.y), v.z);}
-bool insideShape(float3 p, float ti,float tn) {
+bool insideShape(float3 p, float ti,float tn,float tr) {
 	float3 b = p + float3(0., 0.25, 0.25);
-	for (int i = 0; i < int(_t4); i++) {
-		b -= tn;
+	float va = lerp(0.5, 0., tr);
+	for (int i = 0; i < int(lerp(4.,0.,tr)); i++) {
+		b -= va;
 		b.xz = mul(b.xz,rot(ti*0.05));
 		b.yz = mul(b.yz,rot(ti*0.1));
 		b = smin(b, -b, -0.2);
 	}
 	float d1 = length(b);
 	float r = d1;
-	return r < _t1 && r > _t2;
+	return r < lerp(_t1,1.,tr) && r > _t2;
 }
 float henyeyGreenstein(float3 pos, float3 dir, float3 LightPos) {
 	float cosTheta = dot(dir, normalize(LightPos - pos));
 	return Pi / 4.0 * (1.0 - _reg2 * _reg2) / pow(1.0 + _reg2 * _reg2 - 2.0*_reg2*cosTheta, 3.0 / 2.0);}
-float3 lightReceived(float3 pos, float headStart, float ti, float3 LightPos,float tn) {
+float3 lightReceived(float3 pos, float headStart, float ti, float3 LightPos,float tn,float tr) {
 	float LightDist = length(LightPos - pos);
 	float3 LightDir = normalize(LightPos - pos);
 	float stepSize = LightDist / 8.;
@@ -79,7 +82,7 @@ float3 lightReceived(float3 pos, float headStart, float ti, float3 LightPos,floa
 	float3 absorption = float3(rr,rr,rr);
 	pos += headStart * LightDir * stepSize;
 	for (int i = 0; i < 8; i++) {
-		if (insideShape(pos, ti,tn)) {
+		if (insideShape(pos, ti,tn,tr)) {
 			absorption *= powV(float3(1.,1.,1.) - _VolumeColor.xyz, stepSize*_reg1);
 		}
 		pos += LightDir * stepSize;
@@ -92,17 +95,26 @@ float no(float t) { return lerp(rd(t), rd(t + 1.), smoothstep(0., 1., frac(t)));
 void CSMain (uint2 id : SV_DispatchThreadID) 
 {
 	float3 DirCam = normalize(float3(1, 0, 0));
-	float3 PosCam = _position.zxy+float3(0.,0.,clamp(-6.+_time*0.1,-10.,0.))*0.;
-	float FocalLength = _focal;
+	float pp = no(_THigh*.05)*1.2-0.1;
+	float3 PosCam = lerp(_position.zxy,float3(lerp(-2.,-5., pp),0.,-3.),_transition1);
+	float FocalLength = lerp(_focal,lerp(1.2,5.25, pp),_transition1);
 	float2 g = float2(id.x,id.y);
 	float2 res=float2(_resx, _resy);
 	float2 uv = g / res;
 	uv = (uv - .5)*2.;
 	uv.x *= _resx / _resy;
 	//loat2 ms = float2(_mousex-.5, _mousey - .5)*2.;
-	float2 ms = float2(no(_TLow*0.1) - .5,no(_THigh*.1) - .5)*2.;
+	//float2 ms = float2(no(_TLow*0.1) - .5,no(_THigh*.1) - .5)*2.;
+	//float2 ms = float2(-_positionL.x,-_position.y);
+	float pp2 = no(_TLow*0.05);
+	float2 ms = lerp(float2(no(_TLow*0.1) - .5, no(_THigh*.1) - .5)*2.,float2((pp2 - 0.5)*-2., length(pp2 - 0.5)), _transition1);
 	float tn = _t3;
-	float3 LightPos = float3(0.,-ms.x,ms.y) * 2.*float3(1., res.x / res.y, 1.)+float3(0., +PosCam.yz);
+	//float3 LightPos = float3(0.,-ms.x,ms.y) * 2.*float3(1., res.x / res.y, 1.)+float3(0., +PosCam.yz);
+	//float3 LightPos = _positionL.zxy;
+	
+	float3 LightPos = lerp(float3(0., -ms.x, ms.y) * 2.*float3(1., res.x / res.y, 1.) + float3(0., +PosCam.yz),
+		float3(_positionL.z, (pp2-0.5)*2. *2.25, length(pp2 - 0.5) - _positionL.y),_transition1);
+	
 	float da =step(1.1+clamp(length(_position.xy)-1.,0.,3.)*0.3, distance(ms, uv));
 	float3 color;
 	if (da < 0.5) {
@@ -129,8 +141,8 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 					color += 10.0*absorption*float3(_co1, _co2, _co3);
 					break;
 				}
-				if (insideShape(pos, ti,tn)) {
-					color += _VolumeColor.xyz*absorption*lightReceived(pos, headStart, ti, LightPos,tn)*hg*stepSize*_reg1;
+				if (insideShape(pos, ti,tn,_transition1)) {
+					color += _VolumeColor.xyz*absorption*lightReceived(pos, headStart, ti, LightPos,tn, _transition1)*hg*stepSize*_reg1;
 					absorption *= powV(float3(1., 1., 1.) - _VolumeColor.xyz, stepSize*_reg1);
 				}
 				pos += dir * stepSize;
