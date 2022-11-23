@@ -715,9 +715,9 @@
     "m_Guid": {
         "m_GuidSerialized": "6c44adc6-7eef-4462-a20c-4224bc1459ef"
     },
-    "m_Name": "_Video",
+    "m_Name": "_Cam",
     "m_DefaultReferenceName": "Texture2D_01fd44edd41542348fc073c45741c296",
-    "m_OverrideReferenceName": "_Video",
+    "m_OverrideReferenceName": "_Cam",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -774,7 +774,7 @@
     "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
     "m_ObjectId": "09e4c7d381604752bc49846b4753b04f",
     "m_Id": 0,
-    "m_DisplayName": "_FX-Cam",
+    "m_DisplayName": "_FX_Cam",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1033,7 +1033,7 @@
     "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
     "m_ObjectId": "15480ab69eb745e3ba597f82a6f46457",
     "m_Id": 0,
-    "m_DisplayName": "_Nebula-Sunshaft",
+    "m_DisplayName": "_Nebula_Sunshaft",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1237,7 +1237,7 @@
     "m_Guid": {
         "m_GuidSerialized": "1dcc8865-3d9b-4231-a03a-dec5830f0c1d"
     },
-    "m_Name": "_Nebula-Cam",
+    "m_Name": "_Nebula_Cam",
     "m_DefaultReferenceName": "",
     "m_OverrideReferenceName": "_Nebula_Cam",
     "m_GeneratePropertyBlock": true,
@@ -1269,7 +1269,7 @@
     "m_Guid": {
         "m_GuidSerialized": "3ad67927-c95f-4c12-ae83-0bd2a74ee717"
     },
-    "m_Name": "_Sunshaft-Nebula",
+    "m_Name": "_Sunshaft_Nebula",
     "m_DefaultReferenceName": "Boolean_2e1100a09c5b4e4fa847830de94dbd87",
     "m_OverrideReferenceName": "_Sunshaft_Nebula",
     "m_GeneratePropertyBlock": true,
@@ -1392,7 +1392,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "36d0e5f9be8f4200a4e3b827fa10b785",
     "m_Id": 0,
-    "m_DisplayName": "_MainTex",
+    "m_DisplayName": "_Deform",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1405,7 +1405,7 @@
     "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
     "m_ObjectId": "38669052a24044e6add9afc5a7d38444",
     "m_Id": 0,
-    "m_DisplayName": "_Cam-FX",
+    "m_DisplayName": "_Cam_FX",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1839,7 +1839,7 @@
     "m_Guid": {
         "m_GuidSerialized": "5a1d5be4-53d0-46dc-b799-43f41a1b0d63"
     },
-    "m_Name": "_Nebula-FX",
+    "m_Name": "_Nebula_FX",
     "m_DefaultReferenceName": "",
     "m_OverrideReferenceName": "_Nebula_FX",
     "m_GeneratePropertyBlock": true,
@@ -1855,7 +1855,7 @@
     "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
     "m_ObjectId": "52fa703db774479abf4309852d284294",
     "m_Id": 0,
-    "m_DisplayName": "_Sunshaft-Nebula",
+    "m_DisplayName": "_Sunshaft_Nebula",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1994,9 +1994,9 @@
     "m_Guid": {
         "m_GuidSerialized": "666cefe0-8522-4ec0-9d8b-6de6449bc4e1"
     },
-    "m_Name": "TXT_Forme",
+    "m_Name": "_3DShapeDeform",
     "m_DefaultReferenceName": "",
-    "m_OverrideReferenceName": "TXT_Forme",
+    "m_OverrideReferenceName": "_3DShapeDeform",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -2093,7 +2093,7 @@
     "m_Guid": {
         "m_GuidSerialized": "dae0e730-ed14-4706-baab-be37b750e082"
     },
-    "m_Name": "_Sunshaft-Cam",
+    "m_Name": "_Sunshaft_Cam",
     "m_DefaultReferenceName": "",
     "m_OverrideReferenceName": "_Sunshaft_Cam",
     "m_GeneratePropertyBlock": true,
@@ -2206,7 +2206,7 @@
     "m_Guid": {
         "m_GuidSerialized": "0bddcd9b-eb73-4ce6-8deb-b4ecfbc21363"
     },
-    "m_Name": "_Cam-Sunshaft",
+    "m_Name": "_Cam_Sunshaft",
     "m_DefaultReferenceName": "",
     "m_OverrideReferenceName": "_Cam_Sunshaft",
     "m_GeneratePropertyBlock": true,
@@ -2232,7 +2232,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 0.0,
+    "m_Value": 1.0,
     "m_FloatType": 1,
     "m_RangeValues": {
         "x": 0.0,
@@ -2261,7 +2261,7 @@
     "m_Guid": {
         "m_GuidSerialized": "3fb246a2-96e1-4542-b414-1f94d78cf6f1"
     },
-    "m_Name": "_Cam-FX",
+    "m_Name": "_Cam_FX",
     "m_DefaultReferenceName": "",
     "m_OverrideReferenceName": "_Cam_FX",
     "m_GeneratePropertyBlock": true,
@@ -2293,7 +2293,7 @@
     "m_Guid": {
         "m_GuidSerialized": "4af794ac-2db0-4b97-b495-86102c386d32"
     },
-    "m_Name": "_FX-Cam",
+    "m_Name": "_FX_Cam",
     "m_DefaultReferenceName": "",
     "m_OverrideReferenceName": "_FX_Cam",
     "m_GeneratePropertyBlock": true,
@@ -2401,7 +2401,7 @@
     "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
     "m_ObjectId": "800588f114a2429ca7a004b89e08e774",
     "m_Id": 0,
-    "m_DisplayName": "_Nebula-Cam",
+    "m_DisplayName": "_Nebula_Cam",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2488,9 +2488,9 @@
     "m_Guid": {
         "m_GuidSerialized": "8b913623-9638-4d1e-8880-3eb374d14325"
     },
-    "m_Name": "_MainTex",
+    "m_Name": "_Deform",
     "m_DefaultReferenceName": "Texture2D_83343dc75c834671a9c32841da7a0574",
-    "m_OverrideReferenceName": "_MainTex",
+    "m_OverrideReferenceName": "_Deform",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -2693,7 +2693,7 @@
     "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
     "m_ObjectId": "8b3462df8a8b4fadb9ad791fea7c94c3",
     "m_Id": 0,
-    "m_DisplayName": "_FX-Nebula",
+    "m_DisplayName": "_FX_Nebula",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2959,7 +2959,7 @@
     "m_Guid": {
         "m_GuidSerialized": "1c60ce49-a1a7-4576-ba1a-b06ed2cabdad"
     },
-    "m_Name": "_Sunshaft-FX",
+    "m_Name": "_Sunshaft_FX",
     "m_DefaultReferenceName": "",
     "m_OverrideReferenceName": "_Sunshaft_FX",
     "m_GeneratePropertyBlock": true,
@@ -3002,7 +3002,7 @@
     "m_Guid": {
         "m_GuidSerialized": "9d8404df-ee26-4711-8aed-9fc0da21870f"
     },
-    "m_Name": "_Nebula-Sunshaft",
+    "m_Name": "_Nebula_Sunshaft",
     "m_DefaultReferenceName": "",
     "m_OverrideReferenceName": "_Nebula_Sunshaft",
     "m_GeneratePropertyBlock": true,
@@ -3175,7 +3175,7 @@
     "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
     "m_ObjectId": "a778c9dc3bad42e0a5165409f4b25f1a",
     "m_Id": 0,
-    "m_DisplayName": "_Nebula-FX",
+    "m_DisplayName": "_Nebula_FX",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -3270,7 +3270,7 @@
     "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
     "m_ObjectId": "ad4da2995f524f2c9b5a1d3a23135449",
     "m_Id": 0,
-    "m_DisplayName": "_Cam-Sunshaft",
+    "m_DisplayName": "_Cam_Sunshaft",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -3338,7 +3338,7 @@
     "m_Guid": {
         "m_GuidSerialized": "98466757-fee8-48e9-aab2-d2859018925c"
     },
-    "m_Name": "_Cam-Nebula",
+    "m_Name": "_Cam_Nebula",
     "m_DefaultReferenceName": "",
     "m_OverrideReferenceName": "_Cam_Nebula",
     "m_GeneratePropertyBlock": true,
@@ -3367,7 +3367,7 @@
     "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
     "m_ObjectId": "b85eb5c5a93d4311a28e90e269073596",
     "m_Id": 0,
-    "m_DisplayName": "_Cam-Nebula",
+    "m_DisplayName": "_Cam_Nebula",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -3423,7 +3423,7 @@
     "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
     "m_ObjectId": "bb3600f13edf47a6b1bb689e3fcd178f",
     "m_Id": 0,
-    "m_DisplayName": "_Sunshaft-Cam",
+    "m_DisplayName": "_Sunshaft_Cam",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -3439,7 +3439,7 @@
     "m_Guid": {
         "m_GuidSerialized": "898b9b1a-d444-4161-a4e3-d578ce7db8ba"
     },
-    "m_Name": "_FX-Sunshaft",
+    "m_Name": "_FX_Sunshaft",
     "m_DefaultReferenceName": "",
     "m_OverrideReferenceName": "_FX_Sunshaft",
     "m_GeneratePropertyBlock": true,
@@ -3756,7 +3756,7 @@
     "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
     "m_ObjectId": "daf4ed1c8561454789dd0de3eca89f21",
     "m_Id": 0,
-    "m_DisplayName": "_Sunshaft-FX",
+    "m_DisplayName": "_Sunshaft_FX",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -3990,7 +3990,7 @@
     "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
     "m_ObjectId": "e7af10ecf7944b728d4967f13a088ffc",
     "m_Id": 0,
-    "m_DisplayName": "_FX-Sunshaft",
+    "m_DisplayName": "_FX_Sunshaft",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -4109,7 +4109,7 @@
     "m_Guid": {
         "m_GuidSerialized": "7f8e3082-c96a-475c-9e46-2ee6e23c7f1c"
     },
-    "m_Name": "_FX-Nebula",
+    "m_Name": "_FX_Nebula",
     "m_DefaultReferenceName": "Boolean_f467f4cccbe2481baa174b7995e13c23",
     "m_OverrideReferenceName": "_FX_Nebula",
     "m_GeneratePropertyBlock": true,
