@@ -6,6 +6,7 @@ public class Timer : MonoBehaviour
 {
     public float timeRemaining = 10;
     public bool timerIsRunning = false;
+    public bool TimerDown = false;
     public Text timeText;
     private void Start()
     {
@@ -24,6 +25,7 @@ public class Timer : MonoBehaviour
             else
             {
                 Debug.Log("Time has run out!");
+                TimerDown = true;
                 timeRemaining = 0;
                 timerIsRunning = false;
             }
@@ -32,6 +34,7 @@ public class Timer : MonoBehaviour
 
     public void StartTimer()
     {
+        TimerDown = false;
         timerIsRunning = true;
     }
 

@@ -39,7 +39,6 @@ public class InputMidiControl : MonoBehaviour
     [SerializeField] InputAction _P2_Deform = null;
     [SerializeField] InputAction _P3_Deform = null;
     [SerializeField] InputAction _P4_Deform = null;
-
     [SerializeField] InputAction _P6_Deform = null;
     [SerializeField] InputAction _Zoom = null;
    // [SerializeField] InputAction _ResetLevel = null;
@@ -234,13 +233,12 @@ public class InputMidiControl : MonoBehaviour
         P5value = ctx.ReadValue<float>();
         SRend.ApparitionForme = P5value;
         rend.sharedMaterial.SetFloat("_ApparitionForme", P5value);
-
     }
 
     void P6_Deform(InputAction.CallbackContext ctx)
     {
         P6value = ctx.ReadValue<float>();
-        SRend.Disparition = P6value;
+        rend.sharedMaterial.SetFloat("Mask_Intensity", P6value);
     }
     void IntensityControl(InputAction.CallbackContext ctx)
      {
