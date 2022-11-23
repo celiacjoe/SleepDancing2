@@ -1237,9 +1237,9 @@
     "m_Guid": {
         "m_GuidSerialized": "1dcc8865-3d9b-4231-a03a-dec5830f0c1d"
     },
-    "m_Name": "_Nebula-Video",
+    "m_Name": "_Nebula-Cam",
     "m_DefaultReferenceName": "",
-    "m_OverrideReferenceName": "_Nebula_Video",
+    "m_OverrideReferenceName": "_Nebula_Cam",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -1269,9 +1269,9 @@
     "m_Guid": {
         "m_GuidSerialized": "3ad67927-c95f-4c12-ae83-0bd2a74ee717"
     },
-    "m_Name": "_SunShaft-Nebula",
+    "m_Name": "_Sunshaft-Nebula",
     "m_DefaultReferenceName": "Boolean_2e1100a09c5b4e4fa847830de94dbd87",
-    "m_OverrideReferenceName": "_SunShaft_Nebula",
+    "m_OverrideReferenceName": "_Sunshaft_Nebula",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -1839,9 +1839,9 @@
     "m_Guid": {
         "m_GuidSerialized": "5a1d5be4-53d0-46dc-b799-43f41a1b0d63"
     },
-    "m_Name": "_Nebula-BackFX",
+    "m_Name": "_Nebula-FX",
     "m_DefaultReferenceName": "",
-    "m_OverrideReferenceName": "_Nebula_BackFX",
+    "m_OverrideReferenceName": "_Nebula_FX",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -2093,9 +2093,9 @@
     "m_Guid": {
         "m_GuidSerialized": "dae0e730-ed14-4706-baab-be37b750e082"
     },
-    "m_Name": "_SunShaft-Video",
+    "m_Name": "_Sunshaft-Cam",
     "m_DefaultReferenceName": "",
-    "m_OverrideReferenceName": "_SunShaft_Video",
+    "m_OverrideReferenceName": "_Sunshaft_Cam",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -2206,9 +2206,9 @@
     "m_Guid": {
         "m_GuidSerialized": "0bddcd9b-eb73-4ce6-8deb-b4ecfbc21363"
     },
-    "m_Name": "_Video-SunShaft",
+    "m_Name": "_Cam-Sunshaft",
     "m_DefaultReferenceName": "",
-    "m_OverrideReferenceName": "_Video_SunShaft",
+    "m_OverrideReferenceName": "_Cam_Sunshaft",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -2261,9 +2261,9 @@
     "m_Guid": {
         "m_GuidSerialized": "3fb246a2-96e1-4542-b414-1f94d78cf6f1"
     },
-    "m_Name": "_Video-BAckFX",
+    "m_Name": "_Cam-FX",
     "m_DefaultReferenceName": "",
-    "m_OverrideReferenceName": "_Video_BAckFX",
+    "m_OverrideReferenceName": "_Cam_FX",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -2293,9 +2293,9 @@
     "m_Guid": {
         "m_GuidSerialized": "4af794ac-2db0-4b97-b495-86102c386d32"
     },
-    "m_Name": "_BackFX-Video",
+    "m_Name": "_FX-Cam",
     "m_DefaultReferenceName": "",
-    "m_OverrideReferenceName": "_BackFX_Video",
+    "m_OverrideReferenceName": "_FX_Cam",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -2959,9 +2959,9 @@
     "m_Guid": {
         "m_GuidSerialized": "1c60ce49-a1a7-4576-ba1a-b06ed2cabdad"
     },
-    "m_Name": "_SunShaft-BackFX",
+    "m_Name": "_Sunshaft-FX",
     "m_DefaultReferenceName": "",
-    "m_OverrideReferenceName": "_SunShaft_BackFX",
+    "m_OverrideReferenceName": "_Sunshaft_FX",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -3002,9 +3002,9 @@
     "m_Guid": {
         "m_GuidSerialized": "9d8404df-ee26-4711-8aed-9fc0da21870f"
     },
-    "m_Name": "_Nebula-SunShaft",
+    "m_Name": "_Nebula-Sunshaft",
     "m_DefaultReferenceName": "",
-    "m_OverrideReferenceName": "_Nebula_SunShaft",
+    "m_OverrideReferenceName": "_Nebula_Sunshaft",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -3338,9 +3338,9 @@
     "m_Guid": {
         "m_GuidSerialized": "98466757-fee8-48e9-aab2-d2859018925c"
     },
-    "m_Name": "_Video-Nedula",
+    "m_Name": "_Cam-Nebula",
     "m_DefaultReferenceName": "",
-    "m_OverrideReferenceName": "_Video_Nedula",
+    "m_OverrideReferenceName": "_Cam_Nebula",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -3439,9 +3439,9 @@
     "m_Guid": {
         "m_GuidSerialized": "898b9b1a-d444-4161-a4e3-d578ce7db8ba"
     },
-    "m_Name": "_BackFX-SunShaft",
+    "m_Name": "_FX-Sunshaft",
     "m_DefaultReferenceName": "",
-    "m_OverrideReferenceName": "_BackFX_SunShaft",
+    "m_OverrideReferenceName": "_FX_Sunshaft",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -4109,9 +4109,9 @@
     "m_Guid": {
         "m_GuidSerialized": "7f8e3082-c96a-475c-9e46-2ee6e23c7f1c"
     },
-    "m_Name": "_BackFX-Nedula",
+    "m_Name": "_FX-Nebula",
     "m_DefaultReferenceName": "Boolean_f467f4cccbe2481baa174b7995e13c23",
-    "m_OverrideReferenceName": "_BackFX_Nedula",
+    "m_OverrideReferenceName": "_FX_Nebula",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,

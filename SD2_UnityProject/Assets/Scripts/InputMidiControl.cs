@@ -15,6 +15,7 @@ public class InputMidiControl : MonoBehaviour
     public Camera Cam;
     public GameObject GO;
     public SceneManager Manager;
+    public Renderer RenderFinal;
 
     private Vector2 mousePosition;
     public VisualEffect FX;
@@ -32,6 +33,7 @@ public class InputMidiControl : MonoBehaviour
     private float PosX;
     private float PosY;
 
+    [Header("DEFORMATION CONTROLL")]
     /////////////SET INPUT
     [SerializeField] InputAction _IntensityControl = null;
     [SerializeField] InputAction _P1_Deform = null;
@@ -41,7 +43,8 @@ public class InputMidiControl : MonoBehaviour
     [SerializeField] InputAction _P4_Deform = null;
     [SerializeField] InputAction _P6_Deform = null;
     [SerializeField] InputAction _Zoom = null;
-   // [SerializeField] InputAction _ResetLevel = null;
+    // [SerializeField] InputAction _ResetLevel = null;
+    [Header("FX CONTROLL")]
     [SerializeField] InputAction _PositionX = null;
     [SerializeField] InputAction _PositionY = null;
     [SerializeField] InputAction _FXParam1 = null;
@@ -56,9 +59,14 @@ public class InputMidiControl : MonoBehaviour
     public string Name_P5;
     [SerializeField] InputAction _FXParam6 = null;
     public string Name_P6;
+    [Header("SCENE CONTROLL")]
     [SerializeField] InputAction _LayerDisplace = null;
     [SerializeField] InputAction _LayerBack = null;
 
+    [SerializeField] InputAction _ScnNebula = null;
+    [SerializeField] InputAction _ScnSunshaft = null;
+    [SerializeField] InputAction _ScnCam = null;
+    [SerializeField] InputAction _ScnFX = null;
 
     ///////////// FUNCTION
     float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
@@ -104,12 +112,6 @@ public class InputMidiControl : MonoBehaviour
         _P6_Deform.performed += P6_Deform;
         _P6_Deform.Enable();
 
-        _LayerDisplace.performed += DisplaceLayerChange;
-        _LayerDisplace.Enable();
-
-        _LayerBack.performed += BackLayerChange;
-        _LayerBack.Enable();
-
         _IntensityControl.performed += IntensityControl;
         _IntensityControl.Enable();
 
@@ -139,6 +141,27 @@ public class InputMidiControl : MonoBehaviour
 
         _FXParam6.performed += FXParam6;
         _FXParam6.Enable();
+
+        _LayerDisplace.performed += DisplaceLayerChange;
+        _LayerDisplace.Enable();
+
+        _LayerBack.performed += BackLayerChange;
+        _LayerBack.Enable();
+
+        _ScnNebula.performed += ScnNebula;
+        _ScnNebula.Enable();
+
+        _ScnSunshaft.performed += ScnSunshaft;
+        _ScnSunshaft.Enable();
+
+        _ScnCam.performed += ScnCam;
+        _ScnCam.Enable();
+
+        _ScnFX.performed += ScnFX;
+        _ScnFX.Enable();
+
+
+
 
     }
 
@@ -198,14 +221,18 @@ public class InputMidiControl : MonoBehaviour
         _FXParam6.performed -= FXParam6;
         _FXParam6.Disable();
 
-    }
-    void DisplaceLayerChange(InputAction.CallbackContext ctx)
-    {
-        Manager.ChangeDisplace();
-    }
-    void BackLayerChange(InputAction.CallbackContext ctx)
-    {
-        Manager.ChangeBack();
+        _ScnNebula.performed -= ScnNebula;
+        _ScnNebula.Disable();
+
+        _ScnSunshaft.performed -= ScnSunshaft;
+        _ScnSunshaft.Disable();
+
+        _ScnCam.performed -= ScnCam;
+        _ScnCam.Disable();
+
+        _ScnFX.performed -= ScnFX;
+        _ScnFX.Disable();
+
     }
 
     void P1_Deform(InputAction.CallbackContext ctx)
@@ -302,6 +329,40 @@ public class InputMidiControl : MonoBehaviour
         float FxP6 = ctx.ReadValue<float>();
         VisualEffect VFX = FX.GetComponent<VisualEffect>();
         VFX.SetFloat(Name_P6, FxP6);
+    }
+
+    void DisplaceLayerChange(InputAction.CallbackContext ctx)
+    {
+        Manager.ChangeDisplace();
+    }
+    void BackLayerChange(InputAction.CallbackContext ctx)
+    {
+        Manager.ChangeBack();
+    }
+
+    void ScnNebula(InputAction.CallbackContext ctx)
+    {
+        Manager.Next = "NEBULA";
+        //RenderFinal.sharedMaterial.SetInt("_SunShaft_Nebula", 1);
+        Manager.TransitionScene();
+    }
+    void ScnSunshaft(InputAction.CallbackContext ctx)
+    {
+        Manager.Next = "SUNSHAFT";
+        //RenderFinal.sharedMaterial.SetInt("_SunShaft_Nebula", 1);
+        Manager.TransitionScene();
+    }
+    void ScnCam(InputAction.CallbackContext ctx)
+    {
+        Manager.Next = "CAM";
+        //RenderFinal.sharedMaterial.SetInt("_SunShaft_Nebula", 1);
+        Manager.TransitionScene();
+    }
+    void ScnFX(InputAction.CallbackContext ctx)
+    {
+        Manager.Next = "FX";
+        //RenderFinal.sharedMaterial.SetInt("_SunShaft_Nebula", 1);
+        Manager.TransitionScene();
     }
 
     /*  void Subdivision1(InputAction.CallbackContext ctx)
