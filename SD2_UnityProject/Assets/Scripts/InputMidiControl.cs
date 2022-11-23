@@ -9,11 +9,11 @@ public class InputMidiControl : MonoBehaviour
 {
 
     ///////////// VAR
-    public Renderer rend;
+    //public Renderer rend;
    // public renderLiquid1 SRend;
     public render SRend;
     public Camera Cam;
-    public GameObject GO;
+    //public GameObject GO;
     public SceneManager Manager;
     public Renderer RenderFinal;
 
@@ -238,7 +238,7 @@ public class InputMidiControl : MonoBehaviour
     void P1_Deform(InputAction.CallbackContext ctx)
      {
         P1value = ctx.ReadValue<float>();
-        rend.sharedMaterial.SetFloat("BlurIntensity", P1value);
+        RenderFinal.sharedMaterial.SetFloat("BlurIntensity", P1value);
      }
      void P2_Deform(InputAction.CallbackContext ctx)
      {
@@ -259,18 +259,18 @@ public class InputMidiControl : MonoBehaviour
     {
         P5value = ctx.ReadValue<float>();
         SRend.ApparitionForme = P5value;
-        rend.sharedMaterial.SetFloat("_ApparitionForme", P5value);
+        RenderFinal.sharedMaterial.SetFloat("_ApparitionForme", P5value);
     }
 
     void P6_Deform(InputAction.CallbackContext ctx)
     {
         P6value = ctx.ReadValue<float>();
-        rend.sharedMaterial.SetFloat("Mask_Intensity", P6value);
+        RenderFinal.sharedMaterial.SetFloat("Mask_Intensity", P6value);
     }
     void IntensityControl(InputAction.CallbackContext ctx)
      {
          IntensityControlValue = ctx.ReadValue<float>();
-         rend.sharedMaterial.SetFloat("Intensity", IntensityControlValue);
+        RenderFinal.sharedMaterial.SetFloat("Intensity", IntensityControlValue);
      }
 
      void Zoom(InputAction.CallbackContext ctx)
@@ -342,19 +342,19 @@ public class InputMidiControl : MonoBehaviour
 
     void ScnNebula(InputAction.CallbackContext ctx)
     {
-        Manager.Next = "NEBULA";
+        Manager.Next = "Nebula";
         //RenderFinal.sharedMaterial.SetInt("_SunShaft_Nebula", 1);
         Manager.TransitionScene();
     }
     void ScnSunshaft(InputAction.CallbackContext ctx)
     {
-        Manager.Next = "SUNSHAFT";
+        Manager.Next = "Sunshaft";
         //RenderFinal.sharedMaterial.SetInt("_SunShaft_Nebula", 1);
         Manager.TransitionScene();
     }
     void ScnCam(InputAction.CallbackContext ctx)
     {
-        Manager.Next = "CAM";
+        Manager.Next = "Cam";
         //RenderFinal.sharedMaterial.SetInt("_SunShaft_Nebula", 1);
         Manager.TransitionScene();
     }

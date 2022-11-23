@@ -67,6 +67,6 @@ public class render : MonoBehaviour
         compute_shader.SetTexture(handle_main, "writer", A);
         compute_shader.Dispatch(handle_main, B.width / 8, B.height / 8, 1);
         //compute_shader.SetTexture(handle_main, "writer2", D);
-        material.SetTexture("_MainTex", B);
+        material.SetTexture("_Deform", B);
     }
 }
