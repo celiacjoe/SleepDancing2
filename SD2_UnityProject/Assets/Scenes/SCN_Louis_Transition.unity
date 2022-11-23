@@ -481,9 +481,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1071712812850865300, guid: 823eb2387a28ffc4988d8778fe7cb980, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1071712812850865303, guid: 823eb2387a28ffc4988d8778fe7cb980, type: 3}
+      propertyPath: script
+      value: 
+      objectReference: {fileID: 930199918}
+    - target: {fileID: 1071712812850865303, guid: 823eb2387a28ffc4988d8778fe7cb980, type: 3}
+      propertyPath: material
+      value: 
+      objectReference: {fileID: 2100000, guid: abfcedb3a1f6c794784830fffd17a779, type: 2}
+    m_RemovedComponents:
+    - {fileID: 1071712812850865297, guid: 823eb2387a28ffc4988d8778fe7cb980, type: 3}
+    - {fileID: 1071712812850865302, guid: 823eb2387a28ffc4988d8778fe7cb980, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 823eb2387a28ffc4988d8778fe7cb980, type: 3}
 --- !u!4 &888735812 stripped
 Transform:
@@ -587,9 +597,10 @@ MonoBehaviour:
   compute_shader: {fileID: 7200000, guid: 986d368d4c8263e4a841b72357fe3873, type: 3}
   material: {fileID: 2100000, guid: abfcedb3a1f6c794784830fffd17a779, type: 2}
   C: {fileID: 8400000, guid: cda7d8d6ebda5cb4bbeed3c4254c2675, type: 2}
-  Taille: 0
-  Forme: 0
-  ApparitionForme: 0
+  Taille: 0.59
+  Taille2: 0
+  Forme: 0.54
+  ApparitionForme: 0.08
   Disparition: 0
   _resx: 1920
   rtFormat: 2
@@ -670,7 +681,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6453235082599507926, guid: 87ae26dbbe97293498f98534b000ec11, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6453235082599507914, guid: 87ae26dbbe97293498f98534b000ec11, type: 3}
