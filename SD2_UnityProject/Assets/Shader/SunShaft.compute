@@ -117,7 +117,7 @@ void CSMain2(uint2 id : SV_DispatchThreadID)
 	Color /= Quality * Directions - 15.;
 	float3 Color2 = ov(Color.xyz, lerp(0.5, 0.4, pdd));
 
-	writer[id] = float4(Color2,1.);
+	writer[id] = float4(Color2,smoothstep(0.4,.6,Color2.x));
 
 
 

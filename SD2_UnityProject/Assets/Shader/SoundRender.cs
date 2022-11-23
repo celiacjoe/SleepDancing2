@@ -29,7 +29,7 @@ public class SoundRender : MonoBehaviour
     public int _resx;
     public RenderTextureFormat rtFormat = RenderTextureFormat.ARGBHalf;
     public int _resy;
-    //public render script;
+    public render script;
     //public Material Nebula;
     void Start()
     {
@@ -61,15 +61,15 @@ public class SoundRender : MonoBehaviour
         compute_shader.SetFloat("_High", High);
         compute_shader.SetFloat("_SHigh", SHigh);
         compute_shader.SetFloat("_THigh", THigh);
- 
-        compute_shader.Dispatch(handle_main, A.width / 8, A.height / 8, 1);
         compute_shader.SetTexture(handle_main, "writer", A);
-        
-        compute_shader.Dispatch(handle_main2, B.width / 8, B.height / 8, 1);
+        compute_shader.Dispatch(handle_main, A.width / 8, A.height / 8, 1);
+
         compute_shader.SetTexture(handle_main2, "writer", B);
+        compute_shader.Dispatch(handle_main2, B.width / 8, B.height / 8, 1);
+        
 
         material.SetTexture("_SunShaft",B);
-        //script.C = B;
+        script.C = B;
 
     }
 }

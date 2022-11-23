@@ -29,17 +29,22 @@ float3 transi(float2 uv, float tr, UnityTexture2D A, UnityTexture2D B) {
 	return lerp(tf, tex2D(A, uv).xyz,tr);
 }
 void nebula_float(float2 uv, float tr  , UnityTexture2D A, UnityTexture2D B, UnityTexture2D C, UnityTexture2D D,
-	int a, int b, int c , int d,int e, int f,int g, int h, int i,  out float3 Out)
+	int a, int b, int c , int d,int e, int f,int g, int h, int i,int j ,int k, int l,  out float3 Out)
 {
 	float3 v1 = float3(0., 0., 0.);
 
 	if (a > 0) { v1 = transi(uv, tr, B, A); }
 	if (b > 0) { v1 = transi(uv, tr, C, A); }
-	if (c > 0) { v1 = transi(uv, tr, A, B); }
-	if (d > 0) { v1 = transi(uv, tr, C, B); }
-	if (e > 0) { v1 = transi(uv, tr, A, C); }
-	if (f > 0) { v1 = transi(uv, tr, B, C); }
-
+	if (c > 0) { v1 = transi(uv, tr, D, A); }
+	if (d > 0) { v1 = transi(uv, tr, A, B); }
+	if (e > 0) { v1 = transi(uv, tr, C, B); }
+	if (f > 0) { v1 = transi(uv, tr, D, B); }
+	if (g > 0) { v1 = transi(uv, tr, A, C); }
+	if (h > 0) { v1 = transi(uv, tr, B, C); }
+	if (i > 0) { v1 = transi(uv, tr, D, C); }
+	if (j > 0) { v1 = transi(uv, tr, A, D); }
+	if (k > 0) { v1 = transi(uv, tr, B, D); }
+	if (l > 0) { v1 = transi(uv, tr, C, D); }
 	Out = v1;
 
 }

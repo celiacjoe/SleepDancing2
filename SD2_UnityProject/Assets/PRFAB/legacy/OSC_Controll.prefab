@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 153307702359243177}
-  - component: {fileID: 153307702359243178}
   - component: {fileID: 7253930511765140025}
   m_Layer: 0
   m_Name: OSC_Controll
@@ -33,27 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &153307702359243178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 153307702359243172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a83e4d41d3144efb843adad75b278d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _openOnAwake: 1
-  _udpBufferSize: 8192
-  _port: 4000
-  _mode: 0
-  _remoteIpAddress: 127.0.0.1
-  _remoteStatus: 2
-  _multicastLoopback: 1
-  _settingsFoldout: 1
-  _messagesFoldout: 0
 --- !u!114 &7253930511765140025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62905682cf94d4e409b590efe151af29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _oscOut: {fileID: 153307702359243178}
+  _oscOut: {fileID: 0}
   address1: /f7/f1
   address2: /f7/f2
   address3: /High

@@ -79,7 +79,7 @@ public class VideoDeform : MonoBehaviour
         compute_shader.SetTexture(handle_main3, "reader4", E);
         compute_shader.SetTexture(handle_main3, "writer3", D);
         compute_shader.Dispatch(handle_main3, E.width / 8, E.height / 8, 1);     */
-        material.SetTexture("_Nebula", B);
+        material.SetTexture("_Video", B);
         script.C = B;
         // material.SetTexture("_DeformTex", E);
         // material.SetTexture("_MainTex2", A);
