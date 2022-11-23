@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MatTransition
+  m_Name: MatTRansition
   m_Shader: {fileID: -6465566751694194690, guid: c3cb499c9f571184c98e592fa0088e82, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -33,11 +33,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - TXT_Forme:
-        m_Texture: {fileID: 2800000, guid: 3debb9308b949da4d8577513e9693561, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7ee554a6d4829f641aa033944c517cc8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_01fd44edd41542348fc073c45741c296:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_67992d944cde41dc8f8e7c8fe46a8395:
-        m_Texture: {fileID: 2800000, guid: 40dd6a1a18d72fa45a8b56ef769d472e, type: 3}
+        m_Texture: {fileID: 2800000, guid: ad2d1b7a3f4d2d144a42b09cec794e34, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -96,6 +100,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Video:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -109,14 +117,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Intensity: 1
+    - BlurIntensity: 86.5
+    - Intensity: 0
     - Vector1_52db204c180d4d25af4afb3f60e74283: 1
     - _AlphaClip: 0
     - _ApparitionForme: 0
     - _BackFX_Nedula: 0
     - _BackFX_SunShaft: 0
+    - _BackFX_Video: 1
     - _Blend: 0
     - _BumpScale: 1
+    - _Cam_FX: 0
+    - _Cam_Nebula: 0
+    - _Cam_Sunshaft: 0
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -127,12 +140,19 @@ Material:
     - _EndNebula: 0
     - _EndSunShaft: 0
     - _EnvironmentReflections: 1
+    - _FX_Cam: 0
+    - _FX_Nebula: 0
+    - _FX_Sunshaft: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
     - _Nebula_BackFX: 0
+    - _Nebula_Cam: 0
+    - _Nebula_FX: 0
     - _Nebula_SunShaft: 0
+    - _Nebula_Sunshaft: 0
+    - _Nebula_Video: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
@@ -144,9 +164,16 @@ Material:
     - _StartNebula: 0
     - _StartSunShaft: 0
     - _SunShaft_BackFX: 0
-    - _SunShaft_Nebula: 0
+    - _SunShaft_Nebula: 1
+    - _SunShaft_Video: 0
+    - _Sunshaft_Cam: 0
+    - _Sunshaft_FX: 0
+    - _Sunshaft_Nebula: 0
     - _Surface: 0
-    - _Transition: 1
+    - _Transition: 0
+    - _Video_BAckFX: 0
+    - _Video_Nedula: 0
+    - _Video_SunShaft: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:

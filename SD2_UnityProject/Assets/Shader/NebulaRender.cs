@@ -12,7 +12,9 @@ public class NebulaRender : MonoBehaviour
     int handle_main2;
     [Space(20)]
     [Header("PositionSetting")]
+    public float transition1;
     public Vector3 Pos;
+    public Vector3 PosL;
     public float Focal;
     public float t1;
     public float t2;
@@ -92,7 +94,9 @@ public class NebulaRender : MonoBehaviour
         compute_shader.SetFloat("_t2", t2);
         compute_shader.SetFloat("_t3", t3);
         compute_shader.SetFloat("_t4", t4);
+        compute_shader.SetFloat("_transition1", transition1);
         compute_shader.SetVector("_position", Pos);
+        compute_shader.SetVector("_positionL", PosL);
         compute_shader.SetFloat("_focal", Focal);
         compute_shader.SetFloat("_chro1", Chro1);
         compute_shader.SetFloat("_reg4", reg4);
