@@ -1,13 +1,13 @@
 ﻿#pragma kernel CSMain
 #pragma kernel CSMain2
-#pragma kernel CSMain3
+//#pragma kernel CSMain3
 Texture2D<float4> reader;
 Texture2D<float4> reader2;
-Texture2D<float4> reader3;
-Texture2D<float4> reader4;
+//Texture2D<float4> reader3;
+//Texture2D<float4> reader4;
 RWTexture2D<float4> writer;
 RWTexture2D<float4> writer2;
-RWTexture2D<float4> writer3;
+//RWTexture2D<float4> writer3;
 SamplerState _LinearClamp;
 float _time;
 float _taille;
@@ -18,15 +18,8 @@ float _resy;
 float2 rd(float i) { return frac(sin(float2(dot(floor(i), 45.23), dot(floor(i), 98.236)))*7845.236) - 0.5; }
 float2 no(float i) { return lerp(rd(i), rd(i + 1.), smoothstep(0., 1., frac(i))); }
 float hs(float2 uv) { return frac(sin(dot(uv, float2(45.56, 98.14)))*7845.236); }
-float desaturate(float3 color)
-{
-	float3 lum = float3(0.299, 0.587, 0.114);
-	float v1 = dot(lum, color);
 
-	return v1;
-}
-
-float4 tex(float2 g, float2 p, float2 s) {
+/*float4 tex(float2 g, float2 p, float2 s) {
 	float2 gp = g + p;
 	if (gp.x >= s.x) gp.x = gp.x - s.x;
 	if (gp.y >= s.y) gp.y = gp.y - s.y;
@@ -39,8 +32,7 @@ float4 getState(float2 g, float2 s, float n) {
 	float4 p = float4(0., 0., 0., 0.);
 	for (float i = 0.; i < n; i++) { p = tex(g, -p.xy, s); }
 	return p;
-}
-
+}*/
 
 
 [numthreads(8,8,1)]
@@ -58,6 +50,13 @@ void CSMain(uint2 id : SV_DispatchThreadID)
 		c1 = lerp(c1, t2, smoothstep(0.5, 0., t3.xyz));
 	}
 	writer[id] = float4(c1, 1.);
+}
+float desaturate(float3 color)
+{
+	float3 lum = float3(0.299, 0.587, 0.114);
+	float v1 = dot(lum, color);
+
+	return v1;
 }
 	[numthreads(8, 8, 1)]
 	void CSMain2(uint2 id : SV_DispatchThreadID)
@@ -78,9 +77,10 @@ void CSMain(uint2 id : SV_DispatchThreadID)
 			}
 		}
 		Color /= Quality * Directions - 15.;
-		writer2[id] = float4(Color.xyz,smoothstep(0.4,0.6, desaturate(Color.xyz)));
+		Color.a = smoothstep(0.4, 0.6, desaturate(Color.xyz));
+		writer2[id] = float4(Color);
 	}
-	[numthreads(8, 8, 1)]
+	/*[numthreads(8, 8, 1)]
 	void CSMain3(uint2 id : SV_DispatchThreadID)
 	{
 		float2 g = float2(id.x, id.y);
@@ -102,8 +102,7 @@ void CSMain(uint2 id : SV_DispatchThreadID)
 		float div = ((l - r).x + (b - t).y) / 20.;
 		writer3[id] = float4(writer3[id].xy, dp.z - div, writer3[id].a);
 		//float zo = step(distance(g, res*0.5 + 250.*float2(cos(_time), sin(_time))), 10.);
-		//float dd = smoothstep(0.4, 0.6, reader3.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).x);
-		float dd = reader3.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).a;
+		float dd = smoothstep(0.4, 0.6, reader3.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).x);
 		writer3[id] = lerp(writer3[id] , float4(0.5, 0.5, 0.5, 0.5), dd)*lerp(1., 0.99, smoothstep(0.95, 1., frac(_time*0.02)))*(1.-_disparition*0.01);
-	}
+	}*/
 

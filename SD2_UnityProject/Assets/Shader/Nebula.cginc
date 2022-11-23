@@ -28,12 +28,17 @@ float3 transi(float2 uv, float tr, UnityTexture2D A, UnityTexture2D B) {
 	float3 tf = max(max(tex2D(B, u2 - t5.xy*tr*0.1).xyz, tex2D(B, u2 - t5.xy*tr*0.5).xyz*0.5), tex2D(B, u2 - t5.xy*tr).xyz*0.5);
 	return lerp(tf, tex2D(A, uv).xyz,tr);
 }
-void nebula_float(float2 uv, float tr  , UnityTexture2D A, UnityTexture2D B,int da, int db, int fa , int fb,  out float3 Out)
+void nebula_float(float2 uv, float tr  , UnityTexture2D A, UnityTexture2D B, UnityTexture2D C, UnityTexture2D D,
+	int a, int b, int c , int d,int e, int f,int g, int h, int i,  out float3 Out)
 {
 	float3 v1 = float3(0., 0., 0.);
 
-	if (da >0) {v1 = transi(uv, tr, B, A);}
-	if (db >0) { v1 = transi(uv, tr, A, B);}
+	if (a > 0) { v1 = transi(uv, tr, B, A); }
+	if (b > 0) { v1 = transi(uv, tr, C, A); }
+	if (c > 0) { v1 = transi(uv, tr, A, B); }
+	if (d > 0) { v1 = transi(uv, tr, C, B); }
+	if (e > 0) { v1 = transi(uv, tr, A, C); }
+	if (f > 0) { v1 = transi(uv, tr, B, C); }
 
 	Out = v1;
 
