@@ -1,0 +1,106 @@
+﻿#pragma kernel CSMain
+
+RWTexture2D<float4> writer;
+SamplerState _LinearClamp;
+
+float _time;
+float _resx;
+float _resy;
+float _masque;
+float _focal;
+float _distance;
+float _rotateX;
+float _rotateY;
+float _rotateZ;
+float _smoothForm;
+float _complexity;
+float _taille;
+float3 _modifforme01;
+float3 _modifforme02;
+float _detail;
+
+float isphe(float3 ro, float3 rd, float3 cen, float rad)
+{
+	ro -= cen;
+	float b = dot(rd, ro);
+	float c = dot(ro, ro) - rad * rad;
+	float h = b * b - c;
+	if (h < 0.)return -1.;
+	return 1.;
+}
+
+float3 smin(float3 d1, float3 d2, float k) {
+	float3 h = clamp(0.5 + 0.5*(d2 - d1) / k, 0.0, 1.0);
+	return lerp(d2, d1, h) - k * h*(1.0 - h);
+}
+
+float3 mod(float3 x, float3 y)
+{
+	return x - y * floor(x / y);
+}
+
+float2x2 rot(float t) { float c = cos(t); float s = sin(t); return float2x2(c, -s, s, c); }
+
+float map(float3 p) {
+	float3 b = p;
+	int co = int(clamp(_complexity*10., 1., 10.));
+	for (int i = 0; i < co; i++) {
+		float3 bbb = b / dot(b, b);
+		float3 bb = smin(bbb, -bbb, -0.2*_smoothForm);
+		b = _modifforme01 * bb;
+		b -= _modifforme02;
+	}
+
+
+	float v2 = length(b) - _taille;
+
+	return v2;
+}
+float3 nor(float3 p)
+{
+	float2 e = float2(0.01, 0.); return normalize(map(p) - float3(map(p - e.xyy), map(p - e.yxy), map(p - e.yyx)));
+}
+
+
+[numthreads(8, 8, 1)]
+void CSMain(uint2 id : SV_DispatchThreadID)
+{
+
+	float2 g = float2(id.x, id.y);
+	float2 res = float2(_resx, _resy);
+	float2 uv = g / res;
+	uv = (uv - .5)*2.;
+	uv.x *= _resx / _resy;
+	float3 r = normalize(float3(uv,_focal));
+	float3 p = float3(0., 0., -_distance);
+	p.yz = mul(p.yz, rot(_time*_rotateX));
+	r.yz = mul(r.yz, rot(_time*_rotateX));
+	p.xz = mul(p.xz, rot(_time*_rotateY));
+	r.xz = mul(r.xz, rot(_time*_rotateY));
+	p.xy = mul(p.xy, rot(_time*_rotateZ));
+	r.xy = mul(r.xy, rot(_time*_rotateZ));
+	float dd = 0.;
+	float3 n = float3(0., 0., 0.);
+	float m = 0.;
+	float de = isphe(p, r, float3(0., 0., 0.),_masque - 2.);
+	if (de > 0.)
+	{
+		
+		for (int i = 0; i < int(_detail); i++) {
+			float d = map(p);
+			if (dd >_masque) { dd =_masque; break; }
+			if (d < -1.) { break; }
+			p += r * d;
+			dd += d;
+		}
+		m = smoothstep(_distance, 0., dd);
+		n = nor(p);
+	}
+	else {
+		n = float3(0., 0., 0.);
+		m = 0.;
+
+	}
+	writer[id] = float4(n, m);
+}
+
