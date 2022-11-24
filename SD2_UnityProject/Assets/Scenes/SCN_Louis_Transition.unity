@@ -251,7 +251,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2765008366371961602, guid: f36be3b3311725749a06ba94b677cf26, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2765008366371961608, guid: f36be3b3311725749a06ba94b677cf26, type: 3}
       propertyPath: _oscIn
@@ -312,6 +312,10 @@ PrefabInstance:
     - target: {fileID: 2765008367804950767, guid: f36be3b3311725749a06ba94b677cf26, type: 3}
       propertyPath: m_Name
       value: Transition
+      objectReference: {fileID: 0}
+    - target: {fileID: 2765008367804950767, guid: f36be3b3311725749a06ba94b677cf26, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9210203633918486889, guid: f36be3b3311725749a06ba94b677cf26, type: 3}
       propertyPath: m_IsActive
