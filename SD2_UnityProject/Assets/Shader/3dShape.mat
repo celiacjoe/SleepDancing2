@@ -113,7 +113,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Detail: 0.3
+    - Detail: 40
     - SmoothForm: 0
     - Vector1_19f60c9560904485b9e75e1f181b1313: 1.09
     - Vector1_35b7c8cda2d2473f88046c1b1e11274b: 0.99
@@ -156,10 +156,10 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - complexity: 1
-    - distance: 21.68
+    - distance: 23.64
     - focal: 1
-    - masque: 17.23
-    - rotateX: 0.1
+    - masque: 22.4
+    - rotateX: 0.05
     - rotateY: 0.04
     - rotateZ: 0
     - taille: 0.46
