@@ -1242,29 +1242,53 @@ MonoBehaviour:
       m_Action: Scn FX
       m_Flags: 0
   _Set3DshapeSoft:
-    m_Name: 
+    m_Name: Set 3 Dshape Soft
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 125e1238-7bb5-4161-985f-0d086511cdef
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: d2403cc9-7590-4259-8f43-d13fe07d8ae5
+      m_Path: <MidiDevice>/control060
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Set 3 Dshape Soft
+      m_Flags: 0
   _Set3DshapeComplex:
-    m_Name: 
+    m_Name: Set 3 Dshape Complex
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: fc7935bd-b89d-4ffa-bf14-7b57198ee3bd
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: b3facf31-374e-4a87-a5ae-950ab9e2935c
+      m_Path: <MidiDevice>/control061
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Set 3 Dshape Complex
+      m_Flags: 0
   __Set3DshapeNew:
-    m_Name: 
+    m_Name: _Set 3 Dshape New
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 1f5bef45-d686-4739-a880-fdf29a8442fa
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 59a7fffa-f417-4d2c-a70f-5a796ef76920
+      m_Path: <MidiDevice>/control062
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: _Set 3 Dshape New
+      m_Flags: 0
 --- !u!1 &556960619
 GameObject:
   m_ObjectHideFlags: 0
