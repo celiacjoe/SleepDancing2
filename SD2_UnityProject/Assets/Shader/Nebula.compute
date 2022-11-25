@@ -19,6 +19,7 @@ float _resx2;
 float _resy2;
 float _transition1;
 float _transition2;
+float _transition3;
 float3 _position;
 float3 _positionL;
 float _focal;
@@ -39,6 +40,11 @@ float _t1;
 float _t2;
 float _t3;
 float _t4;
+float _f1;
+float _f2;
+float _f3;
+float _f4;
+float _f5;
 #define Pi 3.14159265359
 #define ViewStart 1.6
 #define ViewEnd 4.4
@@ -58,9 +64,9 @@ float3 powV(float3 v, float p) {  return float3(pow(v.x, p), pow(v.y, p), pow(v.
 float maxV(float3 v) {return max(max(v.x, v.y), v.z);}
 
 
-bool insideShape(float3 p, float ti) {
+bool insideShape(float3 p, float ti,float t2) {
 	float3 b = p + float3(0., 0.25, 0.25);
-	float va = lerp(lerp(0.,_t3,_transition1), 0.5, _transition2);
+	float va = lerp(lerp(lerp(0.,0.5+ _SMid *0.05,_transition1),_t3,_transition2), 0.5, _transition3);
 	for (int i = 0; i < 4; i++) {
 		b -= va;
 		b.xz = mul(b.xz,rot(ti*0.05));
@@ -69,12 +75,12 @@ bool insideShape(float3 p, float ti) {
 	}
 	float d1 = length(b);
 	float r = d1;
-	return r < lerp(lerp(3.,_t1,_transition1), 1., _transition2) && r > lerp(lerp(0.5, _t2, _transition1), 0.5, _transition2);
+	return r < lerp(lerp(lerp(3.,1.,_transition1),1.,_transition2), 1., _transition3) && r > lerp(lerp(0.,t2,_transition2), 0.5, _transition3);
 }
 float henyeyGreenstein(float3 pos, float3 dir, float3 LightPos) {
 	float cosTheta = dot(dir, normalize(LightPos - pos));
 	return Pi / 4.0 * (1.0 - _reg2 * _reg2) / pow(1.0 + _reg2 * _reg2 - 2.0*_reg2*cosTheta, 3.0 / 2.0);}
-float3 lightReceived(float3 pos, float headStart, float ti, float3 LightPos) {
+float3 lightReceived(float3 pos, float headStart, float ti, float t2 , float3 LightPos) {
 	float LightDist = length(LightPos - pos);
 	float3 LightDir = normalize(LightPos - pos);
 	float stepSize = LightDist / 8.;
@@ -82,7 +88,7 @@ float3 lightReceived(float3 pos, float headStart, float ti, float3 LightPos) {
 	float3 absorption = float3(rr,rr,rr);
 	pos += headStart * LightDir * stepSize;
 	for (int i = 0; i < 8; i++) {
-		if (insideShape(pos, ti)) {
+		if (insideShape(pos, ti,t2)) {
 			absorption *= powV(float3(1.,1.,1.) - _VolumeColor.xyz, stepSize*_reg1);
 		}
 		pos += LightDir * stepSize;
@@ -101,31 +107,36 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float2 uv = g / res;
 	uv = (uv - .5)*2.;
 	uv.x *= _resx / _resy;
-
-
-	float pp = no(_THigh*.05)*1.2-0.1;
-	float3 PosCam = lerp(lerp(float3(lerp(-2.,-5., pp),0.,-3.- (no(_TMid*.05+45.)-0.5)*0.5),
-		_position.zxy,_transition1),
-		float3(-3.,0.,0.), _transition2);
-
-	float FocalLength = lerp(lerp(lerp(1.2,5.25, pp),_focal,_transition1), 1.2, _transition2);
-
 	float pp2 = no(_TLow*(0.05));
 	float pp3 = no(_THigh*.15);
 	float pp4 = no(_TLow*0.1);
 	float pp5 = no(_TLow*0.1);
+	float pr = no(_THigh*.05);
+	float pp6 =pr-0.5;
+	float pp = pr*1.2-0.1;
+
+	float3 PosCam = lerp(lerp(float3(lerp(-2., -5., pp), 0., -3. - (no(_TMid*.05 + 45.) - 0.5)*0.5),
+		float3(-2., 0., -3. - pp6 *lerp( 0.4,2.,_transition2)), _transition1),
+		//_position.zxy,_transition2),
+		float3(-3.,0.,0.), _transition3);
+
+	float FocalLength = lerp(lerp(lerp(1.2,5.25, pp),_focal,_transition1), 1.2, _transition3);
+
+
 	float2 ms = lerp(lerp(float2((pp2 - 0.5)*-2., length(pp2 - 0.5)),
 		//(-_positionL.xy)*0.5,_transition1),
 		float2((pp5 - 0.5)*-2.,pp3),_transition1),
-		float2(pp4 - .5, pp3 - .5)*2., _transition2);
+		//(-_positionL.xy)*0.5, _transition2),
+		float2(pp4 - .5, pp3 - .5)*2.+float2(_f3,_f4), _transition3);
 	
 	
-	float3 LightPos = lerp(lerp(float3(0.4, (pp2 - 0.5)*2. *2.25, length(pp2 - 0.5) - 3.7),
+	float3 LightPos = lerp(lerp(lerp(float3(0.4, (pp2 - 0.5)*2. *2.25, length(pp2 - 0.5) - 3.7),
 		//_positionL.zxy,_transition1),
-		float3( 2.*pp4, (pp5 - 0.5)*2.,-3.-pp3+_positionL.y), _transition1),
-		float3(0., -ms.x, ms.y) * 2.*float3(1., res.x / res.y, 1.),_transition2);
+		float3( 2.*pp4 + _f5, (pp5 - 0.5)*2.+_f3*1.5,-3.-pp3+_f4*1.5), _transition1),
+		float3(-1.+4.*pp4 + _f5*2., (pp5 - 0.5)*6. + _f3*3., -1.5-2.5*  pp3 + _f4*2.), _transition2),
+		float3(_f5, -ms.x, ms.y) * 2.*float3(1., res.x / res.y, 1.),_transition3);
 	
-	float da =step(1.4+clamp(length(_position.xy)-1.,0.,3.)*0.3, distance(ms*float2(1.1,0.), uv));
+	float da =step(lerp(1.7,lerp(1.4,1.1,_transition3),_transition1), distance(ms*0.9, uv));
 	float3 color;
 	if (da < 0.5) {
 		float3 camX = float3(-DirCam.y, DirCam.x, 0);
@@ -135,6 +146,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 		float3 centerSensor = PosCam - DirCam * FocalLength;
 		float3 posOnSensor = centerSensor + sensorX + sensorY;
 		float3 dir = normalize(PosCam - posOnSensor);
+		float t2 = 0.5+ pow(no(_THigh*.05+78.),0.8)*0.492;
 		float ti = _TMid * 0.2;
 		float3 pos = PosCam + dir * ViewStart;
 		float hg = henyeyGreenstein(pos, dir, LightPos);
@@ -151,8 +163,8 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 					color += 10.0*absorption*float3(_co1, _co2, _co3);
 					break;
 				}
-				if (insideShape(pos, ti)) {
-					color += _VolumeColor.xyz*absorption*lightReceived(pos, headStart, ti, LightPos)*hg*stepSize*_reg1;
+				if (insideShape(pos, ti,t2)) {
+					color += _VolumeColor.xyz*absorption*lightReceived(pos, headStart, ti,t2, LightPos)*hg*stepSize*_reg1;
 					absorption *= powV(float3(1., 1., 1.) - _VolumeColor.xyz, stepSize*_reg1);
 				}
 				pos += dir * stepSize;

@@ -18,6 +18,7 @@ namespace OscSimpl.Examples
         public float TMid;
         public float SMid;
         public string Name3;
+        public string Name4;
         public float High;
         public float THigh;
         public float SHigh;
@@ -28,7 +29,7 @@ namespace OscSimpl.Examples
         //public Vector2 V2;
         //public VisualEffect FX;
         public SoundRender scrpit1;
-
+        float v1;
         float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
         {
             return MinFinal + (Val - minInit) * (MaxFinal - MinFinal) / (MaxInit - minInit);
@@ -79,7 +80,7 @@ namespace OscSimpl.Examples
             _oscIn.MapFloat(Name1, Event1);           // Float 
             _oscIn.MapFloat(Name2, Event2);
             _oscIn.MapFloat(Name3, Event3);
-
+            _oscIn.MapFloat(Name4, Event4);
             //  _oscIn.Map(Map_PosXY, EventPosXY);          // MultiFloat
 
         }
@@ -87,15 +88,19 @@ namespace OscSimpl.Examples
 
         public void Event1(float value)
         {
-            Low = value*fac.x;
+            Low = value*v1;
         }
         public void Event2(float value)
         {
-            Mid = value*fac.y;
+            Mid = value* v1;
         }
         public void Event3(float value)
         {
-            High = value*fac.z;
+            High = value* v1;
+        }
+        public void Event4(float value)
+        {
+            v1 = value * 8;
         }
         /* void EventPosXY(OscMessage message)
          {
