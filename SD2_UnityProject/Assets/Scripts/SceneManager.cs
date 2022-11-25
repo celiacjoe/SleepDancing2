@@ -39,9 +39,8 @@ public class SceneManager : MonoBehaviour
     {
         RenderFinal.sharedMaterial.SetFloat("_Transition", 1);
         Current = "Nebula";
-        RenderFinal.sharedMaterial.SetInt("_Sunshaft_Nebula", 1);
-        //Endtransition();
         Clean();
+        RenderFinal.sharedMaterial.SetInt("_Sunshaft_Nebula", 1);
         //SetupParam3Dshape();
     }
 
@@ -67,13 +66,13 @@ public class SceneManager : MonoBehaviour
             ScriptRender.compute_shader = Deform02;
             TransitionScene();
         }
-        else if (Nbr_SceneD == 3){
+        /*else if (Nbr_SceneD == 3){
             Nbr_SceneD++;
             ScriptRender.compute_shader = Deform03;
             TextDisplace.text = "SCENE_DISPLACE_04";
             TransitionScene();
-        }
-        else if(Nbr_SceneD == 4){
+        }*/
+        else if(Nbr_SceneD == 3){
             Nbr_SceneD = 1;
             TextDisplace.text = "SCENE_DISPLACE_01";
             TransitionScene();
@@ -151,20 +150,28 @@ public class SceneManager : MonoBehaviour
         RenderFinal.sharedMaterial.SetInt("_FX_Nebula", 0);
         RenderFinal.sharedMaterial.SetInt("_FX_Sunshaft", 0);
         RenderFinal.sharedMaterial.SetInt("_FX_Cam", 0);
-
     }
 
     public void SetupParam3DshapeSoft()
     {
-        Render3Dshape.sharedMaterial.SetFloat("masque", 17.23f);
+        Render3Dshape.sharedMaterial.SetFloat("masque", 15f);
         Render3Dshape.sharedMaterial.SetFloat("focal", 1f);
-        Render3Dshape.sharedMaterial.SetFloat("distance", 21.68f);
+        Render3Dshape.sharedMaterial.SetFloat("distance", 14f);
         Render3Dshape.sharedMaterial.SetFloat("rotateX", 0.1f);
-        Render3Dshape.sharedMaterial.SetFloat("rotateY",0.02f);
+        Render3Dshape.sharedMaterial.SetFloat("rotateY", 0.02f);
         Render3Dshape.sharedMaterial.SetFloat("rotateY", 0.04f);
-        Render3Dshape.sharedMaterial.SetFloat("smoothform", 1f);
-        Render3Dshape.sharedMaterial.SetFloat("complexity", 1f);
-        Render3Dshape.sharedMaterial.SetFloat("taille", 0.46f);
+        Render3Dshape.sharedMaterial.SetFloat("smoothform", 0.8f);
+        Render3Dshape.sharedMaterial.SetFloat("complexity", 0.5f);
+        Render3Dshape.sharedMaterial.SetFloat("taille", 0.65f);
+        /* Render3Dshape.sharedMaterial.SetFloat("masque", 17.23f);
+         Render3Dshape.sharedMaterial.SetFloat("focal", 1f);
+         Render3Dshape.sharedMaterial.SetFloat("distance", 21.68f);
+         Render3Dshape.sharedMaterial.SetFloat("rotateX", 0.1f);
+         Render3Dshape.sharedMaterial.SetFloat("rotateY",0.02f);
+         Render3Dshape.sharedMaterial.SetFloat("rotateY", 0.04f);
+         Render3Dshape.sharedMaterial.SetFloat("smoothform", 1f);
+         Render3Dshape.sharedMaterial.SetFloat("complexity", 1f);
+         Render3Dshape.sharedMaterial.SetFloat("taille", 0.46f);*/
         Debug.Log("ok paarameter");
         //Render3Dshape.sharedMaterial.SetVector("_modifforme01", 1.5, 1.8, 1.3);
         // Render3Dshape.sharedMaterial("_modifforme01", 1.5, 1.8, 1.3, 0);
@@ -177,11 +184,12 @@ public class SceneManager : MonoBehaviour
         Render3Dshape.sharedMaterial.SetFloat("focal", 1f);
         Render3Dshape.sharedMaterial.SetFloat("distance", 20f);
         Render3Dshape.sharedMaterial.SetFloat("rotateX", 0.1f);
-        Render3Dshape.sharedMaterial.SetFloat("rotateY", -0.02f);
+        Render3Dshape.sharedMaterial.SetFloat("rotateY", 0.02f);
         Render3Dshape.sharedMaterial.SetFloat("rotateY", 0.04f);
         Render3Dshape.sharedMaterial.SetFloat("smoothform", 1f);
-        Render3Dshape.sharedMaterial.SetFloat("complexity", 0.85f);
-        Render3Dshape.sharedMaterial.SetFloat("taille", 0.4f);
+        Render3Dshape.sharedMaterial.SetFloat("complexity", 1f);
+        Render3Dshape.sharedMaterial.SetFloat("taille", 0.45f);
+        Debug.Log("ok parameter 3D shape complex");
         //  Render3Dshape.sharedMaterial.SetVector4("_modifforme01", 1.5,1.8,1.3,0);
         //  Render3Dshape.sharedMaterial.SetFloat("_modifforme02", 0.7,0.6,0.4,0);
     }
@@ -193,7 +201,6 @@ public class SceneManager : MonoBehaviour
             if (Next == "Sunshaft")
             {
                 GO_FinalQuad[1].SetActive(true);
-                //Disableall();
                 RenderFinal.sharedMaterial.SetInt("_" + Current + "_" + Next, 1);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
                 Debug.Log("Change nebula vers sunshaft");
@@ -204,15 +211,14 @@ public class SceneManager : MonoBehaviour
                 RenderFinal.sharedMaterial.SetInt("_" + Current + "_" + Next, 1);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
                 Debug.Log("Change nebula vers Cam");
-
             }
             else if (Next == "FX")
             {
+                GO_Back[0].SetActive(true);
                 GO_FinalQuad[3].SetActive(true);
                 RenderFinal.sharedMaterial.SetInt("_" + Current + "_" + Next, 1);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
                 Debug.Log("Change nebula vers FX");
-
             }
             AC.SetTrigger("Transition");
             RenderFinal.sharedMaterial.SetInt("_Sunshaft_Nebula", 0);
@@ -228,7 +234,6 @@ public class SceneManager : MonoBehaviour
                 RenderFinal.sharedMaterial.SetInt("_" + Current + "_" + Next, 1);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
                 Debug.Log("Change Sunshaft vers Nebula");
-
             }
             else if (Next == "Cam")
             {
@@ -239,6 +244,7 @@ public class SceneManager : MonoBehaviour
             }
              else if (Next == "FX")
             {
+                GO_Back[0].SetActive(true);
                 GO_FinalQuad[3].SetActive(true);
                 RenderFinal.sharedMaterial.SetInt("_" + Current + "_" + Next, 1);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
@@ -268,6 +274,7 @@ public class SceneManager : MonoBehaviour
             }
             else if (Next == "FX")
             {
+                GO_Back[0].SetActive(true);
                 GO_FinalQuad[3].SetActive(true);
                 RenderFinal.sharedMaterial.SetInt("_" + Current + "_" + Next, 1);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
@@ -307,8 +314,11 @@ public class SceneManager : MonoBehaviour
             RenderFinal.sharedMaterial.SetInt("_Sunshaft_FX", 0);
             RenderFinal.sharedMaterial.SetInt("_Cam_FX", 0);
             GO_FinalQuad[3].SetActive(false);
+            GO_Back[0].SetActive(false);
+            GO_Back[1].SetActive(false);
+            GO_Back[2].SetActive(false);
+            GO_Back[3].SetActive(false);
         }
-
     }
 
     public void Endtransition()
@@ -330,26 +340,6 @@ public class SceneManager : MonoBehaviour
             Current = "FX";          
         }
         //RenderFinal.sharedMaterial.SetFloat("_Transition", 1);
-    }
-
-    public void Disableall()
-    {        
-        RenderFinal.sharedMaterial.SetInt("_Sunshaft_Nebula", 0);
-        RenderFinal.sharedMaterial.SetInt("_FX_Nebula", 0);
-        RenderFinal.sharedMaterial.SetInt("_Cam_Nebula", 0);
-
-        RenderFinal.sharedMaterial.SetInt("_FX_Cam", 0);
-        RenderFinal.sharedMaterial.SetInt("_Nebula_Cam", 0);
-        RenderFinal.sharedMaterial.SetInt("_Sunshaft_Cam", 0);
-
-        RenderFinal.sharedMaterial.SetInt("_Nebula_FX", 0);
-        RenderFinal.sharedMaterial.SetInt("_Sunshaft_FX", 0);
-        RenderFinal.sharedMaterial.SetInt("_Cam_FX", 0);
-
-        RenderFinal.sharedMaterial.SetInt("_Nebula_Sunshaft", 0);
-        RenderFinal.sharedMaterial.SetInt("_FX_Sunshaft", 0);
-        RenderFinal.sharedMaterial.SetInt("_Cam_Sunshaft", 0);
-        Debug.Log("Disable");
     }
 
 

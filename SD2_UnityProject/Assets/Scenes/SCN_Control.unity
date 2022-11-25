@@ -1223,8 +1223,8 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: e0f46ec8-825b-405e-bf02-127dc0f3f0ce
-      m_Path: <MidiDevice>/control044
+      m_Id: 31b9dbea-95aa-490d-a6dc-afd9854058e1
+      m_Path: <MidiDevice>/control046
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -1240,7 +1240,7 @@ MonoBehaviour:
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: 48e2d70b-46bf-430e-83e6-ac8c843d9097
-      m_Path: <MidiDevice>/control043
+      m_Path: <MidiDevice>/control058
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -5075,11 +5075,11 @@ MonoBehaviour:
   - {fileID: 1965304772}
   Render3Dshape: {fileID: 1965304776}
   CS_Deform: {fileID: 7200000, guid: 986d368d4c8263e4a841b72357fe3873, type: 3}
-  Deform01: {fileID: 7200000, guid: 1e458f6f9f5db1d4c8e17212f2cf573e, type: 3}
+  Deform01: {fileID: 7200000, guid: 3b093d44596e23c419ccd57b4591a4b5, type: 3}
   Deform02: {fileID: 7200000, guid: 3b093d44596e23c419ccd57b4591a4b5, type: 3}
   Deform03: {fileID: 7200000, guid: 986d368d4c8263e4a841b72357fe3873, type: 3}
   GO_Back:
-  - {fileID: 1677365386}
+  - {fileID: 6848822297532192591}
   - {fileID: 635061444}
   - {fileID: 524311205}
   - {fileID: 6848822297532192591}
