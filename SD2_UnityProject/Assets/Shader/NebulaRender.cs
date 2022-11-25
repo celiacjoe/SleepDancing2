@@ -16,6 +16,8 @@ public class NebulaRender : MonoBehaviour
     public float transition1;
     [Range(0, 1)]
     public float transition2;
+    [Range(0, 1)]
+    public float transition3;
     public Vector3 Pos;
     public Vector3 PosL;
     public float Focal;
@@ -55,6 +57,11 @@ public class NebulaRender : MonoBehaviour
     public float High;
     public float THigh;
     public float SHigh;
+    //public float f1;
+    //public float f2;
+    public float f3;
+    public float f1;
+    public float f2;
     [Space(20)]
     public RenderTextureFormat rtFormat = RenderTextureFormat.ARGBHalf;
     public int _resx;
@@ -62,6 +69,12 @@ public class NebulaRender : MonoBehaviour
     public int _resx2;
     public int _resy2;
     public render script;
+    float tr1;
+    float tr2;
+    float tr3;
+    float p1;
+    float p2;
+    float p3;
 
     void Start()
     {
@@ -90,8 +103,12 @@ public class NebulaRender : MonoBehaviour
 
     void Update()
     {
-
-
+        tr1 = Mathf.Lerp(tr1, transition1, 0.01f);
+        tr2 = Mathf.Lerp(tr2, transition2, 0.01f);
+        tr3 = Mathf.Lerp(tr3, transition3, 0.01f);
+        p1 = Mathf.Lerp(p1, f1, 0.02f);
+        p2 = Mathf.Lerp(p2, f2, 0.02f);
+        p3 = Mathf.Lerp(p3, f3, 0.02f);
         compute_shader.SetTexture(handle_main, "reader", noise);
         compute_shader.SetTexture(handle_main2, "reader", noise);
         compute_shader.SetTexture(handle_main2, "reader2", A);
@@ -99,8 +116,14 @@ public class NebulaRender : MonoBehaviour
         compute_shader.SetFloat("_t2", t2);
         compute_shader.SetFloat("_t3", t3);
         compute_shader.SetFloat("_t4", t4);
-        compute_shader.SetFloat("_transition1", transition1);
-        compute_shader.SetFloat("_transition2", transition2);
+        //compute_shader.SetFloat("_f1", f1);
+        //compute_shader.SetFloat("_f2", f2);
+        compute_shader.SetFloat("_f3", p1);
+        compute_shader.SetFloat("_f4", p2);
+        compute_shader.SetFloat("_f5", p3);
+        compute_shader.SetFloat("_transition1", tr1);
+        compute_shader.SetFloat("_transition2", tr2);
+        compute_shader.SetFloat("_transition3", tr3);
         compute_shader.SetVector("_position", Pos);
         compute_shader.SetVector("_positionL", PosL);
         compute_shader.SetFloat("_focal", Focal);
