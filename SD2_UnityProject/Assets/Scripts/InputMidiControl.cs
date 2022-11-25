@@ -19,13 +19,13 @@ public class InputMidiControl : MonoBehaviour
 
     private Vector2 mousePosition;
     public VisualEffect FX;
-    private float P1value;
-    private float P2value;
-    private float P3value;
-    private float P4value;
-    private float P5value;
-    private float P6value;
+    private float BlurIntensityValue;
+    private float RoughtIntensityValue;
     private float IntensityControlValue;
+    private float AppFormeValue;
+    private float TailleValue;
+    private float FormeValue;
+    private float DisparitionValue;
     private float ZoomValue;
     public float SmoothT = 0.3f;
     private Vector3 velocity;
@@ -35,13 +35,13 @@ public class InputMidiControl : MonoBehaviour
 
     [Header("DEFORMATION CONTROLL")]
     /////////////SET INPUT
+    [SerializeField] InputAction _BlurIntensity = null;
+    [SerializeField] InputAction _RoughtIntensity = null;
     [SerializeField] InputAction _IntensityControl = null;
-    [SerializeField] InputAction _P1_Deform = null;
-    [SerializeField] InputAction _P5_Deform = null;
-    [SerializeField] InputAction _P2_Deform = null;
-    [SerializeField] InputAction _P3_Deform = null;
-    [SerializeField] InputAction _P4_Deform = null;
-    [SerializeField] InputAction _P6_Deform = null;
+    [SerializeField] InputAction _ApparitionForme = null;
+    [SerializeField] InputAction _Taille = null;
+    [SerializeField] InputAction _Forme = null;
+    [SerializeField] InputAction _Disparition = null;
     [SerializeField] InputAction _Zoom = null;
     // [SerializeField] InputAction _ResetLevel = null;
     [Header("FX CONTROLL")]
@@ -77,7 +77,6 @@ public class InputMidiControl : MonoBehaviour
     {
         return MinFinal + (Val - minInit) * (MaxFinal - MinFinal) / (MaxInit - minInit);
     }
-
     void Start()
     {
      
@@ -89,26 +88,25 @@ public class InputMidiControl : MonoBehaviour
         Vector3 NewTargetPosition = new Vector3(PosX+40, PosY);
         MovableObject.transform.position = Vector3.SmoothDamp(MovableObject.transform.position, NewTargetPosition, ref velocity, SmoothT);
     }
-
     void OnEnable()
     {
-        _P1_Deform.performed += P1_Deform;
-        _P1_Deform.Enable();
+        _BlurIntensity.performed += BlurIntensity;
+        _BlurIntensity.Enable();
 
-        _P2_Deform.performed += P2_Deform;
-        _P2_Deform.Enable();
+        _ApparitionForme.performed += ApparitionForme;
+        _ApparitionForme.Enable();
 
-        _P3_Deform.performed += P3_Deform;
-        _P3_Deform.Enable();
+        _Taille.performed += Taille;
+        _Taille.Enable();
 
-        _P4_Deform.performed += P4_Deform;
-        _P4_Deform.Enable();
+        _Forme.performed += Forme;
+        _Forme.Enable();
 
-        _P5_Deform.performed += P5_Deform;
-        _P5_Deform.Enable();
+        _RoughtIntensity.performed += RoughtIntensity;
+        _RoughtIntensity.Enable();
 
-        _P6_Deform.performed += P6_Deform;
-        _P6_Deform.Enable();
+        _Disparition.performed += Disparition;
+        _Disparition.Enable();
 
         _IntensityControl.performed += IntensityControl;
         _IntensityControl.Enable();
@@ -167,32 +165,32 @@ public class InputMidiControl : MonoBehaviour
 
     void OnDisable()
     {
-        _P1_Deform.performed -= P1_Deform;
-        _P1_Deform.Disable();
+        _BlurIntensity.performed -= BlurIntensity;
+        _BlurIntensity.Disable();
 
-        _P2_Deform.performed -= P2_Deform;
-        _P2_Deform.Disable();
+        _ApparitionForme.performed -= ApparitionForme;
+        _ApparitionForme.Disable();
 
-        _P3_Deform.performed -= P3_Deform;
-        _P3_Deform.Disable();
+        _IntensityControl.performed -= IntensityControl;
+        _IntensityControl.Disable();
 
-        _P4_Deform.performed -= P4_Deform;
-        _P4_Deform.Disable();
+        _Taille.performed -= Taille;
+        _Taille.Disable();
 
-        _P5_Deform.performed -= P5_Deform;
-        _P5_Deform.Disable();
+        _Forme.performed -= Forme;
+        _Forme.Disable();
 
-        _P6_Deform.performed -= P6_Deform;
-        _P6_Deform.Disable();
+        _RoughtIntensity.performed -= RoughtIntensity;
+        _RoughtIntensity.Disable();
+
+        _Disparition.performed -= Disparition;
+        _Disparition.Disable();
 
         _LayerDisplace.performed -= DisplaceLayerChange;
         _LayerDisplace.Disable();
 
         _LayerBack.performed -= BackLayerChange;
         _LayerBack.Disable();
-
-        _IntensityControl.performed -= IntensityControl;
-        _IntensityControl.Disable();
 
         _Zoom.performed -= Zoom;
         _Zoom.Disable();
@@ -240,43 +238,42 @@ public class InputMidiControl : MonoBehaviour
         _Set3DshapeComplex.Disable();
     }
 
-    void P1_Deform(InputAction.CallbackContext ctx)
-     {
-        P1value = ctx.ReadValue<float>();
-        RenderFinal.sharedMaterial.SetFloat("BlurIntensity", P1value);
-     }
-     void P2_Deform(InputAction.CallbackContext ctx)
-     {
-         P2value = ctx.ReadValue<float>();
-         SRend.Taille = P2value;
-     }
-    void P3_Deform(InputAction.CallbackContext ctx)
+    void BlurIntensity(InputAction.CallbackContext ctx)
     {
-        P3value = ctx.ReadValue<float>();
-        SRend.Forme = P3value;
+        BlurIntensityValue = ctx.ReadValue<float>();
+        RenderFinal.sharedMaterial.SetFloat("BlurIntensity", BlurIntensityValue);
     }
-    void P4_Deform(InputAction.CallbackContext ctx)
+    void RoughtIntensity(InputAction.CallbackContext ctx)
     {
-        P4value = ctx.ReadValue<float>();
-        SRend.Disparition = P4value;
-    }
-    void P5_Deform(InputAction.CallbackContext ctx)
-    {
-        P5value = ctx.ReadValue<float>();
-        SRend.ApparitionForme = P5value;
-        RenderFinal.sharedMaterial.SetFloat("_ApparitionForme", P5value);
-    }
-
-    void P6_Deform(InputAction.CallbackContext ctx)
-    {
-        P6value = ctx.ReadValue<float>();
-        RenderFinal.sharedMaterial.SetFloat("Mask_Intensity", P6value);
+        RoughtIntensityValue = ctx.ReadValue<float>();
+        RenderFinal.sharedMaterial.SetFloat("RoughtIntensity", RoughtIntensityValue);
     }
     void IntensityControl(InputAction.CallbackContext ctx)
-     {
-         IntensityControlValue = ctx.ReadValue<float>();
+    {
+        IntensityControlValue = ctx.ReadValue<float>();
         RenderFinal.sharedMaterial.SetFloat("Intensity", IntensityControlValue);
+    }
+    void ApparitionForme(InputAction.CallbackContext ctx)
+    {
+        AppFormeValue = ctx.ReadValue<float>();
+        SRend.ApparitionForme = AppFormeValue;
+        RenderFinal.sharedMaterial.SetFloat("_ApparitionForme", AppFormeValue);
+    }
+     void Taille(InputAction.CallbackContext ctx)
+     {
+         TailleValue = ctx.ReadValue<float>();
+         SRend.Taille = TailleValue;
      }
+    void Forme(InputAction.CallbackContext ctx)
+    {
+        FormeValue = ctx.ReadValue<float>();
+        SRend.Forme = FormeValue;
+    }
+    void Disparition(InputAction.CallbackContext ctx)
+    {
+        DisparitionValue = ctx.ReadValue<float>();
+        SRend.Disparition = DisparitionValue;
+    }
 
      void Zoom(InputAction.CallbackContext ctx)
      {
@@ -371,7 +368,6 @@ public class InputMidiControl : MonoBehaviour
     }
     void Set3DShapeSoft(InputAction.CallbackContext ctx)
     {
-        Debug.Log("ok");
         Manager.SetupParam3DshapeSoft();
     }
     void Set3DShapeComplex(InputAction.CallbackContext ctx)

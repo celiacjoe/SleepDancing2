@@ -173,15 +173,15 @@ public class SceneManager : MonoBehaviour
     }
     public void SetupParam3DshapeComplex()
     {
-        Render3Dshape.sharedMaterial.SetFloat("masque", 14f);
+        Render3Dshape.sharedMaterial.SetFloat("masque", 20f);
         Render3Dshape.sharedMaterial.SetFloat("focal", 1f);
-        Render3Dshape.sharedMaterial.SetFloat("distance", 13f);
-        Render3Dshape.sharedMaterial.SetFloat("rotateX", 0f);
-        Render3Dshape.sharedMaterial.SetFloat("rotateY", -0.1f);
-        Render3Dshape.sharedMaterial.SetFloat("rotateY", 0.05f);
+        Render3Dshape.sharedMaterial.SetFloat("distance", 20f);
+        Render3Dshape.sharedMaterial.SetFloat("rotateX", 0.1f);
+        Render3Dshape.sharedMaterial.SetFloat("rotateY", -0.02f);
+        Render3Dshape.sharedMaterial.SetFloat("rotateY", 0.04f);
         Render3Dshape.sharedMaterial.SetFloat("smoothform", 1f);
-        Render3Dshape.sharedMaterial.SetFloat("complexity", 0.7f);
-        Render3Dshape.sharedMaterial.SetFloat("taille", 0.85f);
+        Render3Dshape.sharedMaterial.SetFloat("complexity", 0.85f);
+        Render3Dshape.sharedMaterial.SetFloat("taille", 0.4f);
         //  Render3Dshape.sharedMaterial.SetVector4("_modifforme01", 1.5,1.8,1.3,0);
         //  Render3Dshape.sharedMaterial.SetFloat("_modifforme02", 0.7,0.6,0.4,0);
     }
