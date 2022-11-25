@@ -3920,7 +3920,7 @@
     },
     "m_Name": "Rought",
     "m_DefaultReferenceName": "Texture2D_44d3a1798d524167aa6355ac162b6488",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_Rought",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -4139,7 +4139,7 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     },
-    "m_TextureType": 1,
+    "m_TextureType": 0,
     "m_NormalMapSpace": 0
 }
 
@@ -8161,7 +8161,7 @@
         "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
         "m_Guid": ""
     },
-    "m_DefaultType": 3
+    "m_DefaultType": 0
 }
 
 {
@@ -8919,7 +8919,7 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     },
-    "m_TextureType": 1,
+    "m_TextureType": 0,
     "m_NormalMapSpace": 0
 }
 
@@ -9095,7 +9095,7 @@
     },
     "m_Name": "NRM",
     "m_DefaultReferenceName": "Texture2D_e39430a53f854004b403a56622f9e366",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_NRM",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,

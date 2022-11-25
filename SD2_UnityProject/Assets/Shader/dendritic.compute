@@ -14,7 +14,7 @@ float _disparition;
 float _resx;
 float _resy;
 
-#define STEPS 30 // adfloattion steps
+#define STEPS 20 // adfloattion steps
 
 #define ts 0.5    // adfloattion curl
 #define cs -1.0   // curl scale

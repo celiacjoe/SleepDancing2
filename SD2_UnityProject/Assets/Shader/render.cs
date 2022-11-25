@@ -47,8 +47,7 @@ public class render : MonoBehaviour
     }
 
     void Update()
-    {
-       
+    {      
         compute_shader.SetTexture(handle_main, "reader", A);
         compute_shader.SetTexture(handle_main, "reader2", C);
         compute_shader.SetFloat("_time", Time.time);
