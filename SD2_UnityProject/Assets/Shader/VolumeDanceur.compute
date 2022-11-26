@@ -29,7 +29,7 @@ void CSMain(uint2 id : SV_DispatchThreadID)
 	float2 res = float2(_resx, _resy);
 	float2 uv = f / res;
 
-	float vid = desaturate(reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xyz);
+	float vid = smoothstep(0.,0.5,desaturate(reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xyz));
 	float prev = reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).a;
 
 	float diff = abs(vid - prev);
@@ -74,6 +74,6 @@ void CSMain(uint2 id : SV_DispatchThreadID)
 	v += p.yx*rot / dot(b, b)*(reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).z)*5.;
 	float t1 = reader.SampleLevel(_LinearClamp, frac((pos + v * float2(-2, 2)) / res) + 0.5 / res, 0).x;
 	float t2 = max(t1*0.999, bb);
-	writer[id] = float4(float3(t2, diff, col.y), lerp(prev, vid, 0.1));
+	writer[id] = float4(float3(vid+0., diff, col.y), lerp(prev, vid, 0.1));
 
 }

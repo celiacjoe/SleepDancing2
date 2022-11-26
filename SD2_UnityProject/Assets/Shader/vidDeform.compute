@@ -67,7 +67,7 @@ float desaturate(float3 color)
 		float Pi = 6.28318530718;
 		float Directions = 16.0;
 		float Quality = 4.0;
-		float2 Radius = 0.05 + hs(uv)*0.05;
+		float2 Radius = 0.05* _disparition + hs(uv)*0.05* _disparition;
 		float4 Color = reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0);
 		for (float d = 0.0; d < Pi; d += Pi / Directions)
 		{

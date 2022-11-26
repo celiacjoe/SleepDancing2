@@ -8,8 +8,8 @@ public class MvtPixelsDendritic : MonoBehaviour
     RenderTexture D;
     RenderTexture E;
     public Material material;
-    //public WebCamTexture C;
-    public RenderTexture C;
+    public WebCamTexture C;
+   // public RenderTexture C;
     int handle_main;
     int handle_main2;
     [Range(0, 1)]
@@ -36,9 +36,9 @@ public class MvtPixelsDendritic : MonoBehaviour
         B.enableRandomWrite = true;
         B.Create();
        // WebCamDevice[] devices = WebCamTexture.devices;
-       /* C = new WebCamTexture();
-       // C.deviceName = devices[0].name;
-        C.Play();  */
+        C = new WebCamTexture();
+        //C.deviceName = devices[0].name;
+        C.Play();  
         E = new RenderTexture(_resx, _resy, 0, rtFormat);
         E.enableRandomWrite = true;
         E.Create();

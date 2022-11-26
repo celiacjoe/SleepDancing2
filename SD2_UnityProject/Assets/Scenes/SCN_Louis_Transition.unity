@@ -251,7 +251,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2765008366371961602, guid: f36be3b3311725749a06ba94b677cf26, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2765008366371961608, guid: f36be3b3311725749a06ba94b677cf26, type: 3}
       propertyPath: Name4
@@ -273,6 +273,10 @@ PrefabInstance:
       propertyPath: _oscIn
       value: 
       objectReference: {fileID: 932448730}
+    - target: {fileID: 2765008366854557086, guid: f36be3b3311725749a06ba94b677cf26, type: 3}
+      propertyPath: _resy
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 2765008366854557086, guid: f36be3b3311725749a06ba94b677cf26, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -330,6 +334,10 @@ PrefabInstance:
       value: Transition
       objectReference: {fileID: 0}
     - target: {fileID: 2765008367804950767, guid: f36be3b3311725749a06ba94b677cf26, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2918391200999640809, guid: f36be3b3311725749a06ba94b677cf26, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}

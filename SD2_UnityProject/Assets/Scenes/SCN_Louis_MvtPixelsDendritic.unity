@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!328 &827489612
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -343,13 +343,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   compute_shader: {fileID: 7200000, guid: f7db68c7042ed844a8d993123b0a81fb, type: 3}
   material: {fileID: 2100000, guid: a6fce5c85ff22b64d905cd2317d48f68, type: 2}
-  C: {fileID: 8400000, guid: 9e7243a176b9c214c96a7f9435758491, type: 2}
-  Taille: 0.73
-  Forme: 0.6
-  Disparition: 0.01
-  m1: 0.63
-  m2: 0
-  dir: -0.17
+  C: {fileID: 0}
+  Taille: 0.331
+  Forme: 0.734
+  Disparition: 0.005
+  m1: 0.6
+  m2: 1
+  dir: -0.55
   _resx: 1920
   rtFormat: 2
   _resy: 1080

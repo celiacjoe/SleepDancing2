@@ -66,7 +66,7 @@ namespace OscSimpl.Examples
             mat.SetFloat("_SHigh", SHigh);    */
             if (S_Midi.AppFormSound == true)
             {
-                QuadRender.sharedMaterial.SetFloat("_ApparitionForme", TMid);
+                QuadRender.sharedMaterial.SetFloat("_ApparitionForme", SMid);
             }
             if (S_Midi.TXTGrain == true)
             {

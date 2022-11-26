@@ -118,7 +118,7 @@ Material:
     - _ReceiveShadows: 1
     - _SHigh: 0
     - _SLow: 0
-    - _SMid: 0.04382847
+    - _SMid: 0.062083207
     - _Smid: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
