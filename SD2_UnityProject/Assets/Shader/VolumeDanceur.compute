@@ -29,7 +29,7 @@ void CSMain(uint2 id : SV_DispatchThreadID)
 	float2 res = float2(_resx, _resy);
 	float2 uv = f / res;
 
-	float vid = desaturate(reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xyz);
+	float vid = smoothstep(0.,0.2,desaturate(reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xyz));
 	float prev = reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).a;
 
 	float diff = abs(vid - prev);
