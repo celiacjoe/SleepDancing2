@@ -12,11 +12,15 @@ public class InputMidiControl : MonoBehaviour
     public render S_FinalRender;
     //public Camera Cam;
     public SceneManager Manager;
+    public UI_Manager S_UI;
     public Renderer Mat_RenderFinal;
     public VisualEffect FX;
     public bool SoundControl01 = false;
     public bool SoundControl02 = false;
     public bool SoundControl03 = false;
+    public float MultiplierSound01Value;
+    public float MultiplierSound02Value;
+    public float MultiplierSound03Value;
     private float BlurIntensityValue;
     public float RoughtIntensityValue;
     public float IntensityControlValue;
@@ -64,6 +68,7 @@ public class InputMidiControl : MonoBehaviour
     [SerializeField] InputAction _ScnSunshaft = null;
     [SerializeField] InputAction _ScnCam = null;
     [SerializeField] InputAction _ScnFX = null;
+    [SerializeField] InputAction _ScnVolume = null;
     [Header("NEXT")]
     [SerializeField] InputAction _ChangeFluid = null;
     [SerializeField] InputAction _ChangeFX = null;
@@ -79,6 +84,9 @@ public class InputMidiControl : MonoBehaviour
     [SerializeField] InputAction _ActiveSoundControl01 = null;
     [SerializeField] InputAction _ActiveSoundControl02 = null;
     [SerializeField] InputAction _ActiveSoundControl03 = null;
+    [SerializeField] InputAction _MultiplierSound01 = null;
+    [SerializeField] InputAction _MultiplierSound02 = null;
+    [SerializeField] InputAction _MultiplierSound03 = null;
     ///////////// FUNCTION
     float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
     {
@@ -90,11 +98,9 @@ public class InputMidiControl : MonoBehaviour
     }
     void Update()
     {
-        //float NewTargetPosition = PosX + 40;
         Vector3 NewTargetPosition = new Vector3(PosX+40,-4);
         MovableObject.transform.position = Vector3.SmoothDamp(MovableObject.transform.position, NewTargetPosition, ref velocity, SmoothT);
         //MovableObject.transform.position.x = f.SmoothDamp(MovableObject.transform.position.x, NewTargetPosition.x, ref velocity, SmoothT);
-
     }
     void OnEnable()
     {
@@ -182,6 +188,9 @@ public class InputMidiControl : MonoBehaviour
         _ScnFX.performed += ScnFX;
         _ScnFX.Enable();
 
+        _ScnVolume.performed += ScnVolume;
+        _ScnVolume.Enable();
+
         _Setting3Dshape01.performed += Set3DShapeSoft;
         _Setting3Dshape01.Enable();
 
@@ -199,6 +208,15 @@ public class InputMidiControl : MonoBehaviour
 
         _ActiveSoundControl03.performed += ActiveSoundControl03;
         _ActiveSoundControl03.Enable();
+
+        _MultiplierSound01.performed += MultiplierSound01;
+        _MultiplierSound01.Enable();
+
+        _MultiplierSound02.performed += MultiplierSound02;
+        _MultiplierSound02.Enable();
+
+        _MultiplierSound03.performed += MultiplierSound03;
+        _MultiplierSound03.Enable();
     }
 
     void OnDisable()
@@ -287,6 +305,9 @@ public class InputMidiControl : MonoBehaviour
         _ScnFX.performed -= ScnFX;
         _ScnFX.Disable();
 
+        _ScnVolume.performed -= ScnVolume;
+        _ScnVolume.Disable();
+
         _Setting3Dshape01.performed -= Set3DShapeSoft;
         _Setting3Dshape01.Disable();
 
@@ -304,6 +325,15 @@ public class InputMidiControl : MonoBehaviour
 
         _ActiveSoundControl03.performed -= ActiveSoundControl03;
         _ActiveSoundControl03.Disable();
+
+        _MultiplierSound01.performed -= MultiplierSound01;
+        _MultiplierSound01.Disable();
+
+        _MultiplierSound02.performed -= MultiplierSound02;
+        _MultiplierSound02.Disable();
+
+        _MultiplierSound03.performed -= MultiplierSound03;
+        _MultiplierSound03.Disable();
     }
     void BlurIntensity(InputAction.CallbackContext ctx)
     {
@@ -313,7 +343,10 @@ public class InputMidiControl : MonoBehaviour
     void RoughtIntensity(InputAction.CallbackContext ctx)
     {
         RoughtIntensityValue = ctx.ReadValue<float>();
-        Mat_RenderFinal.sharedMaterial.SetFloat("RoughtIntensity", RoughtIntensityValue);
+        if (!SoundControl01)
+        {
+            Mat_RenderFinal.sharedMaterial.SetFloat("RoughtIntensity", RoughtIntensityValue);
+        }
     }
     void IntensityControl(InputAction.CallbackContext ctx)
     {
@@ -407,17 +440,17 @@ public class InputMidiControl : MonoBehaviour
     }
     void ChangeFX01(InputAction.CallbackContext ctx)
     {
-        Manager.Nbr_FX = 0;
+        Manager.Nbr_FX = 1;
         Manager.ChangeFX();
     }
     void ChangeFX02(InputAction.CallbackContext ctx)
     {
-        Manager.Nbr_FX = 1;
+        Manager.Nbr_FX = 2;
         Manager.ChangeFX();
     }
     void ChangeFX03(InputAction.CallbackContext ctx)
     {
-        Manager.Nbr_FX = 2;
+        Manager.Nbr_FX = 3;
         Manager.ChangeFX();
     }
     void ChangeGrain(InputAction.CallbackContext ctx)
@@ -425,15 +458,17 @@ public class InputMidiControl : MonoBehaviour
         Manager.ChangeGrainTexture();
     }
     void FadeNoir(InputAction.CallbackContext ctx)
-    {
+    {       
         Manager.AC.GetBool("FadeNoir");
         if (!Noir)
         {
+            S_UI.UI_Noir.SetActive(true);
+            S_UI.UI_Noir.GetComponentInChildren<Text>().text = "NOIR INCOMING";
             Manager.AC.SetBool("FadeNoir",true);
             Noir = true;
-        }
-        else
+        }else
         {
+            S_UI.UI_Noir.SetActive(false);
             Manager.AC.SetBool("FadeNoir", false);
             Noir = false ;
         }
@@ -458,6 +493,11 @@ public class InputMidiControl : MonoBehaviour
         Manager.Next = "FX";
         Manager.TransitionScene();
     }
+    void ScnVolume(InputAction.CallbackContext ctx)
+    {
+        Manager.Next = "Volume";
+        Manager.TransitionScene();
+    }
     void Set3DShapeSoft(InputAction.CallbackContext ctx)
     {
         Manager.Setting3Dshape01();
@@ -473,45 +513,48 @@ public class InputMidiControl : MonoBehaviour
     }
 
     void ActiveSoundControl01(InputAction.CallbackContext ctx)
-    {
+    {     
         if (SoundControl01){
+            S_UI.UI_SoundControl01.SetActive(false);
             SoundControl01 = false;
         }else{
+            S_UI.UI_SoundControl01.SetActive(true);
             SoundControl01 = true;
         }
-        /*
-        if (Low)
-        {
-            Low = false;
-            Medium = false;
-            High = false;
-        }else if (Medium)
-        {
-            Low = true;
-            Medium = false;
-            High = false;
-        }else if (High)
-        {
-            Low = true;
-            Medium = false;
-            High = false;
-        }*/
     }
     void ActiveSoundControl02(InputAction.CallbackContext ctx)
     {
         if (SoundControl02){
             SoundControl02 = false;
+            S_UI.UI_SoundControl02.SetActive(false);
         }else{
             SoundControl02 = true;
+            S_UI.UI_SoundControl02.SetActive(true);
         }
     }
     void ActiveSoundControl03(InputAction.CallbackContext ctx)
     {
         if (SoundControl03){
             SoundControl03 = false;
+            S_UI.UI_SoundControl03.SetActive(false);
         } else{
             SoundControl03 = true;
+            S_UI.UI_SoundControl03.SetActive(true);
         }
+    }
+    void MultiplierSound01(InputAction.CallbackContext ctx)
+    {
+        MultiplierSound01Value = ctx.ReadValue<float>();
+    }
+
+    void MultiplierSound02(InputAction.CallbackContext ctx)
+    {
+        MultiplierSound02Value = ctx.ReadValue<float>();
+    }
+
+    void MultiplierSound03(InputAction.CallbackContext ctx)
+    {
+        MultiplierSound03Value = ctx.ReadValue<float>();
     }
 
     /*  void Subdivision1(InputAction.CallbackContext ctx)

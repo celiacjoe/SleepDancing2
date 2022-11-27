@@ -24,6 +24,7 @@ namespace OscSimpl.Examples
         public Vector3 fac;
         public InputMidiControl S_Midi;
         public Renderer QuadRender;
+        public float RoughtSoundReactValue;
 
         float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
         {
@@ -42,6 +43,14 @@ namespace OscSimpl.Examples
 
         void Update()
         {
+            fac.x = map(S_Midi.MultiplierSound01Value,0,1,0,10);
+            fac.y = map(S_Midi.MultiplierSound02Value, 0, 1, 0, 40);
+            fac.z = map(S_Midi.MultiplierSound03Value, 0, 1, 0, 40);
+            if (S_Midi.SoundControl01)
+            {
+                S_Midi.RoughtIntensityValue *= fac.x;
+            }
+
             TLow += Low;
             TMid += Mid;
             THigh += High;
