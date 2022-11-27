@@ -42,6 +42,13 @@ namespace OscSimpl.Examples
 
         void Update()
         {
+            fac.x = map(S_Midi.MultiplierSound01Value,0,1,0,100);
+            fac.y = map(S_Midi.MultiplierSound02Value, 0, 1, 0, 100);
+            fac.z = map(S_Midi.MultiplierSound03Value, 0, 1, 0, 100);
+            if (S_Midi.SoundControl01)
+            {
+                S_Midi.RoughtIntensityValue = S_Midi.RoughtIntensityValue * fac.x;
+            }
             TLow += Low;
             TMid += Mid;
             THigh += High;
