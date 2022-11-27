@@ -145,7 +145,7 @@ public class SceneManager : MonoBehaviour
         VisualEffect VisualFX0 = FX_List[0].GetComponent(typeof(VisualEffect)) as VisualEffect;
         S_Midi.FX = VisualFX0;
         S_Midi.MovableObject = FX_List[0];
-        FX_List[0].SetActive(true);
+        FX_List[0].SetActive(false);
         FX_List[1].SetActive(false);
         FX_List[2].SetActive(false);
         //FX_List[3].SetActive(false);
@@ -369,7 +369,6 @@ public class SceneManager : MonoBehaviour
             RenderFinal.sharedMaterial.SetInt("_Nebula_FX", 0);
             RenderFinal.sharedMaterial.SetInt("_Sunshaft_FX", 0);
             RenderFinal.sharedMaterial.SetInt("_Cam_FX", 0);
-            GO_FinalQuad[3].SetActive(false);
             FX_List[0].SetActive(false);
             FX_List[1].SetActive(false);
             FX_List[2].SetActive(false);

@@ -53,7 +53,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _3DShapeDeform:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 3debb9308b949da4d8577513e9693561, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -117,7 +117,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Rought:
-        m_Texture: {fileID: 2800000, guid: 78f0030aea469fa41b8f6a3218358dcf, type: 3}
+        m_Texture: {fileID: 2800000, guid: fef538922a876c44788565c6c85d6783, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -145,14 +145,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - BlurIntensity: 0.33070868
-    - Intensity: 1
-    - RoughtIntensity: 0.992126
+    - BlurIntensity: 0.40157482
+    - Intensity: 0.21259843
+    - RoughtIntensity: 0.46456695
     - Vector1_52db204c180d4d25af4afb3f60e74283: 1
     - Vector1_edcf7fba66c9426894ca490ffe99ffaf: 0
     - Vector1_f07139077151487f8de0f1a71a18d815: -0.82
     - _AlphaClip: 0
-    - _ApparitionForme: 0
+    - _ApparitionForme: 0.11811024
     - _BackFX_Nedula: 0
     - _BackFX_SunShaft: 0
     - _BackFX_Video: 1
@@ -199,9 +199,9 @@ Material:
     - _SunShaft_Video: 0
     - _Sunshaft_Cam: 0
     - _Sunshaft_FX: 0
-    - _Sunshaft_Nebula: 0
+    - _Sunshaft_Nebula: 1
     - _Surface: 0
-    - _Transition: 0
+    - _Transition: 1
     - _Video_BAckFX: 0
     - _Video_Nedula: 0
     - _Video_SunShaft: 0
