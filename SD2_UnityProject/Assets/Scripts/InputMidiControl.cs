@@ -343,10 +343,10 @@ public class InputMidiControl : MonoBehaviour
     void RoughtIntensity(InputAction.CallbackContext ctx)
     {
         RoughtIntensityValue = ctx.ReadValue<float>();
-        if (!SoundControl01)
-        {
-            Mat_RenderFinal.sharedMaterial.SetFloat("RoughtIntensity", RoughtIntensityValue);
-        }
+
+        //Mat_RenderFinal.sharedMaterial.SetFloat("RoughtIntensity", RoughtIntensityValue);
+
+        
     }
     void IntensityControl(InputAction.CallbackContext ctx)
     {

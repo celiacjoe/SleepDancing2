@@ -24,6 +24,7 @@ namespace OscSimpl.Examples
         public Vector3 fac;
         public InputMidiControl S_Midi;
         public Renderer QuadRender;
+        public VideoDeform S_VideoDeform;
         public float RoughtSoundReactValue;
 
         float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
@@ -56,10 +57,8 @@ namespace OscSimpl.Examples
 
             if (S_Midi.SoundControl01 == true)
             {
-                QuadRender.sharedMaterial.SetFloat("RoughtIntensity", Mathf.Pow(S_Midi.RoughtIntensityValue,5)*SLow*5);
-            }
-            else{
-                QuadRender.sharedMaterial.SetFloat("RoughtIntensity", S_Midi.RoughtIntensityValue);
+               QuadRender.sharedMaterial.SetFloat("RoughtIntensity", Mathf.Pow(S_Midi.RoughtIntensityValue,5)*Low*5);
+               S_VideoDeform.RoughtIntensity=Mathf.Pow(S_Midi.RoughtIntensityValue,5)*Low*5;
             }
             /*if (S_Midi.SoundControl02 == true)
             {
