@@ -16,8 +16,8 @@ float _SHigh;
 float _THigh;
 float _resx;
 float _resy;
-//float _spectrum;
-
+float _p1;
+float _p2;
 
 float4 rd(float p) {
 	p = floor(p);
@@ -78,8 +78,8 @@ void CSMain(uint2 id : SV_DispatchThreadID)
 	float2 uv = g / res;
 	uv = (uv - .5)*2.;
 	uv.x *= _resx / _resy;
-	float2 pp = lerp(float2(no1(_TLow*0.01 + 596.), no1(_TLow*0.01 + 475.)),float2(0.5,0.5),pow(no1(_TMid*0.1),0.5));
-	float3 flare = lensflares(uv*(2. - no1(_THigh*0.1 + 46.)), (pp - 0.5)*2., clamp(_SLow*120., 0., 120.), _TMid);
+	float2 pp = lerp(float2(no1(_TLow*0.01 + 596.), no1(_TLow*0.01 + 475.)),float2(0.5,0.5),pow(no1(_TMid*0.1),0.5))-float2(_p1,_p2)*0.1;
+	float3 flare = lensflares(uv*(2. - no1(_THigh*0.1 + 46.))- float2(_p1, _p2), (pp - 0.5)*2., clamp(_SLow*120., 0., 120.), _TMid);
 
 	float3 col = smoothstep(-0.0, 0.9, pow(flare, float3(0.5, 0.5, 0.5)));
 	writer[id] = float4(col, 0.);

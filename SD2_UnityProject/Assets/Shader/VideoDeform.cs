@@ -10,12 +10,12 @@ public class VideoDeform : MonoBehaviour
     
     public WebCamTexture C;
 
-    RenderTexture D;
-    RenderTexture E;
+    //RenderTexture D;
+    //RenderTexture E;
 
     int handle_main;
     int handle_main2;
-    int handle_main3;
+    //int handle_main3;
 
     [Range(0, 1)]
     public float Taille;
@@ -37,8 +37,10 @@ public class VideoDeform : MonoBehaviour
         A.enableRandomWrite = true;
         A.Create();
         B = new RenderTexture(_resx, _resy, 0, rtFormat);
+        B.wrapMode = TextureWrapMode.Mirror;
         B.enableRandomWrite = true;
         B.Create();
+
         /* C = new RenderTexture(1920, 1080, 0);
          C.enableRandomWrite = true;
          C.Create();    */
@@ -52,8 +54,8 @@ public class VideoDeform : MonoBehaviour
         handle_main2 = compute_shader.FindKernel("CSMain2");
        // handle_main3 = compute_shader.FindKernel("CSMain3");
         C = new WebCamTexture();
-        C.Play();  
-
+        C.Play();
+        
     }
 
     void Update()
@@ -81,6 +83,7 @@ public class VideoDeform : MonoBehaviour
         compute_shader.Dispatch(handle_main3, E.width / 8, E.height / 8, 1);     */
         material.SetTexture("_Cam", B);
         script.C = B;
+        script.video = true;
         // material.SetTexture("_DeformTex", E);
         // material.SetTexture("_MainTex2", A);
 

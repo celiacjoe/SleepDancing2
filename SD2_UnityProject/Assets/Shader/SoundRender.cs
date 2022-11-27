@@ -30,6 +30,10 @@ public class SoundRender : MonoBehaviour
     public RenderTextureFormat rtFormat = RenderTextureFormat.ARGBHalf;
     public int _resy;
     public render script;
+    public float f1;
+    public float f2;
+    float p1;
+    float p2;
     //public Material Nebula;
     void Start()
     {
@@ -47,9 +51,11 @@ public class SoundRender : MonoBehaviour
     void Update()
     {
 
-
+        p1 = Mathf.Lerp(p1, f1, 0.02f);
+        p2 = Mathf.Lerp(p2, f2, 0.02f);
         compute_shader.SetTexture(handle_main2, "reader", A);
-
+        compute_shader.SetFloat("_p1", p1);
+        compute_shader.SetFloat("_p2",p2);
         compute_shader.SetFloat("_resx", _resx);
         compute_shader.SetFloat("_resy", _resy);
         compute_shader.SetFloat("_Low", Low);
