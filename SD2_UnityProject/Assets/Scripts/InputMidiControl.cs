@@ -9,32 +9,31 @@ public class InputMidiControl : MonoBehaviour
 {
 
     ///////////// VAR
-    public render SRend;
-    public Camera Cam;
-    //public GameObject GO;
+    public render S_FinalRender;
+    //public Camera Cam;
     public SceneManager Manager;
-    public Renderer RenderFinal;
+    public Renderer Mat_RenderFinal;
     public VisualEffect FX;
-    public bool AppFormSound = false;
-    public bool TXTGrain = false;
-    public bool SoundIntensity = false;
+    public bool SoundControl01 = false;
+    public bool SoundControl02 = false;
+    public bool SoundControl03 = false;
     private float BlurIntensityValue;
-    private float RoughtIntensityValue;
-    private float IntensityControlValue;
-    private float AppFormeValue;
+    public float RoughtIntensityValue;
+    public float IntensityControlValue;
+    public float AppFormeValue;
     private float TailleValue;
     private float TailleValue2;
     private float FormeValue;
     private float DisparitionValue;
     private float ZoomValue;
-    public float SmoothT = 0.45f;
+    public float SmoothT = 0.2f;
     private Vector3 velocity;
-    public GameObject MovableObject;
     private float PosX;
     private float PosY;
+    private bool Noir;
+    public GameObject MovableObject;
 
     [Header("DEFORMATION CONTROLL")]
-    /////////////SET INPUT
     [SerializeField] InputAction _BlurIntensity = null;
     [SerializeField] InputAction _RoughtIntensity = null;
     [SerializeField] InputAction _IntensityControl = null;
@@ -44,7 +43,6 @@ public class InputMidiControl : MonoBehaviour
     [SerializeField] InputAction _Forme = null;
     [SerializeField] InputAction _Disparition = null;
     [SerializeField] InputAction _Zoom = null;
-    // [SerializeField] InputAction _ResetLevel = null;
     [Header("FX CONTROLL")]
     [SerializeField] InputAction _PositionX = null;
     [SerializeField] InputAction _PositionY = null;
@@ -61,23 +59,26 @@ public class InputMidiControl : MonoBehaviour
     [SerializeField] InputAction _FXParam6 = null;
     public string Name_P6;
     [Header("SCENE CONTROLL")]
-    [SerializeField] InputAction _LayerDisplace = null;
-    [SerializeField] InputAction _LayerBack = null;
+    [SerializeField] InputAction _FadeNoir = null;
     [SerializeField] InputAction _ScnNebula = null;
     [SerializeField] InputAction _ScnSunshaft = null;
     [SerializeField] InputAction _ScnCam = null;
     [SerializeField] InputAction _ScnFX = null;
-    [SerializeField] InputAction _ScnGrain = null;
-
-    [Header("PRESET ASSIGNMENT")]
-    [SerializeField] InputAction _Set3DshapeSoft = null;
-    [SerializeField] InputAction _Set3DshapeComplex = null;
-    [SerializeField] InputAction _Set3DShapePetit = null;
-
+    [Header("NEXT")]
+    [SerializeField] InputAction _ChangeFluid = null;
+    [SerializeField] InputAction _ChangeFX = null;
+    [SerializeField] InputAction _ChangeFX01 = null;
+    [SerializeField] InputAction _ChangeFX02 = null;
+    [SerializeField] InputAction _ChangeFX03 = null;
+    [SerializeField] InputAction _ChangeGrain = null;
+    [Header("PRESET 3D SHAPE ASSIGNMENT")]
+    [SerializeField] InputAction _Setting3Dshape01 = null;
+    [SerializeField] InputAction _Setting3Dshape02 = null;
+    [SerializeField] InputAction _Setting3Dshape03 = null;
     [Header("SOUND CONTROL")]
-    [SerializeField] InputAction _ActiveSoundControlAppForm = null;
-    [SerializeField] InputAction _ActiveSoundControlTXTGrain = null;
-    [SerializeField] InputAction _ActiveSoundControlIntensity = null;
+    [SerializeField] InputAction _ActiveSoundControl01 = null;
+    [SerializeField] InputAction _ActiveSoundControl02 = null;
+    [SerializeField] InputAction _ActiveSoundControl03 = null;
     ///////////// FUNCTION
     float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
     {
@@ -85,12 +86,15 @@ public class InputMidiControl : MonoBehaviour
     }
     void Start()
     {
-     
+        Noir = false;
     }
     void Update()
-    {      
-        Vector3 NewTargetPosition = new Vector3(PosX+40, PosY);
+    {
+        //float NewTargetPosition = PosX + 40;
+        Vector3 NewTargetPosition = new Vector3(PosX+40,-4);
         MovableObject.transform.position = Vector3.SmoothDamp(MovableObject.transform.position, NewTargetPosition, ref velocity, SmoothT);
+        //MovableObject.transform.position.x = f.SmoothDamp(MovableObject.transform.position.x, NewTargetPosition.x, ref velocity, SmoothT);
+
     }
     void OnEnable()
     {
@@ -145,11 +149,26 @@ public class InputMidiControl : MonoBehaviour
         _FXParam6.performed += FXParam6;
         _FXParam6.Enable();
 
-        _LayerDisplace.performed += DisplaceLayerChange;
-        _LayerDisplace.Enable();
+        _ChangeFluid.performed += ChangeFluid;
+        _ChangeFluid.Enable();
 
-        _LayerBack.performed += BackLayerChange;
-        _LayerBack.Enable();
+        _ChangeFX.performed += ChangeFX;
+        _ChangeFX.Enable();
+
+        _ChangeFX01.performed += ChangeFX01;
+        _ChangeFX01.Enable();
+
+        _ChangeFX02.performed += ChangeFX02;
+        _ChangeFX02.Enable();
+
+        _ChangeFX03.performed += ChangeFX03;
+        _ChangeFX03.Enable();
+
+        _ChangeGrain.performed += ChangeGrain;
+        _ChangeGrain.Enable();
+
+        _FadeNoir.performed += FadeNoir;
+        _FadeNoir.Enable();
 
         _ScnNebula.performed += ScnNebula;
         _ScnNebula.Enable();
@@ -163,26 +182,23 @@ public class InputMidiControl : MonoBehaviour
         _ScnFX.performed += ScnFX;
         _ScnFX.Enable();
 
-        _ScnGrain.performed += ScnGrain;
-        _ScnGrain.Enable();
+        _Setting3Dshape01.performed += Set3DShapeSoft;
+        _Setting3Dshape01.Enable();
 
-        _Set3DshapeSoft.performed += Set3DShapeSoft;
-        _Set3DshapeSoft.Enable();
+        _Setting3Dshape02.performed += Set3DShapeComplex;
+        _Setting3Dshape02.Enable();
 
-        _Set3DshapeComplex.performed += Set3DShapeComplex;
-        _Set3DshapeComplex.Enable();
+        _Setting3Dshape03.performed += Set3DShapePetit;
+        _Setting3Dshape03.Enable();
 
-        _Set3DShapePetit.performed += Set3DShapePetit;
-        _Set3DShapePetit.Enable();
+        _ActiveSoundControl01.performed += ActiveSoundControl01;
+        _ActiveSoundControl01.Enable();
 
-        _ActiveSoundControlAppForm.performed += SetSoundControlAppForm;
-        _ActiveSoundControlAppForm.Enable();
+        _ActiveSoundControl02.performed += ActiveSoundControl02;
+        _ActiveSoundControl02.Enable();
 
-        _ActiveSoundControlTXTGrain.performed += SetSoundControlTXTGrain;
-        _ActiveSoundControlTXTGrain.Enable();
-
-        _ActiveSoundControlIntensity.performed += SetSoundControlIntensity;
-        _ActiveSoundControlIntensity.Enable();
+        _ActiveSoundControl03.performed += ActiveSoundControl03;
+        _ActiveSoundControl03.Enable();
     }
 
     void OnDisable()
@@ -211,11 +227,23 @@ public class InputMidiControl : MonoBehaviour
         _Disparition.performed -= Disparition;
         _Disparition.Disable();
 
-        _LayerDisplace.performed -= DisplaceLayerChange;
-        _LayerDisplace.Disable();
+        _ChangeFluid.performed -= ChangeFluid;
+        _ChangeFluid.Disable();
 
-        _LayerBack.performed -= BackLayerChange;
-        _LayerBack.Disable();
+        _ChangeFX.performed -= ChangeFX;
+        _ChangeFX.Disable();
+
+        _ChangeFX01.performed -= ChangeFX01;
+        _ChangeFX01.Disable();
+
+        _ChangeFX02.performed -= ChangeFX02;
+        _ChangeFX02.Disable();
+
+        _ChangeFX03.performed -= ChangeFX03;
+        _ChangeFX03.Disable();
+
+        _ChangeGrain.performed -= ChangeGrain;
+        _ChangeGrain.Disable();
 
         _Zoom.performed -= Zoom;
         _Zoom.Disable();
@@ -244,6 +272,9 @@ public class InputMidiControl : MonoBehaviour
         _FXParam6.performed -= FXParam6;
         _FXParam6.Disable();
 
+        _FadeNoir.performed -= FadeNoir;
+        _FadeNoir.Disable();
+
         _ScnNebula.performed -= ScnNebula;
         _ScnNebula.Disable();
 
@@ -256,72 +287,69 @@ public class InputMidiControl : MonoBehaviour
         _ScnFX.performed -= ScnFX;
         _ScnFX.Disable();
 
-        _ScnGrain.performed -= ScnGrain;
-        _ScnGrain.Disable();
+        _Setting3Dshape01.performed -= Set3DShapeSoft;
+        _Setting3Dshape01.Disable();
 
-        _Set3DshapeSoft.performed -= Set3DShapeSoft;
-        _Set3DshapeSoft.Disable();
+        _Setting3Dshape02.performed -= Set3DShapeComplex;
+        _Setting3Dshape02.Disable();
 
-        _Set3DshapeComplex.performed -= Set3DShapeComplex;
-        _Set3DshapeComplex.Disable();
+        _Setting3Dshape03.performed -= Set3DShapePetit;
+        _Setting3Dshape03.Disable();
 
-        _Set3DShapePetit.performed -= Set3DShapePetit;
-        _Set3DShapePetit.Disable();
+        _ActiveSoundControl01.performed -= ActiveSoundControl01;
+        _ActiveSoundControl01.Disable();
 
-        _ActiveSoundControlAppForm.performed -= SetSoundControlAppForm;
-        _ActiveSoundControlAppForm.Disable();
+        _ActiveSoundControl02.performed -= ActiveSoundControl02;
+        _ActiveSoundControl02.Disable();
 
-        _ActiveSoundControlTXTGrain.performed -= SetSoundControlTXTGrain;
-        _ActiveSoundControlTXTGrain.Disable();
-
-        _ActiveSoundControlIntensity.performed -= SetSoundControlIntensity;
-        _ActiveSoundControlIntensity.Disable();
+        _ActiveSoundControl03.performed -= ActiveSoundControl03;
+        _ActiveSoundControl03.Disable();
     }
     void BlurIntensity(InputAction.CallbackContext ctx)
     {
         BlurIntensityValue = ctx.ReadValue<float>();
-        RenderFinal.sharedMaterial.SetFloat("BlurIntensity", BlurIntensityValue);
+        Mat_RenderFinal.sharedMaterial.SetFloat("BlurIntensity", BlurIntensityValue);
     }
     void RoughtIntensity(InputAction.CallbackContext ctx)
     {
         RoughtIntensityValue = ctx.ReadValue<float>();
-        RenderFinal.sharedMaterial.SetFloat("RoughtIntensity", RoughtIntensityValue);
+        Mat_RenderFinal.sharedMaterial.SetFloat("RoughtIntensity", RoughtIntensityValue);
     }
     void IntensityControl(InputAction.CallbackContext ctx)
     {
         IntensityControlValue = ctx.ReadValue<float>();
-        RenderFinal.sharedMaterial.SetFloat("Intensity", IntensityControlValue);
+        Mat_RenderFinal.sharedMaterial.SetFloat("Intensity", IntensityControlValue);
     }
     void ApparitionForme(InputAction.CallbackContext ctx)
     {
         AppFormeValue = ctx.ReadValue<float>();
-        SRend.ApparitionForme = AppFormeValue;
-        RenderFinal.sharedMaterial.SetFloat("_ApparitionForme", AppFormeValue);
+        S_FinalRender.ApparitionForme = AppFormeValue;
+        Mat_RenderFinal.sharedMaterial.SetFloat("_ApparitionForme", AppFormeValue);
     }
      void Taille(InputAction.CallbackContext ctx)
      {
          TailleValue = ctx.ReadValue<float>();
-         SRend.Taille = TailleValue;
+         S_FinalRender.Taille = TailleValue;
      }
     void Forme(InputAction.CallbackContext ctx)
     {
         FormeValue = ctx.ReadValue<float>();
-        SRend.Forme = FormeValue;
+        S_FinalRender.Forme = FormeValue;
     }
     void Disparition(InputAction.CallbackContext ctx)
     {
         DisparitionValue = ctx.ReadValue<float>();
-        SRend.Disparition = DisparitionValue;
+        S_FinalRender.Disparition = DisparitionValue;
     }
     void Taille2(InputAction.CallbackContext ctx)
     {
         TailleValue2 = ctx.ReadValue<float>();
-        SRend.Taille2 = TailleValue2;
+        S_FinalRender.Taille2 = TailleValue2;
     }
     void Zoom(InputAction.CallbackContext ctx)
      {
          ZoomValue = ctx.ReadValue<float>();
-         Cam.orthographicSize = map(ZoomValue,0, 1, 0.25f, 4.5f);
+        // Cam.orthographicSize = map(ZoomValue,0, 1, 0.25f, 4.5f);
      }
     void PositionX(InputAction.CallbackContext ctx)
     {
@@ -351,7 +379,6 @@ public class InputMidiControl : MonoBehaviour
         VisualEffect VFX = FX.GetComponent<VisualEffect>();
         VFX.SetFloat(Name_P3, FxP3);
     }
-
     void FXParam4(InputAction.CallbackContext ctx)
     {
         float FxP4 = ctx.ReadValue<float>();
@@ -364,25 +391,52 @@ public class InputMidiControl : MonoBehaviour
         VisualEffect VFX = FX.GetComponent<VisualEffect>();
         VFX.SetFloat(Name_P5, FxP5);
     }
-
     void FXParam6(InputAction.CallbackContext ctx)
     {
         float FxP6 = ctx.ReadValue<float>();
         VisualEffect VFX = FX.GetComponent<VisualEffect>();
         VFX.SetFloat(Name_P6, FxP6);
     }
-    void DisplaceLayerChange(InputAction.CallbackContext ctx)
+    void ChangeFluid(InputAction.CallbackContext ctx)
     {
         Manager.ChangeDisplace();
     }
-    void BackLayerChange(InputAction.CallbackContext ctx)
+    void ChangeFX(InputAction.CallbackContext ctx)
     {
-        Debug.Log(Manager.Nbr_SceneB);
-        Manager.ChangeBack();
+        Manager.ChangeFX();
     }
-    void ScnGrain(InputAction.CallbackContext ctx)
+    void ChangeFX01(InputAction.CallbackContext ctx)
+    {
+        Manager.Nbr_FX = 0;
+        Manager.ChangeFX();
+    }
+    void ChangeFX02(InputAction.CallbackContext ctx)
+    {
+        Manager.Nbr_FX = 1;
+        Manager.ChangeFX();
+    }
+    void ChangeFX03(InputAction.CallbackContext ctx)
+    {
+        Manager.Nbr_FX = 2;
+        Manager.ChangeFX();
+    }
+    void ChangeGrain(InputAction.CallbackContext ctx)
     {
         Manager.ChangeGrainTexture();
+    }
+    void FadeNoir(InputAction.CallbackContext ctx)
+    {
+        Manager.AC.GetBool("FadeNoir");
+        if (!Noir)
+        {
+            Manager.AC.SetBool("FadeNoir",true);
+            Noir = true;
+        }
+        else
+        {
+            Manager.AC.SetBool("FadeNoir", false);
+            Noir = false ;
+        }
     }
     void ScnNebula(InputAction.CallbackContext ctx)
     {
@@ -406,49 +460,57 @@ public class InputMidiControl : MonoBehaviour
     }
     void Set3DShapeSoft(InputAction.CallbackContext ctx)
     {
-        Manager.SetupParam3DshapeSoft();
+        Manager.Setting3Dshape01();
     }
     void Set3DShapeComplex(InputAction.CallbackContext ctx)
     {
-        Manager.SetupParam3DshapeComplex();
+        Manager.Setting3Dshape02();
     }
 
     void Set3DShapePetit(InputAction.CallbackContext ctx)
     {
-        Manager.SetupParam3DshapePetit();
+        Manager.Setting3Dshape03();
     }
 
-    void SetSoundControlAppForm(InputAction.CallbackContext ctx)
+    void ActiveSoundControl01(InputAction.CallbackContext ctx)
     {
-        if (AppFormSound)
-        {
-            AppFormSound = false;
+        if (SoundControl01){
+            SoundControl01 = false;
+        }else{
+            SoundControl01 = true;
         }
-        else
+        /*
+        if (Low)
         {
-            AppFormSound = true;
+            Low = false;
+            Medium = false;
+            High = false;
+        }else if (Medium)
+        {
+            Low = true;
+            Medium = false;
+            High = false;
+        }else if (High)
+        {
+            Low = true;
+            Medium = false;
+            High = false;
+        }*/
+    }
+    void ActiveSoundControl02(InputAction.CallbackContext ctx)
+    {
+        if (SoundControl02){
+            SoundControl02 = false;
+        }else{
+            SoundControl02 = true;
         }
     }
-    void SetSoundControlTXTGrain(InputAction.CallbackContext ctx)
+    void ActiveSoundControl03(InputAction.CallbackContext ctx)
     {
-        if (TXTGrain)
-        {
-            TXTGrain = false;
-        }
-        else
-        {
-            TXTGrain = true;
-        }
-    }
-    void SetSoundControlIntensity(InputAction.CallbackContext ctx)
-    {
-        if (SoundIntensity)
-        {
-            SoundIntensity = false;
-        }
-        else
-        {
-            SoundIntensity = true;
+        if (SoundControl03){
+            SoundControl03 = false;
+        } else{
+            SoundControl03 = true;
         }
     }
 

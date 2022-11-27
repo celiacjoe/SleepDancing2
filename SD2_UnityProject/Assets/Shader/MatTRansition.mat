@@ -53,7 +53,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _3DShapeDeform:
-        m_Texture: {fileID: 8400000, guid: 7504fd7b4cae0b440ac7cc63de465df8, type: 2}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -101,7 +101,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NRM:
-        m_Texture: {fileID: 2800000, guid: 2933566edac675b47a7892c48731b6e7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3c3c1610a9e3cf2429a2074966ccb08b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Nebula:
@@ -117,7 +117,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Rought:
-        m_Texture: {fileID: 2800000, guid: b3b310952c101f04aa900b465de76022, type: 3}
+        m_Texture: {fileID: 2800000, guid: fef538922a876c44788565c6c85d6783, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -145,14 +145,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - BlurIntensity: 0.17322835
-    - Intensity: 0.51
-    - RoughtIntensity: 0.6929134
+    - BlurIntensity: 0.40157482
+    - Intensity: 1
+    - RoughtIntensity: 1
     - Vector1_52db204c180d4d25af4afb3f60e74283: 1
     - Vector1_edcf7fba66c9426894ca490ffe99ffaf: 0
     - Vector1_f07139077151487f8de0f1a71a18d815: -0.82
     - _AlphaClip: 0
-    - _ApparitionForme: 0.09448819
+    - _ApparitionForme: 0.03937008
     - _BackFX_Nedula: 0
     - _BackFX_SunShaft: 0
     - _BackFX_Video: 1
@@ -160,7 +160,7 @@ Material:
     - _BumpScale: 1
     - _Cam_FX: 0
     - _Cam_Nebula: 0
-    - _Cam_Sunshaft: 1
+    - _Cam_Sunshaft: 0
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -180,7 +180,7 @@ Material:
     - _Metallic: 0
     - _Nebula_BackFX: 0
     - _Nebula_Cam: 0
-    - _Nebula_FX: 0
+    - _Nebula_FX: 1
     - _Nebula_SunShaft: 0
     - _Nebula_Sunshaft: 0
     - _Nebula_Video: 0
