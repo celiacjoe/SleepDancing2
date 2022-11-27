@@ -9,7 +9,7 @@ public class VideoDeform : MonoBehaviour
     RenderTexture B;
     
     public WebCamTexture C;
-
+    public Texture D;
     //RenderTexture D;
     //RenderTexture E;
 
@@ -23,7 +23,8 @@ public class VideoDeform : MonoBehaviour
     public float Forme;
     [Range(0, 1)]
     public float Disparition;
-
+    [Range(0, 1)]
+    public float RoughtIntensity;
     public int _resx;
     public RenderTextureFormat rtFormat = RenderTextureFormat.ARGBHalf;
     public int _resy;
@@ -64,14 +65,16 @@ public class VideoDeform : MonoBehaviour
        // compute_shader.SetTexture(handle_main, "reader", A);
         compute_shader.SetTexture(handle_main, "reader2", C);
         compute_shader.SetTexture(handle_main2, "reader", A);
-       // compute_shader.SetTexture(handle_main3, "reader3", B);
-       // compute_shader.SetTexture(handle_main3, "reader4", D);
+        compute_shader.SetTexture(handle_main2, "reader2", D);
+        // compute_shader.SetTexture(handle_main3, "reader3", B);
+        // compute_shader.SetTexture(handle_main3, "reader4", D);
         compute_shader.SetFloat("_time", Time.time);
         compute_shader.SetFloat("_taille", Taille);
         compute_shader.SetFloat("_forme", Forme);
         compute_shader.SetFloat("_disparition", Disparition);
         compute_shader.SetFloat("_resx", _resx);
-        compute_shader.SetFloat("_resy", _resy);        
+        compute_shader.SetFloat("_resy", _resy);
+        compute_shader.SetFloat("_RoughtIntensity",RoughtIntensity);
         compute_shader.SetTexture(handle_main, "writer", A);
         compute_shader.Dispatch(handle_main, A.width / 8, A.height / 8, 1);
         compute_shader.SetTexture(handle_main2, "writer2", B);

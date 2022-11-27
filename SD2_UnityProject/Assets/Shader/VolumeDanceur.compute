@@ -29,36 +29,35 @@ void CSMain(uint2 id : SV_DispatchThreadID)
 	float2 res = float2(_resx, _resy);
 	float2 uv = f / res;
 
-	float vid = smoothstep(0.,0.2,desaturate(reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xyz));
+	float vid = smoothstep(0.,1.,desaturate(reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xyz));
 	float prev = reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).a;
 
 	float diff = abs(vid - prev);
 
 
 	diff = smoothstep(0.2, 1., diff);
-	diff = max(diff, reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).y*0.98);
+	//diff = max(diff, reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).a*0.98);
 
 	float Pi = 6.28318530718;
 
-	float Directions = 12.;
+	/*float Directions = 12.;
 	float Quality = 3.0;
-	float t = 20.;
+	float t = 20.*_taille;*/
 	float3 tn = reader3.SampleLevel(_LinearClamp, f / float2(1024., 10224.) + 548. + 0.5 / res, 0).xyz;
-	float Size = pow(length(uv.y - 0.5)*2., 2.)*t + tn.x*t + 1.*t;
+	//float Size = pow(length(uv.y - 0.5)*2., 2.)*t + tn.x*t + 1.*t;
 
 
-	float2 Radius = Size / res;
-	float3 col = float3(0.,0.,0.);
-	for (float d = 0.0; d < Pi; d += Pi / Directions)
+	//float2 Radius = Size / res;
+	//float3 col = reader.SampleLevel(_LinearClamp, uv+tn.xy*0.01 + 0.5 / res, 0).xyz;
+	/*for (float d = 0.0; d < Pi; d += Pi / Directions)
 	{
 		for (float i = 1.0 / Quality; i <= 1.0; i += 1.0 / Quality)
 		{
 			col += reader.SampleLevel(_LinearClamp, uv + float2(cos(d), sin(d))*Radius*i + 0.5 / res, 0).xyz;
 		}
 	}
-	col /= Quality * Directions - 11.;
-
-	float bb = pow(smoothstep(0., 1., col.y), 0.5);
+	col /= Quality * Directions - 11.;*/
+	float3 bb = pow(smoothstep(0., 1., diff), 0.5)*max(reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xyz,_forme);
 	float m1 = max(bb, reader.SampleLevel(_LinearClamp, uv + float2(-1.,-1.)*(reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).x - 0.5)*0.01 + 0.5 / res, 0).x*0.99);
 	float2 pos = f;
 	float ang = (m1)*1.5;
@@ -71,9 +70,9 @@ void CSMain(uint2 id : SV_DispatchThreadID)
 	pos = pos + p;
 	float rot = 0.;
 	rot += dot(reader.SampleLevel(_LinearClamp, frac((pos + p) / res) + 0.5 / res, 0).xx - 0.5, p.yx);
-	v += p.yx*rot / dot(b, b)*(reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).z)*5.;
-	float t1 = reader.SampleLevel(_LinearClamp, frac((pos + v * float2(-2, 2)) / res) + 0.5 / res, 0).x;
-	float t2 = max(t1*0.999, bb);
-	writer[id] = float4(float3(t2, diff, col.y), lerp(prev, vid, 0.1));
+	v += p.yx*rot / dot(b, b)*(diff)*5.;
+	float3 t1 = reader.SampleLevel(_LinearClamp, frac((pos + v * float2(-2, 2)) / res) + 0.5 / res, 0).xyz;
+	float3 t2 = max(t1*(1.- _disparition*0.1), bb);
+	writer[id] = float4(float3(t2), lerp(prev, vid, 0.016));
 
 }

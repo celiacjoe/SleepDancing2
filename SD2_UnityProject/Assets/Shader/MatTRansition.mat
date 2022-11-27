@@ -146,7 +146,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - BlurIntensity: 0.40157482
-    - Intensity: 1
+    - Intensity: 0.5
     - RoughtIntensity: 1
     - Vector1_52db204c180d4d25af4afb3f60e74283: 1
     - Vector1_edcf7fba66c9426894ca490ffe99ffaf: 0
@@ -160,7 +160,7 @@ Material:
     - _BumpScale: 1
     - _Cam_FX: 0
     - _Cam_Nebula: 0
-    - _Cam_Sunshaft: 0
+    - _Cam_Sunshaft: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -180,7 +180,7 @@ Material:
     - _Metallic: 0
     - _Nebula_BackFX: 0
     - _Nebula_Cam: 0
-    - _Nebula_FX: 1
+    - _Nebula_FX: 0
     - _Nebula_SunShaft: 0
     - _Nebula_Sunshaft: 0
     - _Nebula_Video: 0
