@@ -360,8 +360,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2918391200999640809, guid: f36be3b3311725749a06ba94b677cf26, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2918391200999640810, guid: f36be3b3311725749a06ba94b677cf26, type: 3}
+      propertyPath: D
+      value: 
+      objectReference: {fileID: 2800000, guid: 92320aaaa125fa24a8950db2b8141493, type: 3}
     - target: {fileID: 2918391200999640810, guid: f36be3b3311725749a06ba94b677cf26, type: 3}
       propertyPath: Disparition
       value: 0.55

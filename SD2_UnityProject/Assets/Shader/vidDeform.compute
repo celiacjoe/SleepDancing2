@@ -15,6 +15,7 @@ float _forme;
 float _disparition;
 float _resx;
 float _resy;
+float _RoughtIntensity;
 float2 rd(float i) { return frac(sin(float2(dot(floor(i), 45.23), dot(floor(i), 98.236)))*7845.236) - 0.5; }
 float2 no(float i) { return lerp(rd(i), rd(i + 1.), smoothstep(0., 1., frac(i))); }
 float hs(float2 uv) { return frac(sin(dot(uv, float2(45.56, 98.14)))*7845.236); }
@@ -78,7 +79,7 @@ float desaturate(float3 color)
 		float Pi = 6.28318530718;
 		float Directions = 16.0;
 		float Quality = 4.0;
-		float2 Radius = 0.05* _disparition + hs(uv)*0.05* _disparition;
+		float2 Radius = 0.05* _disparition + hs(uv)*0.05* _disparition+ reader2.SampleLevel(_LinearClamp, uv+0.5/res,0).x*_RoughtIntensity*0.1;
 		float4 Color = reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0);
 		for (float d = 0.0; d < Pi; d += Pi / Directions)
 		{
@@ -88,7 +89,7 @@ float desaturate(float3 color)
 			}
 		}
 		Color /= Quality * Directions - 15.;
-		Color.a = smoothstep(0.4, 0.6, desaturate(Color.xyz));
+		Color.a = smoothstep(0.6, 0.4, desaturate(Color.xyz));
 		writer2[id] = float4(Color);
 	}
 	/*[numthreads(8, 8, 1)]
