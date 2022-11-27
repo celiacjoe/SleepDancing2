@@ -128,22 +128,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 544552243449338222, guid: 37216e5a1bc96bc4d84f9a1567564270, type: 3}
   m_PrefabInstance: {fileID: 1894217849}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &136911595
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 19f4f135969bea24c9ae99ccc5f6c793, type: 3}
-  m_PrefabInstance: {fileID: 1589419593}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1589419594}
-  m_Layer: 0
-  m_Name: 'Cubic Lattice Abstract (Missing Prefab with guid: 19f4f135969bea24c9ae99ccc5f6c793)'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &168792769
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,22 +436,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1071712812850865299, guid: 823eb2387a28ffc4988d8778fe7cb980, type: 3}
   m_PrefabInstance: {fileID: 2765008366778991963}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &304212321
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5ab8fd03a9475e64491451137aab5efd, type: 3}
-  m_PrefabInstance: {fileID: 1127834248}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1705333423}
-  m_Layer: 0
-  m_Name: 'julia (Missing Prefab with guid: 5ab8fd03a9475e64491451137aab5efd)'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &347274971
 GameObject:
   m_ObjectHideFlags: 0
@@ -827,7 +795,7 @@ VisualEffect:
       - m_Value: 0
         m_Name: PositionStartX
         m_Overridden: 1
-      - m_Value: 0.71
+      - m_Value: 1
         m_Name: Width
         m_Overridden: 1
       - m_Value: 4
@@ -842,20 +810,23 @@ VisualEffect:
       - m_Value: 0
         m_Name: H
         m_Overridden: 1
-      - m_Value: 0.53
+      - m_Value: 0.5
         m_Name: Speed
         m_Overridden: 1
       - m_Value: 1
         m_Name: Turb
         m_Overridden: 1
-      - m_Value: 3
+      - m_Value: 0
         m_Name: NBR
         m_Overridden: 1
       - m_Value: 0
         m_Name: Line
         m_Overridden: 1
-      - m_Value: 0.94
+      - m_Value: 0
         m_Name: Color
+        m_Overridden: 1
+      - m_Value: 0
+        m_Name: Thick
         m_Overridden: 1
     m_Vector2f:
       m_Array: []
@@ -937,6 +908,7 @@ Transform:
   - {fileID: 1390684624}
   - {fileID: 168792770}
   - {fileID: 1382379946}
+  - {fileID: 990038802}
   - {fileID: 2139620962}
   m_Father: {fileID: 2020263808}
   m_RootOrder: 2
@@ -984,15 +956,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 151f3a36152145b4695a59be25c04838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SRend: {fileID: 2765008366689411768}
-  Cam: {fileID: 724236758}
+  S_FinalRender: {fileID: 2765008366689411768}
   Manager: {fileID: 2020263809}
-  RenderFinal: {fileID: 2765008366689411773}
+  Mat_RenderFinal: {fileID: 2765008366689411773}
   FX: {fileID: 635061448}
-  AppFormSound: 0
-  TXTGrain: 0
-  SoundIntensity: 0
-  SmoothT: 0.3
+  SoundControl01: 0
+  SoundControl02: 0
+  SoundControl03: 0
+  RoughtIntensityValue: 0
+  IntensityControlValue: 0
+  AppFormeValue: 0
+  SmoothT: 0.45
   MovableObject: {fileID: 635061444}
   _BlurIntensity:
     m_Name: Blur Intensity
@@ -1081,15 +1055,7 @@ MonoBehaviour:
     m_Id: cc75cf8f-fafa-4041-a206-0281bc40fb79
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 4fe42d09-1d97-418a-9328-29a81eedb3f9
-      m_Path: <MidiDevice>/control022
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Taille 2
-      m_Flags: 0
+    m_SingletonActionBindings: []
   _Forme:
     m_Name: Forme
     m_Type: 0
@@ -1100,7 +1066,7 @@ MonoBehaviour:
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: 5f6eefe8-ece8-476b-988b-316517a98f86
-      m_Path: <MidiDevice>/control020
+      m_Path: <MidiDevice>/control003
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -1116,7 +1082,7 @@ MonoBehaviour:
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: 4d2c5562-c660-4101-b791-a8170dd8ddf8
-      m_Path: <MidiDevice>/control021
+      m_Path: <MidiDevice>/control020
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -1172,7 +1138,7 @@ MonoBehaviour:
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: 2e0642d8-0bdb-40d1-b627-44ee4ed1a24d
-      m_Path: <MidiDevice>/control001
+      m_Path: <MidiDevice>/control007
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -1188,14 +1154,14 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: c61c811a-4a74-4bc9-b7b2-bacacb8e7d88
-      m_Path: <MidiDevice>/control002
+      m_Id: d79fde16-98c7-4a61-bc8f-1ad67d8838ac
+      m_Path: <MidiDevice>/control006
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: FX Param 2
       m_Flags: 0
-  Name_P2: Thick
+  Name_P2: Color
   _FXParam3:
     m_Name: FX Param 3
     m_Type: 0
@@ -1205,14 +1171,14 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: cea997a3-828a-4a32-9b98-b97e2b9b5d12
-      m_Path: <MidiDevice>/control003
+      m_Id: 9db8e25c-57da-43c2-bab1-4003e1da6a92
+      m_Path: <MidiDevice>/control005
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: FX Param 3
       m_Flags: 0
-  Name_P3: Width
+  Name_P3: Thick
   _FXParam4:
     m_Name: FX Param 4
     m_Type: 0
@@ -1220,15 +1186,7 @@ MonoBehaviour:
     m_Id: 1ecf13e0-014f-472b-9bed-4ce48664f168
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 7d60a66b-96b9-4b0a-bfd2-275d261bd1f5
-      m_Path: <MidiDevice>/control004
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: FX Param 4
-      m_Flags: 0
+    m_SingletonActionBindings: []
   Name_P4: Speed
   _FXParam5:
     m_Name: FX Param 5
@@ -1237,15 +1195,7 @@ MonoBehaviour:
     m_Id: 407bb9db-1587-4785-acd6-4c8c67920ad8
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 031819f7-afd3-49be-9003-66b2ce69bfe5
-      m_Path: <MidiDevice>/control005
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: FX Param 5
-      m_Flags: 0
+    m_SingletonActionBindings: []
   Name_P5: Turb
   _FXParam6:
     m_Name: FX Param 6
@@ -1254,47 +1204,23 @@ MonoBehaviour:
     m_Id: c582cb7e-30e8-4d62-af55-24f9aae2d69a
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: c40f84a1-9d0f-4774-8586-15857734a0f0
-      m_Path: <MidiDevice>/control006
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: FX Param 6
-      m_Flags: 0
+    m_SingletonActionBindings: []
   Name_P6: Color
-  _LayerDisplace:
-    m_Name: Layer Displace
+  _FadeNoir:
+    m_Name: Fade Noir
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: cdee8648-5fa0-47f7-9c85-987072ed6e5d
+    m_Id: 9f2ab2cd-9bae-4ba4-a89d-b1e8a5b754d4
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: 31b9dbea-95aa-490d-a6dc-afd9854058e1
+      m_Id: e4bb8c4d-1ccd-47f3-b17b-c5610a706ab9
       m_Path: <MidiDevice>/control046
       m_Interactions: 
       m_Processors: 
       m_Groups: 
-      m_Action: Layer Displace
-      m_Flags: 0
-  _LayerBack:
-    m_Name: Layer Back
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: a826efb7-a24b-4afd-a3b9-30d2010fc9fa
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 48e2d70b-46bf-430e-83e6-ac8c843d9097
-      m_Path: <MidiDevice>/control058
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Layer Back
+      m_Action: Fade Noir
       m_Flags: 0
   _ScnNebula:
     m_Name: Scn Nebula
@@ -1307,14 +1233,6 @@ MonoBehaviour:
     - m_Name: 
       m_Id: 337d10d6-9245-4657-8953-c7aef747498d
       m_Path: <MidiDevice>/note037
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Scn Nebula
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 664b676d-12df-4fb6-a673-90879948a881
-      m_Path: <MidiDevice>/control044
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -1336,14 +1254,6 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Scn Sunshaft
       m_Flags: 0
-    - m_Name: 
-      m_Id: dbc3c936-ee10-40c4-8fbf-a7af36ec9ec0
-      m_Path: <MidiDevice>/control042
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Scn Sunshaft
-      m_Flags: 0
   _ScnCam:
     m_Name: Scn Cam
     m_Type: 0
@@ -1355,14 +1265,6 @@ MonoBehaviour:
     - m_Name: 
       m_Id: 89b4eea7-21ca-41b9-bac8-713c4a6ea2c8
       m_Path: <MidiDevice>/note041
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Scn Cam
-      m_Flags: 0
-    - m_Name: 
-      m_Id: c2d98f24-c51d-4886-b1f6-547e2474f4de
-      m_Path: <MidiDevice>/control041
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -1392,117 +1294,189 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Scn FX
       m_Flags: 0
-  _ScnGrain:
-    m_Name: Scn Grain
+  _ChangeFluid:
+    m_Name: Change Fluid
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 7a6fbec5-574a-41da-8c2f-0a326c46c320
+    m_Id: f0762f38-2a23-4321-9c19-abab544e659f
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: 80e712e1-b066-4ef9-9252-9b9a2cc97edf
-      m_Path: <MidiDevice>/control032
+      m_Id: c5372d1c-bf0a-4566-bad6-cbe3fe685193
+      m_Path: <MidiDevice>/control058
       m_Interactions: 
       m_Processors: 
       m_Groups: 
-      m_Action: Scn Grain
+      m_Action: Change Fluid
       m_Flags: 0
-  _Set3DshapeSoft:
-    m_Name: Set 3 Dshape Soft
+  _ChangeFX:
+    m_Name: Change FX
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 125e1238-7bb5-4161-985f-0d086511cdef
+    m_Id: 27f3d139-aa05-4759-b9b9-0bd8a9cb7dc7
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _ChangeFX01:
+    m_Name: Change FX01
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: f4fcca04-1730-4407-8a12-3d4257469758
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: d2403cc9-7590-4259-8f43-d13fe07d8ae5
-      m_Path: <MidiDevice>/control060
+      m_Id: afbc48a9-f0a4-4277-a79d-248b462927ae
+      m_Path: <MidiDevice>/control043
       m_Interactions: 
       m_Processors: 
       m_Groups: 
-      m_Action: Set 3 Dshape Soft
+      m_Action: Change FX01
       m_Flags: 0
-  _Set3DshapeComplex:
-    m_Name: Set 3 Dshape Complex
+  _ChangeFX02:
+    m_Name: Change FX02
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: fc7935bd-b89d-4ffa-bf14-7b57198ee3bd
+    m_Id: fc375daf-0d7f-4a8c-86e6-c55b4f65e678
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: b3facf31-374e-4a87-a5ae-950ab9e2935c
-      m_Path: <MidiDevice>/control061
+      m_Id: 2785015a-7e5f-44bf-8b4e-9a7e342620ba
+      m_Path: <MidiDevice>/control044
       m_Interactions: 
       m_Processors: 
       m_Groups: 
-      m_Action: Set 3 Dshape Complex
+      m_Action: Change FX02
       m_Flags: 0
-  _Set3DShapePetit:
-    m_Name: Set 3D Shape Petit
+  _ChangeFX03:
+    m_Name: Change FX03
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: df879cda-2153-4bd4-8e55-7337179e1183
+    m_Id: 24030f28-aa0d-42a6-8232-253e0096e577
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: 91eb5390-a000-4048-82ec-db7c68b7c632
-      m_Path: <MidiDevice>/control062
+      m_Id: 82c6686d-6422-458a-92ea-410a1aa34ea6
+      m_Path: <MidiDevice>/control042
       m_Interactions: 
       m_Processors: 
       m_Groups: 
-      m_Action: Set 3D Shape Petit
+      m_Action: Change FX03
       m_Flags: 0
-  _ActiveSoundControlAppForm:
-    m_Name: Active Sound Control App Form
+  _ChangeGrain:
+    m_Name: Change Grain
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 6b4c5005-6c63-4b10-af65-4bc2997a1ab7
+    m_Id: d41498e8-9f57-409f-8bfd-e39dc328a1d3
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: 9372048f-3161-43f7-b04d-58879f0153df
-      m_Path: <MidiDevice>/control066
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Active Sound Control App Form
-      m_Flags: 0
-  _ActiveSoundControlTXTGrain:
-    m_Name: Active Sound Control TXT Grain
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: cc18a06b-c823-4fc4-86d8-1a4f71879b68
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 8fc80425-5148-4a0e-a7c0-bbcd90c9a733
+      m_Id: 1a225615-ff75-405d-823d-d8e63a753956
       m_Path: <MidiDevice>/control064
       m_Interactions: 
       m_Processors: 
       m_Groups: 
-      m_Action: Active Sound Control TXT Grain
+      m_Action: Change Grain
       m_Flags: 0
-  _ActiveSoundControlIntensity:
-    m_Name: Active Sound Control Intensity
+  _Setting3Dshape01:
+    m_Name: Setting 3 Dshape 01
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 342cdf29-b7a9-4266-ba57-19cda95838a1
+    m_Id: 935a3b74-c8a3-428e-a4cb-62911b319329
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: 1bb14cce-f4da-41ec-b300-19088ed60ed1
-      m_Path: <MidiDevice>/control065
+      m_Id: e741ddec-82a4-4ddd-91af-0e499608905c
+      m_Path: <MidiDevice>/control060
       m_Interactions: 
       m_Processors: 
       m_Groups: 
-      m_Action: Active Sound Control Intensity
+      m_Action: Setting 3 Dshape 01
+      m_Flags: 0
+  _Setting3Dshape02:
+    m_Name: Setting 3 Dshape 02
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 40e13b74-0d33-4ae7-95e2-c371dfff57ee
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 32bfa5a5-2c53-4d85-89b9-2ad38fe67f01
+      m_Path: <MidiDevice>/control061
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Setting 3 Dshape 02
+      m_Flags: 0
+  _Setting3Dshape03:
+    m_Name: Setting 3 Dshape 03
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 7ed61df8-6ba9-48c1-8b73-01f493693288
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: dc3935ba-803f-4efe-896c-fc46521df3d9
+      m_Path: <MidiDevice>/control062
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Setting 3 Dshape 03
+      m_Flags: 0
+  _ActiveSoundControl01:
+    m_Name: Active Sound Control 01
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c4037765-2c2e-43cc-a51b-02ccd291fe2c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: a244a7d8-9d43-4530-a2cd-f08ff72a6fd5
+      m_Path: <MidiDevice>/control032
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Active Sound Control 01
+      m_Flags: 0
+  _ActiveSoundControl02:
+    m_Name: Active Sound Control 02
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 63851bad-3485-4a6e-8759-09271bd3dcc7
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: ca7e8b48-0a0d-4973-a3d1-08127a5c769f
+      m_Path: <MidiDevice>/control033
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Active Sound Control 02
+      m_Flags: 0
+  _ActiveSoundControl03:
+    m_Name: Active Sound Control 03
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 597fd06e-61ec-42e0-9bcf-f0749e48df70
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 256495d6-a25d-477a-b497-9dcaa1614336
+      m_Path: <MidiDevice>/control034
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Active Sound Control 03
       m_Flags: 0
 --- !u!1 &556960619
 GameObject:
@@ -1987,7 +1961,7 @@ VisualEffect:
       - m_Value: 0
         m_Name: PositionStartX
         m_Overridden: 1
-      - m_Value: 0.71
+      - m_Value: 0.25
         m_Name: Width
         m_Overridden: 1
       - m_Value: 4
@@ -2013,6 +1987,9 @@ VisualEffect:
         m_Overridden: 1
       - m_Value: 0
         m_Name: Line
+        m_Overridden: 1
+      - m_Value: 0
+        m_Name: Thick
         m_Overridden: 1
     m_Vector2f:
       m_Array: []
@@ -2803,6 +2780,36 @@ Transform:
   m_Father: {fileID: 1195247857}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
+--- !u!1 &990038801
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 990038802}
+  m_Layer: 0
+  m_Name: POS
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &990038802
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990038801}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 525308011}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &993856854
 GameObject:
   m_ObjectHideFlags: 0
@@ -3981,20 +3988,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19f4f135969bea24c9ae99ccc5f6c793, type: 3}
---- !u!4 &1589419594
+--- !u!4 &1589419594 stripped
 Transform:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 19f4f135969bea24c9ae99ccc5f6c793, type: 3}
   m_PrefabInstance: {fileID: 1589419593}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 136911595}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 347274972}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1677365386
 GameObject:
   m_ObjectHideFlags: 0
@@ -4385,71 +4383,11 @@ VisualEffect:
       m_Array: []
     m_Bool:
       m_Array: []
---- !u!1 &1705333422
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5ab8fd03a9475e64491451137aab5efd, type: 3}
-  m_PrefabInstance: {fileID: 1127834248}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1705333425}
-  - component: {fileID: 1705333424}
-  m_Layer: 0
-  m_Name: Placeholder for referenced GameObject in Prefab instance (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1705333423
+--- !u!4 &1705333423 stripped
 Transform:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5ab8fd03a9475e64491451137aab5efd, type: 3}
   m_PrefabInstance: {fileID: 1127834248}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 304212321}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1705333425}
-  m_Father: {fileID: 1721910312}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1705333424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705333422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a870148eab21c66438c2918ce19ded79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  ForwardX: 0
-  ForwardY: 1
-  ForwardZ: 1
-  ReverseX: 0
-  ReverseY: 0
-  ReverseZ: 0
---- !u!4 &1705333425
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 9223372036854775807, guid: 5ab8fd03a9475e64491451137aab5efd, type: 3}
-  m_PrefabInstance: {fileID: 1127834248}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705333422}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1705333423}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1721910311
 GameObject:
   m_ObjectHideFlags: 0
@@ -4484,6 +4422,87 @@ Transform:
   m_Father: {fileID: 962347129}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1757749587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1757749588}
+  - component: {fileID: 1757749590}
+  - component: {fileID: 1757749589}
+  m_Layer: 0
+  m_Name: Noir
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1757749588
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757749587}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -3.71}
+  m_LocalScale: {x: 16, y: 9, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2765008365743966199}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1757749589
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757749587}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: e0e0e991b6e781e4cbf3bd93d0565052, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1757749590
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757749587}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1798701831
 GameObject:
   m_ObjectHideFlags: 0
@@ -4580,11 +4599,6 @@ Transform:
   m_Father: {fileID: 962347129}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1831285689 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 544552243449338225, guid: 37216e5a1bc96bc4d84f9a1567564270, type: 3}
-  m_PrefabInstance: {fileID: 1894217849}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1894217849
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5152,17 +5166,14 @@ MonoBehaviour:
   CS_Deform: {fileID: 7200000, guid: 986d368d4c8263e4a841b72357fe3873, type: 3}
   Deform01: {fileID: 7200000, guid: 3b093d44596e23c419ccd57b4591a4b5, type: 3}
   Deform02: {fileID: 7200000, guid: 986d368d4c8263e4a841b72357fe3873, type: 3}
-  GO_Back:
+  FX_List:
   - {fileID: 6848822297532192591}
   - {fileID: 635061444}
   - {fileID: 524311205}
-  - {fileID: 1831285689}
   Current: 
   Next: 
   AC: {fileID: 2020263807}
-  TextDisplace: {fileID: 684559454}
-  TextBack: {fileID: 1368191487}
-  Nbr_SceneB: 0
+  Nbr_FX: 0
 --- !u!1 &2139620961
 GameObject:
   m_ObjectHideFlags: 0
@@ -5199,7 +5210,7 @@ Transform:
   - {fileID: 1679766647}
   - {fileID: 1677365387}
   m_Father: {fileID: 525308011}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2141845100 stripped
 GameObject:
@@ -5245,6 +5256,7 @@ Transform:
   - {fileID: 2765008366689411771}
   - {fileID: 1965304773}
   - {fileID: 86187280}
+  - {fileID: 1757749588}
   m_Father: {fileID: 1416701802}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5587,21 +5599,6 @@ MonoBehaviour:
   ReverseX: 0
   ReverseY: 0
   ReverseZ: 0
---- !u!114 &6848822297532192585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6848822297532192591}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdafc37f32b176349b1684c4455b98e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ExecuteInEditor: 1
-  m_Bindings: []
-  m_VisualEffect: {fileID: 6848822297532192589}
 --- !u!4 &6848822297532192588
 Transform:
   m_ObjectHideFlags: 0
@@ -5610,7 +5607,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6848822297532192591}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 40, y: -3.48, z: 0}
+  m_LocalPosition: {x: 40, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2139620962}
@@ -5645,7 +5642,7 @@ VisualEffect:
       - m_Value: 0
         m_Name: PositionStartX
         m_Overridden: 1
-      - m_Value: 0.71
+      - m_Value: 0.25
         m_Name: Width
         m_Overridden: 1
       - m_Value: 4
@@ -5660,7 +5657,7 @@ VisualEffect:
       - m_Value: 0
         m_Name: H
         m_Overridden: 1
-      - m_Value: 0.53
+      - m_Value: 0.5
         m_Name: Speed
         m_Overridden: 1
       - m_Value: 1
@@ -5760,7 +5757,6 @@ GameObject:
   - component: {fileID: 6848822297532192588}
   - component: {fileID: 6848822297532192589}
   - component: {fileID: 6848822297532192590}
-  - component: {fileID: 6848822297532192585}
   m_Layer: 0
   m_Name: FX_Colored
   m_TagString: Untagged

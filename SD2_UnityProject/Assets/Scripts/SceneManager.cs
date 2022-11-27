@@ -24,18 +24,15 @@ public class SceneManager : MonoBehaviour
     public ComputeShader CS_Deform, Deform01, Deform02;
 
     [Header("Back Element")]
-    public GameObject[] GO_Back;
+    public GameObject[] FX_List;
 
     [Header("Managment Stuff")]
     public string Current;
     public string Next;
     public Animator AC;
-    public Text TextDisplace;
-    public Text TextBack;
-    private int Nbr_SceneD;
-    public int Nbr_SceneB;
-    private int Nbr_TXT;
-    private bool T =false;
+    private int Nbr_Fluid;
+    public int Nbr_FX;
+    private int Nbr_Grain;
     //[Space(10)]
     void Start()
     {
@@ -57,33 +54,33 @@ public class SceneManager : MonoBehaviour
     }
         public void ChangeGrainTexture()
         {
-        if (Nbr_TXT == 1)
+        if (Nbr_Grain == 1)
         {
             RenderFinal.sharedMaterial.SetTexture("_Rought", TXT02Rought);
             RenderFinal.sharedMaterial.SetTexture("_NRM", TXT02NRM);
-            Nbr_TXT++;
+            Nbr_Grain++;
         }
-        else if (Nbr_TXT == 2)
+        else if (Nbr_Grain == 2)
         {
             RenderFinal.sharedMaterial.SetTexture("_Rought", TXT03Rought);
             RenderFinal.sharedMaterial.SetTexture("_NRM", TXT03NRM);
-            Nbr_TXT++;
+            Nbr_Grain++;
         }
-        else if (Nbr_TXT == 3)
+        else if (Nbr_Grain == 3)
         {
             RenderFinal.sharedMaterial.SetTexture("_Rought", TXT01Rought);
             RenderFinal.sharedMaterial.SetTexture("_NRM", TXT01NRM);
-            Nbr_TXT = 1;
+            Nbr_Grain = 1;
         }
     }
         public void ChangeDisplace()
         {
-        if (Nbr_SceneD == 1)
+        if (Nbr_Fluid == 1)
         {        
             ScriptRender.compute_shader = Deform01;
-        }else if (Nbr_SceneD == 2){
+        }else if (Nbr_Fluid == 2){
             ScriptRender.compute_shader = Deform02;
-            Nbr_SceneD = 0;
+            Nbr_Fluid = 0;
         }
         /*else if (Nbr_SceneD == 3){
             Nbr_SceneD++;
@@ -95,57 +92,62 @@ public class SceneManager : MonoBehaviour
             Nbr_SceneD = 1;
             TextDisplace.text = "SCENE_DISPLACE_01";
         }*/
-        Nbr_SceneD++;
+        Nbr_Fluid++;
     }
 
-    public void ChangeBack()
+    public void ChangeFX()
     {
-        if (Nbr_SceneB == 1){
-            GO_Back[0].SetActive(false);
-            GO_Back[1].SetActive(true);
-            VisualEffect VisualFX1 = GO_Back[1].GetComponent(typeof(VisualEffect)) as VisualEffect;
+        if (Nbr_FX == 1){
+            FX_List[0].SetActive(false);
+            FX_List[1].SetActive(true);
+            FX_List[2].SetActive(false);
+            //FX_List[3].SetActive(false);
+            VisualEffect VisualFX1 = FX_List[1].GetComponent(typeof(VisualEffect)) as VisualEffect;
             S_Midi.FX = VisualFX1;
-            S_Midi.MovableObject = GO_Back[1];
-        }else if (Nbr_SceneB == 2){
-            GO_Back[1].SetActive(false);
-            GO_Back[2].SetActive(true);
-            VisualEffect VisualFX2 = GO_Back[2].GetComponent(typeof(VisualEffect)) as VisualEffect;
+            S_Midi.MovableObject = FX_List[1];
+        }else if (Nbr_FX == 2){
+            FX_List[0].SetActive(false);
+            FX_List[1].SetActive(false);
+            FX_List[2].SetActive(true);
+            //FX_List[3].SetActive(false);
+            VisualEffect VisualFX2 = FX_List[2].GetComponent(typeof(VisualEffect)) as VisualEffect;
             S_Midi.FX = VisualFX2;
-            S_Midi.MovableObject = GO_Back[2];
-        }else if (Nbr_SceneB == 3){
-            GO_Back[2].SetActive(false);
-            GO_Back[3].SetActive(true);
+            S_Midi.MovableObject = FX_List[2];
+        }else if (Nbr_FX == 3){
+            FX_List[0].SetActive(false);
+            FX_List[1].SetActive(false);
+            FX_List[2].SetActive(false);
+            //FX_List[3].SetActive(true);
             //VisualEffect VisualFX3 = GO_Back[3].GetComponent(typeof(VisualEffect)) as VisualEffect;
             //S_Midi.FX = VisualFX3;
             //S_Midi.MovableObject = GO_Back[3];
-        }else if (Nbr_SceneB == 4){
-            GO_Back[3].SetActive(false);
-            GO_Back[0].SetActive(true);
-            VisualEffect VisualFX0 = GO_Back[0].GetComponent(typeof(VisualEffect)) as VisualEffect;
+        }else if (Nbr_FX == 4){
+            FX_List[3].SetActive(false);
+            FX_List[0].SetActive(true);
+            VisualEffect VisualFX0 = FX_List[0].GetComponent(typeof(VisualEffect)) as VisualEffect;
             S_Midi.FX = VisualFX0;
-            S_Midi.MovableObject = GO_Back[0];
-            Nbr_SceneB = 0;
+            S_Midi.MovableObject = FX_List[0];
+            Nbr_FX = 0;
         }
-        Nbr_SceneB++;
     }
 
     void Clean()
     {
-        VisualEffect VisualFX0 = GO_Back[0].GetComponent(typeof(VisualEffect)) as VisualEffect;
+        //FX
+        VisualEffect VisualFX0 = FX_List[0].GetComponent(typeof(VisualEffect)) as VisualEffect;
         S_Midi.FX = VisualFX0;
-        S_Midi.MovableObject = GO_Back[0];
-        TextDisplace.text = "SCN_DISPLACE 01";
-        TextBack.text = "SCN_BACK 01";
-        Nbr_SceneB = 1;
-        Nbr_SceneD = 1;
-        Nbr_TXT = 1;
+        S_Midi.MovableObject = FX_List[0];
+        FX_List[0].SetActive(true);
+        FX_List[1].SetActive(false);
+        FX_List[2].SetActive(false);
+        //FX_List[3].SetActive(false);
+        //Compteur Fx - fluide effect & TXT grain
+        Nbr_FX = 1;
+        Nbr_Fluid = 1;
+        Nbr_Grain = 1;
+        //Setup 1rst liquid
         ScriptRender.compute_shader = CS_Deform;
-        GO_Back[0].SetActive(true);
-        GO_Back[1].SetActive(false);
-        GO_Back[2].SetActive(false);
-        GO_Back[3].SetActive(false);
-        T = false;
-
+        // Setup Material transition
         RenderFinal.sharedMaterial.SetInt("_Nebula_Sunshaft", 0);
         RenderFinal.sharedMaterial.SetInt("_Nebula_Cam", 0);
         RenderFinal.sharedMaterial.SetInt("_Nebula_FX", 0);
@@ -159,7 +161,7 @@ public class SceneManager : MonoBehaviour
         RenderFinal.sharedMaterial.SetInt("_FX_Sunshaft", 0);
         RenderFinal.sharedMaterial.SetInt("_FX_Cam", 0);
     }
-    public void SetupParam3DshapeSoft()
+    public void Setting3Dshape01()
     {
         S_ShapeRender.masque = 15f ;
         S_ShapeRender.focal= 1f;
@@ -169,23 +171,9 @@ public class SceneManager : MonoBehaviour
         S_ShapeRender.rotateZ = 0.04f;
         S_ShapeRender.smoothForm = 0.8f;
         S_ShapeRender.complexity = 0.5f;
-        S_ShapeRender.taille = 0.65f;
-        /* Render3Dshape.sharedMaterial.SetFloat("masque", 17.23f);
-         Render3Dshape.sharedMaterial.SetFloat("focal", 1f);
-         Render3Dshape.sharedMaterial.SetFloat("distance", 21.68f);
-         Render3Dshape.sharedMaterial.SetFloat("rotateX", 0.1f);
-         Render3Dshape.sharedMaterial.SetFloat("rotateY",0.02f);
-         Render3Dshape.sharedMaterial.SetFloat("rotateY", 0.04f);
-         Render3Dshape.sharedMaterial.SetFloat("smoothform", 1f);
-         Render3Dshape.sharedMaterial.SetFloat("complexity", 1f);
-         Render3Dshape.sharedMaterial.SetFloat("taille", 0.46f);*/
-        Debug.Log("ok paarameter");
-        //Render3Dshape.sharedMaterial.SetVector("_modifforme01", 1.5, 1.8, 1.3);
-        // Render3Dshape.sharedMaterial("_modifforme01", 1.5, 1.8, 1.3, 0);
-        //  Render3Dshape.sharedMaterial.SetVector4("_modifforme01", 1.5,1.8,1.3,0);
-        //  Render3Dshape.sharedMaterial.SetFloat("_modifforme02", 0.7,0.6,0.4,0);
+        S_ShapeRender.taille = 0.65f;       
     }
-    public void SetupParam3DshapeComplex()
+    public void Setting3Dshape02()
     {
         S_ShapeRender.masque = 20f;
         S_ShapeRender.focal = 1f;
@@ -196,22 +184,9 @@ public class SceneManager : MonoBehaviour
         S_ShapeRender.smoothForm = 1f;
         S_ShapeRender.complexity = 1f;
         S_ShapeRender.taille = 0.45f;       
-       /* Render3Dshape.sharedMaterial.SetFloat("masque", 20f);
-        Render3Dshape.sharedMaterial.SetFloat("focal", 1f);
-        Render3Dshape.sharedMaterial.SetFloat("distance", 20f);
-        Render3Dshape.sharedMaterial.SetFloat("rotateX", 0.1f);
-        Render3Dshape.sharedMaterial.SetFloat("rotateY", 0.02f);
-        Render3Dshape.sharedMaterial.SetFloat("rotateY", 0.04f);
-        Render3Dshape.sharedMaterial.SetFloat("smoothform", 1f);
-        Render3Dshape.sharedMaterial.SetFloat("complexity", 1f);
-        Render3Dshape.sharedMaterial.SetFloat("taille", 0.45f);
-        Debug.Log("ok parameter 3D shape complex");
-        //  Render3Dshape.sharedMaterial.SetVector4("_modifforme01", 1.5,1.8,1.3,0);
-        //  Render3Dshape.sharedMaterial.SetFloat("_modifforme02", 0.7,0.6,0.4,0);
-    */
-        }
+    }
 
-    public void SetupParam3DshapePetit()
+    public void Setting3Dshape03()
     {
         S_ShapeRender.masque = 14.5f;
         S_ShapeRender.focal = 1f;
@@ -221,20 +196,7 @@ public class SceneManager : MonoBehaviour
         S_ShapeRender.rotateZ = 0.025f;
         S_ShapeRender.smoothForm = 0.5f;
         S_ShapeRender.complexity = 0.5f;
-        S_ShapeRender.taille = 0.45f;
-        /* Render3Dshape.sharedMaterial.SetFloat("masque", 20f);
-         Render3Dshape.sharedMaterial.SetFloat("focal", 1f);
-         Render3Dshape.sharedMaterial.SetFloat("distance", 20f);
-         Render3Dshape.sharedMaterial.SetFloat("rotateX", 0.1f);
-         Render3Dshape.sharedMaterial.SetFloat("rotateY", 0.02f);
-         Render3Dshape.sharedMaterial.SetFloat("rotateY", 0.04f);
-         Render3Dshape.sharedMaterial.SetFloat("smoothform", 1f);
-         Render3Dshape.sharedMaterial.SetFloat("complexity", 1f);
-         Render3Dshape.sharedMaterial.SetFloat("taille", 0.45f);
-         Debug.Log("ok parameter 3D shape complex");
-         //  Render3Dshape.sharedMaterial.SetVector4("_modifforme01", 1.5,1.8,1.3,0);
-         //  Render3Dshape.sharedMaterial.SetFloat("_modifforme02", 0.7,0.6,0.4,0);
-     */
+        S_ShapeRender.taille = 0.45f;       
     }
 
     public void TransitionScene()
@@ -257,7 +219,7 @@ public class SceneManager : MonoBehaviour
             }
             else if (Next == "FX")
             {
-                GO_Back[0].SetActive(true);
+                FX_List[0].SetActive(true);
                 GO_FinalQuad[3].SetActive(true);
                 RenderFinal.sharedMaterial.SetInt("_" + Current + "_" + Next, 1);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
@@ -287,7 +249,7 @@ public class SceneManager : MonoBehaviour
             }
              else if (Next == "FX")
             {
-                GO_Back[0].SetActive(true);
+                FX_List[0].SetActive(true);
                 GO_FinalQuad[3].SetActive(true);
                 RenderFinal.sharedMaterial.SetInt("_" + Current + "_" + Next, 1);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
@@ -317,7 +279,7 @@ public class SceneManager : MonoBehaviour
             }
             else if (Next == "FX")
             {
-                GO_Back[0].SetActive(true);
+                FX_List[0].SetActive(true);
                 GO_FinalQuad[3].SetActive(true);
                 RenderFinal.sharedMaterial.SetInt("_" + Current + "_" + Next, 1);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
@@ -357,32 +319,24 @@ public class SceneManager : MonoBehaviour
             RenderFinal.sharedMaterial.SetInt("_Sunshaft_FX", 0);
             RenderFinal.sharedMaterial.SetInt("_Cam_FX", 0);
             GO_FinalQuad[3].SetActive(false);
-            GO_Back[0].SetActive(false);
-            GO_Back[1].SetActive(false);
-            GO_Back[2].SetActive(false);
-            GO_Back[3].SetActive(false);
+            FX_List[0].SetActive(false);
+            FX_List[1].SetActive(false);
+            FX_List[2].SetActive(false);
+            FX_List[3].SetActive(false);
         }
     }
 
     public void Endtransition()
     {
-        if (Next == "Nebula")
-        {
+        if (Next == "Nebula"){
             Current = "Nebula";
-        }
-        else if (Next == "Sunshaft")
-        {
+        }else if (Next == "Sunshaft"){
             Current = "Sunshaft";
-        }
-        else if (Next == "Cam")
-        {
+        }else if (Next == "Cam"){
             Current = "Cam";
-        }
-        else if (Next == "FX")
-        {
+        }else if (Next == "FX"){
             Current = "FX";          
         }
-        //RenderFinal.sharedMaterial.SetFloat("_Transition", 1);
     }
 
    public void ResetLevel()

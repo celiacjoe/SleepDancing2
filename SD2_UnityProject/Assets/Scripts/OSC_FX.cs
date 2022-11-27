@@ -7,8 +7,7 @@ namespace OscSimpl.Examples
 {
     public class OSC_FX : MonoBehaviour
     {
-        [SerializeField] OscIn _oscIn;
-        
+        [SerializeField] OscIn _oscIn;    
         public string Name1;
         public float Low;
         public float TLow;
@@ -24,13 +23,7 @@ namespace OscSimpl.Examples
         public float facMerge;
         public Vector3 fac;
         public InputMidiControl S_Midi;
-        //public Material mat;
         public Renderer QuadRender;
-        //public string Map_PosXY;
-        //public Vector2 V2;
-        //public VisualEffect FX;
-       // public GameObject GObj;
-       // public NebulaRender scrpit1;
 
         float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
         {
@@ -55,50 +48,27 @@ namespace OscSimpl.Examples
             SLow = Mathf.Lerp(SLow, Low, facMerge);
             SMid = Mathf.Lerp(SMid, Mid, facMerge);
             SHigh = Mathf.Lerp(SHigh, High, facMerge);
-            /*mat.SetFloat("_Low", Low);
-            mat.SetFloat("_TLow", TLow);
-            mat.SetFloat("_SLow", SLow);
-            mat.SetFloat("_Mid", Mid);
-            mat.SetFloat("_TMid", TMid);
-            mat.SetFloat("_SMid", SMid);
-            mat.SetFloat("_High", High);
-            mat.SetFloat("_THigh", THigh);
-            mat.SetFloat("_SHigh", SHigh);    */
-            if (S_Midi.AppFormSound == true)
-            {
-                QuadRender.sharedMaterial.SetFloat("_ApparitionForme", SMid);
-            }
-            if (S_Midi.TXTGrain == true)
-            {
-                QuadRender.sharedMaterial.SetFloat("RoughtIntensity", SLow);
-            }
-            if (S_Midi.SoundIntensity == true)
-            {
-                QuadRender.sharedMaterial.SetFloat("Intensity", SHigh);
-            }
 
-            /* GObj.GetComponent<NebulaRender>().Low = Low;
-             GObj.GetComponent<NebulaRender>().TLow = TLow;
-             GObj.GetComponent<NebulaRender>().SLow = SLow;
-             GObj.GetComponent<NebulaRender>().Mid = Mid;
-             GObj.GetComponent<NebulaRender>().TMid = TMid;
-             GObj.GetComponent<NebulaRender>().SMid = SMid;
-             GObj.GetComponent<NebulaRender>().High = High;
-             GObj.GetComponent<NebulaRender>().THigh = THigh;
-             GObj.GetComponent<NebulaRender>().SHigh = SHigh;  */
-
+            if (S_Midi.SoundControl01 == true)
+            {
+                QuadRender.sharedMaterial.SetFloat("RoughtIntensity", S_Midi.RoughtIntensityValue*SHigh);
+            }
+            if (S_Midi.SoundControl02 == true)
+            {
+                QuadRender.sharedMaterial.SetFloat("Intensity", S_Midi.IntensityControlValue * SLow);
+            }
+            if (S_Midi.SoundControl03 == true)
+            {
+                QuadRender.sharedMaterial.SetFloat("_ApparitionForme", S_Midi.AppFormeValue * SMid);
+            }
         }
 
         void OnEnable()
         {
-            _oscIn.MapFloat(Name1, Event1);           // Float 
+            _oscIn.MapFloat(Name1, Event1);
             _oscIn.MapFloat(Name2, Event2);
-            _oscIn.MapFloat(Name3, Event3);
-
-            //  _oscIn.Map(Map_PosXY, EventPosXY);          // MultiFloat
-
+            _oscIn.MapFloat(Name3, Event3);   
         }
-
 
         public void Event1(float value)
         {
@@ -112,20 +82,5 @@ namespace OscSimpl.Examples
         {
             High = value*fac.z;
         }
-        /* void EventPosXY(OscMessage message)
-         {
-             float f1;
-             float f2;
-             if (message.TryGet(0, out f1) && message.TryGet(1, out f2))
-             {
-                 V2.x = map(f1, 0, 1, -7, 4);
-                 V2.y = map(f2, 0, 1, -7, 4);
-                 Debug.Log("ok2");
-             }
-             OscPool.Recycle(message);
-         } */
-
-
-
     }
 }
