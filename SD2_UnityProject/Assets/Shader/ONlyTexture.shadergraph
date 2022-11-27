@@ -3920,7 +3920,7 @@
     },
     "m_Name": "Rought",
     "m_DefaultReferenceName": "Texture2D_44d3a1798d524167aa6355ac162b6488",
-    "m_OverrideReferenceName": "_Rought",
+    "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -4139,7 +4139,7 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     },
-    "m_TextureType": 0,
+    "m_TextureType": 1,
     "m_NormalMapSpace": 0
 }
 
@@ -4577,10 +4577,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2160.666748046875,
-            "y": 675.3333129882813,
-            "width": 145.3333740234375,
-            "height": 128.66668701171876
+            "x": -2280.80029296875,
+            "y": 644.0,
+            "width": 145.60011291503907,
+            "height": 128.79998779296876
         }
     },
     "m_Slots": [
@@ -7234,10 +7234,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1572.0,
-            "y": 467.3333435058594,
-            "width": 130.6666259765625,
-            "height": 117.99999237060547
+            "x": -1617.5999755859375,
+            "y": 513.5999755859375,
+            "width": 130.4000244140625,
+            "height": 118.4000244140625
         }
     },
     "m_Slots": [
@@ -8161,7 +8161,7 @@
         "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
         "m_Guid": ""
     },
-    "m_DefaultType": 0
+    "m_DefaultType": 3
 }
 
 {
@@ -8400,10 +8400,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1780.0,
-            "y": 602.6666870117188,
-            "width": 130.6666259765625,
-            "height": 117.99999237060547
+            "x": -1703.2000732421875,
+            "y": 633.5999755859375,
+            "width": 131.2000732421875,
+            "height": 118.4000244140625
         }
     },
     "m_Slots": [
@@ -8919,7 +8919,7 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     },
-    "m_TextureType": 0,
+    "m_TextureType": 1,
     "m_NormalMapSpace": 0
 }
 
@@ -9095,7 +9095,7 @@
     },
     "m_Name": "NRM",
     "m_DefaultReferenceName": "Texture2D_e39430a53f854004b403a56622f9e366",
-    "m_OverrideReferenceName": "_NRM",
+    "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -9529,10 +9529,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2068.66650390625,
-            "y": 377.9999694824219,
-            "width": 141.3333740234375,
-            "height": 166.00001525878907
+            "x": -2066.400146484375,
+            "y": 412.79998779296877,
+            "width": 140.800048828125,
+            "height": 165.60003662109376
         }
     },
     "m_Slots": [

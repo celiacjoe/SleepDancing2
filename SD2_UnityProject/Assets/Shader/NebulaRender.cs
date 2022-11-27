@@ -18,6 +18,8 @@ public class NebulaRender : MonoBehaviour
     public float transition2;
     [Range(0, 1)]
     public float transition3;
+    [Range(0, 1)]
+    public float transition4;
     public Vector3 Pos;
     public Vector3 PosL;
     public float Focal;
@@ -72,6 +74,7 @@ public class NebulaRender : MonoBehaviour
     float tr1;
     float tr2;
     float tr3;
+    float tr4;
     float p1;
     float p2;
     float p3;
@@ -106,6 +109,7 @@ public class NebulaRender : MonoBehaviour
         tr1 = Mathf.Lerp(tr1, transition1, 0.01f);
         tr2 = Mathf.Lerp(tr2, transition2, 0.01f);
         tr3 = Mathf.Lerp(tr3, transition3, 0.01f);
+        tr4 = Mathf.Lerp(tr4, transition4, 0.01f);
         p1 = Mathf.Lerp(p1, f1, 0.02f);
         p2 = Mathf.Lerp(p2, f2, 0.02f);
         p3 = Mathf.Lerp(p3, f3, 0.02f);
@@ -124,6 +128,7 @@ public class NebulaRender : MonoBehaviour
         compute_shader.SetFloat("_transition1", tr1);
         compute_shader.SetFloat("_transition2", tr2);
         compute_shader.SetFloat("_transition3", tr3);
+        compute_shader.SetFloat("_transition4", tr4);
         compute_shader.SetVector("_position", Pos);
         compute_shader.SetVector("_positionL", PosL);
         compute_shader.SetFloat("_focal", Focal);

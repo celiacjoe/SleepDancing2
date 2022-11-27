@@ -21,7 +21,7 @@ public class render : MonoBehaviour
     public float ApparitionForme;
     [Range(0, 1)]
     public float Disparition;
-
+    public bool video;
     public int _resx;
     public RenderTextureFormat rtFormat = RenderTextureFormat.ARGBHalf;
     public int _resy;
@@ -40,14 +40,15 @@ public class render : MonoBehaviour
         D.enableRandomWrite = true;
         D.Create();  */
         handle_main = compute_shader.FindKernel("CSMain");
-       /* C = new WebCamTexture();
-        handle_main = compute_shader.FindKernel("CSMain");
-        C.Play();  */
-
+        /* C = new WebCamTexture();
+         handle_main = compute_shader.FindKernel("CSMain");
+         C.Play();  */
+        
     }
 
     void Update()
-    {      
+    {
+        compute_shader.SetBool("_vid", video);
         compute_shader.SetTexture(handle_main, "reader", A);
         compute_shader.SetTexture(handle_main, "reader2", C);
         compute_shader.SetFloat("_time", Time.time);

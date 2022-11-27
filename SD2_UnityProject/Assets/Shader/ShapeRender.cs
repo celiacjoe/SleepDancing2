@@ -31,7 +31,7 @@ public class ShapeRender : MonoBehaviour
         A.Create();      
   
         handle_main = compute_shader.FindKernel("CSMain");
-
+        script.video = false;
     }
 
     void Update()

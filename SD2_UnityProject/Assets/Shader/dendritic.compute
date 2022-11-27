@@ -13,13 +13,13 @@ float _ApparitionForme;
 float _disparition;
 float _resx;
 float _resy;
-
+int _vid;
 #define STEPS 20 // adfloattion steps
 
 #define ts 0.5    // adfloattion curl
 #define cs -1.0   // curl scale
 #define ls 0.05  // laplacian scale
-#define ps -4.0*_taille    // laplacian of divergence scale
+#define ps -2.    // laplacian of divergence scale
 #define ds -0.3   // divergence scale
 #define dp -0.03  // divergence update scale
 #define pl 0.3    // divergence smoothing
@@ -40,7 +40,7 @@ float _resy;
 
 float3 adfloatt(float2 ab, float2 vUv, float2 texel, out float curl, out float div, out float3 lapl, out float3 blur, float res) {
 
-	float2 aUv = vUv - ab * texel*_taille2*8.;
+	float2 aUv = vUv - ab * texel*_taille*8.;
 	float4 t = float4(texel, -texel.y, 0.0);
 
 	float3 uv = T(t.ww); float3 uv_n = T(t.wy); float3 uv_e = T(t.xw);
@@ -96,19 +96,16 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 
 	float3 abd = lerp(float3(rab, sd), uv, upd);
 
-	float2 e = float2(0.001, 0.);
 	float tt = smoothstep(0., 0.001, uc.x)*smoothstep(1., 0.999, uc.x);
-	/*float n1 = smoothstep(0.4, 0.6, reader2.SampleLevel(_LinearClamp, uc + e.xy + 0.5 / res, 0).x);
-	float n2 = smoothstep(0.4, 0.6, reader2.SampleLevel(_LinearClamp, uc - e.xy + 0.5 / res, 0).x);
-	float n3 = smoothstep(0.4, 0.6, reader2.SampleLevel(_LinearClamp, uc + e.yx + 0.5 / res, 0).x);
-	float n4 = smoothstep(0.4, 0.6, reader2.SampleLevel(_LinearClamp, uc - e.yx + 0.5 / res, 0).x);*/
-	float3 n = reader2.SampleLevel(_LinearClamp, uc + 0.5 / res, 0).xyz *-0.05*_ApparitionForme;
+	
+	float3 tn = reader2.SampleLevel(_LinearClamp, uc + 0.5 / res, 0).xyz;
+	float3 n = lerp(tn,(smoothstep(0.4,0.6,tn-0.5))*2.,_vid) *-0.025*_ApparitionForme;
 	abd.xy += n.xy;
 	uv.xy += n.xy;
 
 	abd.xy = clamp(length(abd.xy) > 1.0 ? normalize(abd.xy) : abd.xy, -1.0, 1.0);
 
-	writer[id] = float4(clamp(abd, -1., 1.), 1.)*(1.- _disparition*0.01)*tt;
+	writer[id] = float4(clamp(abd, -1., 1.), 1.)*(1.- _disparition*0.05)*tt;
 	
 
 

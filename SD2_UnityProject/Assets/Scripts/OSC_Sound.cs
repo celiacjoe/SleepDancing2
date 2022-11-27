@@ -25,9 +25,7 @@ namespace OscSimpl.Examples
         public float facMerge;
         public Vector3 fac;
         public Material mat;
-        //public string Map_PosXY;
-        //public Vector2 V2;
-        //public VisualEffect FX;
+        public string Name5;
         public SoundRender scrpit1;
         float v1;
         float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
@@ -53,16 +51,7 @@ namespace OscSimpl.Examples
             SLow = Mathf.Lerp(SLow, Low, facMerge);
             SMid = Mathf.Lerp(SMid, Mid, facMerge);
             SHigh = Mathf.Lerp(SHigh, High, facMerge);
-            /*mat.SetFloat("_Low", Low);
-            mat.SetFloat("_TLow", TLow);
-            mat.SetFloat("_SLow", SLow);
-            mat.SetFloat("_Mid", Mid);
-            mat.SetFloat("_TMid", TMid);
-            mat.SetFloat("_SMid", SMid);
-            mat.SetFloat("_High", High);
-            mat.SetFloat("_THigh", THigh);
-            mat.SetFloat("_SHigh", SHigh);    */
-            mat.SetFloat("_SMid", SMid);
+
             scrpit1.Low = Low;
             scrpit1.TLow = TLow;
             scrpit1.SLow = SLow;
@@ -77,11 +66,11 @@ namespace OscSimpl.Examples
 
         void OnEnable()
         {
-            _oscIn.MapFloat(Name1, Event1);           // Float 
+            _oscIn.MapFloat(Name1, Event1);         
             _oscIn.MapFloat(Name2, Event2);
             _oscIn.MapFloat(Name3, Event3);
             _oscIn.MapFloat(Name4, Event4);
-            //  _oscIn.Map(Map_PosXY, EventPosXY);          // MultiFloat
+            _oscIn.Map(Name5, Event5);
 
         }
 
@@ -100,22 +89,20 @@ namespace OscSimpl.Examples
         }
         public void Event4(float value)
         {
-            v1 = value * 8;
+            v1 = Mathf.Pow(value, 5) * 20+0.001f;
         }
-        /* void EventPosXY(OscMessage message)
-         {
-             float f1;
-             float f2;
-             if (message.TryGet(0, out f1) && message.TryGet(1, out f2))
-             {
-                 V2.x = map(f1, 0, 1, -7, 4);
-                 V2.y = map(f2, 0, 1, -7, 4);
-                 Debug.Log("ok2");
-             }
-             OscPool.Recycle(message);
-         } */
-
-
+        void Event5(OscMessage message)
+        {
+            float fa;
+            float fb;
+            if (message.TryGet(0, out fa) && message.TryGet(1, out fb))
+            {
+                scrpit1.f1 = (fa - 0.5f) * 2;
+                scrpit1.f2 = (fb - 0.5f) * 2;
+                //Debug.Log("ok2");
+            }
+            OscPool.Recycle(message);
+        }
 
     }
 }

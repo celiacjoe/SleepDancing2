@@ -164,7 +164,7 @@ namespace OscSimpl.Examples
         }    
         public void Event9(float value)
         {
-            v1 = value*8;
+            v1 = Mathf.Pow(value,5)*20 + 0.001f;
         }      /*
         public void Event10(float value)
         {
