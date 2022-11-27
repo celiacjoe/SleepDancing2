@@ -43,13 +43,9 @@ namespace OscSimpl.Examples
 
         void Update()
         {
-            fac.x = map(S_Midi.MultiplierSound01Value,0,1,0,10);
+            fac.x = S_Midi.MultiplierSound01Value*5;
             fac.y = map(S_Midi.MultiplierSound02Value, 0, 1, 0, 40);
             fac.z = map(S_Midi.MultiplierSound03Value, 0, 1, 0, 40);
-            if (S_Midi.SoundControl01)
-            {
-                S_Midi.RoughtIntensityValue *= fac.x;
-            }
 
             TLow += Low;
             TMid += Mid;
@@ -60,16 +56,21 @@ namespace OscSimpl.Examples
 
             if (S_Midi.SoundControl01 == true)
             {
-                QuadRender.sharedMaterial.SetFloat("RoughtIntensity", S_Midi.RoughtIntensityValue*SHigh);
+                QuadRender.sharedMaterial.SetFloat("RoughtIntensity", Mathf.Pow(S_Midi.RoughtIntensityValue,5)*SLow*5);
             }
-            if (S_Midi.SoundControl02 == true)
+            else{
+                QuadRender.sharedMaterial.SetFloat("RoughtIntensity", S_Midi.RoughtIntensityValue);
+            }
+            /*if (S_Midi.SoundControl02 == true)
             {
-                QuadRender.sharedMaterial.SetFloat("Intensity", S_Midi.IntensityControlValue * SLow);
+                QuadRender.sharedMaterial.SetFloat("Intensity", S_Midi.IntensityControlValue + SMid*S_Midi.MultiplierSound02Value*20);
             }
             if (S_Midi.SoundControl03 == true)
             {
-                QuadRender.sharedMaterial.SetFloat("_ApparitionForme", S_Midi.AppFormeValue * SMid);
-            }
+                QuadRender.sharedMaterial.SetFloat("_ApparitionForme", S_Midi.AppFormeValue * SHigh);
+            }*/
+            QuadRender.sharedMaterial.SetFloat("Intensity", S_Midi.IntensityControlValue + SMid * Mathf.Pow(S_Midi.MultiplierSound02Value,5) * 20);
+            QuadRender.sharedMaterial.SetFloat("_ApparitionForme", S_Midi.AppFormeValue + SHigh* Mathf.Pow(S_Midi.MultiplierSound03Value,5) * 20);
         }
 
         void OnEnable()

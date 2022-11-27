@@ -440,17 +440,17 @@ public class InputMidiControl : MonoBehaviour
     }
     void ChangeFX01(InputAction.CallbackContext ctx)
     {
-        Manager.Nbr_FX = 1;
+        Manager.Nbr_FX = 0;
         Manager.ChangeFX();
     }
     void ChangeFX02(InputAction.CallbackContext ctx)
     {
-        Manager.Nbr_FX = 2;
+        Manager.Nbr_FX = 1;
         Manager.ChangeFX();
     }
     void ChangeFX03(InputAction.CallbackContext ctx)
     {
-        Manager.Nbr_FX = 3;
+        Manager.Nbr_FX = 2;
         Manager.ChangeFX();
     }
     void ChangeGrain(InputAction.CallbackContext ctx)
