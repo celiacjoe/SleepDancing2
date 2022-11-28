@@ -37,7 +37,7 @@ public class VolumeDanceur : MonoBehaviour
         WebCamDevice[] devices = WebCamTexture.devices;
         C = new WebCamTexture(devices[0].name);
         C.Play();
-        compute_shader.SetTexture(handle_main, "reader3", D);
+      
     }
 
     void Update()
