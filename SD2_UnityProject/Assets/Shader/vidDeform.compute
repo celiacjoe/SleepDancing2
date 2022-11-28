@@ -15,6 +15,8 @@ float _forme;
 float _disparition;
 float _resx;
 float _resy;
+float _m1;
+float _m2;
 float _RoughtIntensity;
 float2 rd(float i) { return frac(sin(float2(dot(floor(i), 45.23), dot(floor(i), 98.236)))*7845.236) - 0.5; }
 float2 no(float i) { return lerp(rd(i), rd(i + 1.), smoothstep(0., 1., frac(i))); }
@@ -89,7 +91,7 @@ float desaturate(float3 color)
 			}
 		}
 		Color /= Quality * Directions - 15.;
-		Color.a = smoothstep(0.6, 0.4, desaturate(Color.xyz));
+		Color.a = smoothstep(_m2, _m1, desaturate(Color.xyz));
 		writer2[id] = float4(Color);
 	}
 	/*[numthreads(8, 8, 1)]

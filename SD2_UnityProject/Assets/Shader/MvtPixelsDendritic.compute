@@ -112,7 +112,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float n2 =  reader.SampleLevel(_LinearClamp, uc - e.xy + 0.5 / res, 0).a;
 	float n3 =  reader.SampleLevel(_LinearClamp, uc + e.yx + 0.5 / res, 0).a;
 	float n4 = reader.SampleLevel(_LinearClamp, uc - e.yx + 0.5 / res, 0).a;
-	float3 n = normalize(float3(n1 - n2, n3 - n4, _forme*2.));
+	float3 n = normalize(float3(n1 - n2, n3 - n4, _forme*2.+0.01));
 	abd.xy += n.xy;
 	uv.xy += n.xy;
 

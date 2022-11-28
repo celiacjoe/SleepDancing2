@@ -10,6 +10,7 @@ float _time;
 float _taille;
 float _forme;
 float _disparition;
+
 float _resx;
 float _resy;
 
