@@ -9,10 +9,7 @@ public class VolumeDanceur : MonoBehaviour
     RenderTexture B;
     
     public WebCamTexture C;
-
-
     int handle_main;
-
     [Range(0, 1)]
     public float Taille;
     [Range(0, 1)]
@@ -37,15 +34,15 @@ public class VolumeDanceur : MonoBehaviour
         B.Create();
 
         handle_main =  compute_shader.FindKernel("CSMain");
-
-        C = new WebCamTexture();
+        WebCamDevice[] devices = WebCamTexture.devices;
+        C = new WebCamTexture(devices[0].name);
         C.Play();
         compute_shader.SetTexture(handle_main, "reader3", D);
     }
 
     void Update()
     {
-       
+      //
         compute_shader.SetTexture(handle_main, "reader", A);
         compute_shader.SetTexture(handle_main, "reader2", C);
 

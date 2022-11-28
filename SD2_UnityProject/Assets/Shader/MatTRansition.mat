@@ -146,13 +146,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - BlurIntensity: 0.40157482
-    - Intensity: 0.21259843
+    - Intensity: 0
     - RoughtIntensity: 0.46456695
+    - TxtProcedural: 0
     - Vector1_52db204c180d4d25af4afb3f60e74283: 1
     - Vector1_edcf7fba66c9426894ca490ffe99ffaf: 0
     - Vector1_f07139077151487f8de0f1a71a18d815: -0.82
     - _AlphaClip: 0
-    - _ApparitionForme: 0.11811024
+    - _ApparitionForme: 0
     - _BackFX_Nedula: 0
     - _BackFX_SunShaft: 0
     - _BackFX_Video: 1

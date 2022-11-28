@@ -84,8 +84,8 @@ void nebula_float(float2 uv, float tr , UnityTexture2D A, UnityTexture2D B, Unit
 	if (g > 0) { v1 = transivid(uv, tr, bl, A, C); }
 	if (h > 0) { v1 = transivid(uv, tr, bl, B, C); }
 	if (i > 0) { v1 = transivid(uv, tr, bl, D, C); }
-	if (j > 0) { v1 = transi(uv, tr, A, D); }
-	if (k > 0) { v1 = transi(uv, tr, B, D); }
+	if (j > 0) { v1 = transi(uv, tr, B, D); }
+	if (k > 0) { v1 = transi(uv, tr, A, D); }
 	if (l > 0) { v1 = transiFX(uv, tr, bl, C, D); }
 	Out = v1;
 
