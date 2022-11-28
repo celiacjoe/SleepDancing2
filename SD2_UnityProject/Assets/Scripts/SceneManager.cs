@@ -12,6 +12,7 @@ public class SceneManager : MonoBehaviour
     public InputMidiControl S_Midi;
     public Timer S_Timer;
     public UI_Manager S_UI;
+    public VideoDeform S_Video;
 
     [Header("Final Render")]
     public Renderer RenderFinal;
@@ -139,9 +140,7 @@ public class SceneManager : MonoBehaviour
             S_Midi.FX = VisualFX3;
             S_Midi.MovableObject = FX_List[Nbr_FX];
         }
-
     }
-
     void Clean()
     {
         OSC_FX.SetActive(false);
@@ -240,8 +239,10 @@ public class SceneManager : MonoBehaviour
             }
             else if (Next == "Volume")
             {
+                GO_FinalQuad[2].SetActive(true);
                 GO_FinalQuad[3].SetActive(true);
                 GO_FinalQuad[4].SetActive(true);
+                S_Video.volume = true;
                 RenderFinal.sharedMaterial.SetInt("_" + Current + "_" + "FX", 1);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
                 Debug.Log("Change nebula vers Volume");
@@ -280,8 +281,10 @@ public class SceneManager : MonoBehaviour
                 Debug.Log("Change Sunshaft vers FX");
             }else if (Next == "Volume")
             {
+                GO_FinalQuad[2].SetActive(true);
                 GO_FinalQuad[3].SetActive(true);
                 GO_FinalQuad[4].SetActive(true);
+                S_Video.volume = true;
                 RenderFinal.sharedMaterial.SetInt("_" + Current + "_" + "FX", 1);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
                 Debug.Log("Change Sunshaft vers Volume");
@@ -294,7 +297,6 @@ public class SceneManager : MonoBehaviour
         }
         else if (Current == "Cam")
         {
-            //S_UI.UI_FX.SetActive(false);
             if (Next == "Nebula")
             {
                 GO_FinalQuad[0].SetActive(true);
@@ -319,8 +321,10 @@ public class SceneManager : MonoBehaviour
                 Debug.Log("Change Cam vers FX");
             }else if (Next == "Volume")
             {
+                GO_FinalQuad[2].SetActive(true);
                 GO_FinalQuad[3].SetActive(true);
                 GO_FinalQuad[4].SetActive(true);
+                S_Video.volume=true;
                 RenderFinal.sharedMaterial.SetInt("_" + Current + "_" + "FX", 1);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
                 Debug.Log("Change Cam vers Volume");
@@ -360,10 +364,10 @@ public class SceneManager : MonoBehaviour
             if (Next == "Volume")
             {
                 RenderFinal.sharedMaterial.SetInt("_Nebula_FX", 1);
+                GO_FinalQuad[2].SetActive(true);
                 GO_FinalQuad[3].SetActive(true);
                 GO_FinalQuad[4].SetActive(true);
-                //RenderFinal.sharedMaterial.SetInt("_" + Current + "_" + Next, 1);
-                //RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
+                S_Video.volume = true;
                 Debug.Log("Change FX vers Volume");
             }
             AC.SetTrigger("Transition");
@@ -408,6 +412,8 @@ public class SceneManager : MonoBehaviour
                 RenderFinal.sharedMaterial.SetInt("_Nebula_FX", 1);
                 S_UI.UI_FX.SetActive(true);
                 FX_List[Nbr_FX].SetActive(true);
+                S_Video.volume = false;
+                GO_FinalQuad[2].SetActive(false);
                 GO_FinalQuad[3].SetActive(true);
                 GO_FinalQuad[4].SetActive(false);
                 Debug.Log("Change Volume vers FX");

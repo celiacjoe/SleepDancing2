@@ -60,9 +60,7 @@ public class InputMidiControl : MonoBehaviour
     [SerializeField] InputAction _FXParam4 = null;
     public string Name_P4;
     [SerializeField] InputAction _VolumeParam01 = null;
-   // public string Name_P5;
     [SerializeField] InputAction _VolumeParam02 = null;
-   // public string Name_P6;
     [Header("SCENE CONTROLL")]
     [SerializeField] InputAction _FadeNoir = null;
     [SerializeField] InputAction _ScnNebula = null;
