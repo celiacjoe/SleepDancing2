@@ -9,7 +9,6 @@ public class UI_Manager : MonoBehaviour
    // public Text T_Current;
    // public Text T_Noir;
     public string T_FX;
-   // public Text T_Sound;
    // public Text T_Grain;
 
     public GameObject UI_Next;

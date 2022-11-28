@@ -10,6 +10,7 @@ public class InputMidiControl : MonoBehaviour
 
     ///////////// VAR
     public render S_FinalRender;
+    public VolumeDanceur S_Volume;
     //public Camera Cam;
     public SceneManager Manager;
     public UI_Manager S_UI;
@@ -58,10 +59,10 @@ public class InputMidiControl : MonoBehaviour
     public string Name_P3;
     [SerializeField] InputAction _FXParam4 = null;
     public string Name_P4;
-    [SerializeField] InputAction _FXParam5 = null;
-    public string Name_P5;
-    [SerializeField] InputAction _FXParam6 = null;
-    public string Name_P6;
+    [SerializeField] InputAction _VolumeParam01 = null;
+   // public string Name_P5;
+    [SerializeField] InputAction _VolumeParam02 = null;
+   // public string Name_P6;
     [Header("SCENE CONTROLL")]
     [SerializeField] InputAction _FadeNoir = null;
     [SerializeField] InputAction _ScnNebula = null;
@@ -98,7 +99,7 @@ public class InputMidiControl : MonoBehaviour
     }
     void Update()
     {
-        Vector3 NewTargetPosition = new Vector3(PosX+40,-4);
+        Vector3 NewTargetPosition = new Vector3(PosX+40,-4.5f);
         MovableObject.transform.position = Vector3.SmoothDamp(MovableObject.transform.position, NewTargetPosition, ref velocity, SmoothT);
         //MovableObject.transform.position.x = f.SmoothDamp(MovableObject.transform.position.x, NewTargetPosition.x, ref velocity, SmoothT);
     }
@@ -149,11 +150,11 @@ public class InputMidiControl : MonoBehaviour
         _FXParam4.performed += FXParam4;
         _FXParam4.Enable();
 
-        _FXParam5.performed += FXParam5;
-        _FXParam5.Enable();
+        _VolumeParam01.performed += VolumeParam01;
+        _VolumeParam01.Enable();
 
-        _FXParam6.performed += FXParam6;
-        _FXParam6.Enable();
+        _VolumeParam02.performed += VolumeParam02;
+        _VolumeParam02.Enable();
 
         _ChangeFluid.performed += ChangeFluid;
         _ChangeFluid.Enable();
@@ -284,11 +285,11 @@ public class InputMidiControl : MonoBehaviour
         _FXParam4.performed -= FXParam4;
         _FXParam4.Disable();
 
-        _FXParam5.performed -= FXParam5;
-        _FXParam5.Disable();
+        _VolumeParam01.performed -= VolumeParam01;
+        _VolumeParam01.Disable();
 
-        _FXParam6.performed -= FXParam6;
-        _FXParam6.Disable();
+        _VolumeParam02.performed -= VolumeParam02;
+        _VolumeParam02.Disable();
 
         _FadeNoir.performed -= FadeNoir;
         _FadeNoir.Disable();
@@ -343,10 +344,7 @@ public class InputMidiControl : MonoBehaviour
     void RoughtIntensity(InputAction.CallbackContext ctx)
     {
         RoughtIntensityValue = ctx.ReadValue<float>();
-        if (!SoundControl01)
-        {
-            Mat_RenderFinal.sharedMaterial.SetFloat("RoughtIntensity", RoughtIntensityValue);
-        }
+        //Mat_RenderFinal.sharedMaterial.SetFloat("RoughtIntensity", RoughtIntensityValue);      
     }
     void IntensityControl(InputAction.CallbackContext ctx)
     {
@@ -418,17 +416,17 @@ public class InputMidiControl : MonoBehaviour
         VisualEffect VFX = FX.GetComponent<VisualEffect>();
         VFX.SetFloat(Name_P4, FxP4);
     }
-    void FXParam5(InputAction.CallbackContext ctx)
+    void VolumeParam01(InputAction.CallbackContext ctx)
     {
-        float FxP5 = ctx.ReadValue<float>();
-        VisualEffect VFX = FX.GetComponent<VisualEffect>();
-        VFX.SetFloat(Name_P5, FxP5);
+        float VolumParamValue01 = ctx.ReadValue<float>();
+        //VisualEffect VFX = FX.GetComponent<VisualEffect>();
+        S_Volume.Forme= VolumParamValue01;
+      //  VFX.SetFloat(Name_P5, VolumParamValue01);
     }
-    void FXParam6(InputAction.CallbackContext ctx)
+    void VolumeParam02(InputAction.CallbackContext ctx)
     {
-        float FxP6 = ctx.ReadValue<float>();
-        VisualEffect VFX = FX.GetComponent<VisualEffect>();
-        VFX.SetFloat(Name_P6, FxP6);
+        float VolumParamValue02 = ctx.ReadValue<float>();
+        S_Volume.Disparition = VolumParamValue02;
     }
     void ChangeFluid(InputAction.CallbackContext ctx)
     {
@@ -440,17 +438,17 @@ public class InputMidiControl : MonoBehaviour
     }
     void ChangeFX01(InputAction.CallbackContext ctx)
     {
-        Manager.Nbr_FX = 1;
+        Manager.Nbr_FX = 0;
         Manager.ChangeFX();
     }
     void ChangeFX02(InputAction.CallbackContext ctx)
     {
-        Manager.Nbr_FX = 2;
+        Manager.Nbr_FX = 1;
         Manager.ChangeFX();
     }
     void ChangeFX03(InputAction.CallbackContext ctx)
     {
-        Manager.Nbr_FX = 3;
+        Manager.Nbr_FX = 2;
         Manager.ChangeFX();
     }
     void ChangeGrain(InputAction.CallbackContext ctx)
