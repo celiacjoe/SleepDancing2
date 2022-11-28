@@ -56,10 +56,12 @@ namespace OscSimpl.Examples
             SHigh = Mathf.Lerp(SHigh, High, facMerge);
 
             if (S_Midi.SoundControl01 == true)
-            {
-               QuadRender.sharedMaterial.SetFloat("RoughtIntensity", Mathf.Pow(S_Midi.RoughtIntensityValue,5)*Low*5);
-               S_VideoDeform.RoughtIntensity=Mathf.Pow(S_Midi.RoughtIntensityValue,5)*Low*5;
+            {         
+                //QuadRender.sharedMaterial.SetFloat("RoughtIntensity", S_Midi.RoughtIntensityValue *Low * 5);
+                QuadRender.sharedMaterial.SetFloat("RoughtIntensity", Mathf.Pow(S_Midi.RoughtIntensityValue,5)*Low*5);
+                S_VideoDeform.RoughtIntensity=Mathf.Pow(S_Midi.RoughtIntensityValue,5)*Low*5;
             }
+
             /*if (S_Midi.SoundControl02 == true)
             {
                 QuadRender.sharedMaterial.SetFloat("Intensity", S_Midi.IntensityControlValue + SMid*S_Midi.MultiplierSound02Value*20);
