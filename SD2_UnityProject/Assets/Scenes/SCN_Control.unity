@@ -5929,7 +5929,6 @@ MonoBehaviour:
   S_Midi: {fileID: 530685424}
   S_Timer: {fileID: 750892248}
   S_UI: {fileID: 594323351}
-  S_Video: {fileID: 0}
   RenderFinal: {fileID: 2765008366689411773}
   ScriptRender: {fileID: 2765008366689411768}
   GO_FinalQuad:
@@ -6238,6 +6237,10 @@ PrefabInstance:
       propertyPath: compute_shader2
       value: 
       objectReference: {fileID: 7200000, guid: ebf40fe76eec5e946a9f355e6eb2b37b, type: 3}
+    - target: {fileID: 1071712812850865303, guid: 823eb2387a28ffc4988d8778fe7cb980, type: 3}
+      propertyPath: compute_shader3
+      value: 
+      objectReference: {fileID: 7200000, guid: f7db68c7042ed844a8d993123b0a81fb, type: 3}
     m_RemovedComponents:
     - {fileID: 1071712812850865297, guid: 823eb2387a28ffc4988d8778fe7cb980, type: 3}
     - {fileID: 1071712812850865302, guid: 823eb2387a28ffc4988d8778fe7cb980, type: 3}
