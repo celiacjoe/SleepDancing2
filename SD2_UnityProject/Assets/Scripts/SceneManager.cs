@@ -39,12 +39,8 @@ public class SceneManager : MonoBehaviour
     //[Space(10)]
     void Start()
     {
-        S_UI.T_FX = " Color";
-        RenderFinal.sharedMaterial.SetFloat("_Transition", 1);
-        Current = "Nebula";
-        S_UI.UI_Current.GetComponentInChildren<Text>().text = "intro";
+        //S_UI.UI_Current.GetComponentInChildren<Text>().text = "intro";
         Clean();
-        RenderFinal.sharedMaterial.SetInt("_Sunshaft_Nebula", 1);
         //SetupParam3Dshape();
     }
 
@@ -99,10 +95,6 @@ public class SceneManager : MonoBehaviour
             ScriptRender.compute_shader = Deform03;
             TextDisplace.text = "SCENE_DISPLACE_04";
             TransitionScene();
-        }
-        /*else if(Nbr_SceneD == 3){
-            Nbr_SceneD = 1;
-            TextDisplace.text = "SCENE_DISPLACE_01";
         }*/
         Nbr_Fluid++;
     }
@@ -145,6 +137,7 @@ public class SceneManager : MonoBehaviour
     {
         OSC_FX.SetActive(false);
         //FX
+        S_UI.T_FX = " Color";
         VisualEffect VisualFX0 = FX_List[0].GetComponent(typeof(VisualEffect)) as VisualEffect;
         S_Midi.FX = VisualFX0;
         S_Midi.MovableObject = FX_List[0];
@@ -155,6 +148,12 @@ public class SceneManager : MonoBehaviour
         Nbr_Grain = 1;
         //Setup 1rst liquid
         ScriptRender.compute_shader = CS_Deform;
+        // SCENE
+        Current = "Nebula";
+        GO_FinalQuad[1].SetActive(false);
+        GO_FinalQuad[2].SetActive(false);
+        GO_FinalQuad[3].SetActive(false);
+        GO_FinalQuad[4].SetActive(false);
         // Setup Material transition
         RenderFinal.sharedMaterial.SetInt("_Nebula_Sunshaft", 0);
         RenderFinal.sharedMaterial.SetInt("_Nebula_Cam", 0);
@@ -168,6 +167,7 @@ public class SceneManager : MonoBehaviour
         RenderFinal.sharedMaterial.SetInt("_FX_Nebula", 0);
         RenderFinal.sharedMaterial.SetInt("_FX_Sunshaft", 0);
         RenderFinal.sharedMaterial.SetInt("_FX_Cam", 0);
+        RenderFinal.sharedMaterial.SetFloat("_Transition", 1);
     }
     public void Setting3Dshape01()
     {
@@ -251,8 +251,8 @@ public class SceneManager : MonoBehaviour
             RenderFinal.sharedMaterial.SetInt("_Sunshaft_Nebula", 0);
             RenderFinal.sharedMaterial.SetInt("_FX_Nebula", 0);
             RenderFinal.sharedMaterial.SetInt("_Cam_Nebula", 0);
-            GO_FinalQuad[0].SetActive(false);
-            S_UI.UI_FX.SetActive(false);
+            //GO_FinalQuad[0].SetActive(false);
+            //S_UI.UI_FX.SetActive(false);
         }
         else if (Current == "Sunshaft")
         {
@@ -293,7 +293,7 @@ public class SceneManager : MonoBehaviour
             RenderFinal.sharedMaterial.SetInt("_Nebula_Sunshaft", 0);
             RenderFinal.sharedMaterial.SetInt("_FX_Sunshaft", 0);
             RenderFinal.sharedMaterial.SetInt("_Cam_Sunshaft", 0);
-            GO_FinalQuad[1].SetActive(false);
+            //GO_FinalQuad[1].SetActive(false);
         }
         else if (Current == "Cam")
         {
@@ -330,7 +330,7 @@ public class SceneManager : MonoBehaviour
                 Debug.Log("Change Cam vers Volume");
             }
             AC.SetTrigger("Transition");
-            GO_FinalQuad[2].SetActive(false);
+            //GO_FinalQuad[2].SetActive(false);
             RenderFinal.sharedMaterial.SetInt("_FX_Cam", 0);
             RenderFinal.sharedMaterial.SetInt("_Nebula_Cam", 0);
             RenderFinal.sharedMaterial.SetInt("_Sunshaft_Cam", 0);
@@ -379,33 +379,26 @@ public class SceneManager : MonoBehaviour
                 GO_FinalQuad[0].SetActive(true);
                 RenderFinal.sharedMaterial.SetInt("_FX_" + Next, 1);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
-                Debug.Log("Change Volume vers Nebula");
                 AC.SetTrigger("Transition");
-                RenderFinal.sharedMaterial.SetInt("Nebula_Volume", 0);
-                RenderFinal.sharedMaterial.SetInt("Sunshaft_Volume", 0);
-                RenderFinal.sharedMaterial.SetInt("Cam_Volume", 0);
+                Debug.Log("Change Volume vers Nebula");
             }
             else if (Next == "Sunshaft")
             {
                 GO_FinalQuad[1].SetActive(true);
                 RenderFinal.sharedMaterial.SetInt("_FX_" + Next, 1);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
-                Debug.Log("Change Volume vers Sunshaft");
                 AC.SetTrigger("Transition");
-                RenderFinal.sharedMaterial.SetInt("Nebula_Volume", 0);
-                RenderFinal.sharedMaterial.SetInt("Sunshaft_Volume", 0);
-                RenderFinal.sharedMaterial.SetInt("Cam_Volume", 0);
+                Debug.Log("Change Volume vers Sunshaft");
             }
             else if (Next == "Cam")
             {
                 GO_FinalQuad[2].SetActive(true);
-                GO_FinalQuad[4].SetActive(false);
-                GO_FinalQuad[4].SetActive(false);
-                S_Video.volume = false;
+                //GO_FinalQuad[4].SetActive(false);
+                //GO_FinalQuad[4].SetActive(false);
                 RenderFinal.sharedMaterial.SetInt("_FX_" + Next, 1);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
-                Debug.Log("Change Volume vers cam");
                 AC.SetTrigger("Transition");
+                Debug.Log("Change Volume vers cam");
             }
             RenderFinal.sharedMaterial.SetInt("_Nebula_FX", 0);
             RenderFinal.sharedMaterial.SetInt("_Sunshaft_FX", 0);
@@ -415,15 +408,13 @@ public class SceneManager : MonoBehaviour
                 RenderFinal.sharedMaterial.SetInt("_Nebula_FX", 1);
                 S_UI.UI_FX.SetActive(true);
                 FX_List[Nbr_FX].SetActive(true);
-                GO_FinalQuad[4].SetActive(false);
-                GO_FinalQuad[2].SetActive(false);
+                //GO_FinalQuad[4].SetActive(false);
+                //GO_FinalQuad[2].SetActive(false);
                 GO_FinalQuad[3].SetActive(true);
-                GO_FinalQuad[4].SetActive(false);
-                S_Video.volume = false;
+               // GO_FinalQuad[4].SetActive(false);
                 Debug.Log("Change Volume vers FX");
             }
-            // GO_FinalQuad[4].SetActive(false);
-            //FX_List[Nbr_FX].SetActive(false);
+           // S_Video.volume = false;
         }
     }
     public void Endtransition()
@@ -431,36 +422,55 @@ public class SceneManager : MonoBehaviour
         if (Next == "Nebula"){
             OSC_FX.SetActive(false);
             S_UI.UI_FX.SetActive(false);
+            GO_FinalQuad[1].SetActive(false);
+            GO_FinalQuad[2].SetActive(false);
             GO_FinalQuad[3].SetActive(false);
-            FX_List[Nbr_FX].SetActive(false);
             GO_FinalQuad[4].SetActive(false);
+            FX_List[Nbr_FX].SetActive(false);
+            S_Video.volume = false;
+
             Current = "Nebula";
         }
         else if (Next == "Sunshaft"){
             OSC_FX.SetActive(false);
+            GO_FinalQuad[0].SetActive(false);
+            GO_FinalQuad[2].SetActive(false);
             GO_FinalQuad[3].SetActive(false);
+            GO_FinalQuad[4].SetActive(false);
             FX_List[Nbr_FX].SetActive(false);
             S_UI.UI_FX.SetActive(false);
+            S_Video.volume = false;
+
             Current = "Sunshaft";
-            GO_FinalQuad[4].SetActive(false);
         }
         else if (Next == "Cam"){
             OSC_FX.SetActive(true);
+            GO_FinalQuad[0].SetActive(false);
+            GO_FinalQuad[1].SetActive(false);
             GO_FinalQuad[3].SetActive(false);
+            GO_FinalQuad[4].SetActive(false);
             FX_List[Nbr_FX].SetActive(false);
             S_UI.UI_FX.SetActive(false);
-            GO_FinalQuad[4].SetActive(false);
+            S_Video.volume = false;
+
             Current = "Cam";
         }else if (Next == "FX"){
             OSC_FX.SetActive(true);
             S_UI.UI_FX.SetActive(true);
-            Current = "FX";
+            GO_FinalQuad[0].SetActive(false);
+            GO_FinalQuad[1].SetActive(false);
+            GO_FinalQuad[2].SetActive(false);
             GO_FinalQuad[4].SetActive(false);
+            S_Video.volume = false;
+
+            Current = "FX";
         }
         else if (Next == "Volume")
         {
             OSC_FX.SetActive(true);
             S_UI.UI_FX.SetActive(true);
+            GO_FinalQuad[0].SetActive(false);
+            GO_FinalQuad[1].SetActive(false);
             Current = "Volume";
         }
     }

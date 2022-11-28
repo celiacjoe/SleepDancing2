@@ -1027,7 +1027,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   S_FinalRender: {fileID: 2765008366689411768}
-  S_Volume: {fileID: 0}
+  S_VideoDeform: {fileID: 296026941}
   Manager: {fileID: 2020263809}
   S_UI: {fileID: 594323351}
   Mat_RenderFinal: {fileID: 2765008366689411773}
@@ -2378,7 +2378,7 @@ MonoBehaviour:
   THigh: 0
   SHigh: 0
   facMerge: 0.1
-  fac: {x: 5, y: 10, z: 0}
+  fac: {x: 1, y: 1, z: 1}
   S_Midi: {fileID: 530685424}
   QuadRender: {fileID: 2765008366689411773}
   S_VideoDeform: {fileID: 296026941}
@@ -4388,7 +4388,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 111835120, guid: 482cd7fe41448da4091062485b033db7, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4572937942609733729, guid: 482cd7fe41448da4091062485b033db7, type: 3}
       propertyPath: m_Name
@@ -4440,7 +4440,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4572937943880532828, guid: 482cd7fe41448da4091062485b033db7, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4572937943880532830, guid: 482cd7fe41448da4091062485b033db7, type: 3}
       propertyPath: m_IsActive
@@ -5929,7 +5929,7 @@ MonoBehaviour:
   S_Midi: {fileID: 530685424}
   S_Timer: {fileID: 750892248}
   S_UI: {fileID: 594323351}
-  S_Video: {fileID: 0}
+  S_Video: {fileID: 296026941}
   RenderFinal: {fileID: 2765008366689411773}
   ScriptRender: {fileID: 2765008366689411768}
   GO_FinalQuad:

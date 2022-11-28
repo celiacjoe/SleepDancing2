@@ -35,7 +35,7 @@ public class VideoDeform : MonoBehaviour
     public int _resy;
 
     public render script;
-    public bool Volume;
+    public bool volume;
     public bool Dendritic;
     void Start()
     {
@@ -62,7 +62,7 @@ public class VideoDeform : MonoBehaviour
     void Update()
     {
 
-        if (Volume == false && Dendritic == false)
+        if (volume == false && Dendritic == false)
         {
             compute_shader.SetTexture(handle_main, "reader2", C);
             compute_shader.SetTexture(handle_main2, "reader", A);

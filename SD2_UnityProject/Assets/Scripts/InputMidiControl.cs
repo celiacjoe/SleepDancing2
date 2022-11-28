@@ -10,7 +10,7 @@ public class InputMidiControl : MonoBehaviour
 
     ///////////// VAR
     public render S_FinalRender;
-    public VolumeDanceur S_Volume;
+    public VideoDeform S_VideoDeform;
     //public Camera Cam;
     public SceneManager Manager;
     public UI_Manager S_UI;
@@ -24,6 +24,7 @@ public class InputMidiControl : MonoBehaviour
     public float MultiplierSound03Value;
     private float BlurIntensityValue;
     public float RoughtIntensityValue;
+    public float RoughtIntensityDynamic;
     public float IntensityControlValue;
     public float AppFormeValue;
     private float TailleValue;
@@ -342,7 +343,10 @@ public class InputMidiControl : MonoBehaviour
     void RoughtIntensity(InputAction.CallbackContext ctx)
     {
         RoughtIntensityValue = ctx.ReadValue<float>();
-        //Mat_RenderFinal.sharedMaterial.SetFloat("RoughtIntensity", RoughtIntensityValue);      
+        if (!SoundControl01){
+            Mat_RenderFinal.sharedMaterial.SetFloat("RoughtIntensity", RoughtIntensityValue);
+            S_VideoDeform.RoughtIntensity = RoughtIntensityValue;
+        }      
     }
     void IntensityControl(InputAction.CallbackContext ctx)
     {
@@ -418,13 +422,13 @@ public class InputMidiControl : MonoBehaviour
     {
         float VolumParamValue01 = ctx.ReadValue<float>();
         //VisualEffect VFX = FX.GetComponent<VisualEffect>();
-        S_Volume.Forme= VolumParamValue01;
+        S_VideoDeform.Forme= VolumParamValue01;
       //  VFX.SetFloat(Name_P5, VolumParamValue01);
     }
     void VolumeParam02(InputAction.CallbackContext ctx)
     {
         float VolumParamValue02 = ctx.ReadValue<float>();
-        S_Volume.Disparition = VolumParamValue02;
+        S_VideoDeform.Disparition = VolumParamValue02;
     }
     void ChangeFluid(InputAction.CallbackContext ctx)
     {
