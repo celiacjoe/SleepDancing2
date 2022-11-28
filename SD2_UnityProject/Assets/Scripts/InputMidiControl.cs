@@ -70,6 +70,7 @@ public class InputMidiControl : MonoBehaviour
     [SerializeField] InputAction _ScnCam = null;
     [SerializeField] InputAction _ScnFX = null;
     [SerializeField] InputAction _ScnVolume = null;
+    [SerializeField] InputAction _ScnDendritic = null;
     [Header("NEXT")]
     [SerializeField] InputAction _ChangeFluid = null;
     [SerializeField] InputAction _ActiveFX = null;
@@ -241,6 +242,9 @@ public class InputMidiControl : MonoBehaviour
         _ScnVolume.performed += ScnVolume;
         _ScnVolume.Enable();
 
+        _ScnDendritic.performed += ScnDendritic;
+        _ScnDendritic.Enable();
+
         _Setting3Dshape01.performed += Set3DShapeSoft;
         _Setting3Dshape01.Enable();
 
@@ -357,6 +361,9 @@ public class InputMidiControl : MonoBehaviour
 
         _ScnVolume.performed -= ScnVolume;
         _ScnVolume.Disable();
+
+        _ScnDendritic.performed -= ScnDendritic;
+        _ScnDendritic.Disable();
 
         _Setting3Dshape01.performed -= Set3DShapeSoft;
         _Setting3Dshape01.Disable();
@@ -555,6 +562,11 @@ public class InputMidiControl : MonoBehaviour
     void ScnVolume(InputAction.CallbackContext ctx)
     {
         Manager.Next = "Volume";
+        Manager.TransitionScene();
+    }
+    void ScnDendritic(InputAction.CallbackContext ctx)
+    {
+        Manager.Next = "Dendritic";
         Manager.TransitionScene();
     }
     void Set3DShapeSoft(InputAction.CallbackContext ctx)
