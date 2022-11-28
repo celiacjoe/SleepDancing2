@@ -35,7 +35,7 @@ public class VideoDeform : MonoBehaviour
     public int _resy;
 
     public render script;
-    public bool Volume;
+    public bool volume;
     public bool Dendritic;
     void Start()
     {
@@ -62,7 +62,7 @@ public class VideoDeform : MonoBehaviour
     void Update()
     {
 
-        if (Volume == false && Dendritic == false)
+        if (volume == false && Dendritic == false)
         {
             compute_shader.SetTexture(handle_main, "reader2", C);
             compute_shader.SetTexture(handle_main2, "reader", A);
@@ -71,6 +71,8 @@ public class VideoDeform : MonoBehaviour
             compute_shader.SetFloat("_taille", Taille);
             compute_shader.SetFloat("_forme", Forme);
             compute_shader.SetFloat("_disparition", Disparition);
+            compute_shader.SetFloat("_m1", m1);
+            compute_shader.SetFloat("_m2", m2);
             compute_shader.SetFloat("_resx", _resx);
             compute_shader.SetFloat("_resy", _resy);
             compute_shader.SetFloat("_RoughtIntensity", RoughtIntensity);
@@ -84,7 +86,7 @@ public class VideoDeform : MonoBehaviour
         }
          else
         {
-            if (Dendritic == false)
+            if (Dendritic == false && volume == true)
             {
                 compute_shader2.SetTexture(handle_main, "reader", A);
                 compute_shader2.SetTexture(handle_main, "reader2", C);

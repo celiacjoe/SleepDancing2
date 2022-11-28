@@ -115,7 +115,7 @@ float fmb(float2 uv, float time) {
 }
 void normal_float(float2 uv, float  time, int bo ,float4 tex, out float4 Out)
 {
-	if (bo < 0.01) {
+	if (bo > 0.5) {
 		float2 e = float2(0.0001, 0.);
 		uv.x *= 1.8;
 		uv *= 3.;
