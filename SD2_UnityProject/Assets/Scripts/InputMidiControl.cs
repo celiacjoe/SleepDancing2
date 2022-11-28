@@ -131,7 +131,7 @@ public class InputMidiControl : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            Manager.Next = "Dentritic";
+            Manager.Next = "Dendritic";
             Manager.TransitionScene();
         }
         if (Input.GetKeyDown(KeyCode.Return))
