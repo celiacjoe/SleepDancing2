@@ -1027,6 +1027,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   S_FinalRender: {fileID: 2765008366689411768}
+  S_Volume: {fileID: 0}
   Manager: {fileID: 2020263809}
   S_UI: {fileID: 594323351}
   Mat_RenderFinal: {fileID: 2765008366689411773}
@@ -1262,24 +1263,38 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
   Name_P4: Speed
-  _FXParam5:
-    m_Name: FX Param 5
+  _VolumeParam01:
+    m_Name: Volume Param 01
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 407bb9db-1587-4785-acd6-4c8c67920ad8
+    m_Id: b49251b3-d6ef-4ec6-ac2a-7cbfc81ec7d3
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
-  Name_P5: Turb
-  _FXParam6:
-    m_Name: FX Param 6
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 9f40de8e-1366-4987-8157-e1bb0994742d
+      m_Path: <MidiDevice>/control022
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Volume Param 01
+      m_Flags: 0
+  _VolumeParam02:
+    m_Name: Volume Param 02
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: c582cb7e-30e8-4d62-af55-24f9aae2d69a
+    m_Id: fa3c0f13-5dbd-42f8-8f50-2b3bfcb37a45
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
-  Name_P6: Color
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: b2a122c6-35e7-4339-b456-c571d6f73370
+      m_Path: <MidiDevice>/control021
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Volume Param 02
+      m_Flags: 0
   _FadeNoir:
     m_Name: Fade Noir
     m_Type: 0
