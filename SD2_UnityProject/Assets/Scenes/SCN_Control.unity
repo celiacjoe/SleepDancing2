@@ -1312,6 +1312,14 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Fade Noir
       m_Flags: 0
+    - m_Name: 
+      m_Id: c3f05958-eaf5-4a54-8e84-b654cc75c40d
+      m_Path: <Keyboard>/0
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Fade Noir
+      m_Flags: 0
   _ScnNebula:
     m_Name: Scn Nebula
     m_Type: 0
@@ -1323,6 +1331,14 @@ MonoBehaviour:
     - m_Name: 
       m_Id: 34cb008c-d32c-43ec-8d35-779c65580453
       m_Path: <MidiDevice>/note037
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Scn Nebula
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 24a2ede2-81a0-43a1-b6d6-523e042ae860
+      m_Path: <Keyboard>/1
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -1344,6 +1360,14 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Scn Sunshaft
       m_Flags: 0
+    - m_Name: 
+      m_Id: b84996d1-d11f-4219-bc83-05d3cc545773
+      m_Path: <Keyboard>/2
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Scn Sunshaft
+      m_Flags: 0
   _ScnCam:
     m_Name: Scn Cam
     m_Type: 0
@@ -1355,6 +1379,14 @@ MonoBehaviour:
     - m_Name: 
       m_Id: 20d51105-61d2-4127-993a-fe15aa566a30
       m_Path: <MidiDevice>/note041
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Scn Cam
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 1f43c1e4-df2d-47e9-9df3-137bac1ecb33
+      m_Path: <Keyboard>/3
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -1408,14 +1440,22 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Change Fluid
       m_Flags: 0
-  _ChangeFX:
-    m_Name: Change FX
+  _ActiveFX:
+    m_Name: Active FX
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 27f3d139-aa05-4759-b9b9-0bd8a9cb7dc7
+    m_Id: 0bbaaf15-4c61-4509-a81c-aa78ae0b42df
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 97b69987-f1de-4a19-9a03-99b6573332f3
+      m_Path: <MidiDevice>/control045
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Active FX
+      m_Flags: 0
   _ChangeFX01:
     m_Name: Change FX01
     m_Type: 0
@@ -5047,7 +5087,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1774299711
 MonoBehaviour:
   m_ObjectHideFlags: 0

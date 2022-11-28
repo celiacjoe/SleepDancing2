@@ -37,6 +37,7 @@ public class InputMidiControl : MonoBehaviour
     private float PosX;
     private float PosY;
     private bool Noir;
+    private bool FXActive;
     public GameObject MovableObject;
 
     [Header("DEFORMATION CONTROLL")]
@@ -71,7 +72,7 @@ public class InputMidiControl : MonoBehaviour
     [SerializeField] InputAction _ScnVolume = null;
     [Header("NEXT")]
     [SerializeField] InputAction _ChangeFluid = null;
-    [SerializeField] InputAction _ChangeFX = null;
+    [SerializeField] InputAction _ActiveFX = null;
     [SerializeField] InputAction _ChangeFX01 = null;
     [SerializeField] InputAction _ChangeFX02 = null;
     [SerializeField] InputAction _ChangeFX03 = null;
@@ -94,6 +95,7 @@ public class InputMidiControl : MonoBehaviour
     }
     void Start()
     {
+        FXActive = false;
         Noir = false;
     }
     void Update()
@@ -101,6 +103,54 @@ public class InputMidiControl : MonoBehaviour
         Vector3 NewTargetPosition = new Vector3(PosX+40,-4.5f);
         MovableObject.transform.position = Vector3.SmoothDamp(MovableObject.transform.position, NewTargetPosition, ref velocity, SmoothT);
         //MovableObject.transform.position.x = f.SmoothDamp(MovableObject.transform.position.x, NewTargetPosition.x, ref velocity, SmoothT);
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            Manager.Next = "Nebula";
+            Manager.TransitionScene();
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Manager.Next = "Sunshaft";
+            Manager.TransitionScene();
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Manager.Next = "Cam";
+            Manager.TransitionScene();
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Manager.Next = "FX";
+            Manager.TransitionScene();
+        }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Manager.Next = "Volume";
+            Manager.TransitionScene();
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            Manager.Next = "Dentritic";
+            Manager.TransitionScene();
+        }
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            Manager.AC.GetBool("FadeNoir");
+            if (!Noir)
+            {
+                S_UI.UI_Noir.SetActive(true);
+                S_UI.UI_Noir.GetComponentInChildren<Text>().text = "NOIR INCOMING";
+                Manager.AC.SetBool("FadeNoir", true);
+                Noir = true;
+            }
+            else
+            {
+                S_UI.UI_Noir.SetActive(false);
+                Manager.AC.SetBool("FadeNoir", false);
+                Noir = false;
+            }
+        }
+
     }
     void OnEnable()
     {
@@ -158,8 +208,8 @@ public class InputMidiControl : MonoBehaviour
         _ChangeFluid.performed += ChangeFluid;
         _ChangeFluid.Enable();
 
-        _ChangeFX.performed += ChangeFX;
-        _ChangeFX.Enable();
+        _ActiveFX.performed += ActiveFX;
+        _ActiveFX.Enable();
 
         _ChangeFX01.performed += ChangeFX01;
         _ChangeFX01.Enable();
@@ -248,8 +298,8 @@ public class InputMidiControl : MonoBehaviour
         _ChangeFluid.performed -= ChangeFluid;
         _ChangeFluid.Disable();
 
-        _ChangeFX.performed -= ChangeFX;
-        _ChangeFX.Disable();
+        _ActiveFX.performed -= ActiveFX;
+        _ActiveFX.Disable();
 
         _ChangeFX01.performed -= ChangeFX01;
         _ChangeFX01.Disable();
@@ -434,9 +484,18 @@ public class InputMidiControl : MonoBehaviour
     {
         Manager.ChangeDisplace();
     }
-    void ChangeFX(InputAction.CallbackContext ctx)
+    void ActiveFX(InputAction.CallbackContext ctx)
     {
-        Manager.ChangeFX();
+        if (!FXActive)
+        {
+            FXActive = true;
+            Manager.FX_List[Manager.Nbr_FX].SetActive(true);
+        }
+        else
+        {
+            Manager.FX_List[Manager.Nbr_FX].SetActive(false);
+            FXActive = false;
+        }
     }
     void ChangeFX01(InputAction.CallbackContext ctx)
     {
