@@ -124,8 +124,8 @@ public class NebulaRender : MonoBehaviour
         compute_shader.SetFloat("_f5", p3);
         compute_shader.SetFloat("_transition1", tr1);
         compute_shader.SetFloat("_transition2", tr2);
-        compute_shader.SetFloat("_transition4", tr3);
-        compute_shader.SetFloat("_transition3", tr4);
+        compute_shader.SetFloat("_transition3", tr3);
+        compute_shader.SetFloat("_transition4", tr4);
         compute_shader.SetVector("_position", Pos);
         compute_shader.SetVector("_positionL", PosL);
         compute_shader.SetFloat("_focal", Focal);

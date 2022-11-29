@@ -18,7 +18,8 @@ float _taille;
 float3 _modifforme01;
 float3 _modifforme02;
 float _detail;
-
+float _p1;
+float _p2;
 float isphe(float3 ro, float3 rd, float3 cen, float rad)
 {
 	ro -= cen;
@@ -72,7 +73,7 @@ void CSMain(uint2 id : SV_DispatchThreadID)
 	uv = (uv - .5)*2.;
 	uv.x *= _resx / _resy;
 	float3 r = normalize(float3(uv,_focal));
-	float3 p = float3(0., 0., -_distance);
+	float3 p = float3(_p1*7., _p2*-7., -_distance);
 	p.yz = mul(p.yz, rot(_time*_rotateX));
 	r.yz = mul(r.yz, rot(_time*_rotateX));
 	p.xz = mul(p.xz, rot(_time*_rotateY));
@@ -82,7 +83,7 @@ void CSMain(uint2 id : SV_DispatchThreadID)
 	float dd = 0.;
 	float3 n = float3(0., 0., 0.);
 	float m = 0.;
-	float de = isphe(p, r, float3(0., 0., 0.),_masque - 2.);
+	float de = isphe(p, r, float3(0., 0., 0.),_masque );
 	if (de > 0.)
 	{
 		
