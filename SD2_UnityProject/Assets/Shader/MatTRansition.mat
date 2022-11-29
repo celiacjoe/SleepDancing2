@@ -147,7 +147,7 @@ Material:
     m_Floats:
     - BlurIntensity: 0
     - Intensity: 0
-    - RoughtIntensity: 0.3464567
+    - RoughtIntensity: 0
     - TxtProcedural: 0
     - Vector1_52db204c180d4d25af4afb3f60e74283: 1
     - Vector1_edcf7fba66c9426894ca490ffe99ffaf: 0
