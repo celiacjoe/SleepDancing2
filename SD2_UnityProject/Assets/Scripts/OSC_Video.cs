@@ -30,7 +30,16 @@ namespace OscSimpl.Examples
         public string Name7;
         public string Name8;
         public string Name9;
+        public string Name10;
+        public string Name11;
+        public string Name12;
+        public string Name13;
+        public string Name14;
+        public string Name15;
+        public string Name16;
         public VideoDeform scrpit1;
+        public render script2;
+        public Material final;
         float v1;
         float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
         {
@@ -74,11 +83,18 @@ namespace OscSimpl.Examples
             _oscIn.MapFloat(Name2, Event2);
             _oscIn.MapFloat(Name3, Event3);
             _oscIn.MapFloat(Name4, Event4);
-            _oscIn.Map(Name5, Event5);
+            //_oscIn.Map(Name5, Event5);
             _oscIn.MapFloat(Name6, Event6);
             _oscIn.MapFloat(Name7, Event7);
             _oscIn.MapFloat(Name8, Event8);
             _oscIn.MapFloat(Name9, Event9);
+            _oscIn.MapFloat(Name10, Event10);
+            _oscIn.MapFloat(Name11, Event11);
+            _oscIn.MapFloat(Name12, Event12);
+            _oscIn.MapFloat(Name13, Event13);
+            _oscIn.MapFloat(Name14, Event14);
+            _oscIn.MapFloat(Name15, Event15);
+            _oscIn.MapFloat(Name16, Event16);
         }
 
 
@@ -98,7 +114,7 @@ namespace OscSimpl.Examples
         {
             v1 = Mathf.Pow(value, 5) * 20+0.001f;
         }
-        void Event5(OscMessage message)
+        /*void Event5(OscMessage message)
         {
             float fa;
             float fb;
@@ -108,7 +124,7 @@ namespace OscSimpl.Examples
                 scrpit1.m2 = fb  ;
             }
             OscPool.Recycle(message);
-        }
+        }   */
         public void Event6(float value)
         {
            scrpit1.Taille=value;
@@ -125,5 +141,34 @@ namespace OscSimpl.Examples
         {
             scrpit1.dir = (value-0.5f)*2;
         }
+        public void Event10(float value)
+        {
+            scrpit1.m1 = value;
+        }
+        public void Event11(float value)
+        {
+            scrpit1.m2 = value;
+        }
+        public void Event12(float value)
+        {
+            script2.Taille = value;
+        }
+        public void Event13(float value)
+        {
+            script2.Forme = value;
+        }
+        public void Event14(float value)
+        {
+            script2.ApparitionForme = value;
+        }
+        public void Event15(float value)
+        {
+            script2.Disparition = value;
+        }
+        public void Event16(float value)
+        {
+            final.SetFloat("Intensity", value);
+        }
+
     }
 }

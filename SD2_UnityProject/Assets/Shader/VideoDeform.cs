@@ -110,7 +110,7 @@ public class VideoDeform : MonoBehaviour
                 compute_shader3.SetTexture(handle_main, "reader2", C);
                 compute_shader3.SetTexture(handle_main2, "reader", F);
                 compute_shader3.SetTexture(handle_main2, "reader2", C);
-                compute_shader3.SetTexture(handle_main2, "reader3", B);
+                compute_shader3.SetTexture(handle_main2, "reader3", G);
                 compute_shader3.SetFloat("_time", Time.time);
                 compute_shader3.SetFloat("_taille", Taille);
                 compute_shader3.SetFloat("_forme", Forme);
@@ -120,17 +120,17 @@ public class VideoDeform : MonoBehaviour
                 compute_shader3.SetFloat("_m1", m1);
                 compute_shader3.SetFloat("_m2", m2);
                 compute_shader3.SetFloat("_dir", dir);
-                compute_shader3.SetTexture(handle_main, "writer", B);
-                compute_shader3.Dispatch(handle_main, B.width / 8, B.height / 8, 1);
-                compute_shader3.SetTexture(handle_main, "reader", B);
+                compute_shader3.SetTexture(handle_main, "writer", G);
+                compute_shader3.Dispatch(handle_main, G.width / 8, G.height / 8, 1);
+                compute_shader3.SetTexture(handle_main, "reader",G);
                 compute_shader3.SetTexture(handle_main, "writer", A);
-                compute_shader3.Dispatch(handle_main, B.width / 8, B.height / 8, 1);
-                compute_shader3.SetTexture(handle_main2, "writer", G);
-                compute_shader3.Dispatch(handle_main2, G.width / 8, G.height / 8, 1);
-                compute_shader3.SetTexture(handle_main2, "reader", G);
+                compute_shader3.Dispatch(handle_main, G.width / 8, G.height / 8, 1);
+                compute_shader3.SetTexture(handle_main2, "writer", B);
+                compute_shader3.Dispatch(handle_main2, B.width / 8, B.height / 8, 1);
+                compute_shader3.SetTexture(handle_main2, "reader", B);
                 compute_shader3.SetTexture(handle_main2, "writer", F);
-                compute_shader3.Dispatch(handle_main2, G.width / 8, G.height / 8, 1);
-                material.SetTexture("_Cam", G);
+                compute_shader3.Dispatch(handle_main2, B.width / 8, B.height / 8, 1);
+                material.SetTexture("_Cam", B);
             }
         }
     }
