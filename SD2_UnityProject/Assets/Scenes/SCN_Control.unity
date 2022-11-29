@@ -137,6 +137,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 176598240}
+  - component: {fileID: 176598241}
   m_Layer: 0
   m_Name: CONTROL
   m_TagString: Untagged
@@ -160,6 +161,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &176598241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176598239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4bf4f16628b15e469602d54c0cae65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SharedBlurValue: 0
+  SharedIntensityValue: 0
+  SharedAppFormeValue: 0
+  SharedTailleValue: 0
+  SharedFormeValue: 0
+  SharedDisparitionValue: 0
+  SmoothBlur: 0
+  SmoothIntensity: 0
+  SmoothAppForme: 0
+  SmoothRought: 0
+  SmoothForme: 0
+  SmoothTaille: 0
+  SmoothDisparition: 0
 --- !u!1 &185510550
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,16 +488,16 @@ MonoBehaviour:
   Name7: /2/f2
   Name8: /2/f3
   Name9: /2/f11
-  Name10: /2/f4
-  Name11: /2/f5
-  Name12: /2/f6
-  Name13: /2/f7
-  Name14: /2/f8
-  Name15: /2/f9
-  Name16: /2/f10
+  Name10: 
+  Name11: 
+  Name12: 
+  Name13: 
+  Name14: 
+  Name15: 
+  Name16: 
   scrpit1: {fileID: 296026941}
-  script2: {fileID: 2765008366689411768}
-  final: {fileID: 2100000, guid: abfcedb3a1f6c794784830fffd17a779, type: 2}
+  script2: {fileID: 0}
+  final: {fileID: 0}
 --- !u!1 &353343297
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,6 +1013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   S_FinalRender: {fileID: 2765008366689411768}
   S_VideoDeform: {fileID: 296026941}
+  S_MasterControl: {fileID: 176598241}
   Manager: {fileID: 2020263809}
   S_UI: {fileID: 594323351}
   Mat_RenderFinal: {fileID: 2765008366689411773}
@@ -4512,7 +4539,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4572937942609733729, guid: 482cd7fe41448da4091062485b033db7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4572937942609733740, guid: 482cd7fe41448da4091062485b033db7, type: 3}
       propertyPath: m_RootOrder
