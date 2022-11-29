@@ -11,6 +11,7 @@ public class InputMidiControl : MonoBehaviour
     ///////////// VAR
     public render S_FinalRender;
     public VideoDeform S_VideoDeform;
+    public Master_Control S_MasterControl;
     //public Camera Cam;
     public SceneManager Manager;
     public UI_Manager S_UI;
@@ -112,12 +113,12 @@ public class InputMidiControl : MonoBehaviour
     }
     void Update()
     {
-        SmoothBlurIntensity = Mathf.Lerp(SmoothBlurIntensity, BlurIntensityValue, 0.01f);
-        Mat_RenderFinal.sharedMaterial.SetFloat("BlurIntensity", SmoothBlurIntensity);
+        //SmoothBlurIntensity = Mathf.Lerp(SmoothBlurIntensity, BlurIntensityValue, 0.01f);
+       // Mat_RenderFinal.sharedMaterial.SetFloat("BlurIntensity", S_MasterControl.SharedBlurValue);
 
-        SmoothIntensity = Mathf.Lerp(SmoothIntensity, IntensityControlValue, 0.01f);
-        Mat_RenderFinal.sharedMaterial.SetFloat("Intensity", SmoothIntensity);
-
+        //SmoothIntensity = Mathf.Lerp(SmoothIntensity, IntensityControlValue, 0.01f);
+        //Mat_RenderFinal.sharedMaterial.SetFloat("Intensity", S_MasterControl.SharedIntensityValue);
+        /*
         SmoothRoughtIntensity = Mathf.Lerp(SmoothRoughtIntensity, RoughtIntensityValue, 0.01f);
         Mat_RenderFinal.sharedMaterial.SetFloat("RoughtIntensity", SmoothRoughtIntensity);
 
@@ -133,7 +134,7 @@ public class InputMidiControl : MonoBehaviour
 
         SmoothDisparition = Mathf.Lerp(SmoothDisparition, DisparitionValue, 0.01f);
         S_FinalRender.Forme = SmoothDisparition;
-
+        */
         /*SmoothThick = Mathf.Lerp(SmoothBlurIntensity, BlurIntensityValue, 0.01f);
        Mat_RenderFinal.sharedMaterial.SetFloat("BlurIntensity", SmoothBlurIntensity);
 
@@ -435,18 +436,22 @@ public class InputMidiControl : MonoBehaviour
     void BlurIntensity(InputAction.CallbackContext ctx)
     {
         BlurIntensityValue = ctx.ReadValue<float>();
+       // BlurIntensityValue = ctx.ReadValue<float>();
+
     }
     void RoughtIntensity(InputAction.CallbackContext ctx)
     {
         RoughtIntensityValue = ctx.ReadValue<float>();
         if (!SoundControl01){
-            Mat_RenderFinal.sharedMaterial.SetFloat("RoughtIntensity", RoughtIntensityValue);
+          //  Mat_RenderFinal.sharedMaterial.SetFloat("RoughtIntensity", RoughtIntensityValue);
+           // Mat_RenderFinal.sharedMaterial.SetFloat("RoughtIntensity", RoughtIntensityValue);
             S_VideoDeform.RoughtIntensity = RoughtIntensityValue;
         }      
     }
     void IntensityControl(InputAction.CallbackContext ctx)
     {
         IntensityControlValue = ctx.ReadValue<float>();
+        S_MasterControl.SharedIntensityValue = IntensityControlValue;
         //Mat_RenderFinal.sharedMaterial.SetFloat("Intensity", IntensityControlValue);
     }
     void ApparitionForme(InputAction.CallbackContext ctx)
