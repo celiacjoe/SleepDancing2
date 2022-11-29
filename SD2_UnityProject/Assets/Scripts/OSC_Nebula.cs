@@ -83,7 +83,7 @@ namespace OscSimpl.Examples
             _oscIn.MapFloat(Name7, Event7);
             _oscIn.MapFloat(Name8, Event8);
             _oscIn.MapFloat(Name9, Event9);
-           
+            _oscIn.MapFloat(Name10, Event10);
 
         }
 
@@ -134,8 +134,12 @@ namespace OscSimpl.Examples
         public void Event9(float value)
         {
             v1 = Mathf.Pow(value,5)*20 + 0.001f;
-        }     
+        }
+        public void Event10(float value)
+        {
+            scrpit1.transition4 = value;
 
+        }
 
     }
 }

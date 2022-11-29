@@ -1,7 +1,7 @@
 ﻿#pragma kernel CSMain
 #pragma kernel CSMain2
 Texture2D<float4> reader; 
-//Texture2D<float4> reader2;
+Texture2D<float4> reader2;
 RWTexture2D<float4> writer;
 //RWTexture2D<float4> writer2;
 SamplerState _LinearClamp;
@@ -18,7 +18,7 @@ float _resx;
 float _resy;
 float _p1;
 float _p2;
-
+float _RoughtIntensity;
 float4 rd(float p) {
 	p = floor(p);
 	return frac(sin(float4(dot(p, 45.), dot(p, 98.), dot(p, 632.),
@@ -103,7 +103,7 @@ void CSMain2(uint2 id : SV_DispatchThreadID)
 	float Quality = 4.0;
 	float pd = pow(length(uv.y - 0.5)*2., 2.);
 	float pdd = smoothstep(0.75, 1., pd);
-	float bd = pd*5000.*_SMid+pdd*100.;
+	float bd = pd*5000.*_SMid+pdd*100.+reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).x*_RoughtIntensity*100.;
 
 	float2 Radius = bd / float2(1920., 1080.);
 	float4 Color = reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0);

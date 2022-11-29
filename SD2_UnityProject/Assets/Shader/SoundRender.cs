@@ -8,7 +8,7 @@ public class SoundRender : MonoBehaviour
   //  RenderTexture D;
     //RenderTexture C;
     public Material material;
-   // public Texture C;
+    public Texture Rought;
     int handle_main;
     int handle_main2;
     [Range(0, 1)]
@@ -17,6 +17,7 @@ public class SoundRender : MonoBehaviour
     public float Forme;
     [Range(0, 1)]
     public float Disparition;
+    public float RoughtIntensity;
     public float Low;
     public float TLow;
     public float SLow;
@@ -53,6 +54,8 @@ public class SoundRender : MonoBehaviour
 
         p1 = Mathf.Lerp(p1, f1, 0.02f);
         p2 = Mathf.Lerp(p2, f2, 0.02f);
+        compute_shader.SetFloat("_RoughtIntensity", RoughtIntensity);
+        compute_shader.SetTexture(handle_main2, "reader2", Rought);
         compute_shader.SetTexture(handle_main2, "reader", A);
         compute_shader.SetFloat("_p1", p1);
         compute_shader.SetFloat("_p2",p2);
