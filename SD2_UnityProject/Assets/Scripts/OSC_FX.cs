@@ -26,6 +26,7 @@ namespace OscSimpl.Examples
         public Renderer QuadRender;
         public VideoDeform S_VideoDeform;
         public float RoughtSoundReactValue;
+        public VisualEffect FX;
 
         float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
         {
@@ -60,6 +61,12 @@ namespace OscSimpl.Examples
                 //QuadRender.sharedMaterial.SetFloat("RoughtIntensity", S_Midi.RoughtIntensityValue *Low * 5);
                 QuadRender.sharedMaterial.SetFloat("RoughtIntensity", Mathf.Pow(S_Midi.RoughtIntensityValue,5)*Low*5);
                 S_VideoDeform.RoughtIntensity=Mathf.Pow(S_Midi.RoughtIntensityValue,5)*Low*5;
+            }
+            if (S_Midi.SoundControl02 == true)
+            {
+                VisualEffect VFX = FX.GetComponent<VisualEffect>();
+                //QuadRender.sharedMaterial.SetFloat("RoughtIntensity", Mathf.Pow(S_Midi.RoughtIntensityValue, 5) * Low * 5);
+                VFX.SetFloat(S_Midi.Name_P4,Mathf.Pow(S_Midi.FxColorValue, 5) * Low * 5);
             }
 
             /*if (S_Midi.SoundControl02 == true)
