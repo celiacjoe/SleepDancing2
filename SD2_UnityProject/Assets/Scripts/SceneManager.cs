@@ -83,9 +83,12 @@ public class SceneManager : MonoBehaviour
         {
         if (Nbr_Fluid == 1){
             S_UI.UI_Deform.GetComponentInChildren<Text>().text = "DEFORM/ Dendritic";
+            RenderFinal.sharedMaterial.SetFloat("Video", 0);
             ScriptRender.compute_shader = Deform01;
+
         }else if (Nbr_Fluid == 2){
             S_UI.UI_Deform.GetComponentInChildren<Text>().text = "DEFORM/ Fluid01";
+            RenderFinal.sharedMaterial.SetFloat("Video", 0.5f);
             ScriptRender.compute_shader = Deform02;
             Nbr_Fluid = 1;
         }
