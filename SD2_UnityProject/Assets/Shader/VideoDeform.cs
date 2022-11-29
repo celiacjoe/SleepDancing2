@@ -97,6 +97,8 @@ public class VideoDeform : MonoBehaviour
                 compute_shader2.SetFloat("_disparition", Disparition);
                 compute_shader2.SetFloat("_resx", _resx);
                 compute_shader2.SetFloat("_resy", _resy);
+                compute_shader.SetFloat("_m1", m1);
+                compute_shader.SetFloat("_m2", m2);
                 compute_shader2.SetTexture(handle_main, "writer", B);
                 compute_shader2.Dispatch(handle_main, B.width / 8, B.height / 8, 1);
                 compute_shader2.SetTexture(handle_main, "reader", B);

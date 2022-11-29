@@ -70,8 +70,8 @@ namespace OscSimpl.Examples
             if (S_Midi.SoundControl02 == true)
             {
                 VisualEffect VFX = S_Manager.FX_List[S_Manager.Nbr_FX].GetComponent(typeof(VisualEffect)) as VisualEffect;
-                VFX.SetFloat(S_Midi.Name_P2,Mathf.Pow(S_Midi.FxP2Value, 5) * Mid );
-                VFX.SetFloat(S_Midi.Name_P4, Mathf.Pow(S_Midi.FxP4Value, 5) * SMid );
+                VFX.SetFloat(S_Midi.Name_P2,Mathf.Pow(S_Midi.FxP2Value, 5) * Mid *10);
+                VFX.SetFloat(S_Midi.Name_P3, Mathf.Pow(S_Midi.FxP3Value, 5) * SMid *10);
                // VFX.SetFloat(S_Midi.Name_P4,Mathf.Pow(S_Midi.FxP4Value, 5) * SMid * map(S_Midi.MultiplierSoundValueFX,0,1,0,10));
                // QuadRender.sharedMaterial.SetFloat("Intensity", Mathf.Pow(S_Midi.IntensityValue, 5) * Low * 5);
             }/*

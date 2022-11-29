@@ -10,7 +10,8 @@ float _time;
 float _taille;
 float _forme;
 float _disparition;
-
+float _m1;
+float _m2;
 float _resx;
 float _resy;
 
@@ -30,7 +31,7 @@ void CSMain(uint2 id : SV_DispatchThreadID)
 	float2 res = float2(_resx, _resy);
 	float2 uv = f / res;
 
-	float vid = smoothstep(_taille,1.,desaturate(reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xyz));
+	float vid = smoothstep(_taille,_m2,desaturate(reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xyz));
 	float prev = reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).a;
 
 	float diff = abs(vid - prev);

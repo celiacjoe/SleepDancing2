@@ -1095,7 +1095,7 @@ MonoBehaviour:
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: 4a131516-4c65-41de-974a-957853a2d0dd
-      m_Path: <MidiDevice>/control018
+      m_Path: <MidiDevice>/control004
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -1140,6 +1140,22 @@ MonoBehaviour:
       m_Processors: 
       m_Groups: 
       m_Action: Forme
+      m_Flags: 0
+  _ApparitionLiquide:
+    m_Name: Apparition Liquide
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: eae7058f-bbb3-49b3-b628-20cf88a67f43
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: bc601ddd-b829-41d4-a3a5-d2572e6ea2a4
+      m_Path: <MidiDevice>/control018
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Apparition Liquide
       m_Flags: 0
   _Disparition:
     m_Name: Disparition
@@ -1666,7 +1682,7 @@ MonoBehaviour:
       m_Action: Multiplier Sound 03
       m_Flags: 0
   _MultiplierSoundFX:
-    m_Name: 
+    m_Name: Multiplier Sound FX
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 1b39c907-f349-4712-a9f1-941b3face95e
@@ -3678,7 +3694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1082893029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5757,7 +5773,7 @@ MonoBehaviour:
   S_UI: {fileID: 594323351}
   S_Video: {fileID: 296026941}
   S_SunshaftRender: {fileID: 2141845102}
-  S_MasterControl: {fileID: 0}
+  S_MasterControl: {fileID: 176598241}
   RenderFinal: {fileID: 2765008366689411773}
   ScriptRender: {fileID: 2765008366689411768}
   GO_FinalQuad:
