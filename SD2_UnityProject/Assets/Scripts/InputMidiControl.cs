@@ -24,7 +24,7 @@ public class InputMidiControl : MonoBehaviour
     public float MultiplierSound03Value;
     private float BlurIntensityValue;
     public float RoughtIntensityValue;
-    public float RoughtIntensityDynamic;
+    //public float RoughtIntensityDynamic;
     public float IntensityControlValue;
     public float AppFormeValue;
     private float TailleValue;
@@ -36,6 +36,7 @@ public class InputMidiControl : MonoBehaviour
     private Vector3 velocity;
     private float PosX;
     private float PosY;
+    public float FxColorValue;
     private bool Noir;
     private bool FXActive;
     public GameObject MovableObject;
@@ -89,6 +90,16 @@ public class InputMidiControl : MonoBehaviour
     [SerializeField] InputAction _MultiplierSound01 = null;
     [SerializeField] InputAction _MultiplierSound02 = null;
     [SerializeField] InputAction _MultiplierSound03 = null;
+
+    float SmoothBlurIntensity;
+    float SmoothIntensity;
+    float SmoothAppForme;
+    float SmoothRoughtIntensity;
+    float SmoothForme;
+    float SmoothTaille;
+    float SmoothDisparition;
+    float SmoothThick;
+    float SmoothColor;
     ///////////// FUNCTION
     float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
     {
@@ -101,6 +112,35 @@ public class InputMidiControl : MonoBehaviour
     }
     void Update()
     {
+        SmoothBlurIntensity = Mathf.Lerp(SmoothBlurIntensity, BlurIntensityValue, 0.01f);
+        Mat_RenderFinal.sharedMaterial.SetFloat("BlurIntensity", SmoothBlurIntensity);
+
+        SmoothIntensity = Mathf.Lerp(SmoothIntensity, IntensityControlValue, 0.01f);
+        Mat_RenderFinal.sharedMaterial.SetFloat("Intensity", SmoothIntensity);
+
+        SmoothRoughtIntensity = Mathf.Lerp(SmoothRoughtIntensity, RoughtIntensityValue, 0.01f);
+        Mat_RenderFinal.sharedMaterial.SetFloat("RoughtIntensity", SmoothRoughtIntensity);
+
+        SmoothAppForme = Mathf.Lerp(SmoothAppForme, AppFormeValue, 0.01f);
+        S_FinalRender.ApparitionForme = SmoothAppForme;
+        Mat_RenderFinal.sharedMaterial.SetFloat("_ApparitionForme", AppFormeValue);
+
+        SmoothTaille = Mathf.Lerp(SmoothTaille, TailleValue, 0.01f);
+        S_FinalRender.Taille = SmoothTaille;
+
+        SmoothForme = Mathf.Lerp(SmoothForme, SmoothForme, 0.01f);
+        S_FinalRender.Forme = SmoothForme;
+
+        SmoothDisparition = Mathf.Lerp(SmoothDisparition, DisparitionValue, 0.01f);
+        S_FinalRender.Forme = SmoothDisparition;
+
+        /*SmoothThick = Mathf.Lerp(SmoothBlurIntensity, BlurIntensityValue, 0.01f);
+       Mat_RenderFinal.sharedMaterial.SetFloat("BlurIntensity", SmoothBlurIntensity);
+
+       SmoothColor = Mathf.Lerp(SmoothColor, FxP4, 0.01f);
+       VisualEffect VFX = FX.GetComponent<VisualEffect>();
+       VFX.SetFloat(Name_P4, FxP4);*/
+
         Vector3 NewTargetPosition = new Vector3(PosX+40,-4.5f);
         MovableObject.transform.position = Vector3.SmoothDamp(MovableObject.transform.position, NewTargetPosition, ref velocity, SmoothT);
         //MovableObject.transform.position.x = f.SmoothDamp(MovableObject.transform.position.x, NewTargetPosition.x, ref velocity, SmoothT);
@@ -395,7 +435,6 @@ public class InputMidiControl : MonoBehaviour
     void BlurIntensity(InputAction.CallbackContext ctx)
     {
         BlurIntensityValue = ctx.ReadValue<float>();
-        Mat_RenderFinal.sharedMaterial.SetFloat("BlurIntensity", BlurIntensityValue);
     }
     void RoughtIntensity(InputAction.CallbackContext ctx)
     {
@@ -408,13 +447,13 @@ public class InputMidiControl : MonoBehaviour
     void IntensityControl(InputAction.CallbackContext ctx)
     {
         IntensityControlValue = ctx.ReadValue<float>();
-        Mat_RenderFinal.sharedMaterial.SetFloat("Intensity", IntensityControlValue);
+        //Mat_RenderFinal.sharedMaterial.SetFloat("Intensity", IntensityControlValue);
     }
     void ApparitionForme(InputAction.CallbackContext ctx)
     {
         AppFormeValue = ctx.ReadValue<float>();
-        S_FinalRender.ApparitionForme = AppFormeValue;
-        Mat_RenderFinal.sharedMaterial.SetFloat("_ApparitionForme", AppFormeValue);
+      //  S_FinalRender.ApparitionForme = AppFormeValue;
+      //  Mat_RenderFinal.sharedMaterial.SetFloat("_ApparitionForme", AppFormeValue);
     }
      void Taille(InputAction.CallbackContext ctx)
      {
@@ -471,9 +510,12 @@ public class InputMidiControl : MonoBehaviour
     }
     void FXParam4(InputAction.CallbackContext ctx)
     {
-        float FxP4 = ctx.ReadValue<float>();
-        VisualEffect VFX = FX.GetComponent<VisualEffect>();
-        VFX.SetFloat(Name_P4, FxP4);
+        FxColorValue = ctx.ReadValue<float>();
+        if (!SoundControl02)
+        {
+            VisualEffect VFX = FX.GetComponent<VisualEffect>();
+            VFX.SetFloat(Name_P4, FxColorValue);
+        }
     }
     void VolumeParam01(InputAction.CallbackContext ctx)
     {

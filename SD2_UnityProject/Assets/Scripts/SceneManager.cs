@@ -313,6 +313,7 @@ public class SceneManager : MonoBehaviour
                 GO_FinalQuad[0].SetActive(true);
                 RenderFinal.sharedMaterial.SetInt("_" + Current + "_" + Next, 1);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
+                AC.SetTrigger("Transition");
                 Debug.Log("Change Cam vers Nebula");
             }
             else if (Next == "Sunshaft")
@@ -320,6 +321,10 @@ public class SceneManager : MonoBehaviour
                 GO_FinalQuad[1].SetActive(true);
                 RenderFinal.sharedMaterial.SetInt("_" + Current + "_" + Next, 1);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
+                AC.SetTrigger("Transition");
+                RenderFinal.sharedMaterial.SetInt("_FX_Cam", 0);
+                RenderFinal.sharedMaterial.SetInt("_Nebula_Cam", 0);
+                RenderFinal.sharedMaterial.SetInt("_Sunshaft_Cam", 0);
                 Debug.Log("Change cam vers Sunshaft ");
             }
             else if (Next == "FX")
@@ -329,6 +334,10 @@ public class SceneManager : MonoBehaviour
                 GO_FinalQuad[3].SetActive(true);
                 RenderFinal.sharedMaterial.SetInt("_" + Current + "_" + Next, 1);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
+                AC.SetTrigger("Transition");
+                RenderFinal.sharedMaterial.SetInt("_FX_Cam", 0);
+                RenderFinal.sharedMaterial.SetInt("_Nebula_Cam", 0);
+                RenderFinal.sharedMaterial.SetInt("_Sunshaft_Cam", 0);
                 Debug.Log("Change Cam vers FX");
             }
             else if (Next == "Volume")
@@ -339,17 +348,16 @@ public class SceneManager : MonoBehaviour
                 S_Video.volume = true;
                 RenderFinal.sharedMaterial.SetInt("_" + Current + "_" + "FX", 1);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
+                AC.SetTrigger("Transition");
                 Debug.Log("Change Cam vers Volume");
             }
-            AC.SetTrigger("Transition");
-            RenderFinal.sharedMaterial.SetInt("_FX_Cam", 0);
-            RenderFinal.sharedMaterial.SetInt("_Nebula_Cam", 0);
-            RenderFinal.sharedMaterial.SetInt("_Sunshaft_Cam", 0);
+
             if (Next == "Dendritic")
             {
-                RenderFinal.sharedMaterial.SetInt("_Sunshaft_Cam", 1);
+                RenderFinal.sharedMaterial.SetInt("_Nebula_Cam", 1);
                 S_Video.Dendritic = true;
                 Debug.Log("Change Cam vers Dendritic");
+                Current = "Dentritic";
             }
 
         }
@@ -421,7 +429,7 @@ public class SceneManager : MonoBehaviour
             {
                 GO_FinalQuad[2].SetActive(true);
                 RenderFinal.sharedMaterial.SetInt("_FX_" + Next, 1);
-                RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
+                //RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
                 AC.SetTrigger("Transition");
                 Debug.Log("Change Volume vers cam");
             }
@@ -430,12 +438,11 @@ public class SceneManager : MonoBehaviour
             RenderFinal.sharedMaterial.SetInt("_Cam_FX", 0);
             if (Next == "Dendritic")
             {
-                Debug.Log("okcondition volume dentric");
                 GO_FinalQuad[2].SetActive(true);
                 S_Video.Dendritic = true;
-                RenderFinal.sharedMaterial.SetInt("_" + "FX" + "_" + "Cam", 1);
-                RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
-                Debug.Log("Change FX vers Dendritic");
+                RenderFinal.sharedMaterial.SetInt("_Sunshaft_" + "Cam", 1);
+                //RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
+                Debug.Log("Change Volume vers Dendritic");
             }
             if (Next == "FX")
             {
@@ -470,6 +477,7 @@ public class SceneManager : MonoBehaviour
                 GO_FinalQuad[1].SetActive(true);
                 RenderFinal.sharedMaterial.SetInt("_" + "Cam" + "_" + Next, 1);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
+                AC.SetTrigger("Transition");
                 Debug.Log("Change Dendritic vers Sunshaft ");
             }
             else if (Next == "FX")
@@ -479,14 +487,8 @@ public class SceneManager : MonoBehaviour
                 GO_FinalQuad[3].SetActive(true);
                 RenderFinal.sharedMaterial.SetInt("_" + "Cam" + "_" + Next, 1);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
+                AC.SetTrigger("Transition");
                 Debug.Log("Change Dendritic vers FX");
-
-            }
-            else if (Next == "Cam")
-            {
-                GO_FinalQuad[2].SetActive(true);
-                S_Video.Dendritic = false;
-                Debug.Log("Change Dendritic vers Cam");
             }
             RenderFinal.sharedMaterial.SetInt("_FX_Cam", 0);
             RenderFinal.sharedMaterial.SetInt("_Nebula_Cam", 0);
@@ -500,9 +502,18 @@ public class SceneManager : MonoBehaviour
                 S_Video.Dendritic = false;
                 RenderFinal.sharedMaterial.SetInt("_" + "Cam" + "_" + "FX", 1);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
+                AC.SetTrigger("Transition");
                 Debug.Log("Change dendritic vers Volume");
             }
-            AC.SetTrigger("Transition");
+            //AC.SetTrigger("Transition");
+            if (Next == "Cam")
+            {
+                GO_FinalQuad[2].SetActive(true);
+                S_Video.Dendritic = false;
+                RenderFinal.sharedMaterial.SetInt("_Nebula_Cam", 1);
+                Current = "Cam";
+                Debug.Log("Change Dendritic vers Cam");
+            }
             Debug.Log("ok Dendritic is reading");
         }
         
@@ -532,7 +543,7 @@ public class SceneManager : MonoBehaviour
             Current = "Sunshaft";
         }
         else if (Next == "Cam"){
-            OSC_FX.SetActive(true);
+            OSC_FX.SetActive(false);
             GO_FinalQuad[0].SetActive(false);
             GO_FinalQuad[1].SetActive(false);
             GO_FinalQuad[3].SetActive(false);
@@ -564,11 +575,12 @@ public class SceneManager : MonoBehaviour
         }
         else if (Next == "Dendritic")
         {
-            OSC_FX.SetActive(true);
+            OSC_FX.SetActive(false);
             GO_FinalQuad[0].SetActive(false);
             GO_FinalQuad[1].SetActive(false);
             GO_FinalQuad[3].SetActive(false);
             GO_FinalQuad[4].SetActive(false);
+            FX_List[Nbr_FX].SetActive(false);
             S_Video.volume = false;
             Debug.Log("prout");
             Current = "Dendritic";
