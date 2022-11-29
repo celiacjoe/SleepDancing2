@@ -2421,6 +2421,8 @@ MonoBehaviour:
   S_VideoDeform: {fileID: 296026941}
   RoughtSoundReactValue: 0
   FX: {fileID: 6848822297532192589}
+  scriptshape: {fileID: 1965304774}
+  xy: /1/xy1
 --- !u!1 &723622727
 GameObject:
   m_ObjectHideFlags: 0
@@ -5154,7 +5156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 544552243449338225, guid: 37216e5a1bc96bc4d84f9a1567564270, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 544552243449338226, guid: 37216e5a1bc96bc4d84f9a1567564270, type: 3}
       propertyPath: m_Enabled
@@ -5396,10 +5398,14 @@ MonoBehaviour:
   smoothForm: 1
   complexity: 1
   taille: 0.46
+  position1: 0
+  position2: 0
   modifforme01: {x: 1.5, y: 1.8, z: 1.3}
   modifforme02: {x: 0.7, y: 0.6, z: 0.4}
   detail: 40
   _resx: 1280
+  p1: 0
+  p2: 0
   rtFormat: 2
   _resy: 720
 --- !u!23 &1965304776
@@ -6220,16 +6226,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6453235082599507925, guid: 87ae26dbbe97293498f98534b000ec11, type: 3}
       propertyPath: Pos.y
-      value: -3.14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6453235082599507925, guid: 87ae26dbbe97293498f98534b000ec11, type: 3}
       propertyPath: Pos.z
-      value: -2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6453235082599507925, guid: 87ae26dbbe97293498f98534b000ec11, type: 3}
       propertyPath: script
       value: 
       objectReference: {fileID: 2765008366689411768}
+    - target: {fileID: 6453235082599507925, guid: 87ae26dbbe97293498f98534b000ec11, type: 3}
+      propertyPath: transition4
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6453235082599507926, guid: 87ae26dbbe97293498f98534b000ec11, type: 3}
       propertyPath: m_Name
       value: Nebula

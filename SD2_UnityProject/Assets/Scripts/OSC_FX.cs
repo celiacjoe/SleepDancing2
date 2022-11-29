@@ -27,7 +27,8 @@ namespace OscSimpl.Examples
         public VideoDeform S_VideoDeform;
         public float RoughtSoundReactValue;
         public VisualEffect FX;
-
+        public ShapeRender scriptshape;
+        public string xy;
         float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
         {
             return MinFinal + (Val - minInit) * (MaxFinal - MinFinal) / (MaxInit - minInit);
@@ -85,7 +86,8 @@ namespace OscSimpl.Examples
         {
             _oscIn.MapFloat(Name1, Event1);
             _oscIn.MapFloat(Name2, Event2);
-            _oscIn.MapFloat(Name3, Event3);   
+            _oscIn.MapFloat(Name3, Event3);
+            _oscIn.Map(xy, Event4);
         }
 
         public void Event1(float value)
@@ -99,6 +101,18 @@ namespace OscSimpl.Examples
         public void Event3(float value)
         {
             High = value*fac.z;
+        }
+        void Event4(OscMessage message)
+        {
+            float fa;
+            float fb;
+            if (message.TryGet(0, out fa) && message.TryGet(1, out fb))
+            {
+                scriptshape.position1 = (fa - 0.5f) * -2;
+                scriptshape.position2 = (fb - 0.5f) * 2;
+                //Debug.Log("ok2");
+            }
+            OscPool.Recycle(message);
         }
     }
 }

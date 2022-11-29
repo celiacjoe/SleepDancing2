@@ -19,6 +19,7 @@ float _resx2;
 float _resy2;
 float _transition1;
 float _transition2;
+float _transition3;
 float _transition4;
 float3 _position;
 float3 _positionL;
@@ -109,31 +110,32 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	uv.x *= _resx / _resy;
 	float pp2 = no(_TLow*(0.05));
 	float pp3 = no(_THigh*.15);
-	float pp4 = no(_TLow*0.1);
+	float pp4 = no(_TLow*0.1+45.);
 	float pp5 = no(_TLow*0.1);
 	float pr = no(_THigh*.1);
 	float pp6 =pr-0.5;
 	float pp = pr*1.2-0.1;
 
-	float3 PosCam = lerp(lerp(float3(lerp(-2., -5., pp), 0., -3. - (no(_TMid*.005 + 45.) - 0.5)*0.5),
+	float3 PosCam = lerp(lerp(lerp(float3(lerp(-2., -5., pp), 0., -3. - (no(_TMid*.005 + 45.) - 0.5)*0.5),
 		float3(-2., 0. , lerp(-3.,-2.5,_transition2) - pp6 *lerp( 0.4,3.,_transition2)), _transition1),
-		//_position.zxy,_transition2),
+		float3(-4.25, _f3*2., _f4*2.),_transition3),
 		float3(-3.,0.,0.), _transition4);
 
 	float FocalLength = lerp(lerp(lerp(1.2,5.25, pp),_focal,_transition1), 1.2, _transition4);
 
 
-	float2 ms = lerp(lerp(float2((pp2 - 0.5)*-2., length(pp2 - 0.5)),
+	float2 ms = lerp(lerp(lerp(float2((pp2 - 0.5)*-2., length(pp2 - 0.5)),
 		//(-_positionL.xy)*0.5,_transition1),
 		float2((pp5 - 0.5)*-2.-_f3, pp3+_f4*0.5-pp6*0.5),_transition1),
-		//(-_positionL.xy)*0.5, _transition2),
+		float2(_f3,-_f4)+float2((pp5 - 0.5)*-_f5,(pr - 0.5)*_f5), _transition3),
 		float2(pp4 - .5, pp3 - .5)*2.+float2(_f3*-1.5,_f4), _transition4);
 	
 	
-	float3 LightPos = lerp(lerp(lerp(float3(0.4, (pp2 - 0.5)*2. *2.25, length(pp2 - 0.5) - 3.7),
+	float3 LightPos = lerp(lerp(lerp(lerp(float3(0.4, (pp2 - 0.5)*2. *2.25, length(pp2 - 0.5) - 3.7),
 		//_positionL.zxy,_transition1),
 		float3( 2.*pp4 + _f5, (pp5 - 0.5)*2.+_f3*1.5,-3.-pp3+_f4*1.5), _transition1),
 		float3(-1.+4.*pp4 + _f5*2., (pp5 - 0.5)*6. + _f3*3., -1.5-2.5*  pp3 + _f4*2.), _transition2),
+		float3((pp4-0.5)*_f5*8., (pp5 - 0.5)*_f5*8., (pr - 0.5)*_f5*8.),  _transition3),
 		float3(_f5, -ms.x, ms.y) * 1.5*float3(1., res.x / res.y, 1.),_transition4);
 	
 	float da =step(lerp(1.7,lerp(1.4,1.1,pow(_transition4,9.)),_transition1), distance(ms*0.9, uv));
