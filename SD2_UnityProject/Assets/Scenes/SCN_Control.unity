@@ -1167,7 +1167,7 @@ MonoBehaviour:
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: 92964397-c497-4d8e-a5ce-4cc9ecf5a96c
-      m_Path: <MidiDevice>/control023
+      m_Path: <MidiDevice>/control022
       m_Interactions: 
       m_Processors: 
       m_Groups: 

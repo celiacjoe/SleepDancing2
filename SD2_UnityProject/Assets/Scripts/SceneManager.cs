@@ -49,13 +49,6 @@ public class SceneManager : MonoBehaviour
         S_UI.UI_Current.GetComponentInChildren<Text>().text = "CURRENT/ " + Current;
         S_UI.UI_Next.GetComponentInChildren<Text>().text = "NEXT/ " + Next;
         S_UI.UI_FX.GetComponentInChildren<Text>().text = "FX /" + S_UI.T_FX;
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ResetLevel();
-            RenderFinal.sharedMaterial.SetFloat("_Transition", 1);
-            RenderFinal.sharedMaterial.SetInt("_Sunshaft_Nebula", 1);
-        }
     }
         public void ChangeGrainTexture()
         {
@@ -108,7 +101,6 @@ public class SceneManager : MonoBehaviour
             FX_List[0].SetActive(true);
             FX_List[1].SetActive(false);
             FX_List[2].SetActive(false);
-            //FX_List[3].SetActive(false);
             VisualEffect VisualFX1 = FX_List[Nbr_FX].GetComponent(typeof(VisualEffect)) as VisualEffect;
             S_Midi.FX = VisualFX1;
             S_Midi.MovableObject = FX_List[Nbr_FX];
@@ -117,7 +109,6 @@ public class SceneManager : MonoBehaviour
             FX_List[0].SetActive(false);
             FX_List[1].SetActive(true);
             FX_List[2].SetActive(false);
-            //FX_List[3].SetActive(false);
             VisualEffect VisualFX2 = FX_List[Nbr_FX].GetComponent(typeof(VisualEffect)) as VisualEffect;
             S_Midi.FX = VisualFX2;
             S_Midi.MovableObject = FX_List[Nbr_FX];
@@ -126,7 +117,6 @@ public class SceneManager : MonoBehaviour
             FX_List[0].SetActive(false);
             FX_List[1].SetActive(false);
             FX_List[2].SetActive(true);
-            //FX_List[3].SetActive(true);
             VisualEffect VisualFX3 = FX_List[Nbr_FX].GetComponent(typeof(VisualEffect)) as VisualEffect;
             S_Midi.FX = VisualFX3;
             S_Midi.MovableObject = FX_List[Nbr_FX];
@@ -432,7 +422,6 @@ public class SceneManager : MonoBehaviour
             RenderFinal.sharedMaterial.SetInt("_Nebula_FX", 0);
             RenderFinal.sharedMaterial.SetInt("_Sunshaft_FX", 0);
             RenderFinal.sharedMaterial.SetInt("_Cam_FX", 0);
-            Debug.Log("OK ça pass ici");
             if (Next == "Dendritic")
             {
                 GO_FinalQuad[2].SetActive(true);
@@ -551,6 +540,7 @@ public class SceneManager : MonoBehaviour
             S_UI.UI_FX.SetActive(false);
             S_Video.volume = false;
             S_Video.Dendritic = false;
+            CleanShape3D();
             Current = "Cam";
         }else if (Next == "FX"){
             OSC_FX.SetActive(true);
@@ -583,6 +573,11 @@ public class SceneManager : MonoBehaviour
             S_Video.volume = false;
             Current = "Dendritic";
         }
+    }
+
+   public void CleanShape3D()
+    {
+        RenderFinal.sharedMaterial.SetFloat("_ApparitionForme", 0);
     }
    public void ResetLevel()
     {
