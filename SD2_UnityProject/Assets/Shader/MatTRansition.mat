@@ -180,7 +180,7 @@ Material:
     - _GlossyReflections: 0
     - _Metallic: 0
     - _Nebula_BackFX: 0
-    - _Nebula_Cam: 1
+    - _Nebula_Cam: 0
     - _Nebula_FX: 0
     - _Nebula_SunShaft: 0
     - _Nebula_Sunshaft: 0
@@ -200,9 +200,9 @@ Material:
     - _SunShaft_Video: 0
     - _Sunshaft_Cam: 0
     - _Sunshaft_FX: 0
-    - _Sunshaft_Nebula: 0
+    - _Sunshaft_Nebula: 1
     - _Surface: 0
-    - _Transition: 0
+    - _Transition: 1
     - _Video_BAckFX: 0
     - _Video_Nedula: 0
     - _Video_SunShaft: 0
