@@ -5,7 +5,6 @@ public class NebulaRender : MonoBehaviour
     public ComputeShader compute_shader;
     RenderTexture A;
     RenderTexture B;
-   // public RenderTexture C;
     public Texture noise;
     public Material material;
     int handle_main;
@@ -59,8 +58,6 @@ public class NebulaRender : MonoBehaviour
     public float High;
     public float THigh;
     public float SHigh;
-    //public float f1;
-    //public float f2;
     public float f3;
     public float f1;
     public float f2;

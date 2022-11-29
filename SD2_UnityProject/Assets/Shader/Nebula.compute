@@ -116,7 +116,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float pp = pr*1.2-0.1;
 
 	float3 PosCam = lerp(lerp(float3(lerp(-2., -5., pp), 0., -3. - (no(_TMid*.005 + 45.) - 0.5)*0.5),
-		float3(-2., 0., lerp(-3., -4., _transition2) - pp6 *lerp( 0.4,3.,_transition2)), _transition1),
+		float3(-2., 0. , lerp(-3.,-2.5,_transition2) - pp6 *lerp( 0.4,3.,_transition2)), _transition1),
 		//_position.zxy,_transition2),
 		float3(-3.,0.,0.), _transition4);
 
@@ -125,7 +125,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 
 	float2 ms = lerp(lerp(float2((pp2 - 0.5)*-2., length(pp2 - 0.5)),
 		//(-_positionL.xy)*0.5,_transition1),
-		float2((pp5 - 0.5)*-2.-_f3,pp3+_f4*0.5),_transition1),
+		float2((pp5 - 0.5)*-2.-_f3, pp3+_f4*0.5-pp6*0.5),_transition1),
 		//(-_positionL.xy)*0.5, _transition2),
 		float2(pp4 - .5, pp3 - .5)*2.+float2(_f3*-1.5,_f4), _transition4);
 	
