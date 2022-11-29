@@ -173,6 +173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4bf4f16628b15e469602d54c0cae65a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AddSoundValue01: 0
+  AddSoundValue02: 0
   SharedBlurValue: 0
   SharedIntensityValue: 0
   SharedAppFormeValue: 0
@@ -1013,10 +1015,11 @@ MonoBehaviour:
   S_FinalRender: {fileID: 2765008366689411768}
   S_VideoDeform: {fileID: 296026941}
   S_MasterControl: {fileID: 176598241}
+  S_SunshaftRender: {fileID: 2141845102}
   Manager: {fileID: 2020263809}
   S_UI: {fileID: 594323351}
   Mat_RenderFinal: {fileID: 2765008366689411773}
-  FX: {fileID: 635061448}
+  FX: {fileID: 6848822297532192589}
   SoundControl01: 0
   SoundControl02: 0
   SoundControl03: 0
@@ -1027,7 +1030,12 @@ MonoBehaviour:
   IntensityControlValue: 0
   AppFormeValue: 0
   SmoothT: 0.45
-  FxColorValue: 0
+  FxP1Value: 0
+  FxP2Value: 0
+  FxP3Value: 0
+  FxP4Value: 0
+  MultiplierSoundValueFX: 0
+  NoirCourt: 0
   MovableObject: {fileID: 635061444}
   _BlurIntensity:
     m_Name: Blur Intensity
@@ -1225,13 +1233,13 @@ MonoBehaviour:
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: 9db8e25c-57da-43c2-bab1-4003e1da6a92
-      m_Path: <MidiDevice>/control006
+      m_Path: <MidiDevice>/control005
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: FX Param 3
       m_Flags: 0
-  Name_P3: Color
+  Name_P3: Thick
   _FXParam4:
     m_Name: FX Param 4
     m_Type: 0
@@ -1242,13 +1250,13 @@ MonoBehaviour:
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: aeaa5833-7f2f-4554-980d-2e8ff7531057
-      m_Path: <MidiDevice>/control005
+      m_Path: <MidiDevice>/control006
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: FX Param 4
       m_Flags: 0
-  Name_P4: Thick
+  Name_P4: Color
   _VolumeParam01:
     m_Name: Volume Param 01
     m_Type: 0
@@ -1657,6 +1665,14 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Multiplier Sound 03
       m_Flags: 0
+  _MultiplierSoundFX:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1b39c907-f349-4712-a9f1-941b3face95e
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
 --- !u!1 &532470461
 GameObject:
   m_ObjectHideFlags: 0
@@ -1848,7 +1864,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &594323350
 Transform:
   m_ObjectHideFlags: 0
@@ -1862,7 +1878,7 @@ Transform:
   m_Children:
   - {fileID: 869791663}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &594323351
 MonoBehaviour:
@@ -2419,6 +2435,8 @@ MonoBehaviour:
   S_Midi: {fileID: 530685424}
   QuadRender: {fileID: 2765008366689411773}
   S_VideoDeform: {fileID: 296026941}
+  S_Manager: {fileID: 2020263809}
+  S_MasterControl: {fileID: 176598241}
   RoughtSoundReactValue: 0
   FX: {fileID: 6848822297532192589}
   scriptshape: {fileID: 1965304774}
@@ -2538,7 +2556,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &724236754
 GameObject:
@@ -2781,53 +2799,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 739418306}
   m_CullTransparentMesh: 1
---- !u!1 &750892247
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 750892249}
-  - component: {fileID: 750892248}
-  m_Layer: 0
-  m_Name: Timer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &750892248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 750892247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8b81223dfc833048b050c7fbe5560c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeRemaining: 50
-  timerIsRunning: 0
-  TimerDown: 0
-  timeText: {fileID: 0}
---- !u!4 &750892249
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 750892247}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.5875, y: -1.3614984, z: 4.663828}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &770954886
 GameObject:
   m_ObjectHideFlags: 0
@@ -3291,7 +3262,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &956180707
 PrefabInstance:
@@ -3585,7 +3556,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: + INTENSITY
+  m_Text: + COLOR FX
 --- !u!222 &976952943
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3754,12 +3725,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1082893028}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Father: {fileID: 1282053963}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1168241023
 GameObject:
@@ -5093,7 +5064,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1894217849
 PrefabInstance:
@@ -5783,9 +5754,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   S_Midi: {fileID: 530685424}
-  S_Timer: {fileID: 750892248}
   S_UI: {fileID: 594323351}
   S_Video: {fileID: 296026941}
+  S_SunshaftRender: {fileID: 2141845102}
+  S_MasterControl: {fileID: 0}
   RenderFinal: {fileID: 2765008366689411773}
   ScriptRender: {fileID: 2765008366689411768}
   GO_FinalQuad:
@@ -5814,6 +5786,36 @@ MonoBehaviour:
   Next: 
   AC: {fileID: 2020263807}
   Nbr_FX: 0
+--- !u!1 &2114243653
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2114243654}
+  m_Layer: 0
+  m_Name: '- - - - - - - - - - - - '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2114243654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114243653}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 36.920826, y: -3.3486261, z: -10.322786}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2128317563 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 544552243449338225, guid: 37216e5a1bc96bc4d84f9a1567564270, type: 3}
@@ -5868,6 +5870,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6454805775248245714, guid: d3591292d5929b64192eda4ef94d6e53, type: 3}
   m_PrefabInstance: {fileID: 9208554823065180146}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2141845102 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6454805775248245715, guid: d3591292d5929b64192eda4ef94d6e53, type: 3}
+  m_PrefabInstance: {fileID: 9208554823065180146}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141845100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16e7966a807a0c44abb8e2f3cfda6630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2765008365743966153
 GameObject:
   m_ObjectHideFlags: 0

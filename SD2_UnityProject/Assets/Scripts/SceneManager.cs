@@ -10,9 +10,10 @@ public class SceneManager : MonoBehaviour
 
     [Header("Dependency")]
     public InputMidiControl S_Midi;
-    public Timer S_Timer;
     public UI_Manager S_UI;
     public VideoDeform S_Video;
+    public SoundRender S_SunshaftRender;
+    public Master_Control S_MasterControl;
 
     [Header("Final Render")]
     public Renderer RenderFinal;
@@ -56,12 +57,14 @@ public class SceneManager : MonoBehaviour
             S_UI.UI_Grain.GetComponentInChildren<Text>().text = "TXT GRAIN 01";
             RenderFinal.sharedMaterial.SetTexture("_Rought", TXT01Rought);
             RenderFinal.sharedMaterial.SetTexture("_NRM", TXT01NRM);
+            S_SunshaftRender.Rought = TXT01Rought;
             RenderFinal.sharedMaterial.SetInt("TxtProcedural", 0);
         }
         else if (Nbr_Grain == 2){
             S_UI.UI_Grain.GetComponentInChildren<Text>().text = "TXT GRAIN 02";
             RenderFinal.sharedMaterial.SetTexture("_Rought", TXT02Rought);
             RenderFinal.sharedMaterial.SetTexture("_NRM", TXT02NRM);
+            S_SunshaftRender.Rought = TXT01Rought;
             RenderFinal.sharedMaterial.SetInt("TxtProcedural", 0);
         }
         else if (Nbr_Grain == 3){
@@ -577,7 +580,9 @@ public class SceneManager : MonoBehaviour
 
    public void CleanShape3D()
     {
+        
         RenderFinal.sharedMaterial.SetFloat("_ApparitionForme", 0);
+        S_MasterControl.SharedAppFormeValue = 0f;
     }
    public void ResetLevel()
     {
