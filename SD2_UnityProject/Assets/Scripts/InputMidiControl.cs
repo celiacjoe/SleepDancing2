@@ -12,6 +12,7 @@ public class InputMidiControl : MonoBehaviour
     public render S_FinalRender;
     public VideoDeform S_VideoDeform;
     public Master_Control S_MasterControl;
+    public SoundRender S_SunshaftRender;
     //public Camera Cam;
     public SceneManager Manager;
     public UI_Manager S_UI;
@@ -37,7 +38,11 @@ public class InputMidiControl : MonoBehaviour
     private Vector3 velocity;
     private float PosX;
     private float PosY;
-    public float FxColorValue;
+    public float FxP1Value;
+    public float FxP2Value;
+    public float FxP3Value;
+    public float FxP4Value;
+    public float MultiplierSoundValueFX;
     private bool Noir;
     public bool NoirCourt;
     private bool FXActive;
@@ -92,6 +97,7 @@ public class InputMidiControl : MonoBehaviour
     [SerializeField] InputAction _MultiplierSound01 = null;
     [SerializeField] InputAction _MultiplierSound02 = null;
     [SerializeField] InputAction _MultiplierSound03 = null;
+    [SerializeField] InputAction _MultiplierSoundFX = null;
 
     ///////////// FUNCTION
     float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
@@ -106,7 +112,6 @@ public class InputMidiControl : MonoBehaviour
     }
     void Update()
     {
-
         Mat_RenderFinal.sharedMaterial.SetFloat("BlurIntensity", S_MasterControl.SmoothBlur);
         Mat_RenderFinal.sharedMaterial.SetFloat("Intensity", S_MasterControl.SmoothIntensity);
         Mat_RenderFinal.sharedMaterial.SetFloat("_ApparitionForme", S_MasterControl.SmoothAppForme);
@@ -313,6 +318,9 @@ public class InputMidiControl : MonoBehaviour
 
         _MultiplierSound03.performed += MultiplierSound03;
         _MultiplierSound03.Enable();
+
+        _MultiplierSoundFX.performed += MultiplierSoundFX;
+        _MultiplierSoundFX.Enable();
     }
 
     void OnDisable()
@@ -433,6 +441,9 @@ public class InputMidiControl : MonoBehaviour
 
         _MultiplierSound03.performed -= MultiplierSound03;
         _MultiplierSound03.Disable();
+
+        _MultiplierSoundFX.performed -= MultiplierSoundFX;
+        _MultiplierSoundFX.Disable();
     }
     void BlurIntensity(InputAction.CallbackContext ctx)
     {
@@ -444,18 +455,25 @@ public class InputMidiControl : MonoBehaviour
         RoughtIntensityValue = ctx.ReadValue<float>();
         if (!SoundControl01){
             Mat_RenderFinal.sharedMaterial.SetFloat("RoughtIntensity", RoughtIntensityValue);
+            S_SunshaftRender.RoughtIntensity = RoughtIntensityValue;
             S_VideoDeform.RoughtIntensity = RoughtIntensityValue;
         }      
     }
     void IntensityControl(InputAction.CallbackContext ctx)
     {
-        S_MasterControl.SharedIntensityValue = ctx.ReadValue<float>();
+        if (!SoundControl02)
+        {
+            S_MasterControl.SharedIntensityValue = ctx.ReadValue<float>();
+         } 
        // S_MasterControl.SharedIntensityValue = IntensityControlValue;
        //Mat_RenderFinal.sharedMaterial.SetFloat("Intensity", IntensityControlValue);
     }
     void ApparitionForme(InputAction.CallbackContext ctx)
     {
-        S_MasterControl.SharedAppFormeValue = ctx.ReadValue<float>();
+        if (!SoundControl03)
+        {
+            S_MasterControl.SharedAppFormeValue = ctx.ReadValue<float>();
+        }
         //AppFormeValue = ctx.ReadValue<float>();
       //  S_FinalRender.ApparitionForme = AppFormeValue;
       //  Mat_RenderFinal.sharedMaterial.SetFloat("_ApparitionForme", AppFormeValue);
@@ -500,29 +518,32 @@ public class InputMidiControl : MonoBehaviour
     }
     void FXParam1(InputAction.CallbackContext ctx)
     {
-        float FxP1= ctx.ReadValue<float>() ;
+        FxP1Value = ctx.ReadValue<float>() ;
         VisualEffect VFX = FX.GetComponent<VisualEffect>();
-        VFX.SetFloat(Name_P1, FxP1);
+        VFX.SetFloat(Name_P1, FxP1Value);
     }
     void FXParam2(InputAction.CallbackContext ctx)
     {
-        float FxP2 = ctx.ReadValue<float>();
+        FxP2Value = ctx.ReadValue<float>();
         VisualEffect VFX = FX.GetComponent<VisualEffect>();
-        VFX.SetFloat(Name_P2, FxP2);
+        VFX.SetFloat(Name_P2, FxP2Value);
     }
     void FXParam3(InputAction.CallbackContext ctx)
     {
-        float FxP3 = ctx.ReadValue<float>();
-        VisualEffect VFX = FX.GetComponent<VisualEffect>();
-        VFX.SetFloat(Name_P3, FxP3);
+        FxP3Value = ctx.ReadValue<float>();
+        if (SoundControl02 == true)
+        {
+            VisualEffect VFX = FX.GetComponent<VisualEffect>();
+            VFX.SetFloat(Name_P3, FxP3Value);
+        }
     }
     void FXParam4(InputAction.CallbackContext ctx)
     {
-        FxColorValue = ctx.ReadValue<float>();
+        FxP4Value = ctx.ReadValue<float>();
         if (!SoundControl02)
         {
             VisualEffect VFX = FX.GetComponent<VisualEffect>();
-            VFX.SetFloat(Name_P4, FxColorValue);
+            VFX.SetFloat(Name_P4, FxP4Value);
         }
     }
     void VolumeParam01(InputAction.CallbackContext ctx)
@@ -676,6 +697,11 @@ public class InputMidiControl : MonoBehaviour
     void MultiplierSound03(InputAction.CallbackContext ctx)
     {
         MultiplierSound03Value = ctx.ReadValue<float>();
+    }
+
+    void MultiplierSoundFX(InputAction.CallbackContext ctx)
+    {
+        MultiplierSoundValueFX = ctx.ReadValue<float>();
     }
 
     /*  void Subdivision1(InputAction.CallbackContext ctx)

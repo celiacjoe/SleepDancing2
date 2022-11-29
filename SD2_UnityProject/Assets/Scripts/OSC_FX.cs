@@ -25,6 +25,8 @@ namespace OscSimpl.Examples
         public InputMidiControl S_Midi;
         public Renderer QuadRender;
         public VideoDeform S_VideoDeform;
+        public SceneManager S_Manager;
+        public Master_Control S_MasterControl;
         public float RoughtSoundReactValue;
         public VisualEffect FX;
 
@@ -46,9 +48,11 @@ namespace OscSimpl.Examples
         void Update()
         {
             fac.x = S_Midi.MultiplierSound01Value*5;
-            fac.y = map(S_Midi.MultiplierSound02Value, 0, 1, 0, 40);
-            fac.z = map(S_Midi.MultiplierSound03Value, 0, 1, 0, 40);
+            //fac.y = map(S_Midi.MultiplierSound02Value, 0, 1, 0, 40);
+            //fac.z = map(S_Midi.MultiplierSound03Value, 0, 1, 0, 40);
 
+            S_MasterControl.AddSoundValue01 = Mathf.Pow(S_Midi.MultiplierSound02Value,5)* SMid;
+            S_MasterControl.AddSoundValue02 = Mathf.Pow(S_Midi.MultiplierSound03Value, 5) * SHigh;
             TLow += Low;
             TMid += Mid;
             THigh += High;
@@ -64,21 +68,22 @@ namespace OscSimpl.Examples
             }
             if (S_Midi.SoundControl02 == true)
             {
-                VisualEffect VFX = FX.GetComponent<VisualEffect>();
-                //QuadRender.sharedMaterial.SetFloat("RoughtIntensity", Mathf.Pow(S_Midi.RoughtIntensityValue, 5) * Low * 5);
-                VFX.SetFloat(S_Midi.Name_P4,Mathf.Pow(S_Midi.FxColorValue, 5) * Low * 5);
-            }
-
-            /*if (S_Midi.SoundControl02 == true)
-            {
-                QuadRender.sharedMaterial.SetFloat("Intensity", S_Midi.IntensityControlValue + SMid*S_Midi.MultiplierSound02Value*20);
-            }
+                VisualEffect VFX = S_Manager.FX_List[S_Manager.Nbr_FX].GetComponent(typeof(VisualEffect)) as VisualEffect;
+                VFX.SetFloat(S_Midi.Name_P2,Mathf.Pow(S_Midi.FxP2Value, 5) * Mid );
+                VFX.SetFloat(S_Midi.Name_P4, Mathf.Pow(S_Midi.FxP4Value, 5) * SMid );
+               // VFX.SetFloat(S_Midi.Name_P4,Mathf.Pow(S_Midi.FxP4Value, 5) * SMid * map(S_Midi.MultiplierSoundValueFX,0,1,0,10));
+               // QuadRender.sharedMaterial.SetFloat("Intensity", Mathf.Pow(S_Midi.IntensityValue, 5) * Low * 5);
+            }/*
             if (S_Midi.SoundControl03 == true)
             {
-                QuadRender.sharedMaterial.SetFloat("_ApparitionForme", S_Midi.AppFormeValue * SHigh);
+                QuadRender.sharedMaterial.SetFloat("_ApparitionForme", Mathf.Pow(S_Midi.AppFormeValue, 5) * Low * 5);
             }*/
-            QuadRender.sharedMaterial.SetFloat("Intensity", S_Midi.IntensityControlValue + SMid * Mathf.Pow(S_Midi.MultiplierSound02Value,5) * 20);
-            QuadRender.sharedMaterial.SetFloat("_ApparitionForme", S_Midi.AppFormeValue + SHigh* Mathf.Pow(S_Midi.MultiplierSound03Value,5) * 20);
+                //VisualEffect VFX = S_Manager.FX_List[S_Manager.Nbr_FX].GetComponent(typeof(VisualEffect)) as VisualEffect;
+                //VisualEffect VFX = FX.GetComponent<VisualEffect>();
+                //QuadRender.sharedMaterial.SetFloat("RoughtIntensity", Mathf.Pow(S_Midi.RoughtIntensityValue, 5) * Low * 5);
+           
+           // QuadRender.sharedMaterial.SetFloat("Intensity", S_Midi.IntensityControlValue + SMid * Mathf.Pow(S_Midi.MultiplierSound02Value,5) * 20);
+          //  QuadRender.sharedMaterial.SetFloat("_ApparitionForme", S_Midi.AppFormeValue + SHigh* Mathf.Pow(S_Midi.MultiplierSound03Value,5) * 20);
         }
 
         void OnEnable()
