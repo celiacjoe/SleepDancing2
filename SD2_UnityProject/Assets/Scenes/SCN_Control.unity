@@ -1853,7 +1853,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &594323350
 Transform:
   m_ObjectHideFlags: 0
@@ -4348,6 +4348,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OSC_Sound
       objectReference: {fileID: 0}
+    - target: {fileID: 4572937942609733729, guid: 482cd7fe41448da4091062485b033db7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4572937942609733740, guid: 482cd7fe41448da4091062485b033db7, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4394,13 +4398,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4572937943880532828, guid: 482cd7fe41448da4091062485b033db7, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4572937943880532830, guid: 482cd7fe41448da4091062485b033db7, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6484582037104387068, guid: 482cd7fe41448da4091062485b033db7, type: 3}
+      propertyPath: _openOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6484582037104387068, guid: 482cd7fe41448da4091062485b033db7, type: 3}
+      propertyPath: _filterDuplicates
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 111835120, guid: 482cd7fe41448da4091062485b033db7, type: 3}
+    - {fileID: 4572937943880532828, guid: 482cd7fe41448da4091062485b033db7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 482cd7fe41448da4091062485b033db7, type: 3}
 --- !u!1 &1677365386
 GameObject:
@@ -4809,7 +4823,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1757749588
 Transform:
   m_ObjectHideFlags: 0
@@ -5812,11 +5826,11 @@ MonoBehaviour:
   compute_shader: {fileID: 7200000, guid: 986d368d4c8263e4a841b72357fe3873, type: 3}
   material: {fileID: 2100000, guid: abfcedb3a1f6c794784830fffd17a779, type: 2}
   C: {fileID: 8400000, guid: cda7d8d6ebda5cb4bbeed3c4254c2675, type: 2}
-  Taille: 0.59
+  Taille: 0.121
   Taille2: 0
-  Forme: 0.57
+  Forme: 0.1
   ApparitionForme: 0
-  Disparition: 0
+  Disparition: 0.9
   video: 0
   _resx: 1920
   rtFormat: 2
@@ -6104,6 +6118,10 @@ PrefabInstance:
     - target: {fileID: 6453235082599507925, guid: 87ae26dbbe97293498f98534b000ec11, type: 3}
       propertyPath: t4
       value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6453235082599507925, guid: 87ae26dbbe97293498f98534b000ec11, type: 3}
+      propertyPath: Chro1
+      value: 0.73
       objectReference: {fileID: 0}
     - target: {fileID: 6453235082599507925, guid: 87ae26dbbe97293498f98534b000ec11, type: 3}
       propertyPath: Pos.y
