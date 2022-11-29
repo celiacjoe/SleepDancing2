@@ -38,8 +38,8 @@ namespace OscSimpl.Examples
         public string Name15;
         public string Name16;
         public VideoDeform scrpit1;
-        public render script2;
-        public Material final;
+        public Master_Control script2 ;
+       // public Material final;
         float v1;
         float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
         {
@@ -151,23 +151,23 @@ namespace OscSimpl.Examples
         }
         public void Event12(float value)
         {
-            script2.Taille = value;
+            script2.SharedTailleValue = value;
         }
         public void Event13(float value)
         {
-            script2.Forme = value;
+            script2.SharedFormeValue = value;
         }
         public void Event14(float value)
         {
-            script2.ApparitionForme = value;
+            script2.SharedAppFormeValue = value;
         }
         public void Event15(float value)
         {
-            script2.Disparition = value;
+            script2.SharedDisparitionValue = value;
         }
         public void Event16(float value)
         {
-            final.SetFloat("Intensity", value);
+            script2.SharedIntensityValue = value ;
         }
 
     }

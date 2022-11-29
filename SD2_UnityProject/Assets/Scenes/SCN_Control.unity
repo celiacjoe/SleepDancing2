@@ -488,16 +488,15 @@ MonoBehaviour:
   Name7: /2/f2
   Name8: /2/f3
   Name9: /2/f11
-  Name10: 
-  Name11: 
-  Name12: 
-  Name13: 
-  Name14: 
-  Name15: 
-  Name16: 
+  Name10: /2/f4
+  Name11: /2/f5
+  Name12: /2/f6
+  Name13: /2/f7
+  Name14: /2/f8
+  Name15: /2/f9
+  Name16: /2/f10
   scrpit1: {fileID: 296026941}
-  script2: {fileID: 0}
-  final: {fileID: 0}
+  script2: {fileID: 176598241}
 --- !u!1 &353343297
 GameObject:
   m_ObjectHideFlags: 0
@@ -4606,7 +4605,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4572937942609733729, guid: 482cd7fe41448da4091062485b033db7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4572937942609733740, guid: 482cd7fe41448da4091062485b033db7, type: 3}
       propertyPath: m_RootOrder
