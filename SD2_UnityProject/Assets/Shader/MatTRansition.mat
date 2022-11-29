@@ -146,7 +146,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - BlurIntensity: 0
-    - Intensity: 0
+    - Intensity: 0.54664564
     - RoughtIntensity: 0
     - TxtProcedural: 0
     - Vector1_52db204c180d4d25af4afb3f60e74283: 1

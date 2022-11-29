@@ -11,6 +11,7 @@ public class InputMidiControl : MonoBehaviour
     ///////////// VAR
     public render S_FinalRender;
     public VideoDeform S_VideoDeform;
+    public Master_Control S_MasterControl;
     //public Camera Cam;
     public SceneManager Manager;
     public UI_Manager S_UI;
@@ -91,15 +92,6 @@ public class InputMidiControl : MonoBehaviour
     [SerializeField] InputAction _MultiplierSound02 = null;
     [SerializeField] InputAction _MultiplierSound03 = null;
 
-    float SmoothBlurIntensity;
-    float SmoothIntensity;
-    float SmoothAppForme;
-    float SmoothRoughtIntensity;
-    float SmoothForme;
-    float SmoothTaille;
-    float SmoothDisparition;
-    float SmoothThick;
-    float SmoothColor;
     ///////////// FUNCTION
     float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
     {
@@ -112,12 +104,19 @@ public class InputMidiControl : MonoBehaviour
     }
     void Update()
     {
-        SmoothBlurIntensity = Mathf.Lerp(SmoothBlurIntensity, BlurIntensityValue, 0.01f);
-        Mat_RenderFinal.sharedMaterial.SetFloat("BlurIntensity", SmoothBlurIntensity);
 
-        SmoothIntensity = Mathf.Lerp(SmoothIntensity, IntensityControlValue, 0.01f);
-        Mat_RenderFinal.sharedMaterial.SetFloat("Intensity", SmoothIntensity);
-
+        Mat_RenderFinal.sharedMaterial.SetFloat("BlurIntensity", S_MasterControl.SmoothBlur);
+        Mat_RenderFinal.sharedMaterial.SetFloat("Intensity", S_MasterControl.SmoothIntensity);
+        Mat_RenderFinal.sharedMaterial.SetFloat("_ApparitionForme", S_MasterControl.SmoothAppForme);
+        S_FinalRender.ApparitionForme = S_MasterControl.SmoothAppForme;
+        S_FinalRender.Taille = S_MasterControl.SmoothTaille;
+        S_FinalRender.Forme = S_MasterControl.SmoothForme;
+        S_FinalRender.Disparition = S_MasterControl.SmoothDisparition;
+        //Mat_RenderFinal.sharedMaterial.SetFloat("Taille", S_MasterControl.SmoothTaille);
+        Mat_RenderFinal.sharedMaterial.SetFloat("Forme", S_MasterControl.SmoothForme);
+        Mat_RenderFinal.sharedMaterial.SetFloat("Disparition", S_MasterControl.SmoothDisparition);
+       
+        /*
         SmoothRoughtIntensity = Mathf.Lerp(SmoothRoughtIntensity, RoughtIntensityValue, 0.01f);
         Mat_RenderFinal.sharedMaterial.SetFloat("RoughtIntensity", SmoothRoughtIntensity);
 
@@ -133,7 +132,7 @@ public class InputMidiControl : MonoBehaviour
 
         SmoothDisparition = Mathf.Lerp(SmoothDisparition, DisparitionValue, 0.01f);
         S_FinalRender.Forme = SmoothDisparition;
-
+        */
         /*SmoothThick = Mathf.Lerp(SmoothBlurIntensity, BlurIntensityValue, 0.01f);
        Mat_RenderFinal.sharedMaterial.SetFloat("BlurIntensity", SmoothBlurIntensity);
 
@@ -434,7 +433,8 @@ public class InputMidiControl : MonoBehaviour
     }
     void BlurIntensity(InputAction.CallbackContext ctx)
     {
-        BlurIntensityValue = ctx.ReadValue<float>();
+        S_MasterControl.SharedBlurValue = ctx.ReadValue<float>();
+       // BlurIntensityValue = ctx.ReadValue<float>();
     }
     void RoughtIntensity(InputAction.CallbackContext ctx)
     {
@@ -446,29 +446,34 @@ public class InputMidiControl : MonoBehaviour
     }
     void IntensityControl(InputAction.CallbackContext ctx)
     {
-        IntensityControlValue = ctx.ReadValue<float>();
-        //Mat_RenderFinal.sharedMaterial.SetFloat("Intensity", IntensityControlValue);
+        S_MasterControl.SharedIntensityValue = ctx.ReadValue<float>();
+       // S_MasterControl.SharedIntensityValue = IntensityControlValue;
+       //Mat_RenderFinal.sharedMaterial.SetFloat("Intensity", IntensityControlValue);
     }
     void ApparitionForme(InputAction.CallbackContext ctx)
     {
-        AppFormeValue = ctx.ReadValue<float>();
+        S_MasterControl.SharedAppFormeValue = ctx.ReadValue<float>();
+        //AppFormeValue = ctx.ReadValue<float>();
       //  S_FinalRender.ApparitionForme = AppFormeValue;
       //  Mat_RenderFinal.sharedMaterial.SetFloat("_ApparitionForme", AppFormeValue);
     }
      void Taille(InputAction.CallbackContext ctx)
      {
-         TailleValue = ctx.ReadValue<float>();
-         S_FinalRender.Taille = TailleValue;
+        S_MasterControl.SharedTailleValue = ctx.ReadValue<float>();
+        //TailleValue = ctx.ReadValue<float>();
+        // S_FinalRender.Taille = TailleValue;
      }
     void Forme(InputAction.CallbackContext ctx)
     {
-        FormeValue = ctx.ReadValue<float>();
-        S_FinalRender.Forme = FormeValue;
+        S_MasterControl.SharedFormeValue = ctx.ReadValue<float>();
+        //FormeValue = ctx.ReadValue<float>();
+       // S_FinalRender.Forme = FormeValue;
     }
     void Disparition(InputAction.CallbackContext ctx)
     {
-        DisparitionValue = ctx.ReadValue<float>();
-        S_FinalRender.Disparition = DisparitionValue;
+        S_MasterControl.SharedDisparitionValue = ctx.ReadValue<float>();
+        // DisparitionValue = ctx.ReadValue<float>();
+       // S_FinalRender.Disparition = DisparitionValue;
     }
     void Taille2(InputAction.CallbackContext ctx)
     {
