@@ -39,6 +39,7 @@ public class InputMidiControl : MonoBehaviour
     private float PosY;
     public float FxColorValue;
     private bool Noir;
+    public bool NoirCourt;
     private bool FXActive;
     public GameObject MovableObject;
 
@@ -101,6 +102,7 @@ public class InputMidiControl : MonoBehaviour
     {
         FXActive = false;
         Noir = false;
+        NoirCourt = false;
     }
     void Update()
     {
@@ -115,34 +117,18 @@ public class InputMidiControl : MonoBehaviour
         //Mat_RenderFinal.sharedMaterial.SetFloat("Taille", S_MasterControl.SmoothTaille);
         Mat_RenderFinal.sharedMaterial.SetFloat("Forme", S_MasterControl.SmoothForme);
         Mat_RenderFinal.sharedMaterial.SetFloat("Disparition", S_MasterControl.SmoothDisparition);
-       
-        /*
-        SmoothRoughtIntensity = Mathf.Lerp(SmoothRoughtIntensity, RoughtIntensityValue, 0.01f);
-        Mat_RenderFinal.sharedMaterial.SetFloat("RoughtIntensity", SmoothRoughtIntensity);
-
-        SmoothAppForme = Mathf.Lerp(SmoothAppForme, AppFormeValue, 0.01f);
-        S_FinalRender.ApparitionForme = SmoothAppForme;
-        Mat_RenderFinal.sharedMaterial.SetFloat("_ApparitionForme", AppFormeValue);
-
-        SmoothTaille = Mathf.Lerp(SmoothTaille, TailleValue, 0.01f);
-        S_FinalRender.Taille = SmoothTaille;
-
-        SmoothForme = Mathf.Lerp(SmoothForme, SmoothForme, 0.01f);
-        S_FinalRender.Forme = SmoothForme;
-
-        SmoothDisparition = Mathf.Lerp(SmoothDisparition, DisparitionValue, 0.01f);
-        S_FinalRender.Forme = SmoothDisparition;
-        */
-        /*SmoothThick = Mathf.Lerp(SmoothBlurIntensity, BlurIntensityValue, 0.01f);
-       Mat_RenderFinal.sharedMaterial.SetFloat("BlurIntensity", SmoothBlurIntensity);
-
-       SmoothColor = Mathf.Lerp(SmoothColor, FxP4, 0.01f);
-       VisualEffect VFX = FX.GetComponent<VisualEffect>();
-       VFX.SetFloat(Name_P4, FxP4);*/
 
         Vector3 NewTargetPosition = new Vector3(PosX+40,-4.5f);
         MovableObject.transform.position = Vector3.SmoothDamp(MovableObject.transform.position, NewTargetPosition, ref velocity, SmoothT);
         //MovableObject.transform.position.x = f.SmoothDamp(MovableObject.transform.position.x, NewTargetPosition.x, ref velocity, SmoothT);
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Manager.ResetLevel();
+            Manager.RenderFinal.sharedMaterial.SetFloat("_Transition", 1);
+            Manager.RenderFinal.sharedMaterial.SetInt("_Sunshaft_Nebula", 1);
+        }
+
         if (Input.GetKeyDown(KeyCode.N))
         {
             Manager.Next = "Nebula";
@@ -173,13 +159,13 @@ public class InputMidiControl : MonoBehaviour
             Manager.Next = "Dendritic";
             Manager.TransitionScene();
         }
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Manager.AC.GetBool("FadeNoir");
             if (!Noir)
             {
                 S_UI.UI_Noir.SetActive(true);
-                S_UI.UI_Noir.GetComponentInChildren<Text>().text = "NOIR INCOMING";
+                S_UI.UI_Noir.GetComponentInChildren<Text>().text = "NOIR LONG INCOMING";
                 Manager.AC.SetBool("FadeNoir", true);
                 Noir = true;
             }
@@ -188,6 +174,23 @@ public class InputMidiControl : MonoBehaviour
                 S_UI.UI_Noir.SetActive(false);
                 Manager.AC.SetBool("FadeNoir", false);
                 Noir = false;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+            Manager.AC.GetBool("FadeNoirCourt");
+            if (!NoirCourt)
+            {
+                S_UI.UI_Noir.SetActive(true);
+                S_UI.UI_Noir.GetComponentInChildren<Text>().text = "NOIR SHORT INCOMONG";
+                Manager.AC.SetBool("FadeNoirCourt", true);
+                NoirCourt = true;
+            }
+            else
+            {
+                S_UI.UI_Noir.SetActive(false);
+                Manager.AC.SetBool("FadeNoirCourt", false);
+                NoirCourt = false;
             }
         }
 
