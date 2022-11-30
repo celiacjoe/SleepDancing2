@@ -53,36 +53,38 @@ public class SceneManager : MonoBehaviour
     }
         public void ChangeGrainTexture()
         {
-        if (Nbr_Grain == 0){
+        if (Nbr_Grain == 1){
+            RenderFinal.sharedMaterial.SetInt("TxtProcedural", 0);
             S_UI.UI_Grain.GetComponentInChildren<Text>().text = "TXT GRAIN 01";
             RenderFinal.sharedMaterial.SetTexture("_Rought", TXT01Rought);
             RenderFinal.sharedMaterial.SetTexture("_NRM", TXT01NRM);
             S_SunshaftRender.Rought = TXT01Rought;
-            RenderFinal.sharedMaterial.SetInt("TxtProcedural", 0);
+         
         }
-        else if (Nbr_Grain == 1){
+        else if (Nbr_Grain == 21){
             S_UI.UI_Grain.GetComponentInChildren<Text>().text = "TXT GRAIN 02";
             RenderFinal.sharedMaterial.SetTexture("_Rought", TXT02Rought);
             RenderFinal.sharedMaterial.SetTexture("_NRM", TXT02NRM);
             S_SunshaftRender.Rought = TXT02Rought;
-            RenderFinal.sharedMaterial.SetInt("TxtProcedural", 0);
+            Nbr_Grain++;
         }
-        else if (Nbr_Grain == 2)
+        else if (Nbr_Grain == 3)
         {
             S_UI.UI_Grain.GetComponentInChildren<Text>().text = "TXT GRAIN 03";
             RenderFinal.sharedMaterial.SetTexture("_Rought", TXT03Rought);
             RenderFinal.sharedMaterial.SetTexture("_NRM", TXT03NRM);
             S_SunshaftRender.Rought = TXT03Rought;
-            RenderFinal.sharedMaterial.SetInt("TxtProcedural", 0);
+            Nbr_Grain++;
         }
-        else if (Nbr_Grain == 3){
+        else if (Nbr_Grain == 4){
             S_UI.UI_Grain.GetComponentInChildren<Text>().text = "TXT PROCEDURAL";
             RenderFinal.sharedMaterial.SetInt("TxtProcedural", 1);
             //RenderFinal.sharedMaterial.SetTexture("_NRM", TXT01NRM);
-            Nbr_Grain = 0;
+            Nbr_Grain = 0;            
         }
         Nbr_Grain++;
-    }
+        Debug.Log(Nbr_Grain);
+        }
         public void ChangeDisplace()
         {
         if (Nbr_Fluid == 1){
@@ -584,17 +586,20 @@ public class SceneManager : MonoBehaviour
             GO_FinalQuad[4].SetActive(false);
             FX_List[Nbr_FX].SetActive(false);
             S_Video.volume = false;
+            CleanShape3D();
             Current = "Dendritic";
         }
     }
 
    public void CleanShape3D()
     {
-        
-        RenderFinal.sharedMaterial.SetFloat("_ApparitionForme", 0);
-        S_MasterControl.SharedAppFormeValue = 0f;
+        //  S_SunshaftRender.sharedMaterial.SetFloat("_ApparitionForme", 0);
+        Debug.Log("Clean ShapeOK");
+        S_MasterControl.SharedAppFormeValue = 0;
+       // RenderFinal.sharedMaterial.SetFloat("_ApparitionForme", 0);
+       // S_MasterControl.SharedAppFormeValue = 0f;
     }
-   public void ResetLevel()
+        public void ResetLevel()
     {
         Application.LoadLevel(Application.loadedLevel);
         //Application.LoadLevel("SCN_Main");
