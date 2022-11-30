@@ -1135,14 +1135,6 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Disparition
       m_Flags: 0
-  _Zoom:
-    m_Name: Zoom
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: c3b76b24-38e2-4e7e-91b0-230352cc1c88
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
   _PositionX:
     m_Name: Position X
     m_Type: 0
@@ -1266,31 +1258,7 @@ MonoBehaviour:
     m_Id: 9f2ab2cd-9bae-4ba4-a89d-b1e8a5b754d4
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 2ad3f4c9-0f6f-49c8-be09-0665a3b56924
-      m_Path: <MidiDevice>/note036
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Fade Noir
-      m_Flags: 0
-    - m_Name: 
-      m_Id: c3f05958-eaf5-4a54-8e84-b654cc75c40d
-      m_Path: <Keyboard>/0
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Fade Noir
-      m_Flags: 0
-    - m_Name: 
-      m_Id: aa229030-8f1e-4c42-b95e-7035532b548e
-      m_Path: <MidiDevice>/control046
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Fade Noir
-      m_Flags: 0
+    m_SingletonActionBindings: []
   _ScnNebula:
     m_Name: Scn Nebula
     m_Type: 0
@@ -1554,6 +1522,22 @@ MonoBehaviour:
       m_Processors: 
       m_Groups: 
       m_Action: Setting 3 Dshape 03
+      m_Flags: 0
+  _DebugTransition:
+    m_Name: Debug Transition
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 0753671d-60e5-4586-a7ef-c8b9ca896481
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 67b4c90e-4acf-4254-88cc-1d7f39629803
+      m_Path: <MidiDevice>/control058
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Debug Transition
       m_Flags: 0
   _ActiveSoundControl01:
     m_Name: Active Sound Control 01

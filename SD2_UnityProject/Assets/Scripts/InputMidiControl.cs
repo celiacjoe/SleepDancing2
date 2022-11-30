@@ -57,7 +57,6 @@ public class InputMidiControl : MonoBehaviour
     [SerializeField] InputAction _Forme = null;
     [SerializeField] InputAction _ApparitionLiquide = null;
     [SerializeField] InputAction _Disparition = null;
-    [SerializeField] InputAction _Zoom = null;
     [Header("FX CONTROLL")]
     [SerializeField] InputAction _PositionX = null;
     [SerializeField] InputAction _PositionY = null;
@@ -90,6 +89,7 @@ public class InputMidiControl : MonoBehaviour
     [SerializeField] InputAction _Setting3Dshape01 = null;
     [SerializeField] InputAction _Setting3Dshape02 = null;
     [SerializeField] InputAction _Setting3Dshape03 = null;
+    [SerializeField] InputAction _DebugTransition = null;
     [Header("SOUND CONTROL")]
     [SerializeField] InputAction _ActiveSoundControl01 = null;
     [SerializeField] InputAction _ActiveSoundControl02 = null;
@@ -227,9 +227,6 @@ public class InputMidiControl : MonoBehaviour
         _IntensityControl.performed += IntensityControl;
         _IntensityControl.Enable();
 
-        _Zoom.performed += Zoom;
-        _Zoom.Enable();
-
         _PositionX.performed += PositionX;
         _PositionX.Enable();
 
@@ -322,6 +319,9 @@ public class InputMidiControl : MonoBehaviour
 
         _MultiplierSoundFX.performed += MultiplierSoundFX;
         _MultiplierSoundFX.Enable();
+
+        _DebugTransition.performed += DebugTransition;
+        _DebugTransition.Enable();
     }
 
     void OnDisable()
@@ -368,8 +368,8 @@ public class InputMidiControl : MonoBehaviour
         _ChangeGrain.performed -= ChangeGrain;
         _ChangeGrain.Disable();
 
-        _Zoom.performed -= Zoom;
-        _Zoom.Disable();
+        _DebugTransition.performed -= DebugTransition;
+        _DebugTransition.Disable();
 
         _PositionX.performed -= PositionX;
         _PositionX.Disable();
@@ -500,11 +500,6 @@ public class InputMidiControl : MonoBehaviour
         // DisparitionValue = ctx.ReadValue<float>();
        // S_FinalRender.Disparition = DisparitionValue;
     }
-    void Zoom(InputAction.CallbackContext ctx)
-     {
-         ZoomValue = ctx.ReadValue<float>();
-        // Cam.orthographicSize = map(ZoomValue,0, 1, 0.25f, 4.5f);
-     }
     void PositionX(InputAction.CallbackContext ctx)
     {
         PosX = ctx.ReadValue<float>();
@@ -702,6 +697,13 @@ public class InputMidiControl : MonoBehaviour
     void MultiplierSoundFX(InputAction.CallbackContext ctx)
     {
         MultiplierSoundValueFX = ctx.ReadValue<float>();
+    }
+
+    void DebugTransition(InputAction.CallbackContext ctx)
+    {
+        Mat_RenderFinal.sharedMaterial.SetFloat("_Transition", 1);
+        Debug.Log("Transition normalmeent à 1");
+        // Cam.orthographicSize = map(ZoomValue,0, 1, 0.25f, 4.5f);
     }
 
     /*  void Subdivision1(InputAction.CallbackContext ctx)
