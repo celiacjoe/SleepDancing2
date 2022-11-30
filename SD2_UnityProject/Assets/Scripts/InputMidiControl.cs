@@ -56,6 +56,7 @@ public class InputMidiControl : MonoBehaviour
     [SerializeField] InputAction _Taille = null;
     [SerializeField] InputAction _Taille2 = null;
     [SerializeField] InputAction _Forme = null;
+    [SerializeField] InputAction _ApparitionLiquide = null;
     [SerializeField] InputAction _Disparition = null;
     [SerializeField] InputAction _Zoom = null;
     [Header("FX CONTROLL")]
@@ -217,6 +218,9 @@ public class InputMidiControl : MonoBehaviour
         _Forme.performed += Forme;
         _Forme.Enable();
 
+        _ApparitionLiquide.performed += ApparitionLiquide;
+        _ApparitionLiquide.Enable();
+
         _RoughtIntensity.performed += RoughtIntensity;
         _RoughtIntensity.Enable();
 
@@ -342,6 +346,9 @@ public class InputMidiControl : MonoBehaviour
 
         _Forme.performed -= Forme;
         _Forme.Disable();
+
+        _ApparitionLiquide.performed -= ApparitionLiquide;
+        _ApparitionLiquide.Disable();
 
         _RoughtIntensity.performed -= RoughtIntensity;
         _RoughtIntensity.Disable();
@@ -470,12 +477,9 @@ public class InputMidiControl : MonoBehaviour
     }
     void ApparitionForme(InputAction.CallbackContext ctx)
     {
-        if (!SoundControl03)
-        {
-            S_MasterControl.SharedAppFormeValue = ctx.ReadValue<float>();
-        }
-        //AppFormeValue = ctx.ReadValue<float>();
-      //  S_FinalRender.ApparitionForme = AppFormeValue;
+        //S_MasterControl.SharedAppFormeValue = ctx.ReadValue<float>();      
+        AppFormeValue = ctx.ReadValue<float>();
+        S_FinalRender.ApparitionForme = AppFormeValue;
       //  Mat_RenderFinal.sharedMaterial.SetFloat("_ApparitionForme", AppFormeValue);
     }
      void Taille(InputAction.CallbackContext ctx)
@@ -489,6 +493,12 @@ public class InputMidiControl : MonoBehaviour
         S_MasterControl.SharedFormeValue = ctx.ReadValue<float>();
         //FormeValue = ctx.ReadValue<float>();
        // S_FinalRender.Forme = FormeValue;
+    }
+    void ApparitionLiquide(InputAction.CallbackContext ctx)
+    {
+        S_MasterControl.SharedAppFormeValue = ctx.ReadValue<float>();
+        //FormeValue = ctx.ReadValue<float>();
+        // S_FinalRender.Forme = FormeValue;
     }
     void Disparition(InputAction.CallbackContext ctx)
     {

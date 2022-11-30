@@ -31,11 +31,11 @@ public class Master_Control : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SmoothBlur = Mathf.Lerp(SmoothBlur, SharedBlurValue, 0.75f);
-        SmoothIntensity = Mathf.Lerp(SmoothIntensity, SharedIntensityValue, 0.5f)+AddSoundValue01;
-        SmoothAppForme = Mathf.Lerp(SmoothAppForme, SharedAppFormeValue, 0.6f)+AddSoundValue02;
-        SmoothTaille = Mathf.Lerp(SmoothTaille, SharedTailleValue, 0.05f);
-        SmoothForme = Mathf.Lerp(SmoothForme, SharedFormeValue, 0.5f);
-        SmoothDisparition = Mathf.Lerp(SmoothDisparition, SharedDisparitionValue, 0.5f);     
+        SmoothBlur = Mathf.Lerp(SmoothBlur, SharedBlurValue, 0.2f);
+        SmoothIntensity = Mathf.Lerp(SmoothIntensity, SharedIntensityValue, 0.1f)+AddSoundValue01;
+        SmoothAppForme = Mathf.Lerp(SmoothAppForme, SharedAppFormeValue, 0.1f)+AddSoundValue02;
+        SmoothTaille = Mathf.Lerp(SmoothTaille, SharedTailleValue, 0.02f);
+        SmoothForme = Mathf.Lerp(SmoothForme, SharedFormeValue, 0.2f);
+        SmoothDisparition = Mathf.Lerp(SmoothDisparition, SharedDisparitionValue, 0.3f);     
     }
 }
