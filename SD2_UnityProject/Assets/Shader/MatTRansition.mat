@@ -146,15 +146,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - BlurIntensity: 0.0078740185
-    - Intensity: 0.027420143
-    - RoughtIntensity: 0.8796385
-    - TxtProcedural: 1
+    - Intensity: 0.13261344
+    - RoughtIntensity: 0.007874017
+    - TxtProcedural: 0
     - Vector1_52db204c180d4d25af4afb3f60e74283: 1
-    - Vector1_edcf7fba66c9426894ca490ffe99ffaf: 0.5
+    - Vector1_edcf7fba66c9426894ca490ffe99ffaf: 0
     - Vector1_f07139077151487f8de0f1a71a18d815: -0.82
-    - Video: 0
+    - Video: 0.5
     - _AlphaClip: 0
-    - _ApparitionForme: 0.007879591
+    - _ApparitionForme: 1.0690244e-37
     - _BackFX_Nedula: 0
     - _BackFX_SunShaft: 0
     - _BackFX_Video: 1
@@ -182,7 +182,7 @@ Material:
     - _Metallic: 0
     - _Nebula_BackFX: 0
     - _Nebula_Cam: 0
-    - _Nebula_FX: 1
+    - _Nebula_FX: 0
     - _Nebula_SunShaft: 0
     - _Nebula_Sunshaft: 0
     - _Nebula_Video: 0
@@ -199,7 +199,7 @@ Material:
     - _SunShaft_BackFX: 0
     - _SunShaft_Nebula: 1
     - _SunShaft_Video: 0
-    - _Sunshaft_Cam: 0
+    - _Sunshaft_Cam: 1
     - _Sunshaft_FX: 0
     - _Sunshaft_Nebula: 0
     - _Surface: 0

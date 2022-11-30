@@ -54,7 +54,6 @@ public class InputMidiControl : MonoBehaviour
     [SerializeField] InputAction _IntensityControl = null;
     [SerializeField] InputAction _ApparitionForme = null;
     [SerializeField] InputAction _Taille = null;
-    [SerializeField] InputAction _Taille2 = null;
     [SerializeField] InputAction _Forme = null;
     [SerializeField] InputAction _ApparitionLiquide = null;
     [SerializeField] InputAction _Disparition = null;
@@ -116,15 +115,16 @@ public class InputMidiControl : MonoBehaviour
         Mat_RenderFinal.sharedMaterial.SetFloat("BlurIntensity", S_MasterControl.SmoothBlur);
         Mat_RenderFinal.sharedMaterial.SetFloat("Intensity", S_MasterControl.SmoothIntensity);
         Mat_RenderFinal.sharedMaterial.SetFloat("_ApparitionForme", S_MasterControl.SmoothAppForme);
-        S_FinalRender.ApparitionForme = S_MasterControl.SmoothAppForme;
+        Mat_RenderFinal.sharedMaterial.SetFloat("Forme", S_MasterControl.SmoothForme);
+        Mat_RenderFinal.sharedMaterial.SetFloat("Disparition", S_MasterControl.SmoothDisparition);
+        S_FinalRender.ApparitionForme = S_MasterControl.SmoothAppLiquid;
         S_FinalRender.Taille = S_MasterControl.SmoothTaille;
         S_FinalRender.Forme = S_MasterControl.SmoothForme;
         S_FinalRender.Disparition = S_MasterControl.SmoothDisparition;
-        //Mat_RenderFinal.sharedMaterial.SetFloat("Taille", S_MasterControl.SmoothTaille);
-        Mat_RenderFinal.sharedMaterial.SetFloat("Forme", S_MasterControl.SmoothForme);
-        Mat_RenderFinal.sharedMaterial.SetFloat("Disparition", S_MasterControl.SmoothDisparition);
+        //VOLUME
+        //S_VideoDeform.Forme = S_MasterControl.SharedDisparitionValue;
 
-        Vector3 NewTargetPosition = new Vector3(PosX+40,-4.5f);
+        Vector3 NewTargetPosition = new Vector3(PosX+40, PosY);
         MovableObject.transform.position = Vector3.SmoothDamp(MovableObject.transform.position, NewTargetPosition, ref velocity, SmoothT);
         //MovableObject.transform.position.x = f.SmoothDamp(MovableObject.transform.position.x, NewTargetPosition.x, ref velocity, SmoothT);
 
@@ -211,9 +211,6 @@ public class InputMidiControl : MonoBehaviour
 
         _Taille.performed += Taille;
         _Taille.Enable();
-
-        _Taille2.performed += Taille2;
-        _Taille2.Enable();
 
         _Forme.performed += Forme;
         _Forme.Enable();
@@ -340,9 +337,6 @@ public class InputMidiControl : MonoBehaviour
 
         _Taille.performed -= Taille;
         _Taille.Disable();
-
-        _Taille2.performed -= Taille2;
-        _Taille2.Disable();
 
         _Forme.performed -= Forme;
         _Forme.Disable();
@@ -475,11 +469,17 @@ public class InputMidiControl : MonoBehaviour
        // S_MasterControl.SharedIntensityValue = IntensityControlValue;
        //Mat_RenderFinal.sharedMaterial.SetFloat("Intensity", IntensityControlValue);
     }
+    void ApparitionLiquide(InputAction.CallbackContext ctx)
+    {
+        S_MasterControl.SharedAppLiquidValue = ctx.ReadValue<float>();
+        //FormeValue = ctx.ReadValue<float>();
+        // S_FinalRender.Forme = FormeValue;
+    }
     void ApparitionForme(InputAction.CallbackContext ctx)
     {
         //S_MasterControl.SharedAppFormeValue = ctx.ReadValue<float>();      
-        AppFormeValue = ctx.ReadValue<float>();
-        S_FinalRender.ApparitionForme = AppFormeValue;
+        S_MasterControl.SharedAppFormeValue = ctx.ReadValue<float>();
+        //S_FinalRender.ApparitionForme = AppFormeValue;
       //  Mat_RenderFinal.sharedMaterial.SetFloat("_ApparitionForme", AppFormeValue);
     }
      void Taille(InputAction.CallbackContext ctx)
@@ -494,22 +494,11 @@ public class InputMidiControl : MonoBehaviour
         //FormeValue = ctx.ReadValue<float>();
        // S_FinalRender.Forme = FormeValue;
     }
-    void ApparitionLiquide(InputAction.CallbackContext ctx)
-    {
-        S_MasterControl.SharedAppFormeValue = ctx.ReadValue<float>();
-        //FormeValue = ctx.ReadValue<float>();
-        // S_FinalRender.Forme = FormeValue;
-    }
     void Disparition(InputAction.CallbackContext ctx)
     {
         S_MasterControl.SharedDisparitionValue = ctx.ReadValue<float>();
         // DisparitionValue = ctx.ReadValue<float>();
        // S_FinalRender.Disparition = DisparitionValue;
-    }
-    void Taille2(InputAction.CallbackContext ctx)
-    {
-        TailleValue2 = ctx.ReadValue<float>();
-        S_FinalRender.Taille2 = TailleValue2;
     }
     void Zoom(InputAction.CallbackContext ctx)
      {
@@ -535,17 +524,18 @@ public class InputMidiControl : MonoBehaviour
     void FXParam2(InputAction.CallbackContext ctx)
     {
         FxP2Value = ctx.ReadValue<float>();
-        VisualEffect VFX = FX.GetComponent<VisualEffect>();
-        VFX.SetFloat(Name_P2, FxP2Value);
+        if (!SoundControl02 == true)
+        {
+            VisualEffect VFX = FX.GetComponent<VisualEffect>();
+            FX.SetFloat(Name_P2, FxP2Value);
+        }
     }
     void FXParam3(InputAction.CallbackContext ctx)
     {
         FxP3Value = ctx.ReadValue<float>();
-        if (SoundControl02 == true)
-        {
+
             VisualEffect VFX = FX.GetComponent<VisualEffect>();
-            VFX.SetFloat(Name_P3, FxP3Value);
-        }
+            VFX.SetFloat(Name_P3, FxP3Value);       
     }
     void FXParam4(InputAction.CallbackContext ctx)
     {
@@ -558,15 +548,15 @@ public class InputMidiControl : MonoBehaviour
     }
     void VolumeParam01(InputAction.CallbackContext ctx)
     {
-        float VolumParamValue01 = ctx.ReadValue<float>();
+        S_MasterControl.SharedDisparitionValue = ctx.ReadValue<float>();
         //VisualEffect VFX = FX.GetComponent<VisualEffect>();
-        S_VideoDeform.Forme= VolumParamValue01;
+        //S_VideoDeform.Forme= S_MasterControl.SharedDisparitionValue;
       //  VFX.SetFloat(Name_P5, VolumParamValue01);
     }
     void VolumeParam02(InputAction.CallbackContext ctx)
     {
-        float VolumParamValue02 = ctx.ReadValue<float>();
-        S_VideoDeform.Disparition = VolumParamValue02;
+       // float VolumParamValue02 = ctx.ReadValue<float>();
+       // S_VideoDeform.Disparition = VolumParamValue02;
     }
     void ChangeFluid(InputAction.CallbackContext ctx)
     {

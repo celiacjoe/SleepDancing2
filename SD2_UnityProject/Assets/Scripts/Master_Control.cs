@@ -10,6 +10,7 @@ public class Master_Control : MonoBehaviour
     public float SharedBlurValue;
     public float SharedIntensityValue;
     public float SharedAppFormeValue;
+    public float SharedAppLiquidValue;
     public float SharedTailleValue;
     public float SharedFormeValue;
     public float SharedDisparitionValue;
@@ -17,6 +18,7 @@ public class Master_Control : MonoBehaviour
     public float SmoothBlur;
     public float SmoothIntensity;
     public float SmoothAppForme;
+    public float SmoothAppLiquid;
     public float SmoothRought;
     public float SmoothForme;
     public float SmoothTaille;
@@ -32,8 +34,9 @@ public class Master_Control : MonoBehaviour
     void Update()
     {
         SmoothBlur = Mathf.Lerp(SmoothBlur, SharedBlurValue, 0.2f);
-        SmoothIntensity = Mathf.Lerp(SmoothIntensity, SharedIntensityValue, 0.1f)+AddSoundValue01;
+        SmoothIntensity = Mathf.Lerp(SmoothIntensity,Mathf.SmoothStep(0,1, SharedIntensityValue), 0.1f)+AddSoundValue01;
         SmoothAppForme = Mathf.Lerp(SmoothAppForme, SharedAppFormeValue, 0.1f)+AddSoundValue02;
+        SmoothAppLiquid = Mathf.Lerp(SmoothAppLiquid, SharedAppLiquidValue, 0.9f);
         SmoothTaille = Mathf.Lerp(SmoothTaille, SharedTailleValue, 0.02f);
         SmoothForme = Mathf.Lerp(SmoothForme, SharedFormeValue, 0.2f);
         SmoothDisparition = Mathf.Lerp(SmoothDisparition, SharedDisparitionValue, 0.3f);     

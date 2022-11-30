@@ -53,18 +53,26 @@ public class SceneManager : MonoBehaviour
     }
         public void ChangeGrainTexture()
         {
-        if (Nbr_Grain == 1){
+        if (Nbr_Grain == 0){
             S_UI.UI_Grain.GetComponentInChildren<Text>().text = "TXT GRAIN 01";
             RenderFinal.sharedMaterial.SetTexture("_Rought", TXT01Rought);
             RenderFinal.sharedMaterial.SetTexture("_NRM", TXT01NRM);
             S_SunshaftRender.Rought = TXT01Rought;
             RenderFinal.sharedMaterial.SetInt("TxtProcedural", 0);
         }
-        else if (Nbr_Grain == 2){
+        else if (Nbr_Grain == 1){
             S_UI.UI_Grain.GetComponentInChildren<Text>().text = "TXT GRAIN 02";
             RenderFinal.sharedMaterial.SetTexture("_Rought", TXT02Rought);
             RenderFinal.sharedMaterial.SetTexture("_NRM", TXT02NRM);
-            S_SunshaftRender.Rought = TXT01Rought;
+            S_SunshaftRender.Rought = TXT02Rought;
+            RenderFinal.sharedMaterial.SetInt("TxtProcedural", 0);
+        }
+        else if (Nbr_Grain == 2)
+        {
+            S_UI.UI_Grain.GetComponentInChildren<Text>().text = "TXT GRAIN 03";
+            RenderFinal.sharedMaterial.SetTexture("_Rought", TXT03Rought);
+            RenderFinal.sharedMaterial.SetTexture("_NRM", TXT03NRM);
+            S_SunshaftRender.Rought = TXT03Rought;
             RenderFinal.sharedMaterial.SetInt("TxtProcedural", 0);
         }
         else if (Nbr_Grain == 3){
@@ -137,7 +145,7 @@ public class SceneManager : MonoBehaviour
         //Compteur Fx - fluide effect & TXT grain
         Nbr_FX = 0;
         Nbr_Fluid = 1;
-        Nbr_Grain = 1;
+        Nbr_Grain = 0;
         //Setup 1rst liquid
         ScriptRender.compute_shader = CS_Deform;
         // SCENE
@@ -172,7 +180,8 @@ public class SceneManager : MonoBehaviour
         S_ShapeRender.rotateZ = 0.04f;
         S_ShapeRender.smoothForm = 0.8f;
         S_ShapeRender.complexity = 0.5f;
-        S_ShapeRender.taille = 0.65f;       
+        S_ShapeRender.taille = 0.65f;
+        S_ShapeRender.detail = 40f;
     }
     public void Setting3Dshape02()
     {
@@ -198,7 +207,8 @@ public class SceneManager : MonoBehaviour
         S_ShapeRender.rotateZ = 0.025f;
         S_ShapeRender.smoothForm = 0.5f;
         S_ShapeRender.complexity = 0.5f;
-        S_ShapeRender.taille = 0.45f;       
+        S_ShapeRender.taille = 0.45f;
+        S_ShapeRender.detail = 30f;
     }
 
     public void TransitionScene()
