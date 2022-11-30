@@ -159,7 +159,7 @@ namespace OscSimpl.Examples
         }
         public void Event14(float value)
         {
-            script2.SharedAppFormeValue = value;
+            script2.SharedAppLiquidValue = value;
         }
         public void Event15(float value)
         {
