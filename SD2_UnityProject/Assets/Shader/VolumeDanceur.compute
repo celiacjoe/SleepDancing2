@@ -31,7 +31,7 @@ void CSMain(uint2 id : SV_DispatchThreadID)
 	float2 res = float2(_resx, _resy);
 	float2 uv = f / res;
 
-	float vid = smoothstep(_taille,_m2,desaturate(reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xyz));
+	float vid = smoothstep(_m1,_m2,desaturate(reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xyz));
 	float prev = reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).a;
 
 	float diff = abs(vid - prev);
@@ -59,7 +59,7 @@ void CSMain(uint2 id : SV_DispatchThreadID)
 		}
 	}
 	col /= Quality * Directions - 11.;*/
-	float3 bb = pow(smoothstep(0., 1., diff), 0.5)*max(reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xyz,_forme);
+	float3 bb = pow(smoothstep(0., 1., diff), 0.5)*reader2.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).xyz;
 	float m1 = max(bb, reader.SampleLevel(_LinearClamp, uv + float2(-1.,-1.)*(reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).x - 0.5)*0.01 + 0.5 / res, 0).x*0.99);
 	float2 pos = f;
 	float ang = (m1)*1.5;
@@ -74,7 +74,7 @@ void CSMain(uint2 id : SV_DispatchThreadID)
 	rot += dot(reader.SampleLevel(_LinearClamp, frac((pos + p) / res) + 0.5 / res, 0).xx - 0.5, p.yx);
 	v += p.yx*rot / dot(b, b)*(diff)*5.;
 	float3 t1 = reader.SampleLevel(_LinearClamp, frac((pos + v * float2(-2, 2)) / res) + 0.5 / res, 0).xyz;
-	float3 t2 = max(t1*(1.- _disparition*0.1), bb);
+	float3 t2 = max(t1*(1.- _disparition*0.01), bb);
 	/*float3 t3 = float pp = pow(length(uv.y - 0.5)*2., 2.);
 	float c1 = min(col.x, (1. - col.z*0.05));
 	vec3 c2 = mix(vec3(1.), 3.*abs(1. - 2.*fract((1. - c1)*mix(0.2, 0.5, pp) + 0.5 + vec3(0., -1. / 3., 1. / 3.))) - 1., 0.1)*pow(c1, mix(1., 2., pp));*/
