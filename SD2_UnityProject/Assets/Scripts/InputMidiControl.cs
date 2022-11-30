@@ -122,7 +122,7 @@ public class InputMidiControl : MonoBehaviour
         S_FinalRender.Forme = S_MasterControl.SmoothForme;
         S_FinalRender.Disparition = S_MasterControl.SmoothDisparition;
         //VOLUME
-        //S_VideoDeform.Forme = S_MasterControl.SharedDisparitionValue;
+        S_VideoDeform.Forme = S_MasterControl.SharedBlurValue;
 
         Vector3 NewTargetPosition = new Vector3(PosX+40, PosY);
         MovableObject.transform.position = Vector3.SmoothDamp(MovableObject.transform.position, NewTargetPosition, ref velocity, SmoothT);
@@ -545,7 +545,7 @@ public class InputMidiControl : MonoBehaviour
     {
         S_MasterControl.SharedDisparitionValue = ctx.ReadValue<float>();
         //VisualEffect VFX = FX.GetComponent<VisualEffect>();
-        //S_VideoDeform.Forme= S_MasterControl.SharedDisparitionValue;
+        S_VideoDeform.Forme= S_MasterControl.SharedBlurValue;
       //  VFX.SetFloat(Name_P5, VolumParamValue01);
     }
     void VolumeParam02(InputAction.CallbackContext ctx)

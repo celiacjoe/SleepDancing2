@@ -6474,6 +6474,10 @@ PrefabInstance:
       value: /1/xy1
       objectReference: {fileID: 0}
     - target: {fileID: 6454805775248245724, guid: d3591292d5929b64192eda4ef94d6e53, type: 3}
+      propertyPath: Name6
+      value: /1/f3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6454805775248245724, guid: d3591292d5929b64192eda4ef94d6e53, type: 3}
       propertyPath: _oscIn
       value: 
       objectReference: {fileID: 1282053961}
