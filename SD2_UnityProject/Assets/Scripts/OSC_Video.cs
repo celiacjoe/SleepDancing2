@@ -39,7 +39,7 @@ namespace OscSimpl.Examples
         public string Name16;
         public VideoDeform scrpit1;
         public Master_Control script2 ;
-       // public Material final;
+        public Material final;
         float v1;
         float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
         {
@@ -127,11 +127,11 @@ namespace OscSimpl.Examples
         }   */
         public void Event6(float value)
         {
-           scrpit1.Taille=value;
+            final.SetFloat("Power", value);
         }
         public void Event7(float value)
         {
-            scrpit1.Forme = value;
+            final.SetFloat("Saturation", value);
         }
         public void Event8(float value)
         {
