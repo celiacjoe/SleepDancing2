@@ -501,6 +501,7 @@ MonoBehaviour:
   Name16: /2/f10
   scrpit1: {fileID: 296026941}
   script2: {fileID: 176598241}
+  final: {fileID: 0}
 --- !u!1 &353343297
 GameObject:
   m_ObjectHideFlags: 0
@@ -6487,6 +6488,10 @@ PrefabInstance:
     - target: {fileID: 6454805775248245724, guid: d3591292d5929b64192eda4ef94d6e53, type: 3}
       propertyPath: Name5
       value: /1/xy1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6454805775248245724, guid: d3591292d5929b64192eda4ef94d6e53, type: 3}
+      propertyPath: Name6
+      value: /1/f3
       objectReference: {fileID: 0}
     - target: {fileID: 6454805775248245724, guid: d3591292d5929b64192eda4ef94d6e53, type: 3}
       propertyPath: _oscIn

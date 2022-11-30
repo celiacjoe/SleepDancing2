@@ -18,7 +18,17 @@ float _resx;
 float _resy;
 float _p1;
 float _p2;
+float _p3;
 float _RoughtIntensity;
+float3 hue(float3 Color, float Shift)
+{
+	float3 a = float3(0.55735, 0.55735, 0.55735);
+	float3 P = a*dot(a, Color);
+	float3 U = Color - P;
+	float3 V = cross(a, U);
+	Color = U * cos(Shift*6.2832) + V * sin(Shift*6.2832) + P;
+	return Color;
+}
 float4 rd(float p) {
 	p = floor(p);
 	return frac(sin(float4(dot(p, 45.), dot(p, 98.), dot(p, 632.),
@@ -117,7 +127,7 @@ void CSMain2(uint2 id : SV_DispatchThreadID)
 	Color /= Quality * Directions - 15.;
 	float3 Color2 = ov(Color.xyz, lerp(0.5, 0.4, pdd));
 
-	writer[id] = float4(Color2,smoothstep(0.4,.6,Color2.x));
+	writer[id] = float4(hue(Color2,_p3),smoothstep(0.4,.6,Color2.x));
 
 
 

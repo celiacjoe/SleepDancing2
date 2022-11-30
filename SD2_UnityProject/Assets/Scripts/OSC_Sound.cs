@@ -26,6 +26,7 @@ namespace OscSimpl.Examples
         public Vector3 fac;
         public Material mat;
         public string Name5;
+        public string Name6;
         public SoundRender scrpit1;
         float v1;
         float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
@@ -71,6 +72,7 @@ namespace OscSimpl.Examples
             _oscIn.MapFloat(Name3, Event3);
             _oscIn.MapFloat(Name4, Event4);
             _oscIn.Map(Name5, Event5);
+            _oscIn.MapFloat(Name6, Event6);
 
         }
 
@@ -103,6 +105,9 @@ namespace OscSimpl.Examples
             }
             OscPool.Recycle(message);
         }
-
+        public void Event6(float value)
+        {
+            scrpit1.f3= value;
+        }
     }
 }
