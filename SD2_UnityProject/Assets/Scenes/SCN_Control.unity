@@ -501,6 +501,7 @@ MonoBehaviour:
   Name16: /2/f10
   scrpit1: {fileID: 296026941}
   script2: {fileID: 176598241}
+  final: {fileID: 0}
 --- !u!1 &353343297
 GameObject:
   m_ObjectHideFlags: 0
@@ -2628,7 +2629,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
+  m_TargetDisplay: 1
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -2988,7 +2989,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_TargetDisplay: 1
+  m_TargetDisplay: 0
 --- !u!1 &882595064
 GameObject:
   m_ObjectHideFlags: 0
@@ -4933,7 +4934,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 1
+  m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
