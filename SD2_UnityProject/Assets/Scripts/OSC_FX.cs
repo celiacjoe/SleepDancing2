@@ -64,15 +64,15 @@ namespace OscSimpl.Examples
             if (S_Midi.SoundControl01 == true)
             {         
                 //QuadRender.sharedMaterial.SetFloat("RoughtIntensity", S_Midi.RoughtIntensityValue *Low * 5);
-                QuadRender.sharedMaterial.SetFloat("RoughtIntensity", Mathf.Pow(S_Midi.RoughtIntensityValue,5)*Low*5);
-                S_VideoDeform.RoughtIntensity=Mathf.Pow(S_Midi.RoughtIntensityValue,5)*Low*5;
+                QuadRender.sharedMaterial.SetFloat("RoughtIntensity", Mathf.Pow(S_Midi.RoughtIntensityValue,5)*Low*50);
+                S_VideoDeform.RoughtIntensity=Mathf.Pow(S_Midi.RoughtIntensityValue,5)*Low*50;
             }
             if (S_Midi.SoundControl02 == true)
             {
                 VisualEffect VFX = S_Manager.FX_List[S_Manager.Nbr_FX].GetComponent(typeof(VisualEffect)) as VisualEffect;
-                VFX.SetFloat(S_Midi.Name_P2, S_Midi.FxP2Value * SMid * 10);
+                VFX.SetFloat(S_Midi.Name_P2, Mathf.Pow(S_Midi.FxP2Value,5) * High* 100); // Opacity
                 //VFX.SetFloat(S_Midi.Name_P2,Mathf.Pow(S_Midi.FxP2Value, 5) * Mid *10);
-                VFX.SetFloat(S_Midi.Name_P3, Mathf.Pow(S_Midi.FxP3Value, 5) * SMid *10);
+                VFX.SetFloat(S_Midi.Name_P3, Mathf.Pow(S_Midi.FxP3Value, 5) * Mid *80); // Thickness
                // VFX.SetFloat(S_Midi.Name_P4,Mathf.Pow(S_Midi.FxP4Value, 5) * SMid * map(S_Midi.MultiplierSoundValueFX,0,1,0,10));
                // QuadRender.sharedMaterial.SetFloat("Intensity", Mathf.Pow(S_Midi.IntensityValue, 5) * Low * 5);
             }/*
@@ -84,8 +84,8 @@ namespace OscSimpl.Examples
                 //VisualEffect VFX = FX.GetComponent<VisualEffect>();
                 //QuadRender.sharedMaterial.SetFloat("RoughtIntensity", Mathf.Pow(S_Midi.RoughtIntensityValue, 5) * Low * 5);
            
-           // QuadRender.sharedMaterial.SetFloat("Intensity", S_Midi.IntensityControlValue + SMid * Mathf.Pow(S_Midi.MultiplierSound02Value,5) * 20);
-          //  QuadRender.sharedMaterial.SetFloat("_ApparitionForme", S_Midi.AppFormeValue + SHigh* Mathf.Pow(S_Midi.MultiplierSound03Value,5) * 20);
+            //QuadRender.sharedMaterial.SetFloat("Intensity", S_Midi.IntensityControlValue + SMid * Mathf.Pow(S_Midi.MultiplierSound02Value,5) * 50);
+            //QuadRender.sharedMaterial.SetFloat("_ApparitionForme", S_Midi.AppFormeValue + SHigh* Mathf.Pow(S_Midi.MultiplierSound03Value,5) * 50);
         }
 
         void OnEnable()
@@ -98,15 +98,15 @@ namespace OscSimpl.Examples
 
         public void Event1(float value)
         {
-            Low = value*fac.x;
+            Low = value;
         }
         public void Event2(float value)
         {
-            Mid = value*fac.y;
+            Mid = value;
         }
         public void Event3(float value)
         {
-            High = value*fac.z;
+            High = value;
         }
         void Event4(OscMessage message)
         {
