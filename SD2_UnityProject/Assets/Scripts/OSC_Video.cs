@@ -40,6 +40,7 @@ namespace OscSimpl.Examples
         public VideoDeform scrpit1;
         public Master_Control script2 ;
         public Material final;
+        public Material final2;
         float v1;
         float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
         {
@@ -133,16 +134,18 @@ namespace OscSimpl.Examples
         }
         public void Event7(float value)
         {
-            final.SetFloat("Saturation", value);
+            final2.SetFloat("bvid", value);
             script2.SharedBlurValue = value;
         }
         public void Event8(float value)
         {
             scrpit1.Disparition = value;
+             
         }
         public void Event9(float value)
         {
             scrpit1.dir = (value-0.5f)*2;
+            final.SetFloat("Saturation", value);
         }
         public void Event10(float value)
         {
