@@ -29,7 +29,12 @@ namespace OscSimpl.Examples
         public string Name8;
         public string Name9;
         public string Name10;
-        float v1; 
+        float v1;
+        float v1o;
+        float fao;
+        float fbo;
+        float t4o;
+        public bool StandardActivated;
         public Vector3 fac;
         public Material mat;
       
@@ -45,6 +50,7 @@ namespace OscSimpl.Examples
 
         void Start()
         {
+            StandardActivated = false;
             Nbr_portIn = _oscIn.port;
             if (!_oscIn) _oscIn = gameObject.AddComponent<OscIn>();
             _oscIn.Open(Nbr_portIn);
@@ -58,9 +64,9 @@ namespace OscSimpl.Examples
             SLow = Mathf.Lerp(SLow, Low, facMerge);
             SMid = Mathf.Lerp(SMid, Mid, facMerge);
             SHigh = Mathf.Lerp(SHigh, High, facMerge);
-          
+
             mat.SetFloat("_SMid", SMid);
-           
+
             scrpit1.Low = Low;
             scrpit1.TLow = TLow;
             scrpit1.SLow = SLow;
@@ -70,8 +76,38 @@ namespace OscSimpl.Examples
             scrpit1.High = High;
             scrpit1.THigh = THigh;
             scrpit1.SHigh = SHigh;
-        }
+            if (StandardActivated == false)
+            {
 
+                v1 = v1o;
+                scrpit1.f1 = fao;
+                scrpit1.f2 = fbo;
+                scrpit1.transition4 = t4o;
+            }
+            if (StandardActivated == true)
+            {
+                v1 = 1;
+                scrpit1.f1 = 0;
+                scrpit1.f2 = 0;
+                scrpit1.transition4 = 1;
+            }
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                // Debug.Log("te");
+                if (StandardActivated == false)
+                {
+
+
+                    StandardActivated = true;
+                }
+
+                else
+                {
+
+                    StandardActivated = false;
+                }
+            }
+        }
         void OnEnable()
         {
             _oscIn.MapFloat(Name1, Event1);
@@ -115,8 +151,8 @@ namespace OscSimpl.Examples
                 float fb;
                 if (message.TryGet(0, out fa) && message.TryGet(1, out fb))
                 {
-                scrpit1.f1 = (fa - 0.5f)*-2;
-                scrpit1.f2 = (fb - 0.5f)*2;
+                fao = (fa - 0.5f)*-2;
+                fbo = (fb - 0.5f)*2;
                     //Debug.Log("ok2");
                 }
                 OscPool.Recycle(message);
@@ -133,11 +169,11 @@ namespace OscSimpl.Examples
         }    
         public void Event9(float value)
         {
-            v1 = Mathf.Pow(value,5)*20 + 0.001f;
+            v1o = Mathf.Pow(value,5)*20 + 0.001f;
         }
         public void Event10(float value)
         {
-            scrpit1.transition4 = value;
+            t4o = value;
 
         }
 
