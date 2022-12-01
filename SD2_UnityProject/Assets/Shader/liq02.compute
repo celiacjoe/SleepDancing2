@@ -35,7 +35,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 	float2 g = float2(id.x,id.y);
 	float2 res=float2(_resx, _resy);
 
-	g += ((g / res) - 0.5)*float2(res.x / res.y, 1.)*-_forme*6.;
+	g += ((g / res) - 0.5)*float2(res.x / res.y, 1.)*-_forme*4.;
 	float2 uv = g / res;
 	float tt = 0.1+_taille*3.;
 	float4 r = tex( g, float2(tt, 0), res);
