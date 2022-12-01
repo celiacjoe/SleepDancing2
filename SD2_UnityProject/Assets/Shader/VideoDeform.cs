@@ -37,8 +37,17 @@ public class VideoDeform : MonoBehaviour
     public render script;
     public bool volume;
     public bool Dendritic;
+
+    float ta;
+    float fo;
+    float di;
+    float mm1;
+    float mm2;
+    float ddi;
+
     void Start()
     {
+
         A = new RenderTexture(_resx, _resy, 0,rtFormat);
         A.enableRandomWrite = true;
         A.Create();
@@ -61,18 +70,23 @@ public class VideoDeform : MonoBehaviour
 
     void Update()
     {
-
+        ta = Mathf.Lerp(ta, Taille, 0.2f);
+        fo = Mathf.Lerp(fo, Forme, 0.2f);
+        di = Mathf.Lerp(di, Disparition, 0.2f);
+        mm1  = Mathf.Lerp(mm1, m1, 0.2f); 
+        mm2 = Mathf.Lerp(mm2, m2, 0.2f);
+        ddi = Mathf.Lerp(ddi, dir, 0.2f);
         if (volume == false && Dendritic == false)
         {
             compute_shader.SetTexture(handle_main, "reader2", C);
             compute_shader.SetTexture(handle_main2, "reader", A);
             compute_shader.SetTexture(handle_main2, "reader2", D);
             compute_shader.SetFloat("_time", Time.time);
-            compute_shader.SetFloat("_taille", Taille);
-            compute_shader.SetFloat("_forme", Forme);
-            compute_shader.SetFloat("_disparition", Disparition);
-            compute_shader.SetFloat("_m1", m1);
-            compute_shader.SetFloat("_m2", m2);
+            compute_shader.SetFloat("_taille", ta);
+            compute_shader.SetFloat("_forme", fo);
+            compute_shader.SetFloat("_disparition", di);
+            compute_shader.SetFloat("_m1", mm1);
+            compute_shader.SetFloat("_m2", mm2);
             compute_shader.SetFloat("_resx", _resx);
             compute_shader.SetFloat("_resy", _resy);
             compute_shader.SetFloat("_RoughtIntensity", RoughtIntensity);
@@ -92,13 +106,13 @@ public class VideoDeform : MonoBehaviour
                 compute_shader2.SetTexture(handle_main, "reader2", C);
                 compute_shader2.SetTexture(handle_main, "reader3", E);
                 compute_shader2.SetFloat("_time", Time.time);
-                compute_shader2.SetFloat("_taille", Taille);
-                compute_shader2.SetFloat("_forme", Forme);
-                compute_shader2.SetFloat("_disparition", Disparition);
+                compute_shader2.SetFloat("_taille", ta);
+                compute_shader2.SetFloat("_forme", fo);
+                compute_shader2.SetFloat("_disparition", di);
                 compute_shader2.SetFloat("_resx", _resx);
                 compute_shader2.SetFloat("_resy", _resy);
-                compute_shader2.SetFloat("_m1", m1);
-                compute_shader2.SetFloat("_m2", m2);
+                compute_shader2.SetFloat("_m1", mm1);
+                compute_shader2.SetFloat("_m2", mm2);
                 compute_shader2.SetTexture(handle_main, "writer", B);
                 compute_shader2.Dispatch(handle_main, B.width / 8, B.height / 8, 1);
                 compute_shader2.SetTexture(handle_main, "reader", B);
@@ -114,14 +128,14 @@ public class VideoDeform : MonoBehaviour
                 compute_shader3.SetTexture(handle_main2, "reader2", C);
                 compute_shader3.SetTexture(handle_main2, "reader3", G);
                 compute_shader3.SetFloat("_time", Time.time);
-                compute_shader3.SetFloat("_taille", Taille);
-                compute_shader3.SetFloat("_forme", Forme);
-                compute_shader3.SetFloat("_disparition", Disparition);
+                compute_shader3.SetFloat("_taille", ta);
+                compute_shader3.SetFloat("_forme", fo);
+                compute_shader3.SetFloat("_disparition", di);
                 compute_shader3.SetFloat("_resx", _resx);
                 compute_shader3.SetFloat("_resy", _resy);
                 compute_shader3.SetFloat("_m1", m1);
                 compute_shader3.SetFloat("_m2", m2);
-                compute_shader3.SetFloat("_dir", dir);
+                compute_shader3.SetFloat("_dir", ddi);
                 compute_shader3.SetTexture(handle_main, "writer", G);
                 compute_shader3.Dispatch(handle_main, G.width / 8, G.height / 8, 1);
                 compute_shader3.SetTexture(handle_main, "reader",G);

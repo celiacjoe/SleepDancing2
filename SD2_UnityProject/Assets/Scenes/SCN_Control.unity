@@ -502,6 +502,7 @@ MonoBehaviour:
   scrpit1: {fileID: 296026941}
   script2: {fileID: 176598241}
   final: {fileID: 2100000, guid: 2c269ecf01b9d4a41bd422a5c54f8f66, type: 2}
+  final2: {fileID: 2100000, guid: abfcedb3a1f6c794784830fffd17a779, type: 2}
 --- !u!1 &353343297
 GameObject:
   m_ObjectHideFlags: 0
@@ -2629,7 +2630,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 1
+  m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -4854,7 +4855,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1774299711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5690,7 +5691,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7728287082822735728, guid: ea7e921b06bea174aad742954bc0b8ee, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7728287082822735731, guid: ea7e921b06bea174aad742954bc0b8ee, type: 3}
       propertyPath: m_RootOrder
@@ -6048,11 +6049,11 @@ PrefabInstance:
       objectReference: {fileID: 2800000, guid: 35167f43818bf5c479a620a0e6acfa32, type: 3}
     - target: {fileID: 1071712812850865303, guid: 823eb2387a28ffc4988d8778fe7cb980, type: 3}
       propertyPath: m1
-      value: 0
+      value: 0.229
       objectReference: {fileID: 0}
     - target: {fileID: 1071712812850865303, guid: 823eb2387a28ffc4988d8778fe7cb980, type: 3}
       propertyPath: m2
-      value: 0.36
+      value: 0.527
       objectReference: {fileID: 0}
     - target: {fileID: 1071712812850865303, guid: 823eb2387a28ffc4988d8778fe7cb980, type: 3}
       propertyPath: dir
@@ -6064,7 +6065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1071712812850865303, guid: 823eb2387a28ffc4988d8778fe7cb980, type: 3}
       propertyPath: Taille
-      value: 0
+      value: 0.155
       objectReference: {fileID: 0}
     - target: {fileID: 1071712812850865303, guid: 823eb2387a28ffc4988d8778fe7cb980, type: 3}
       propertyPath: script
@@ -6439,11 +6440,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6454805775248245715, guid: d3591292d5929b64192eda4ef94d6e53, type: 3}
       propertyPath: f1
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6454805775248245715, guid: d3591292d5929b64192eda4ef94d6e53, type: 3}
       propertyPath: f2
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6454805775248245715, guid: d3591292d5929b64192eda4ef94d6e53, type: 3}
       propertyPath: Nebula

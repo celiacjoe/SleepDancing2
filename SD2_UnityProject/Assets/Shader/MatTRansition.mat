@@ -150,6 +150,7 @@ Material:
     - RoughtIntensity: 1
     - TxtProcedural: 1
     - Vector1_52db204c180d4d25af4afb3f60e74283: 1
+    - Vector1_7d3b87b9df4346f89f1dbe5383e16dc0: 0
     - Vector1_edcf7fba66c9426894ca490ffe99ffaf: 0
     - Vector1_f07139077151487f8de0f1a71a18d815: -0.82
     - Video: 0
@@ -209,6 +210,7 @@ Material:
     - _Video_SunShaft: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
+    - bvid: 0.13657407
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
