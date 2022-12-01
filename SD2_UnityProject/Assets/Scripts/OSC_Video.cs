@@ -35,7 +35,7 @@ namespace OscSimpl.Examples
         public string Name14;
         public string Name15;
         public string Name16;
-        public VideoDeform scrpit1;
+        public VideoDeform script1;
         public Master_Control script2 ;
         public Material final;
         public Material final2;
@@ -48,6 +48,9 @@ namespace OscSimpl.Examples
         float diro;
         float Saturation;
         float _incomingFloat;
+        float m1o;
+        float m2o;
+        float disparitiono;
         private int Nbr_portIn;
 
         void Start()
@@ -71,19 +74,27 @@ namespace OscSimpl.Examples
 
                 v1 = v1o;
                 final.SetFloat("Power", Power);
-                scrpit1.Taille = Tailleo;
+                script1.Taille = Tailleo;
                 final2.SetFloat("bvid", bvid);
-                scrpit1.dir = diro;
+                script1.dir = diro;
                 final.SetFloat("Saturation", Saturation);
+                script1.m1 = m1o;
+                script1.m2 = m2o;
+                script1.Disparition = disparitiono;
+
+
             }
             if (StandardActivated == true)
             {
                 v1 = 1;
                 final.SetFloat("Power", 0.5f);
-                scrpit1.Taille = 0.2f;
+                script1.Taille = 0.2f;
                 final2.SetFloat("bvid", 0.1f);
-                scrpit1.dir = -0.1f;
+                script1.dir = -0.1f;
                 final.SetFloat("Saturation", 0.5f);
+                script1.m1 = 0.45f;
+                script1.m2 = 0.55f;
+                script1.Disparition = 0.05f;
 
             }
             if (Input.GetKeyDown(KeyCode.K))
@@ -156,7 +167,7 @@ namespace OscSimpl.Examples
         }
         public void Event8(float value)
         {
-            scrpit1.Disparition = value;
+            disparitiono = value;
              
         }
         public void Event9(float value)
@@ -166,11 +177,11 @@ namespace OscSimpl.Examples
         }
         public void Event10(float value)
         {
-            scrpit1.m1 = value;
+            m1o = value;
         }
         public void Event11(float value)
         {
-            scrpit1.m2 = value;
+            m2o = value;
         }
         public void Event12(float value)
         {

@@ -499,7 +499,7 @@ MonoBehaviour:
   Name14: /2/f8
   Name15: /2/f9
   Name16: /2/f10
-  scrpit1: {fileID: 296026941}
+  script1: {fileID: 296026941}
   script2: {fileID: 176598241}
   final: {fileID: 2100000, guid: 2c269ecf01b9d4a41bd422a5c54f8f66, type: 2}
   final2: {fileID: 2100000, guid: abfcedb3a1f6c794784830fffd17a779, type: 2}
