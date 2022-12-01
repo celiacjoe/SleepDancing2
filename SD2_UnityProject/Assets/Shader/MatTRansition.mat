@@ -117,7 +117,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Rought:
-        m_Texture: {fileID: 2800000, guid: fef538922a876c44788565c6c85d6783, type: 3}
+        m_Texture: {fileID: 2800000, guid: 78f0030aea469fa41b8f6a3218358dcf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -145,23 +145,23 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - BlurIntensity: 0
-    - Intensity: 0
-    - RoughtIntensity: 0.26771656
-    - TxtProcedural: 0
+    - BlurIntensity: 0.07874014
+    - Intensity: 0.000000011531583
+    - RoughtIntensity: 0.7952756
+    - TxtProcedural: 1
     - Vector1_52db204c180d4d25af4afb3f60e74283: 1
     - Vector1_7d3b87b9df4346f89f1dbe5383e16dc0: 0
     - Vector1_edcf7fba66c9426894ca490ffe99ffaf: 0
     - Vector1_f07139077151487f8de0f1a71a18d815: -0.82
-    - Video: 0
+    - Video: 0.5
     - _AlphaClip: 0
-    - _ApparitionForme: 0
+    - _ApparitionForme: 4e-45
     - _BackFX_Nedula: 0
     - _BackFX_SunShaft: 0
     - _BackFX_Video: 1
     - _Blend: 0
     - _BumpScale: 1
-    - _Cam_FX: 0
+    - _Cam_FX: 1
     - _Cam_Nebula: 0
     - _Cam_Sunshaft: 0
     - _ClearCoatMask: 0
@@ -202,15 +202,15 @@ Material:
     - _SunShaft_Video: 0
     - _Sunshaft_Cam: 0
     - _Sunshaft_FX: 0
-    - _Sunshaft_Nebula: 1
+    - _Sunshaft_Nebula: 0
     - _Surface: 0
-    - _Transition: 1
+    - _Transition: 0
     - _Video_BAckFX: 0
     - _Video_Nedula: 0
     - _Video_SunShaft: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - bvid: 0.1
+    - bvid: 0.4451685
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

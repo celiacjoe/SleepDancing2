@@ -34,8 +34,8 @@ public class Master_Control : MonoBehaviour
     void Update()
     {
         SmoothBlur = Mathf.Lerp(SmoothBlur, SharedBlurValue, 0.2f);
-        SmoothIntensity = Mathf.Lerp(SmoothIntensity,Mathf.SmoothStep(0,1, SharedIntensityValue), 0.1f)+AddSoundValue01;
-        SmoothAppForme = Mathf.Lerp(SmoothAppForme, SharedAppFormeValue, 0.25f)+AddSoundValue02;
+        SmoothIntensity = Mathf.Lerp(SmoothIntensity,Mathf.SmoothStep(0,1, Mathf.Pow(SharedIntensityValue,2)), 0.05f)+AddSoundValue01;
+        SmoothAppForme = Mathf.Lerp(SmoothAppForme, SharedAppFormeValue, 0.15f)+AddSoundValue02;
         SmoothAppLiquid = Mathf.Lerp(SmoothAppLiquid, SharedAppLiquidValue, 0.9f);
         SmoothTaille = Mathf.Lerp(SmoothTaille, SharedTailleValue, 0.02f);
         SmoothForme = Mathf.Lerp(SmoothForme, SharedFormeValue, 0.2f);

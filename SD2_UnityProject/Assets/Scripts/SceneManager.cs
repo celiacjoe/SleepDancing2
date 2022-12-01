@@ -19,7 +19,8 @@ public class SceneManager : MonoBehaviour
     public Renderer RenderFinal;
     public render ScriptRender;
     public GameObject[] GO_FinalQuad;
-    public Texture TXT01Rought, TXT01NRM, TXT02Rought, TXT02NRM, TXT03Rought, TXT03NRM;
+    public Texture TXTDefaultRought, TXT01Rought,  TXT02Rought,  TXT03Rought;
+    public Texture TXTDefaultNormalt, TXT01NRM, TXT02NRM, TXT03NRM;
 
     [Header("Displace Element")]
     public Renderer Render3Dshape;
@@ -59,8 +60,8 @@ public class SceneManager : MonoBehaviour
         if (Nbr_Grain == 1){
             RenderFinal.sharedMaterial.SetInt("TxtProcedural", 0);
             S_UI.UI_Grain.GetComponentInChildren<Text>().text = "TXT GRAIN 01";
-            RenderFinal.sharedMaterial.SetTexture("_Rought", TXT01Rought);
-            RenderFinal.sharedMaterial.SetTexture("_NRM", TXT01NRM);
+            RenderFinal.sharedMaterial.SetTexture("_Rought", TXT02Rought);
+            RenderFinal.sharedMaterial.SetTexture("_NRM", TXT02NRM);
             S_SunshaftRender.Rought = TXT01Rought;        
         }
         else if (Nbr_Grain == 2){
