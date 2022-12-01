@@ -5688,6 +5688,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OscOUt
       objectReference: {fileID: 0}
+    - target: {fileID: 7728287082822735728, guid: ea7e921b06bea174aad742954bc0b8ee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7728287082822735731, guid: ea7e921b06bea174aad742954bc0b8ee, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -6044,11 +6048,11 @@ PrefabInstance:
       objectReference: {fileID: 2800000, guid: 35167f43818bf5c479a620a0e6acfa32, type: 3}
     - target: {fileID: 1071712812850865303, guid: 823eb2387a28ffc4988d8778fe7cb980, type: 3}
       propertyPath: m1
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1071712812850865303, guid: 823eb2387a28ffc4988d8778fe7cb980, type: 3}
       propertyPath: m2
-      value: 1
+      value: 0.36
       objectReference: {fileID: 0}
     - target: {fileID: 1071712812850865303, guid: 823eb2387a28ffc4988d8778fe7cb980, type: 3}
       propertyPath: dir
@@ -6056,11 +6060,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1071712812850865303, guid: 823eb2387a28ffc4988d8778fe7cb980, type: 3}
       propertyPath: Forme
-      value: 0.517
+      value: 0.57
       objectReference: {fileID: 0}
     - target: {fileID: 1071712812850865303, guid: 823eb2387a28ffc4988d8778fe7cb980, type: 3}
       propertyPath: Taille
-      value: 0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1071712812850865303, guid: 823eb2387a28ffc4988d8778fe7cb980, type: 3}
       propertyPath: script

@@ -128,13 +128,13 @@ namespace OscSimpl.Examples
         public void Event6(float value)
         {
             final.SetFloat("Power", value);
-            script2.SharedTailleValue = value;
+            scrpit1.Taille = value;
      
         }
         public void Event7(float value)
         {
             final.SetFloat("Saturation", value);
-            script2.SharedAppFormeValue = value;
+            script2.SharedBlurValue = value;
         }
         public void Event8(float value)
         {

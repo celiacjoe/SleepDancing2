@@ -60,7 +60,7 @@ public class SceneManager : MonoBehaviour
             RenderFinal.sharedMaterial.SetTexture("_NRM", TXT01NRM);
             S_SunshaftRender.Rought = TXT01Rought;        
         }
-        else if (Nbr_Grain == 21){
+        else if (Nbr_Grain == 2){
             S_UI.UI_Grain.GetComponentInChildren<Text>().text = "TXT GRAIN 02";
             RenderFinal.sharedMaterial.SetTexture("_Rought", TXT02Rought);
             RenderFinal.sharedMaterial.SetTexture("_NRM", TXT02NRM);
@@ -144,7 +144,7 @@ public class SceneManager : MonoBehaviour
         //Compteur Fx - fluide effect & TXT grain
         Nbr_FX = 0;
         Nbr_Fluid = 1;
-        Nbr_Grain = 0;
+        Nbr_Grain = 1;
         //Setup 1rst liquid
         ScriptRender.compute_shader = CS_Deform;
         // SCENE
