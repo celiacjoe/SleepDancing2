@@ -219,6 +219,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &125024134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 19f4f135969bea24c9ae99ccc5f6c793, type: 3}
+  m_PrefabInstance: {fileID: 1589419593}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1589419594}
+  m_Layer: 0
+  m_Name: 'Cubic Lattice Abstract (Missing Prefab with guid: 19f4f135969bea24c9ae99ccc5f6c793)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &168792769
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,7 +284,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &185510551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,9 +488,11 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 0bb49d74555d6a541b9d523b6bc333f7, type: 2}
   C: {fileID: 8400000, guid: 0d88d3f4e6b06f1488d790e43e1f1968, type: 2}
   Taille: 0
+  Taille2: 0
   Forme: 0
   ApparitionForme: 0
   Disparition: 0
+  video: 0
   _resx: 1920
   rtFormat: 2
   _resy: 1080
@@ -560,7 +578,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &326491005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -744,7 +762,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &467752062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1140,7 +1158,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &556960620
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1235,7 +1253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &595854015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1773,7 +1791,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &871141399
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1868,7 +1886,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &882595065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2039,7 +2057,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &931656613
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2299,7 +2317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &974099548
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2588,7 +2606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &1050387406
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2811,9 +2829,11 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 0bb49d74555d6a541b9d523b6bc333f7, type: 2}
   C: {fileID: 8400000, guid: 0d88d3f4e6b06f1488d790e43e1f1968, type: 2}
   Taille: 0
+  Taille2: 0
   Forme: 0
   ApparitionForme: 0
   Disparition: 0
+  video: 0
   _resx: 1920
   rtFormat: 2
   _resy: 1080
@@ -3007,9 +3027,11 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 0bb49d74555d6a541b9d523b6bc333f7, type: 2}
   C: {fileID: 8400000, guid: 0d88d3f4e6b06f1488d790e43e1f1968, type: 2}
   Taille: 0
+  Taille2: 0
   Forme: 0
   ApparitionForme: 0
   Disparition: 0
+  video: 0
   _resx: 1920
   rtFormat: 2
   _resy: 1080
@@ -3076,6 +3098,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1160547973}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1161831865
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5ab8fd03a9475e64491451137aab5efd, type: 3}
+  m_PrefabInstance: {fileID: 1127834248}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1705333423}
+  m_Layer: 0
+  m_Name: 'julia (Missing Prefab with guid: 5ab8fd03a9475e64491451137aab5efd)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1195247856
 GameObject:
   m_ObjectHideFlags: 0
@@ -3132,7 +3170,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1208034311
 Transform:
   m_ObjectHideFlags: 0
@@ -3274,14 +3312,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 151f3a36152145b4695a59be25c04838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rend: {fileID: 1690037098}
-  SRend: {fileID: 1690037096}
-  Cam: {fileID: 724236758}
-  GO: {fileID: 1050387405}
+  S_FinalRender: {fileID: 0}
+  S_VideoDeform: {fileID: 0}
+  S_MasterControl: {fileID: 0}
+  S_SunshaftRender: {fileID: 0}
   Manager: {fileID: 0}
+  S_UI: {fileID: 0}
+  Mat_RenderFinal: {fileID: 0}
   FX: {fileID: 6848822297532192589}
+  SoundControl01: 0
+  SoundControl02: 0
+  SoundControl03: 0
+  MultiplierSound01Value: 0
+  MultiplierSound02Value: 0
+  MultiplierSound03Value: 0
+  RoughtIntensityValue: 0
+  IntensityControlValue: 0
+  AppFormeValue: 0
   SmoothT: 0.3
+  FxP1Value: 0
+  FxP2Value: 0
+  FxP3Value: 0
+  FxP4Value: 0
+  MultiplierSoundValueFX: 0
+  NoirCourt: 0
+  Started: 0
   MovableObject: {fileID: 6848822297532192591}
+  _BlurIntensity:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _RoughtIntensity:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
   _IntensityControl:
     m_Name: Intensity Control
     m_Type: 0
@@ -3298,7 +3370,7 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Intensity Control
       m_Flags: 0
-  _P1_Deform:
+  _ApparitionForme:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
@@ -3306,7 +3378,7 @@ MonoBehaviour:
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
-  _P5_Deform:
+  _Taille:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
@@ -3314,7 +3386,7 @@ MonoBehaviour:
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
-  _P2_Deform:
+  _Forme:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
@@ -3322,7 +3394,7 @@ MonoBehaviour:
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
-  _P3_Deform:
+  _ApparitionLiquide:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
@@ -3330,7 +3402,7 @@ MonoBehaviour:
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
-  _P4_Deform:
+  _Disparition:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
@@ -3338,30 +3410,6 @@ MonoBehaviour:
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
-  _P6_Deform:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-  _Zoom:
-    m_Name: Zoom
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: c3b76b24-38e2-4e7e-91b0-230352cc1c88
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 8b1a973b-a5f8-49d6-b788-0a6fa04ddb28
-      m_Path: <MidiDevice>/control016
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Zoom
-      m_Flags: 0
   _PositionX:
     m_Name: Position X
     m_Type: 0
@@ -3462,24 +3510,7 @@ MonoBehaviour:
       m_Action: FX Param 4
       m_Flags: 0
   Name_P4: Speed
-  _FXParam5:
-    m_Name: FX Param 5
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 407bb9db-1587-4785-acd6-4c8c67920ad8
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 031819f7-afd3-49be-9003-66b2ce69bfe5
-      m_Path: <MidiDevice>/control004
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: FX Param 5
-      m_Flags: 0
-  Name_P5: Turb
-  _FXParam6:
+  _VolumeParam01:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
@@ -3487,8 +3518,7 @@ MonoBehaviour:
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
-  Name_P6: 
-  _LayerDisplace:
+  _VolumeParam02:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
@@ -3496,7 +3526,191 @@ MonoBehaviour:
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
-  _LayerBack:
+  _FadeNoir:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _ScnNebula:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _ScnSunshaft:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _ScnCam:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _ScnFX:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _ScnVolume:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _ScnDendritic:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _ChangeFluid:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _ActiveFX:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _ChangeFX01:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _ChangeFX02:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _ChangeFX03:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _ChangeGrain:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _Setting3Dshape01:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _Setting3Dshape02:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _Setting3Dshape03:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _DebugTransition:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _ActiveSoundControl01:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _ActiveSoundControl02:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _ActiveSoundControl03:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _MultiplierSound01:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _MultiplierSound02:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _MultiplierSound03:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  _MultiplierSoundFX:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
@@ -3554,7 +3768,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1390684621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3730,9 +3944,11 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 0bb49d74555d6a541b9d523b6bc333f7, type: 2}
   C: {fileID: 8400000, guid: 0d88d3f4e6b06f1488d790e43e1f1968, type: 2}
   Taille: 0
+  Taille2: 0
   Forme: 0
   ApparitionForme: 0
   Disparition: 0
+  video: 0
   _resx: 1920
   rtFormat: 2
   _resy: 1080
@@ -3922,7 +4138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1467000974
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4227,11 +4443,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19f4f135969bea24c9ae99ccc5f6c793, type: 3}
---- !u!4 &1589419594 stripped
+--- !u!4 &1589419594
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 19f4f135969bea24c9ae99ccc5f6c793, type: 3}
   m_PrefabInstance: {fileID: 1589419593}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125024134}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 347274972}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1690037095
 GameObject:
   m_ObjectHideFlags: 0
@@ -4259,7 +4484,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1690037095}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8e748add772d9941ae69d53600b21c0, type: 3}
   m_Name: 
@@ -4268,9 +4493,11 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 0bb49d74555d6a541b9d523b6bc333f7, type: 2}
   C: {fileID: 8400000, guid: 0d88d3f4e6b06f1488d790e43e1f1968, type: 2}
   Taille: 0
+  Taille2: 0
   Forme: 0
   ApparitionForme: 0
   Disparition: 0
+  video: 0
   _resx: 1920
   rtFormat: 2
   _resy: 1080
@@ -4346,21 +4573,43 @@ Transform:
   m_GameObject: {fileID: 1690037095}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6.7559686, y: 9.007958, z: 1.7376462}
+  m_LocalScale: {x: 16, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 1416701802}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1705333422 stripped
+--- !u!1 &1705333422
 GameObject:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5ab8fd03a9475e64491451137aab5efd, type: 3}
   m_PrefabInstance: {fileID: 1127834248}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1705333423 stripped
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1705333425}
+  - component: {fileID: 1705333424}
+  m_Layer: 0
+  m_Name: Placeholder for referenced GameObject in Prefab instance (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1705333423
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5ab8fd03a9475e64491451137aab5efd, type: 3}
   m_PrefabInstance: {fileID: 1127834248}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161831865}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1705333425}
+  m_Father: {fileID: 962347129}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1705333424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4380,6 +4629,20 @@ MonoBehaviour:
   ReverseX: 0
   ReverseY: 0
   ReverseZ: 0
+--- !u!4 &1705333425
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 9223372036854775807, guid: 5ab8fd03a9475e64491451137aab5efd, type: 3}
+  m_PrefabInstance: {fileID: 1127834248}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705333422}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1705333423}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1734425408
 GameObject:
   m_ObjectHideFlags: 0
@@ -4430,9 +4693,11 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 0bb49d74555d6a541b9d523b6bc333f7, type: 2}
   C: {fileID: 8400000, guid: 0d88d3f4e6b06f1488d790e43e1f1968, type: 2}
   Taille: 0
+  Taille2: 0
   Forme: 0
   ApparitionForme: 0
   Disparition: 0
+  video: 0
   _resx: 1920
   rtFormat: 2
   _resy: 1080
@@ -4645,7 +4910,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1947261933
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4742,7 +5007,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1965304773
 Transform:
   m_ObjectHideFlags: 0
@@ -4773,9 +5038,11 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 0bb49d74555d6a541b9d523b6bc333f7, type: 2}
   C: {fileID: 8400000, guid: 0d88d3f4e6b06f1488d790e43e1f1968, type: 2}
   Taille: 0
+  Taille2: 0
   Forme: 0
   ApparitionForme: 0
   Disparition: 0
+  video: 0
   _resx: 1920
   rtFormat: 2
   _resy: 1080

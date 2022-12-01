@@ -27,8 +27,9 @@ namespace OscSimpl.Examples
         public Material mat;
         public string Name5;
         public string Name6;
-        public bool StandardActivated;
+        
         public SoundRender scrpit1;
+        public bool StandardActivated;
         float v1;
         float v1o;
         float fao;
