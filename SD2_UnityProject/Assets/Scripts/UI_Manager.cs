@@ -9,11 +9,12 @@ public class UI_Manager : MonoBehaviour
    // public Text T_Current;
    // public Text T_Noir;
     public string T_FX;
-   // public Text T_Grain;
-
+    // public Text T_Grain;
+    public GameObject UI_OSC;
     public GameObject UI_Next;
     public GameObject UI_Current;
-    public GameObject UI_Noir;
+    public GameObject UI_NoirLong;
+    public GameObject UI_NoirCourt;
     public GameObject UI_FX;
     public GameObject UI_Sound;
     public GameObject UI_SoundControl01;
@@ -21,6 +22,7 @@ public class UI_Manager : MonoBehaviour
     public GameObject UI_SoundControl03;
     public GameObject UI_Grain;
     public GameObject UI_Deform;
+    public GameObject UI_Start;
     public GameObject UI_SettingShape;
     void Start()
     {

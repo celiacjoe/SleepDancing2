@@ -45,6 +45,7 @@ public class InputMidiControl : MonoBehaviour
     public float MultiplierSoundValueFX;
     private bool Noir;
     public bool NoirCourt;
+    public bool Started;
     private bool FXActive;
     public GameObject MovableObject;
 
@@ -106,9 +107,10 @@ public class InputMidiControl : MonoBehaviour
     }
     void Start()
     {
+        Started = false;
         FXActive = false;
         Noir = false;
-        NoirCourt = false;
+        NoirCourt = false;      
     }
     void Update()
     {
@@ -126,7 +128,20 @@ public class InputMidiControl : MonoBehaviour
 
         Vector3 NewTargetPosition = new Vector3(PosX+40, PosY);
         MovableObject.transform.position = Vector3.SmoothDamp(MovableObject.transform.position, NewTargetPosition, ref velocity, SmoothT);
-        //MovableObject.transform.position.x = f.SmoothDamp(MovableObject.transform.position.x, NewTargetPosition.x, ref velocity, SmoothT);
+        //MovableObject.transform.position.x = f.SmoothDamp(MovableObject.transform.position.x, NewTargetPosition.x, ref velocity, SmoothT);       
+        if (NoirCourt)
+        {
+            S_UI.UI_NoirCourt.SetActive(true);
+           // S_UI.UI_NoirCourt.GetComponentInChildren<Text>().text = "NOIR COURT True";
+        }else if (Noir)
+        {
+            S_UI.UI_NoirLong.SetActive(true);
+            //S_UI.UI_NoirLong.GetComponentInChildren<Text>().text = "NOIR LONG True";
+        }else
+        {
+            S_UI.UI_NoirCourt.SetActive(false);
+            S_UI.UI_NoirLong.SetActive(false);
+        }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -165,36 +180,42 @@ public class InputMidiControl : MonoBehaviour
             Manager.Next = "Dendritic";
             Manager.TransitionScene();
         }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            S_UI.UI_Start.GetComponentInChildren<Text>().text = "started";
+            Manager.AC.GetBool("Started");
+            Manager.AC.SetBool("Started", true);
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Manager.AC.GetBool("FadeNoir");
             if (!Noir)
             {
-                S_UI.UI_Noir.SetActive(true);
-                S_UI.UI_Noir.GetComponentInChildren<Text>().text = "NOIR LONG INCOMING";
+                S_UI.UI_NoirLong.SetActive(true);
+                S_UI.UI_NoirLong.GetComponentInChildren<Text>().text = "NOIR LONG INCOMING";
                 Manager.AC.SetBool("FadeNoir", true);
                 Noir = true;
-            }
-            else
+            }else
             {
-                S_UI.UI_Noir.SetActive(false);
+                S_UI.UI_NoirLong.SetActive(false);
                 Manager.AC.SetBool("FadeNoir", false);
                 Noir = false;
             }
         }
-        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             Manager.AC.GetBool("FadeNoirCourt");
             if (!NoirCourt)
             {
-                S_UI.UI_Noir.SetActive(true);
-                S_UI.UI_Noir.GetComponentInChildren<Text>().text = "NOIR SHORT INCOMONG";
+                S_UI.UI_NoirCourt.SetActive(true);
+                S_UI.UI_NoirCourt.GetComponentInChildren<Text>().text = "NOIR SHORT INCOMING";
                 Manager.AC.SetBool("FadeNoirCourt", true);
                 NoirCourt = true;
             }
             else
             {
-                S_UI.UI_Noir.SetActive(false);
+                S_UI.UI_NoirCourt.GetComponentInChildren<Text>().text = "NOIR SHORT OUT";
+                S_UI.UI_NoirCourt.SetActive(false);
                 Manager.AC.SetBool("FadeNoirCourt", false);
                 NoirCourt = false;
             }
@@ -594,13 +615,13 @@ public class InputMidiControl : MonoBehaviour
         Manager.AC.GetBool("FadeNoir");
         if (!Noir)
         {
-            S_UI.UI_Noir.SetActive(true);
-            S_UI.UI_Noir.GetComponentInChildren<Text>().text = "NOIR INCOMING";
+            S_UI.UI_NoirLong.SetActive(true);
+            S_UI.UI_NoirLong.GetComponentInChildren<Text>().text = "NOIR INCOMING";
             Manager.AC.SetBool("FadeNoir",true);
             Noir = true;
         }else
         {
-            S_UI.UI_Noir.SetActive(false);
+            S_UI.UI_NoirLong.SetActive(false);
             Manager.AC.SetBool("FadeNoir", false);
             Noir = false ;
         }

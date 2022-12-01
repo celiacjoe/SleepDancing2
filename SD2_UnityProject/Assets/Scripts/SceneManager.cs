@@ -28,6 +28,7 @@ public class SceneManager : MonoBehaviour
 
     [Header("Back Element")]
     public GameObject[] FX_List;
+    public Renderer MatNoir;
 
     [Header("Managment Stuff")]
     public GameObject OSC_FX;
@@ -40,6 +41,8 @@ public class SceneManager : MonoBehaviour
     //[Space(10)]
     void Start()
     {
+        AC.GetBool("Started");
+        AC.SetBool("Started", false);
         //S_UI.UI_Current.GetComponentInChildren<Text>().text = "intro";
         Clean();
         //SetupParam3Dshape();
@@ -134,6 +137,9 @@ public class SceneManager : MonoBehaviour
     }
     void Clean()
     {
+        AC.GetBool("Started");
+        AC.SetBool("Started",false);
+
         OSC_FX.SetActive(false);
         //FX
         S_UI.T_FX = " Color";
@@ -167,6 +173,10 @@ public class SceneManager : MonoBehaviour
         RenderFinal.sharedMaterial.SetInt("_FX_Sunshaft", 0);
         RenderFinal.sharedMaterial.SetInt("_FX_Cam", 0);
         RenderFinal.sharedMaterial.SetFloat("_Transition", 1);
+        // 
+        // MatNoir.sharedMaterial.SetColor("Color",0, 0, 0, 1);
+
+
     }
     public void Setting3Dshape01()
     {
@@ -284,6 +294,7 @@ public class SceneManager : MonoBehaviour
                 GO_FinalQuad[2].SetActive(true);
                 RenderFinal.sharedMaterial.SetInt("_" + Current + "_" + Next, 1);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
+                AC.SetTrigger("Transition");
                 Debug.Log("Change Sunshaft vers cam");
             }
             else if (Next == "FX")
@@ -322,7 +333,7 @@ public class SceneManager : MonoBehaviour
             if (Next == "Sunshaft")
             {
                 RenderFinal.sharedMaterial.SetInt("_" + "Nebula" + "_" + Next, 1);
-                Debug.Log("TestNebula");
+                Debug.Log("TestSunshaft");
             }
         }
         else if (Current == "Cam")
@@ -331,6 +342,7 @@ public class SceneManager : MonoBehaviour
             {
                 GO_FinalQuad[0].SetActive(true);
                 RenderFinal.sharedMaterial.SetInt("_" + Current + "_" + Next, 1);
+                RenderFinal.sharedMaterial.SetInt("_Cam_FX", 0);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
                 AC.SetTrigger("Transition");
                 Debug.Log("Change Cam vers Nebula");
@@ -339,6 +351,7 @@ public class SceneManager : MonoBehaviour
             {
                 GO_FinalQuad[1].SetActive(true);
                 RenderFinal.sharedMaterial.SetInt("_" + Current + "_" + Next, 1);
+                RenderFinal.sharedMaterial.SetInt("_Cam_FX", 0);
                 RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
                 AC.SetTrigger("Transition");
                 Debug.Log("Change cam vers Sunshaft ");
@@ -418,6 +431,7 @@ public class SceneManager : MonoBehaviour
                 GO_FinalQuad[3].SetActive(true);
                 GO_FinalQuad[4].SetActive(true);
                 S_Video.volume = true;
+                Endtransition();
                 Debug.Log("Change FX vers Volume");
             }
             AC.SetTrigger("Transition");
@@ -455,9 +469,9 @@ public class SceneManager : MonoBehaviour
             {
                 GO_FinalQuad[2].SetActive(true);
                 S_Video.Dendritic = true;
-                RenderFinal.sharedMaterial.SetInt("_Sunshaft_" + "Cam", 1);
+                RenderFinal.sharedMaterial.SetInt("_FX_" + "Cam", 1);
                 //RenderFinal.sharedMaterial.SetFloat("_Transition", 0);
-                Endtransition();
+                AC.SetTrigger("Transition");
                 Debug.Log("Change Volume vers Dendritic");
             }
             if (Next == "FX")
@@ -474,7 +488,8 @@ public class SceneManager : MonoBehaviour
                 GO_FinalQuad[4].SetActive(false);
                 S_Video.volume = false;
                 S_Video.Dendritic = false;
-                Current = "FX";
+                Endtransition();
+                //Current = "FX";
                 Debug.Log("Change Volume vers FX");
             }
             //AC.SetTrigger("Transition");
