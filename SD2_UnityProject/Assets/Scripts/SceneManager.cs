@@ -19,8 +19,8 @@ public class SceneManager : MonoBehaviour
     public Renderer RenderFinal;
     public render ScriptRender;
     public GameObject[] GO_FinalQuad;
-    public Texture TXTDefaultRought, TXT01Rought,  TXT02Rought,  TXT03Rought;
-    public Texture TXTDefaultNormalt, TXT01NRM, TXT02NRM, TXT03NRM;
+    public Texture  TXT01Rought,  TXT02Rought,  TXT03Rought;
+    public Texture  TXT01NRM, TXT02NRM, TXT03NRM;
 
     [Header("Displace Element")]
     public Renderer Render3Dshape;
@@ -59,28 +59,29 @@ public class SceneManager : MonoBehaviour
         {
         if (Nbr_Grain == 1){
             RenderFinal.sharedMaterial.SetInt("TxtProcedural", 0);
-            S_UI.UI_Grain.GetComponentInChildren<Text>().text = "TXT GRAIN 01";
-            RenderFinal.sharedMaterial.SetTexture("_Rought", TXT02Rought);
-            RenderFinal.sharedMaterial.SetTexture("_NRM", TXT02NRM);
+            S_UI.UI_Grain.GetComponentInChildren<Text>().text = "TXT GRAIN Alu";
+            RenderFinal.sharedMaterial.SetTexture("_Rought", TXT01Rought);
+            RenderFinal.sharedMaterial.SetTexture("_NRM", TXT01NRM);
             S_SunshaftRender.Rought = TXT01Rought;        
         }
         else if (Nbr_Grain == 2){
-            S_UI.UI_Grain.GetComponentInChildren<Text>().text = "TXT GRAIN 02";
+            S_UI.UI_Grain.GetComponentInChildren<Text>().text = "TXT GRAIN Plactic";
             RenderFinal.sharedMaterial.SetTexture("_Rought", TXT02Rought);
             RenderFinal.sharedMaterial.SetTexture("_NRM", TXT02NRM);
+            RenderFinal.sharedMaterial.SetInt("TxtProcedural", 0);
             S_SunshaftRender.Rought = TXT02Rought;
         }
         else if (Nbr_Grain == 3)
         {
-            S_UI.UI_Grain.GetComponentInChildren<Text>().text = "TXT GRAIN 03";
+            S_UI.UI_Grain.GetComponentInChildren<Text>().text = "TXT GRAIN Ice";
             RenderFinal.sharedMaterial.SetTexture("_Rought", TXT03Rought);
             RenderFinal.sharedMaterial.SetTexture("_NRM", TXT03NRM);
+            RenderFinal.sharedMaterial.SetInt("TxtProcedural", 0);
             S_SunshaftRender.Rought = TXT03Rought;
         }
         else if (Nbr_Grain == 4){
             S_UI.UI_Grain.GetComponentInChildren<Text>().text = "TXT PROCEDURAL";
             RenderFinal.sharedMaterial.SetInt("TxtProcedural", 1);
-            //RenderFinal.sharedMaterial.SetTexture("_NRM", TXT01NRM);
             Nbr_Grain = 0;            
         }
         Nbr_Grain++;
@@ -97,14 +98,8 @@ public class SceneManager : MonoBehaviour
             S_UI.UI_Deform.GetComponentInChildren<Text>().text = "DEFORM/ Fluid01";
             RenderFinal.sharedMaterial.SetFloat("Video", 0.5f);
             ScriptRender.compute_shader = Deform02;
-            Nbr_Fluid = 1;
+            Nbr_Fluid = 0;
         }
-        /*else if (Nbr_SceneD == 3){
-            Nbr_SceneD++;
-            ScriptRender.compute_shader = Deform03;
-            TextDisplace.text = "SCENE_DISPLACE_04";
-            TransitionScene();
-        }*/
         Nbr_Fluid++;
     }
 

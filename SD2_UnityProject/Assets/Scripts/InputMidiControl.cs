@@ -577,6 +577,7 @@ public class InputMidiControl : MonoBehaviour
     void ChangeFluid(InputAction.CallbackContext ctx)
     {
         Manager.ChangeDisplace();
+        Debug.Log("Touch pressed Displac chang");
     }
     void ActiveFX(InputAction.CallbackContext ctx)
     {

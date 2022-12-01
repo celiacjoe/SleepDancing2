@@ -5012,7 +5012,7 @@
     },
     "m_Name": "Rought",
     "m_DefaultReferenceName": "Texture2D_44d3a1798d524167aa6355ac162b6488",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "Rought",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -5867,7 +5867,7 @@
     "m_ShaderOutputName": "A",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": 0.800000011920929,
+        "x": 0.8999999761581421,
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
@@ -8989,7 +8989,7 @@
     "m_ShaderOutputName": "B",
     "m_StageCapability": 3,
     "m_Value": {
-        "e00": 1000.0,
+        "e00": 1500.0,
         "e01": 2.0,
         "e02": 2.0,
         "e03": 2.0,
@@ -10621,7 +10621,7 @@
     "m_ShaderOutputName": "B",
     "m_StageCapability": 3,
     "m_Value": {
-        "e00": 0.20000000298023225,
+        "e00": 0.10000000149011612,
         "e01": 2.0,
         "e02": 2.0,
         "e03": 2.0,
@@ -11021,7 +11021,7 @@
     "m_ShaderOutputName": "B",
     "m_StageCapability": 3,
     "m_Value": {
-        "e00": 100.0,
+        "e00": 70.0,
         "e01": 2.0,
         "e02": 2.0,
         "e03": 2.0,
@@ -11837,7 +11837,7 @@
     },
     "m_Name": "NRM",
     "m_DefaultReferenceName": "Texture2D_e39430a53f854004b403a56622f9e366",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "NRM",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
