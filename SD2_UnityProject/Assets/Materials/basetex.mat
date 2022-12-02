@@ -60,7 +60,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 8400000, guid: 7504fd7b4cae0b440ac7cc63de465df8, type: 2}
+        m_Texture: {fileID: 8400000, guid: cda7d8d6ebda5cb4bbeed3c4254c2675, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -94,13 +94,13 @@ Material:
     m_Floats:
     - ApparitionForme: 0.08
     - BlurIntensity: 0.2
-    - Intensity: 0.025
+    - Intensity: 1
     - Mask_Intensity: 0
     - Vector1_3a130d5a71ef4c1fbf1646ba501fa62d: 0
     - Vector1_e9dea2c590d046899eecae12226fe814: 0
     - Vector1_fae9ea70a9434fa782aad93fbc210351: 91.2
     - _AlphaClip: 0
-    - _ApparitionForme: 0
+    - _ApparitionForme: 0.2
     - _Blend: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
