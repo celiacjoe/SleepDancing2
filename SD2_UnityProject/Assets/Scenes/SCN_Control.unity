@@ -500,6 +500,7 @@ MonoBehaviour:
   Name14: /2/f8
   Name15: /2/f9
   Name16: /2/f10
+  nor: /2/f12
   script1: {fileID: 296026941}
   script2: {fileID: 176598241}
   final: {fileID: 2100000, guid: 2c269ecf01b9d4a41bd422a5c54f8f66, type: 2}
@@ -6393,6 +6394,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 2765008365743966199}
     m_Modifications:
     - target: {fileID: 6453235082599507912, guid: 87ae26dbbe97293498f98534b000ec11, type: 3}
+      propertyPath: nor
+      value: /2/f12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6453235082599507912, guid: 87ae26dbbe97293498f98534b000ec11, type: 3}
       propertyPath: S_UI
       value: 
       objectReference: {fileID: 594323351}
@@ -6763,6 +6768,14 @@ PrefabInstance:
     - target: {fileID: 6454805775248245718, guid: d3591292d5929b64192eda4ef94d6e53, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6454805775248245724, guid: d3591292d5929b64192eda4ef94d6e53, type: 3}
+      propertyPath: mat
+      value: 
+      objectReference: {fileID: 2100000, guid: abfcedb3a1f6c794784830fffd17a779, type: 2}
+    - target: {fileID: 6454805775248245724, guid: d3591292d5929b64192eda4ef94d6e53, type: 3}
+      propertyPath: nor
+      value: /2/f12
       objectReference: {fileID: 0}
     - target: {fileID: 6454805775248245724, guid: d3591292d5929b64192eda4ef94d6e53, type: 3}
       propertyPath: S_UI

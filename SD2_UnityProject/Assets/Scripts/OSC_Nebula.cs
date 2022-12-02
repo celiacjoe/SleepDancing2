@@ -30,11 +30,13 @@ namespace OscSimpl.Examples
         public string Name8;
         public string Name9;
         public string Name10;
+        public string nor;
         float v1;
         float v1o;
         float fao;
         float fbo;
         float t4o;
+        float noro;
         public bool StandardActivated;
         public Vector3 fac;
         public Material mat;
@@ -84,6 +86,7 @@ namespace OscSimpl.Examples
                 scrpit1.f1 = fao;
                 scrpit1.f2 = fbo;
                 scrpit1.transition4 = t4o;
+                mat.SetFloat("NRMIntensity", noro);
                 S_UI.UI_OSCValue.GetComponentInChildren<Text>().text = "value" + v1o; /////// +++
             }
             if (StandardActivated == true)
@@ -92,6 +95,7 @@ namespace OscSimpl.Examples
                 scrpit1.f1 = 0;
                 scrpit1.f2 = 0;
                 scrpit1.transition4 = 1;
+                mat.SetFloat("NRMIntensity", 0);
             }
             if (Input.GetKeyDown(KeyCode.K))
             {
@@ -120,7 +124,7 @@ namespace OscSimpl.Examples
             _oscIn.MapFloat(Name8, Event8);
             _oscIn.MapFloat(Name9, Event9);
             _oscIn.MapFloat(Name10, Event10);
-
+            _oscIn.MapFloat(nor, Event11);
         }
 
 
@@ -176,6 +180,10 @@ namespace OscSimpl.Examples
             t4o = value;
 
         }
+        public void Event11(float value)
+        {
+            noro = value;
 
+        }
     }
 }
