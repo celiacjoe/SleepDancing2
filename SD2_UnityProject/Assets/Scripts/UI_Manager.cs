@@ -11,6 +11,8 @@ public class UI_Manager : MonoBehaviour
     public string T_FX;
     // public Text T_Grain;
     public GameObject UI_OSC;
+    public GameObject UI_NebulaActive;
+
     public GameObject UI_Next;
     public GameObject UI_Current;
     public GameObject UI_NoirLong;

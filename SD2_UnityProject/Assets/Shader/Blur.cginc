@@ -87,8 +87,8 @@ void blur2ch_float(float2 uv, float  Size, float  Ss, UnityTexture2D A, out floa
 	{
 		for (float i = 1.0 / Quality; i <= 1.0; i += 1.0 / Quality)
 		{
-			Color.b += tex2D(A, uv + float2(cos(d), sin(d))*di*i).x;
-			Color.yx += tex2D(A, uv + float2(cos(d), sin(d))*di2*i).xx;
+			Color.r += tex2D(A, uv + float2(cos(d), sin(d))*di*i).x;
+			Color.rg += tex2D(A, uv + float2(cos(d), sin(d))*di2*i).xx;
 		}
 	}
 	Color /= Quality * Directions - 15.;

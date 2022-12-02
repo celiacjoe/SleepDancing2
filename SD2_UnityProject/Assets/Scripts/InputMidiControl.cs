@@ -151,6 +151,11 @@ public class InputMidiControl : MonoBehaviour
             Manager.RenderFinal.sharedMaterial.SetInt("_Sunshaft_Nebula", 1);
         }
 
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            //S_UI.UI_NebulaActive.SetActive(true);
+            //Manager.GO_FinalQuad[0].SetActive(true);
+        }
         if (Input.GetKeyDown(KeyCode.N))
         {
             Manager.Next = "Nebula";

@@ -46,6 +46,7 @@ public class SceneManager : MonoBehaviour
         AC.SetBool("Started", false);
         //S_UI.UI_Current.GetComponentInChildren<Text>().text = "intro";
         Clean();
+
         //SetupParam3Dshape();
     }
 
@@ -385,7 +386,7 @@ public class SceneManager : MonoBehaviour
             }
 
         }
-        else if (Current == "FX")
+        else if (Current == "FX")               ///////// FX
         {
             S_UI.UI_FX.SetActive(true);
             if (Next == "Nebula")
@@ -427,12 +428,12 @@ public class SceneManager : MonoBehaviour
                 GO_FinalQuad[3].SetActive(true);
                 GO_FinalQuad[4].SetActive(true);
                 S_Video.volume = true;
-                Endtransition();
+                //Endtransition();
                 Debug.Log("Change FX vers Volume");
             }
             AC.SetTrigger("Transition");
         }
-        else if (Current == "Volume")
+        else if (Current == "Volume") ///////// VOLUME
         {
             if (Next == "Nebula")
             {
@@ -478,10 +479,10 @@ public class SceneManager : MonoBehaviour
                 GO_FinalQuad[3].SetActive(true);
                 OSC_FX.SetActive(true);
                 S_UI.UI_FX.SetActive(true);
-                GO_FinalQuad[0].SetActive(false);
+                /*GO_FinalQuad[0].SetActive(false);
                 GO_FinalQuad[1].SetActive(false);
                 GO_FinalQuad[2].SetActive(false);
-                GO_FinalQuad[4].SetActive(false);
+                GO_FinalQuad[4].SetActive(false);*/
                 S_Video.volume = false;
                 S_Video.Dendritic = false;
                 Endtransition();
