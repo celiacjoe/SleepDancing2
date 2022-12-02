@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
+using UnityEngine.UI;
 
 namespace OscSimpl.Examples
 {
     public class OSC_Sound : MonoBehaviour
     {
         [SerializeField] OscIn _oscIn;
-        
+        public UI_Manager S_UI;
         public string Name1;
         public float Low;
         public float TLow;
@@ -71,7 +72,7 @@ namespace OscSimpl.Examples
 
              if(StandardActivated == false)
             {
-               
+                S_UI.UI_OSCValue.GetComponentInChildren<Text>().text = "value" + v1o; /////// +++
                 v1 = v1o;
                 scrpit1.f1 = fao;
                 scrpit1.f2 = fbo;
@@ -81,20 +82,21 @@ namespace OscSimpl.Examples
                 v1 = 1;
                 scrpit1.f1 = 0;
                 scrpit1.f2 = 0;
+
             }
             if (Input.GetKeyDown(KeyCode.K))
             {
                // Debug.Log("te");
                 if (StandardActivated==false)
                 {
-                  
-                
+
+                    S_UI.UI_OSC.SetActive(true);/////// +++
                     StandardActivated = true;
                 }
 
                 else
                 {
-
+                    S_UI.UI_OSC.SetActive(false);/////// +++
                     StandardActivated = false;
                 }
                  

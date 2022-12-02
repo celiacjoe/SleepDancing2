@@ -110,7 +110,8 @@ public class InputMidiControl : MonoBehaviour
         Started = false;
         FXActive = false;
         Noir = false;
-        NoirCourt = false;      
+        NoirCourt = false;
+        S_UI.UI_OSC.SetActive(false);/////// +++
     }
     void Update()
     {

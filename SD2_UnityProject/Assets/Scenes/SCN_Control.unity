@@ -473,6 +473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _oscIn: {fileID: 1282053961}
+  S_UI: {fileID: 594323351}
   Name1: /Low
   Low: 0
   TLow: 0
@@ -2556,7 +2557,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
+  m_TargetDisplay: 1
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -4943,7 +4944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1774299711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5938,7 +5939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7728287082822735728, guid: ea7e921b06bea174aad742954bc0b8ee, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7728287082822735731, guid: ea7e921b06bea174aad742954bc0b8ee, type: 3}
       propertyPath: m_RootOrder
@@ -6721,6 +6722,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6454805775248245724, guid: d3591292d5929b64192eda4ef94d6e53, type: 3}
+      propertyPath: S_UI
+      value: 
+      objectReference: {fileID: 594323351}
     - target: {fileID: 6454805775248245724, guid: d3591292d5929b64192eda4ef94d6e53, type: 3}
       propertyPath: Name4
       value: /1/f5
