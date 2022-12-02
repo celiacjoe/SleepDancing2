@@ -155,7 +155,7 @@ Material:
     m_Floats:
     - BlurIntensity: 0
     - Intensity: 0.26753587
-    - NRMIntensity: 0.681203
+    - NRMIntensity: 0
     - RoughtIntensity: 0.007874017
     - TxtProcedural: 1
     - Vector1_52db204c180d4d25af4afb3f60e74283: 1
