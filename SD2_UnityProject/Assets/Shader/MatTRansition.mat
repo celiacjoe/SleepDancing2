@@ -109,7 +109,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NRM:
-        m_Texture: {fileID: 2800000, guid: 2933566edac675b47a7892c48731b6e7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3c3c1610a9e3cf2429a2074966ccb08b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Nebula:
@@ -125,7 +125,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Rought:
-        m_Texture: {fileID: 2800000, guid: b3b310952c101f04aa900b465de76022, type: 3}
+        m_Texture: {fileID: 2800000, guid: 78f0030aea469fa41b8f6a3218358dcf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -154,10 +154,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - BlurIntensity: 0
-    - Intensity: 0
-    - NRMIntensity: 0
-    - RoughtIntensity: 0.27559057
-    - TxtProcedural: 0
+    - Intensity: 0.26753587
+    - NRMIntensity: 0.681203
+    - RoughtIntensity: 0.007874017
+    - TxtProcedural: 1
     - Vector1_52db204c180d4d25af4afb3f60e74283: 1
     - Vector1_7d3b87b9df4346f89f1dbe5383e16dc0: 0
     - Vector1_edcf7fba66c9426894ca490ffe99ffaf: 0

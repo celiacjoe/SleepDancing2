@@ -1881,7 +1881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3880046e91c19024f8a135edb3f33559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  compute_shader: {fileID: 7200000, guid: 3614a12a12e9c23419433217ef051c2d, type: 3}
+  compute_shader: {fileID: 7200000, guid: e7e6d994d87d07f46b76d95974931648, type: 3}
   noise: {fileID: 2800000, guid: 35167f43818bf5c479a620a0e6acfa32, type: 3}
   material: {fileID: 2100000, guid: 0e79d6a85e6eade4b9f158ffa0dfbfb8, type: 2}
   transition1: 1
@@ -2207,7 +2207,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7728287082822735728, guid: ea7e921b06bea174aad742954bc0b8ee, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7728287082822735731, guid: ea7e921b06bea174aad742954bc0b8ee, type: 3}
       propertyPath: m_RootOrder
