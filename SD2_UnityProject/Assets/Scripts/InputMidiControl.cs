@@ -150,6 +150,11 @@ public class InputMidiControl : MonoBehaviour
             Manager.RenderFinal.sharedMaterial.SetFloat("_Transition", 1);
             Manager.RenderFinal.sharedMaterial.SetInt("_Sunshaft_Nebula", 1);
         }
+        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            Application.LoadLevel("SCN_Louis_Transition");
+            Debug.Log("OK keypad enter");
+        }      
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
