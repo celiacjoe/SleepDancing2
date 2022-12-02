@@ -1026,7 +1026,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &525308011
 Transform:
   m_ObjectHideFlags: 0
@@ -1758,7 +1758,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &828336557
 Transform:
   m_ObjectHideFlags: 0
@@ -2276,7 +2276,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &962347129
 Transform:
   m_ObjectHideFlags: 0
@@ -3129,7 +3129,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1195247857
 Transform:
   m_ObjectHideFlags: 0
@@ -3285,7 +3285,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1300448207
 Transform:
   m_ObjectHideFlags: 0
@@ -3339,18 +3339,18 @@ MonoBehaviour:
   Started: 0
   MovableObject: {fileID: 6848822297532192591}
   _BlurIntensity:
-    m_Name: 
+    m_Name: Blur Intensity
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 47da3da3-5589-4528-8123-ae9531a410bd
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
   _RoughtIntensity:
-    m_Name: 
+    m_Name: Rought Intensity
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: b47a935a-f64c-444e-8f79-d827c757dc05
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3371,42 +3371,42 @@ MonoBehaviour:
       m_Action: Intensity Control
       m_Flags: 0
   _ApparitionForme:
-    m_Name: 
+    m_Name: Apparition Forme
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 91a830d7-1e8e-4082-9761-968bd4071c96
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
   _Taille:
-    m_Name: 
+    m_Name: Taille
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 5437cf8c-a274-4278-88e4-5f67536c166c
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
   _Forme:
-    m_Name: 
+    m_Name: Forme
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: e02bd087-f310-47ac-bd2e-b6d6b0fa8a34
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
   _ApparitionLiquide:
-    m_Name: 
+    m_Name: Apparition Liquide
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 1501dc6d-e4de-4cf7-bcf5-0d974c379d93
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
   _Disparition:
-    m_Name: 
+    m_Name: Disparition
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: c2e35e00-f34e-4475-9a03-f0ce229a9dab
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3511,26 +3511,26 @@ MonoBehaviour:
       m_Flags: 0
   Name_P4: Speed
   _VolumeParam01:
-    m_Name: 
+    m_Name: Volume Param 01
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 615c9276-012e-4325-a40a-6ca8a034da1c
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
   _VolumeParam02:
-    m_Name: 
+    m_Name: Volume Param 02
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: a39c8c13-f515-4259-bcc6-167248ffcc24
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
   _FadeNoir:
-    m_Name: 
+    m_Name: Fade Noir
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 00fc400f-99e0-4fd6-bb0c-53e0aea2ec5b
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3538,7 +3538,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 7b55e7e5-21a0-4826-a58e-caf1a0b8b75d
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3546,7 +3546,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 750e2f1c-8a26-4d21-9e5f-4b4a7ca98156
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3554,7 +3554,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 6521e76b-1602-4e8e-b607-74ccc49d34f8
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3562,7 +3562,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 322c36e6-0773-4dac-82eb-20779a1439f3
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3570,7 +3570,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 23904b15-dce1-4241-bb0b-7ded4604efd8
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3578,7 +3578,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 5af0e4bd-7e2b-44df-964c-059ea43773aa
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3586,7 +3586,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: f0d1bfee-b7c3-4c3f-8f3d-619cc4ec0701
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3594,7 +3594,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 4d502c82-12e7-4106-af8a-1608d1111f62
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3602,7 +3602,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 56d0d1b1-812e-4453-b0b5-bc0561bbce1e
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3610,7 +3610,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 63b55045-4450-49fe-bcea-6b8a73db4078
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3618,7 +3618,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 0c1e66ca-1ee8-43b1-9aff-8903374b11d2
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3626,7 +3626,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 33965e59-572b-46c8-9470-3e90205d47bd
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3634,7 +3634,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 37b3079b-3721-402b-966a-f0bb0058b9f2
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3642,7 +3642,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 6762d5a6-6236-4827-9cba-7deae438d719
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3650,7 +3650,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 32187d11-42f1-4233-9fda-9c3d313e328b
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3658,7 +3658,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: c60ce885-5712-417b-9e65-f4825f2b7ffe
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3666,7 +3666,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 813d6cf6-7c97-4f0b-a3e3-da000eafd08d
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3674,7 +3674,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: db87a969-28af-4d87-9c21-00fc21f94714
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3682,7 +3682,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 3edb5fdd-99d3-4665-aec0-d4cff81aaf46
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3690,7 +3690,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 47bba12e-a0dd-438d-967b-156317ece485
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3698,7 +3698,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: bfe47d93-5933-4890-9d4b-7fa555c730a4
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3706,7 +3706,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: d1674dc5-5747-4a9c-8aa9-610a21b29f5c
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3714,7 +3714,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: df77994e-a69a-45e0-b07a-6fb9e94a0123
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []

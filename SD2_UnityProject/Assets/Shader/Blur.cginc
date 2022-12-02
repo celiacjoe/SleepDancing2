@@ -68,8 +68,38 @@ void blur2_float(float2 uv, float  Size, UnityTexture2D A, out float3 Out)
 	Out = Color;
 
 }
+void blur2ch_float(float2 uv, float  Size, float  Ss, UnityTexture2D A, out float3 Out)
+{
+
+	float Pi = 6.28318530718;
+
+	float Directions = 16.0;
+	float Quality = 4.0;
+
+
+
+	float2 Radius = Size / float2(1920., 1080.);
+	float2 Radius2 = Ss/ float2(1920., 1080.);
+	float di = Radius + Radius * hs(uv);
+	float di2 = Radius2 + Radius2 * hs(uv);
+	float4 Color = tex2D(A, uv);
+	for (float d = 0.0; d < Pi; d += Pi / Directions)
+	{
+		for (float i = 1.0 / Quality; i <= 1.0; i += 1.0 / Quality)
+		{
+			Color.b += tex2D(A, uv + float2(cos(d), sin(d))*di*i).x;
+			Color.yx += tex2D(A, uv + float2(cos(d), sin(d))*di2*i).xx;
+		}
+	}
+	Color /= Quality * Directions - 15.;
+
+
+	Out = Color;
+
+}
 void liquide_float(float2 uv, float time,  out float2 Out)
 {
+	uv.x += time * -0.00;
 	float t1 = (pow(length(frac(uv.x*10.) - 0.5)*2., 0.2) - 0.5);
 	float t2 = no(uv*float2(140., 0.5) + float2((no(uv*float2(40., 1.5) + float2(time*0.15, 0.)) - 0.5)*3., time*0.1));
 	float t3 = (pow(t2, 5.));
