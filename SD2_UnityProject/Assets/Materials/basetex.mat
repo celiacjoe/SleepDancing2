@@ -43,6 +43,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Deform:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -75,6 +79,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_4d153aac129b45feae5621f8c684559a_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 6dcaffcb740149c4aab9ea1a60c38a59, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -93,10 +101,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - ApparitionForme: 0.08
-    - BlurIntensity: 0.2
-    - Intensity: 1
+    - BlurIntensity: 5
+    - BlurIntensity_1: 4
+    - BlurIntensity_2: 6
+    - BlurIntensity_3: 3
+    - Intensity: 0.25
     - Mask_Intensity: 0
+    - Vector1_0d32e567f0b24a0b9b91a6bc0917070f: 0
     - Vector1_3a130d5a71ef4c1fbf1646ba501fa62d: 0
+    - Vector1_c72738c707c44e48912e3ff83090563e: 0
     - Vector1_e9dea2c590d046899eecae12226fe814: 0
     - Vector1_fae9ea70a9434fa782aad93fbc210351: 91.2
     - _AlphaClip: 0

@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SCN_Control.unity
     guid: 3df17d6d94f1c0844bcf097c0275cc2c
   - enabled: 0
-    path: Assets/Scenes/OLD/SCN_Control_Affiche.unity
+    path: Assets/Scenes/OLD/SCN_Control_AfficheLouis.unity
     guid: 7267c3dfcb5fa5e469a229d30bd998a8
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 985a5a2410128e54cb7c2030aa449fc7, type: 2}
