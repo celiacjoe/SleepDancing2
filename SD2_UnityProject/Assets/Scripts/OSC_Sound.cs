@@ -28,14 +28,14 @@ namespace OscSimpl.Examples
         public Material mat;
         public string Name5;
         public string Name6;
-        
+        public string nor;
         public SoundRender scrpit1;
         public bool StandardActivated;
         float v1;
         float v1o;
         float fao;
         float fbo;
-
+        float noro;
         float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
         {
             return MinFinal + (Val - minInit) * (MaxFinal - MinFinal) / (MaxInit - minInit);
@@ -77,13 +77,14 @@ namespace OscSimpl.Examples
                 v1 = v1o;
                 scrpit1.f1 = fao;
                 scrpit1.f2 = fbo;
+                mat.SetFloat("NRMIntensity", noro);
             }
             if(StandardActivated == true)
             {
                 v1 = 1;
                 scrpit1.f1 = 0;
                 scrpit1.f2 = 0;
-
+                mat.SetFloat("NRMIntensity", 0);
             }
             if (Input.GetKeyDown(KeyCode.K))
             {
@@ -113,7 +114,7 @@ namespace OscSimpl.Examples
             _oscIn.MapFloat(Name4, Event4);
             _oscIn.Map(Name5, Event5);
             _oscIn.MapFloat(Name6, Event6);
-
+            _oscIn.MapFloat(nor, Event7);
         }
 
 
@@ -153,6 +154,10 @@ namespace OscSimpl.Examples
            
          
             scrpit1.f3= value;
+        }
+        public void Event7(float value)
+        {
+            noro = value;
         }
     }
 }

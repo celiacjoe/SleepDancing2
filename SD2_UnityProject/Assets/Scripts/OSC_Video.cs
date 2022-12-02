@@ -36,6 +36,7 @@ namespace OscSimpl.Examples
         public string Name14;
         public string Name15;
         public string Name16;
+        public string nor;
         public VideoDeform script1;
         public Master_Control script2 ;
         public Material final;
@@ -52,6 +53,7 @@ namespace OscSimpl.Examples
         float m1o;
         float m2o;
         float disparitiono;
+        float noro;
         private int Nbr_portIn;
 
         void Start()
@@ -83,6 +85,7 @@ namespace OscSimpl.Examples
                 script1.m2 = m2o;
                 script1.Disparition = disparitiono;
                 script1.ms = TMid;
+                final.SetFloat("NRMIntensity", noro);
                 S_UI.UI_OSCValue.GetComponentInChildren<Text>().text = "value" + v1o; /////// +++
 
             }
@@ -98,7 +101,7 @@ namespace OscSimpl.Examples
                 script1.m2 = 0.55f;
                 script1.Disparition = 0.05f;
                 script1.ms = 0.1f* Time.time;
-
+                final.SetFloat("NRMIntensity", 0);
             }
             if (Input.GetKeyDown(KeyCode.K))
             {
@@ -137,6 +140,7 @@ namespace OscSimpl.Examples
             _oscIn.MapFloat(Name14, Event14);
             _oscIn.MapFloat(Name15, Event15);
             _oscIn.MapFloat(Name16, Event16);
+            _oscIn.MapFloat(nor, Event17);
         }
 
 
@@ -206,6 +210,9 @@ namespace OscSimpl.Examples
         {
             script2.SharedIntensityValue = value ;
         }
-
+        public void Event17(float value)
+        {
+           noro = value;
+        }
     }
 }
