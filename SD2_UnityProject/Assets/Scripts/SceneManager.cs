@@ -46,7 +46,6 @@ public class SceneManager : MonoBehaviour
         AC.SetBool("Started", false);
         //S_UI.UI_Current.GetComponentInChildren<Text>().text = "intro";
         Clean();
-
         //SetupParam3Dshape();
     }
 

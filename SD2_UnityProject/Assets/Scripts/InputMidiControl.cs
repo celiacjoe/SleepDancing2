@@ -9,6 +9,7 @@ public class InputMidiControl : MonoBehaviour
 {
 
     ///////////// VAR
+    public NebulaRender S_NebulaRender;
     public render S_FinalRender;
     public VideoDeform S_VideoDeform;
     public Master_Control S_MasterControl;
@@ -152,13 +153,14 @@ public class InputMidiControl : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            Application.LoadLevel("SCN_Louis_Transition");
-            Debug.Log("OK keypad enter");
+            Application.LoadLevel("finale");
         }      
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            //S_UI.UI_NebulaActive.SetActive(true);
+            S_NebulaRender.NoirNebula = 1;
+            S_UI.UI_NebulaActive.SetActive(true);
+            S_UI.UI_NebulaActive.GetComponentInChildren<Text>().text = "Nebula activated: "+ S_NebulaRender.NoirNebula;
             //Manager.GO_FinalQuad[0].SetActive(true);
         }
         if (Input.GetKeyDown(KeyCode.N))

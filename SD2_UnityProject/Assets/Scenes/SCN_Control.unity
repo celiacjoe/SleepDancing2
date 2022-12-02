@@ -985,6 +985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 151f3a36152145b4695a59be25c04838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  S_NebulaRender: {fileID: 855365286}
   S_FinalRender: {fileID: 2765008366689411768}
   S_VideoDeform: {fileID: 296026941}
   S_MasterControl: {fileID: 176598241}
@@ -2740,6 +2741,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6453235082599507913, guid: 87ae26dbbe97293498f98534b000ec11, type: 3}
   m_PrefabInstance: {fileID: 2765008367067832729}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &855365286 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6453235082599507925, guid: 87ae26dbbe97293498f98534b000ec11, type: 3}
+  m_PrefabInstance: {fileID: 2765008367067832729}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855365283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7480afe09663cd428230fa14fada409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &869791662
 GameObject:
   m_ObjectHideFlags: 0
