@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.VFX;
 
 namespace OscSimpl.Examples
@@ -8,7 +9,7 @@ namespace OscSimpl.Examples
     public class OSC_Nebula : MonoBehaviour
     {
         [SerializeField] OscIn _oscIn;
-        
+        public UI_Manager S_UI;
         public string Name1;
         public float Low;
         public float TLow;
@@ -58,6 +59,7 @@ namespace OscSimpl.Examples
 
         void Update()
         {
+
             TLow += Low;
             TMid += Mid;
             THigh += High;
@@ -78,11 +80,11 @@ namespace OscSimpl.Examples
             scrpit1.SHigh = SHigh;
             if (StandardActivated == false)
             {
-
                 v1 = v1o;
                 scrpit1.f1 = fao;
                 scrpit1.f2 = fbo;
                 scrpit1.transition4 = t4o;
+                S_UI.UI_OSCValue.GetComponentInChildren<Text>().text = "value" + v1o; /////// +++
             }
             if (StandardActivated == true)
             {
@@ -96,14 +98,12 @@ namespace OscSimpl.Examples
                 // Debug.Log("te");
                 if (StandardActivated == false)
                 {
-
-
                     StandardActivated = true;
+                    S_UI.UI_OSC.SetActive(true);/////// +++
                 }
-
                 else
                 {
-
+                    S_UI.UI_OSC.SetActive(false);/////// +++
                     StandardActivated = false;
                 }
             }

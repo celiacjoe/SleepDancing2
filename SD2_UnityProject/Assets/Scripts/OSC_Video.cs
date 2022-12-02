@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
+using UnityEngine.UI;
 
 namespace OscSimpl.Examples
 {
     public class OSC_Video : MonoBehaviour
     {
         [SerializeField] OscIn _oscIn;
-        
+        public UI_Manager S_UI;
         public string Name1;
         public float Low;
         public float TLow;
@@ -81,7 +82,7 @@ namespace OscSimpl.Examples
                 script1.m1 = m1o;
                 script1.m2 = m2o;
                 script1.Disparition = disparitiono;
-
+                S_UI.UI_OSCValue.GetComponentInChildren<Text>().text = "value" + v1o; /////// +++
 
             }
             if (StandardActivated == true)
@@ -103,13 +104,13 @@ namespace OscSimpl.Examples
                 if (StandardActivated == false)
                 {
 
-
+                    S_UI.UI_OSC.SetActive(true);/////// +++
                     StandardActivated = true;
                 }
 
                 else
                 {
-
+                    S_UI.UI_OSC.SetActive(false);/////// +++
                     StandardActivated = false;
                 }
 

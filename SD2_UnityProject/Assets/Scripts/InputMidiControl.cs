@@ -110,7 +110,8 @@ public class InputMidiControl : MonoBehaviour
         Started = false;
         FXActive = false;
         Noir = false;
-        NoirCourt = false;      
+        NoirCourt = false;
+        S_UI.UI_OSC.SetActive(false);/////// +++
     }
     void Update()
     {
@@ -577,6 +578,7 @@ public class InputMidiControl : MonoBehaviour
     void ChangeFluid(InputAction.CallbackContext ctx)
     {
         Manager.ChangeDisplace();
+        Debug.Log("Touch pressed Displac chang");
     }
     void ActiveFX(InputAction.CallbackContext ctx)
     {

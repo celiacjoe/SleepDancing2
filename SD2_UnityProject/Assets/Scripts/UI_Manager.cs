@@ -24,6 +24,7 @@ public class UI_Manager : MonoBehaviour
     public GameObject UI_Deform;
     public GameObject UI_Start;
     public GameObject UI_SettingShape;
+    public GameObject UI_OSCValue;
     void Start()
     {
         UI_FX.SetActive(false);
