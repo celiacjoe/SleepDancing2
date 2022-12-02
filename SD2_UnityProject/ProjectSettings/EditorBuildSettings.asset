@@ -5,29 +5,11 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/OLD/SampleScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: Assets/Scenes/OLD/DeformationCamera.unity
-    guid: 9b22051cc309c2c44abb6f42f57554c3
-  - enabled: 0
-    path: Assets/Scenes/OLD/SCN_Louis_SoundControl.unity
-    guid: a9c8481714ec35940b95a761f56bae66
-  - enabled: 0
-    path: Assets/Scenes/OLD/SNC_Louis_Nebula.unity
-    guid: b89114e5c69463a45a0f39b34886be61
-  - enabled: 0
-    path: Assets/Scenes/OLD/SCN_Louis_3dShape.unity
-    guid: bc5f6f75d9f7f9045a4524a30d597a7c
   - enabled: 1
     path: Assets/Scenes/SCN_Control.unity
     guid: 3df17d6d94f1c0844bcf097c0275cc2c
-  - enabled: 0
-    path: Assets/Scenes/OLD/SCN_Control_AfficheLouis.unity
-    guid: 7267c3dfcb5fa5e469a229d30bd998a8
+  - enabled: 1
+    path: Assets/Scenes/SCN_Louis_Transition.unity
+    guid: a498bf9a4b2b5ea47833f50f157f43b6
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 985a5a2410128e54cb7c2030aa449fc7, type: 2}
