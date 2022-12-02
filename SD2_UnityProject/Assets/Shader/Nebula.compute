@@ -46,6 +46,7 @@ float _f2;
 float _f3;
 float _f4;
 float _f5;
+float _noir;
 #define Pi 3.14159265359
 #define ViewStart 1.6
 #define ViewEnd 4.4
@@ -177,7 +178,7 @@ void CSMain (uint2 id : SV_DispatchThreadID)
 		else { color = float3(0., 0., 0.); }
 	}
 	else { color = float3(0.,0.,0.); }
-	writer[id] = float4(log(color + float3(1.,1.,1.)), 1.);
+	writer[id] = float4(log(color + float3(1.,1.,1.))*_noir, 1.);
 }
 
 

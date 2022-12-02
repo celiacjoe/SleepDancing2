@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3780906730156429586
+--- !u!114 &-6253482617914772258
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: volumedanceur
-  m_Shader: {fileID: -6465566751694194690, guid: 9906e46e6a624024ba7d491f5c89dd31, type: 3}
+  m_Name: Final
+  m_Shader: {fileID: -6465566751694194690, guid: ab49691e76389f841ae5c6ac4e7ce5d5, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -32,6 +32,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_0f97b4ae78ad454d9f59cdd39373b481:
+        m_Texture: {fileID: 2800000, guid: f8949c7ec7a0ae04c9ce9ded49570ea9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_5ded8c079f784ab5b83f8d39de54fd0e:
+        m_Texture: {fileID: 2800000, guid: 35167f43818bf5c479a620a0e6acfa32, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -64,7 +72,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Name:
+    - _Nebula:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -93,8 +101,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Power: 0.5
-    - Saturation: 0.5
+    - Vector1_d9714f4c15fc49ed9ae203366bc86378: 0.6
+    - Vector1_e166da935eb8497d98ebd93b645b83a1: 42.5
+    - Vector1_e6693213b49b4abfa4e13c52a9b1b9f8: 56.8
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1

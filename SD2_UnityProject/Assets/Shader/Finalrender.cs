@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class NebulaRender : MonoBehaviour
+public class Finalrender : MonoBehaviour
 {
     public ComputeShader compute_shader;
     RenderTexture A;
@@ -9,7 +9,6 @@ public class NebulaRender : MonoBehaviour
     public Material material;
     int handle_main;
     int handle_main2;
-    public float NoirNebula;
     [Space(20)]
     [Header("PositionSetting")]
     [Range(0, 1)]
@@ -68,7 +67,7 @@ public class NebulaRender : MonoBehaviour
     public int _resy;
     public int _resx2;
     public int _resy2;
-    public render script;
+   // public render script;
     float tr1;
     float tr2;
     float tr3;
@@ -142,7 +141,7 @@ public class NebulaRender : MonoBehaviour
         compute_shader.SetFloat("_High", High);
         compute_shader.SetFloat("_SHigh", SHigh);
         compute_shader.SetFloat("_THigh", THigh);
-        compute_shader.SetFloat("_noir", NoirNebula);
+
         compute_shader.SetFloat("_time", Time.time);
         compute_shader.SetFloat("_mousex", Input.mousePosition.x / Display.main.systemWidth);
         compute_shader.SetFloat("_mousey", Input.mousePosition.y / Display.main.systemHeight);
@@ -151,6 +150,6 @@ public class NebulaRender : MonoBehaviour
         compute_shader.SetTexture(handle_main2, "writer", B);
         compute_shader.Dispatch(handle_main2, B.width / 8, B.height / 8, 1);
         material.SetTexture("_Nebula",B);
-        script.C = B;
+        //script.C = B;
     }
 }

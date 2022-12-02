@@ -123,9 +123,9 @@ void normal_float(float2 uv, float  time, int bo ,float4 tex, out float4 Out)
 		float t2 = fmb(uv + e.xy, time);
 		float t3 = fmb(uv + e.yx, time);
 		float3 n1 = normalize(float3(t1 - t2, t1 - t3, 0.01));
-		float t4 = pow(t1, 0.5);
+		float t4 = smoothstep(0.,1.,pow(t1, 0.5));
 
-		Out = float4(n1, t4);
+		Out = float4(n1*2., t4);
 	}
 	else {
 		Out = tex;

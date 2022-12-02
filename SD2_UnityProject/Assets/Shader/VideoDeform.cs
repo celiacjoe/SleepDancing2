@@ -30,6 +30,7 @@ public class VideoDeform : MonoBehaviour
     public float m2;
     [Range(-1, 1)]
     public float dir;
+    public float ms;
     public int _resx;
     public RenderTextureFormat rtFormat = RenderTextureFormat.ARGBHalf;
     public int _resy;
@@ -113,6 +114,7 @@ public class VideoDeform : MonoBehaviour
                 compute_shader2.SetFloat("_resy", _resy);
                 compute_shader2.SetFloat("_m1", mm1);
                 compute_shader2.SetFloat("_m2", mm2);
+                compute_shader2.SetFloat("_ms",ms);
                 compute_shader2.SetTexture(handle_main, "writer", B);
                 compute_shader2.Dispatch(handle_main, B.width / 8, B.height / 8, 1);
                 compute_shader2.SetTexture(handle_main, "reader", B);

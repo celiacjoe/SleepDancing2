@@ -14,7 +14,7 @@ float _m1;
 float _m2;
 float _resx;
 float _resy;
-
+float _ms;
 float desaturate(float3 color)
 {
 	float3 lum = float3(0.299, 0.587, 0.114);
@@ -63,7 +63,7 @@ void CSMain(uint2 id : SV_DispatchThreadID)
 	float m1 = max(bb, reader.SampleLevel(_LinearClamp, uv + float2(-1.,-1.)*(reader.SampleLevel(_LinearClamp, uv + 0.5 / res, 0).x - 0.5)*0.01 + 0.5 / res, 0).x*0.99);
 	float2 pos = f;
 	//m1 = mul(m1, float2x2(cos(ang), sin(ang), -sin(ang), cos(ang)););
-	float ang = (m1)*1.5+_time*0.01;
+	float ang = (m1)*1.75 + _ms * 0.02;
 	float2 v = float2(0.,0.);
 	float2x2 m = float2x2(cos(ang), sin(ang), -sin(ang), cos(ang));
 	float2 b = float2(cos(ang), sin(ang));

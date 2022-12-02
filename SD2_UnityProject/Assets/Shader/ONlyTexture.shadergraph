@@ -466,6 +466,20 @@
             },
             "m_InputSlot": {
                 "m_Node": {
+                    "m_Id": "11a7c7758f424e41b351fc31d6111778"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "0f2b5b79c8c248899d1105df590b5cef"
+                },
+                "m_SlotId": 4
+            },
+            "m_InputSlot": {
+                "m_Node": {
                     "m_Id": "4e9c9c51f14d4d3092fbd5437da4b8fd"
                 },
                 "m_SlotId": 1
@@ -819,20 +833,6 @@
                     "m_Id": "fd780776bae141c38be0bcc9be9d021f"
                 },
                 "m_SlotId": 1
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "4e9c9c51f14d4d3092fbd5437da4b8fd"
-                },
-                "m_SlotId": 2
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "11a7c7758f424e41b351fc31d6111778"
-                },
-                "m_SlotId": 0
             }
         },
         {
@@ -7193,7 +7193,7 @@
     "m_ShaderOutputName": "B",
     "m_StageCapability": 3,
     "m_Value": {
-        "e00": -0.5,
+        "e00": 0.5,
         "e01": 2.0,
         "e02": 2.0,
         "e03": 2.0,
@@ -12109,7 +12109,7 @@
     },
     "m_Name": "NRMIntensity",
     "m_DefaultReferenceName": "Vector1_edcf7fba66c9426894ca490ffe99ffaf",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "NRMIntensity",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,

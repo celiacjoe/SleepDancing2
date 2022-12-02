@@ -31,6 +31,12 @@ namespace OscSimpl.Examples
         public VisualEffect FX;
         public ShapeRender scriptshape;
         public string xy;
+        public string nor;
+        float noro;
+        float fao;
+        float fbo;
+        public bool StandardActivated;
+
         float map(float Val, float minInit, float MaxInit, float MinFinal, float MaxFinal)
         {
             return MinFinal + (Val - minInit) * (MaxFinal - MinFinal) / (MaxInit - minInit);
@@ -80,12 +86,41 @@ namespace OscSimpl.Examples
             {
                 QuadRender.sharedMaterial.SetFloat("_ApparitionForme", Mathf.Pow(S_Midi.AppFormeValue, 5) * Low * 5);
             }*/
-                //VisualEffect VFX = S_Manager.FX_List[S_Manager.Nbr_FX].GetComponent(typeof(VisualEffect)) as VisualEffect;
-                //VisualEffect VFX = FX.GetComponent<VisualEffect>();
-                //QuadRender.sharedMaterial.SetFloat("RoughtIntensity", Mathf.Pow(S_Midi.RoughtIntensityValue, 5) * Low * 5);
-           
+             //VisualEffect VFX = S_Manager.FX_List[S_Manager.Nbr_FX].GetComponent(typeof(VisualEffect)) as VisualEffect;
+             //VisualEffect VFX = FX.GetComponent<VisualEffect>();
+             //QuadRender.sharedMaterial.SetFloat("RoughtIntensity", Mathf.Pow(S_Midi.RoughtIntensityValue, 5) * Low * 5);
+
             //QuadRender.sharedMaterial.SetFloat("Intensity", S_Midi.IntensityControlValue + SMid * Mathf.Pow(S_Midi.MultiplierSound02Value,5) * 50);
             //QuadRender.sharedMaterial.SetFloat("_ApparitionForme", S_Midi.AppFormeValue + SHigh* Mathf.Pow(S_Midi.MultiplierSound03Value,5) * 50);
+            if (StandardActivated == false)
+            {
+                QuadRender.sharedMaterial.SetFloat("NRMIntensity", noro);
+                scriptshape.position1 =  fao;
+                scriptshape.position2 =  fbo;
+                
+               
+            }
+            if (StandardActivated == true)
+            {
+                QuadRender.sharedMaterial.SetFloat("NRMIntensity", 0);
+                scriptshape.position1 =  0;
+                scriptshape.position2 =  0;
+                
+            }
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                // Debug.Log("te");
+                if (StandardActivated == false)
+                {
+                    StandardActivated = true;
+                  
+                }
+                else
+                {
+                 
+                    StandardActivated = false;
+                }
+            }
         }
 
         void OnEnable()
@@ -94,6 +129,7 @@ namespace OscSimpl.Examples
             _oscIn.MapFloat(Name2, Event2);
             _oscIn.MapFloat(Name3, Event3);
             _oscIn.Map(xy, Event4);
+            _oscIn.MapFloat(nor, Event5);
         }
 
         public void Event1(float value)
@@ -114,11 +150,15 @@ namespace OscSimpl.Examples
             float fb;
             if (message.TryGet(0, out fa) && message.TryGet(1, out fb))
             {
-                scriptshape.position1 = (fa - 0.5f) * -2;
-                scriptshape.position2 = (fb - 0.5f) * 2;
+                fao = (fa - 0.5f) * -2;
+                fbo = (fb - 0.5f) * 2;
                 //Debug.Log("ok2");
             }
             OscPool.Recycle(message);
+        }
+        public void Event5(float value)
+        {
+          noro = value;
         }
     }
 }

@@ -82,6 +82,7 @@ namespace OscSimpl.Examples
                 script1.m1 = m1o;
                 script1.m2 = m2o;
                 script1.Disparition = disparitiono;
+                script1.ms = TMid;
                 S_UI.UI_OSCValue.GetComponentInChildren<Text>().text = "value" + v1o; /////// +++
 
             }
@@ -96,6 +97,7 @@ namespace OscSimpl.Examples
                 script1.m1 = 0.45f;
                 script1.m2 = 0.55f;
                 script1.Disparition = 0.05f;
+                script1.ms = 0.1f* Time.time;
 
             }
             if (Input.GetKeyDown(KeyCode.K))
